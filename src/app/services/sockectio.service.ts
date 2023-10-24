@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
+import { environment } from 'src/environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SockectioService {
 
-  io = io("http://localhost:8000",{
-    path: "/sockets",
+  io = io(`${environment.server}`,{
+    path: `/${environment.pathsocket}`,
     withCredentials: true,
     autoConnect: true
   });
