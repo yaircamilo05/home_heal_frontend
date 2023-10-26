@@ -19,16 +19,18 @@ export class LoginComponent {
 
   builForm() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      pass: ['', Validators.required]
+      email: ['luisandres@gmail.com', [Validators.required, Validators.email]],
+      pass: ['Hola123*', Validators.required]
     })
   }
 
   login() {
     if (this.form.valid) {
+      let data = this.form.value
+      console.log(data);
+    }else{
       console.log('Formulario inválido.');
     }
-    let data = this.form.value
-    console.log(data);
+
   }
 }
