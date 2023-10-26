@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Credentials } from 'src/app/models/credentials.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -9,8 +12,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   form: FormGroup = new FormGroup('');
+
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
   ) {
     this.builForm();
   }
@@ -18,14 +24,16 @@ export class LoginComponent {
   builForm() {
     this.form = this.formBuilder.group({
       email: ['luisandres@gmail.com', [Validators.required, Validators.email]],
-      pass: ['Hola123*', Validators.required]
+      password: ['Hola123*', Validators.required]
     })
   }
 
   login() {
     if (this.form.valid) {
-      let data = this.form.value
-      console.log(data);
+      let data:Credentials = this.form.value
+      this.authService.login(data).subscribe(()=>{
+        this.router.navigate(['/website']);
+      });
     }else{
       console.log('Formulario inválido.');
     }

@@ -21,18 +21,18 @@ export class SockectioService {
 
   onConnect(){
     this.io.on('connect', () => {
-      console.log("Connected");
+      //console.log("Connected");
     });
   }
 
   onJoin(){
     this.io.on('join', (data) => {
-      console.log(data);
+      //console.log(data);
     });
   }
   onDisconnect(){
     this.io.on('disconnect', (data) => {
-      console.log(data);
+      //console.log(data);
     });
   }
 }

@@ -30,15 +30,17 @@ export class AuthService {
           .pipe(
             tap(response => {
               this.storageService.saveToken(response.token);
-
+              this.validateToken().subscribe();
             })
           );
   }
 
   validateToken():Observable<ResponseCustomModel<UserGetWithMenusModel>>{
-    return this.http.get<ResponseCustomModel<UserGetWithMenusModel>>(`${this.server}/validate_token`,{ context: addToken() })
-    .pipe(
-      tap(response =>this.user.next(response.data))
+    return this.http.get<ResponseCustomModel<UserGetWithMenusModel>>(`${this.server}/validate_token`, { context: addToken() })
+    .pipe(tap(response =>{
+        console.log("Respuesta del servidor",response.data)
+        this.user.next(response.data)
+      })
     );
   };
 }
