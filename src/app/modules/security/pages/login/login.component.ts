@@ -26,7 +26,7 @@ export class LoginComponent {
 
   login() {
     if (this.form.valid) {
-      console.log('Formulario inválido.');;
+      console.log('Formulario inválido.');
     }
     let data = this.form.value
     console.log(data);
