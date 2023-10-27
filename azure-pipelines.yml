@@ -25,7 +25,7 @@ steps:
   
 - task: CopyFiles@2
   inputs:
-    Contents: 'build/**'
+    Contents: 'build/dist'
     TargetFolder: '$(build.ArtifactStagingDirectory)'
 
 - task: ArchiveFiles@2
