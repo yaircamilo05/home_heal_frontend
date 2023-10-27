@@ -10,6 +10,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: Cache@2
+  inputs:
+    key: '**/package-lock.json, !**/node_modules/** /package-lock.json, !**/.*/**/package-lock.json'
+    path: 'node_modules'
+    cacheHitVar: 'HOMEHEAL_ANGULAR_CACHE_RESTORED'
+- task: CmdLine@2
+  inputs:
+    script: 'echo "*** Cache Restored? :: $(HOMEHEAL_ANGULAR_CACHE_RESTORED) ***"'
 - task: NodeTool@0
   inputs:
     versionSpec: '16.x'
