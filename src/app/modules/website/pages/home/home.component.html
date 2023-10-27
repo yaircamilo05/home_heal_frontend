@@ -1,11 +1,22 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+      <div>
+        <div class="container-header-menu">
+          <i class="fa-solid fa-table-columns"></i>
+          <h1>Home Heal</h1>
+        </div>
+        <div class="container-info-user">
+          <img src="https://estremorstorageaccount.blob.core.windows.net/estremoruserscontainer/user-default.png" alt="">
+          <h3 class="nombre-user">{{user?.name}}</h3>
+          <p class="rol-name">{{user?.rol?.name}}</p>
+        </div>
+      </div>
     <mat-nav-list *ngFor="let menu of user?.menus">
-      <a  mat-list-item routerLink={{menu.link}}> <i class={{menu.icon}}></i> {{menu.title}}</a>
+      <a class="Opcion"  mat-list-item routerLink={{menu.link}}>
+        <i id="icon" class={{menu.icon}}></i>
+         {{menu.title}}
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -18,7 +29,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>home_heal_front</span>
+      <span>Web Site</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

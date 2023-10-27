@@ -3,7 +3,17 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+      <div>
+        <div class="container-header-menu">
+          <i class="fa-solid fa-table-columns"></i>
+          <h1>Your Logo</h1>
+        </div>
+        <div class="container-info-user">
+          <img src="https://estremorstorageaccount.blob.core.windows.net/estremoruserscontainer/user-default.png" alt="">
+          <h3 class="nombre-user">Luis Andres</h3>
+          <p class="rol-name">Super administrador</p>
+        </div>
+      </div>
     <mat-nav-list>
       <a mat-list-item routerLink="roles">Roles</a>
       <a mat-list-item href="#">Otro menu</a>
@@ -20,7 +30,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>home_heal_front</span>
+      <span>Administración</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
