@@ -1,4 +1,12 @@
 # Node.js with Angular
+- task: Cache@2
+  inputs:
+    key: '**/package-lock.json, !**/node_modules/** /package-lock.json, !**/.*/**/package-lock.json'
+    path: 'node_modules'
+    cacheHitVar: 'HOMEHEAL_ANGULAR_CACHE_RESTORED'
+- task: CmdLine@2
+  inputs:
+    script: 'echo "*** Cache Restored? :: $(HOMEHEAL_ANGULAR_CACHE_RESTORED) ***"'
 # Build a Node.js project that uses Angular.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
