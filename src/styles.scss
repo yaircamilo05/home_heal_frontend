@@ -1,4 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Montserrat:wght@300;400;600&family=Quicksand:wght@300;500;700&family=Roboto+Condensed:ital,wght@0,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,300&display=swap');
+$text: #333333;
+$back: #F5F5F5;
+$principal: #369CDD;
+$principal-lite: #67aeda;
+$secundary: #1E5877;
+$success: #4CAF50;
+$success-lite: #DFF0D8;
+$warning: #DFF0D8;
+$warning-lite: #FFF6B2;
+$alert: #FF6F60;
+$alert-lite: #FFCACA;
+
+:root{
+  font-family: 'Montserrat', sans-serif;
+}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
