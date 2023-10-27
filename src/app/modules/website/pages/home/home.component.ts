@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
+import { MenuGetModel } from 'src/app/models/menu.model';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { UserGetWithMenusModel } from 'src/app/models/user.model';
 })
 export class HomeComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
+  location: string = 'WEB SITE';
   user:UserGetWithMenusModel | null = null;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -33,5 +35,8 @@ export class HomeComponent implements OnInit {
       });
     }
 
+    setLocation(menu:MenuGetModel){
+      this.location = menu?.title || 'WEB SITE';
+    }
 
 }

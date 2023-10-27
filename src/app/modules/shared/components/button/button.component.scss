@@ -1,0 +1,27 @@
+@import '/src/styles.scss';
+.primary{
+  background: $principal;
+  border: none;
+  width: 115px;
+  border-radius: 4px;
+  height: 35px;
+  color: $back;
+}
+
+.secondary{
+  background: $secundary;
+  border: none;
+  width: 115px;
+  border-radius: 4px;
+  height: 35px;
+  color: $back;
+}
+
+.icon-title{
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+

@@ -3,8 +3,7 @@
       [opened]="(isHandset$ | async) === false">
       <div>
         <div class="container-header-menu">
-          <i class="fa-solid fa-table-columns"></i>
-          <h1>Home Heal</h1>
+          <h1 class="title">HOME HEAL</h1>
         </div>
         <div class="container-info-user">
           <img src="https://estremorstorageaccount.blob.core.windows.net/estremoruserscontainer/user-default.png" alt="">
@@ -12,15 +11,23 @@
           <p class="rol-name">{{user?.rol?.name}}</p>
         </div>
       </div>
-    <mat-nav-list *ngFor="let menu of user?.menus">
-      <a class="Opcion"  mat-list-item routerLink={{menu.link}}>
-        <i id="icon" class={{menu.icon}}></i>
-         {{menu.title}}
+    <mat-nav-list class="lista-opciones"  *ngFor="let menu of user?.menus; let last = last">
+      <a class="opcion" (click)="setLocation(menu)"  mat-list-item routerLink={{menu.link}}>
+        <div class="icon-title">
+          <div class="icon"><i class={{menu.icon}}></i></div>
+          {{menu.title}}
+        </div>
+
       </a>
+      <hr *ngIf="last" class="ultimo-menu-border">
     </mat-nav-list>
+    <div class="footer-sidenav">
+        <app-button type="secondary" icon="fa-solid fa-user" text="CUENTA"></app-button>
+        <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR"></app-button>
+    </div>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
+  <mat-sidenav-content class="content">
+    <mat-toolbar  class="header" color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -29,7 +36,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Web Site</span>
+      <div class="logo">
+        <img src="../../../../../assets/icons/Blanco-elemento.png" alt="Logo">
+      </div>
+      <div class="location">
+          {{location}}
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
