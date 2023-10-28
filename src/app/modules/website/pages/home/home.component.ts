@@ -13,7 +13,7 @@ import { MenuGetModel } from 'src/app/models/menu.model';
 })
 export class HomeComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
-  location: string = 'WEB SITE';
+  location: string = 'BIENVENIDO';
   user:UserGetWithMenusModel | null = null;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     }
 
     setLocation(menu:MenuGetModel){
-      this.location = menu?.title || 'WEB SITE';
+      this.location = menu?.title.toUpperCase() || 'WEB SITE';
     }
 
 }

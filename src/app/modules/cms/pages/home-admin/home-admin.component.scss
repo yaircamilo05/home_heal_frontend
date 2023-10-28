@@ -4,7 +4,7 @@
 }
 
 .sidenav{
-  background: $principal;
+  background: $principal-lite;
 }
 .header{
   background: $secundary;
@@ -22,7 +22,7 @@
 }
 
 .lista-opciones{
-  padding: 5px 17px;
+  padding: 5px 6px;
 }
 .opcion{
   border-top: solid 2px $principal-lite;
@@ -30,7 +30,7 @@
 
 .icon-title{
   display: flex;
-  gap: 20px;
+  gap: 10px;
   justify-content: flex-start;
   align-items: center;
 }

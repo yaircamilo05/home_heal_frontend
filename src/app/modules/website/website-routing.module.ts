@@ -2,21 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeAdminComponent } from '../cms/pages/home-admin/home-admin.component';
 import { HomeComponent } from './pages/home/home.component';
+import { InitComponent } from './pages/init/init.component';
 
 const routes: Routes = [
   {
     path:'',
     component: HomeComponent,
     children: [
-      // {
-      //   path: '',
-      //   redirectTo: 'login',
-      //   pathMatch: 'full'
-      // },
-      // {
-      //   path:'login',
-      //   component: LoginComponent
-      // }
+      {
+        path: '',
+        redirectTo: 'init',
+        pathMatch: 'full'
+      },
+      {
+        path:'init',
+        component: InitComponent
+      }
     ]
   }
 ];
