@@ -22,7 +22,7 @@ export class HomeAdminComponent {
     constructor(private authService: AuthService) {
 
     }
-    location: string = 'WEB SITE';
+    location: string = 'ADMINISTRACIÓN';
     user:UserGetWithMenusModel | null = null;
 
     ngOnInit(): void {
@@ -37,7 +37,7 @@ export class HomeAdminComponent {
     }
 
     setLocation(menu:MenuGetModel){
-      this.location = menu?.title || 'WEB SITE';
+      this.location = menu?.title.toUpperCase() || 'ADMINISTRACIÓN';
     }
 
 }
