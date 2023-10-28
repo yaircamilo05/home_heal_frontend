@@ -23,7 +23,7 @@ export class LoginComponent {
 
   builForm() {
     this.form = this.formBuilder.group({
-      email: ['luisgomez@mail.com', [Validators.required, Validators.email]],
+      email: ['luisandres@mail.com', [Validators.required, Validators.email]],
       password: ['Hola123*', Validators.required]
     })
   }

@@ -6,6 +6,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,11 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
     CommonModule,
     SecurityRoutingModule,
     ReactiveFormsModule,
+    SharedModule
   ],
   providers:
   [
-   
+
   ],
 })
 export class SecurityModule { }

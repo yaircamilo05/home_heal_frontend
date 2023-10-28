@@ -1,3 +1,4 @@
+@import '/src/styles.scss';
 .formulario{
   display: flex;
   flex-direction: column;
@@ -9,4 +10,55 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.container-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: $back;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+.container-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-logo img{
+  width: 200px;
+  height: 200px;
+}
+.icon-label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.title{
+  color: $principal;
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: xxx-large;
+  font-weight: bold;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container-btn-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }

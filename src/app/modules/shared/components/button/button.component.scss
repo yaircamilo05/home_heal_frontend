@@ -6,8 +6,12 @@
   border-radius: 4px;
   height: 35px;
   color: $back;
+  font-family: 'Montserrat', sans-serif;
 }
 
+.primary:hover{
+  background: $principal-lite;
+}
 .secondary{
   background: $secundary;
   border: none;
@@ -15,8 +19,12 @@
   border-radius: 4px;
   height: 35px;
   color: $back;
+  font-family: 'Montserrat', sans-serif;
 }
 
+.secondary:hover{
+  background: $secundary-lite;
+}
 .icon-title{
   display: flex;
   gap: 20px;

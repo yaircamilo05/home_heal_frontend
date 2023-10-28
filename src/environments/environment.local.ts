@@ -1,5 +1,5 @@
 export const environment = {
-  server: 'http://127.0.0.1:8000',
+  server: 'http://localhost:8000',
   production: false,
   pathsocket: 'sockets'
 }
