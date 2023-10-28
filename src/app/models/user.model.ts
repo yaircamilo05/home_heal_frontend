@@ -14,6 +14,7 @@ export interface UserGetWithMenusModel extends UserCreateModel {
     lastname: string;
     email: string;
     rol_id: number;
+    file_img: string;
     menus: MenuGetModel[];
     rol: RolModel
 }
