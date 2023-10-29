@@ -22,8 +22,8 @@
       <hr *ngIf="last" class="ultimo-menu-border">
     </mat-nav-list>
     <div class="footer-sidenav">
-        <app-button type="secondary" icon="fa-solid fa-user" text="CUENTA"></app-button>
-        <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR"></app-button>
+        <app-button type="secondary" icon="fa-solid fa-user" text="CUENTA" (click)="testModalConfirmation()"></app-button>
+        <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR"(click)="testModalAlert()"></app-button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content class="content">

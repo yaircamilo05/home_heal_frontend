@@ -1,6 +1,6 @@
 @import '/src/styles.scss';
 .primary{
-  background: $principal;
+  background: $prin_admin;
   border: none;
   width: 115px;
   border-radius: 4px;
@@ -10,10 +10,10 @@
 }
 
 .primary:hover{
-  background: $principal-lite;
+  background: $sec_admin;
 }
 .secondary{
-  background: $secundary;
+  background: $sec_admin;
   border: none;
   width: 115px;
   border-radius: 4px;
@@ -23,7 +23,7 @@
 }
 
 .secondary:hover{
-  background: $secundary-lite;
+  background: $prin_admin;
 }
 .icon-title{
   display: flex;

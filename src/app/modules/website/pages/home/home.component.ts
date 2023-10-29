@@ -5,6 +5,12 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { MenuGetModel } from 'src/app/models/menu.model';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalService } from 'src/app/services/modal.service';
+import { CustomModalComponent } from 'src/app/modules/shared/components/custom.modal/custom.modal.component';
+import { TitlesModal } from 'src/app/common/titles.modal';
+import { IconsModal } from 'src/app/common/icon.modal';
+import { TypeModal } from 'src/app/common/type.modal';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +26,11 @@ export class HomeComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
-    constructor(private authService: AuthService) {
+    constructor(
+      private authService: AuthService,
+      private dialog: Dialog,
+      private modalSevice: ModalService
+      ) {
 
     }
 
@@ -31,12 +41,30 @@ export class HomeComponent implements OnInit {
     getUserLogged(){
       this.authService.user$.subscribe(user =>{
         this.user = user;
-        console.log('El user', this.user);
       });
     }
 
     setLocation(menu:MenuGetModel){
       this.location = menu?.title.toUpperCase() || 'WEB SITE';
+    }
+
+    testModalConfirmation(){
+     //this.modalSevice.showConfirmation('¿Esta es una prueba del modal de confirmación?', this.dialog);
+     return this.dialog.open(CustomModalComponent, {
+      minWidth: '800px',
+      minHeight: '400px',
+      data: {
+        title: TitlesModal.Succeed,
+        question: "cscsdc",
+        iconClass: IconsModal.Succeed,
+        type:TypeModal.Succeed
+      }
+    })
+  }
+    
+
+    testModalAlert(){
+      this.modalSevice.showConfirmation('!Ojo! !Esta es una prueba del modal de aletar!', this.dialog);
     }
 
 }

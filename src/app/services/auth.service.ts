@@ -38,7 +38,6 @@ export class AuthService {
   validateToken():Observable<ResponseCustomModel<UserGetWithMenusModel>>{
     return this.http.get<ResponseCustomModel<UserGetWithMenusModel>>(`${this.server}/validate_token`, { context: addToken() })
     .pipe(tap(response =>{
-        console.log("Respuesta del servidor",response.data)
         this.user.next(response.data)
       })
     );

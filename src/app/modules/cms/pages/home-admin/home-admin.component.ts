@@ -32,7 +32,6 @@ export class HomeAdminComponent {
     getUserLogged(){
       this.authService.user$.subscribe(user =>{
         this.user = user;
-        console.log('El user', this.user);
       });
     }
 
