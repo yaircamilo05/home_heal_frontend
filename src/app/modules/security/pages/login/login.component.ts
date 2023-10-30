@@ -6,8 +6,6 @@ import { Roles } from 'src/app/common/rols.const';
 import { Credentials } from 'src/app/models/credentials.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { ModalService } from 'src/app/services/modal.service';
-
 
 @Component({
   selector: 'app-login',
@@ -22,8 +20,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private dialog : Dialog,
-    private modalService: ModalService
+    private dialog : Dialog
   ) {
     this.builForm();
   }
@@ -45,7 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.modalService.showConfirmation('¿Está seguro de iniciar sesión?', this.dialog);
     if (this.form.valid) {
       let data:Credentials = this.form.value
       this.authService.login(data).subscribe(()=>{

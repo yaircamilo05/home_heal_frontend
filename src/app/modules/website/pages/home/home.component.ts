@@ -5,12 +5,11 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { MenuGetModel } from 'src/app/models/menu.model';
-import { Dialog } from '@angular/cdk/dialog';
-import { ModalService } from 'src/app/services/modal.service';
-import { CustomModalComponent } from 'src/app/modules/shared/components/custom.modal/custom.modal.component';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { TitlesModal } from 'src/app/common/titles.modal';
-import { IconsModal } from 'src/app/common/icon.modal';
+import { Icons} from 'src/app/common/icon.modal';
 import { TypeModal } from 'src/app/common/type.modal';
+import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
 
 @Component({
   selector: 'app-home',
@@ -28,8 +27,7 @@ export class HomeComponent implements OnInit {
     );
     constructor(
       private authService: AuthService,
-      private dialog: Dialog,
-      private modalSevice: ModalService
+      private dialog: Dialog
       ) {
 
     }
@@ -48,23 +46,20 @@ export class HomeComponent implements OnInit {
       this.location = menu?.title.toUpperCase() || 'WEB SITE';
     }
 
-    testModalConfirmation(){
-     //this.modalSevice.showConfirmation('¿Esta es una prueba del modal de confirmación?', this.dialog);
-     return this.dialog.open(CustomModalComponent, {
-      minWidth: '800px',
-      minHeight: '400px',
-      data: {
-        title: TitlesModal.Succeed,
-        question: "cscsdc",
-        iconClass: IconsModal.Succeed,
-        type:TypeModal.Succeed
-      }
-    })
+    testChatModal(){
+      let RefDialog = this.dialog.open(ModalChatComponent, {
+        minWidth: '800px',
+        minHeight: '80%',
+        maxWidth: '50%',
+        data: {
+          title: TitlesModal.Chat,
+          question: "",
+          iconClass: Icons.Chat,
+          type: TypeModal.Chat,
+          imageUser: "https://estremorstorageaccount.blob.core.windows.net/estremoruserscontainer/yulianaperfil.jpg",
+          userName: "Yuliana Blanco Martinez"
+        }
+    });
   }
-    
-
-    testModalAlert(){
-      this.modalSevice.showConfirmation('!Ojo! !Esta es una prueba del modal de aletar!', this.dialog);
-    }
 
 }

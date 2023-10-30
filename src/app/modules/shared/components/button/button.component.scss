@@ -4,6 +4,7 @@
   border: none;
   width: 115px;
   border-radius: 4px;
+  cursor: pointer;
   height: 35px;
   color: $back;
   font-family: 'Montserrat', sans-serif;
@@ -16,6 +17,7 @@
   background: $sec_admin;
   border: none;
   width: 115px;
+  cursor: pointer;
   border-radius: 4px;
   height: 35px;
   color: $back;
@@ -24,6 +26,22 @@
 
 .secondary:hover{
   background: $prin_admin;
+}
+
+.success{
+  background: $success;
+  border: none;
+  width: 115px;
+  border-radius: 4px;
+  height: 35px;
+  color: $back;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.success:hover{
+  background: #82d485;
+  color: $back;
 }
 .icon-title{
   display: flex;

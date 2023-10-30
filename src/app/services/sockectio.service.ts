@@ -14,13 +14,13 @@ export class SockectioService {
   });
 
   constructor() {
-    this.onConnect();
+    this.onConnection();
     this.onJoin();
     this.onDisconnect();
    }
 
-  onConnect(){
-    this.io.on('connect', () => {});
+  onConnection(){
+    this.io.on('connection', () => {});
   }
   onJoin(){
     this.io.on('join', (data) => {});
