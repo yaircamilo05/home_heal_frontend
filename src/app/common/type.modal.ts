@@ -4,5 +4,5 @@ export const TypeModal = {
   Error: 'Error',
   Succeed: 'Success',
   Chat: 'Chat',
-
+  Menu: 'Menu',
 }

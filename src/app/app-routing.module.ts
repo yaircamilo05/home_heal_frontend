@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'website',
-    canActivate:[AuthGuard],
+    //canActivate:[AuthGuard],
     loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule),
     data:{
       preload:true,
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate:[AuthGuard,AdminGuard],
+    //canActivate:[AuthGuard,AdminGuard],
     loadChildren: () => import('./modules/cms/cms.module').then(m => m.CmsModule),
     data:{
       preload:true,

@@ -5,4 +5,5 @@ export const Icons = {
   Alert: 'fa-solid fa-triangle-exclamation',
   Succeed:'fa-solid fa-square-check',
   Chat: 'fa-solid fa-message',
+  Menu: 'fa-solid fa-bars',
 }

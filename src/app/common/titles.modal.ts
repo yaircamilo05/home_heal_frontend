@@ -4,4 +4,5 @@ export const TitlesModal ={
   Alert: "Alerta",
   Succeed: "Exito",
   Chat: "Chat",
+  Menu: "Menu",
 }
