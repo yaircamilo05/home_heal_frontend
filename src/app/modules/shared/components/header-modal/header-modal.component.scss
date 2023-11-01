@@ -1,0 +1,64 @@
+@import '/src/styles.scss';
+.container{
+  background: $prin_admin;
+  color: $back;
+  padding: 8px;
+  border-radius: 4px 4px 0 0;
+}
+
+.container.success{
+  background: $success;
+}
+
+.container.chat{
+  background: $prin_admin;
+}
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 4px;
+  margin-right: 8px;
+  gap: 10px;
+}
+
+.container-x{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:$back;
+  padding: 10px 20px;
+  background: radial-gradient(black, transparent);;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 20px;
+  height: 30px;
+}
+
+.container-x:hover{
+  color: $alert;
+}
+
+.container-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.container-title{
+  padding: 4px;
+  background: radial-gradient(black, transparent);
+  //background: $prin_user;
+  border-radius: 8px;
+
+}
+.content img{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.title{
+  font-size: 16px;
+}

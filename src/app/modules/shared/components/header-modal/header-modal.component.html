@@ -1,0 +1,24 @@
+<div [ngClass]="{'container': true, 'success': type == 'Success', 'chat': type == 'Chat' }">
+  <div *ngIf="imageUser == ''" class="content">
+    <div class="contanier-info">
+    <span class="button-icon" [ngClass]="iconClass"></span>
+    <div class="container-title">
+      {{ label }}
+    </div>
+    </div>
+    <div (click)="closeModal()" class="container-x">
+      <span class="button-icon" [ngClass]="'fa-solid fa-x'"></span>
+    </div>
+  </div>
+  <div *ngIf="imageUser != ''" class="content">
+    <div class="container-info">
+      <img src={{imageUser}} alt="Imagen">
+      <div class="container-title">
+        {{ userName }}
+      </div>
+    </div>
+    <div (click)="closeModal()" class="container-x">
+      <span class="button-icon" [ngClass]="'fa-solid fa-x'"></span>
+    </div>
+  </div>
+</div>
