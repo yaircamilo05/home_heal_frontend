@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
           question: "",
           iconClass: Icons.Chat,
           type: TypeModal.Chat,
-          imageUser: "https://estremorstorageaccount.blob.core.windows.net/estremoruserscontainer/yulianaperfil.jpg",
+          imageUser: "https://estremorstorageaccount.blob.core.windows.net/estremoruserscontainer/kanigarcia.jpeg",
           userName: "Yuliana Blanco Martinez"
         }
     });
