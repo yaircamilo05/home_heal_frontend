@@ -1,21 +1,23 @@
 @import '/src/styles.scss';
 .primary{
-  background: $principal;
+  background: $prin_admin;
   border: none;
   width: 115px;
   border-radius: 4px;
+  cursor: pointer;
   height: 35px;
   color: $back;
   font-family: 'Montserrat', sans-serif;
 }
 
 .primary:hover{
-  background: $principal-lite;
+  background: $sec_admin;
 }
 .secondary{
-  background: $secundary;
+  background: $sec_admin;
   border: none;
   width: 115px;
+  cursor: pointer;
   border-radius: 4px;
   height: 35px;
   color: $back;
@@ -23,7 +25,23 @@
 }
 
 .secondary:hover{
-  background: $secundary-lite;
+  background: $prin_admin;
+}
+
+.success{
+  background: $success;
+  border: none;
+  width: 115px;
+  border-radius: 4px;
+  height: 35px;
+  color: $back;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.success:hover{
+  background: #82d485;
+  color: $back;
 }
 .icon-title{
   display: flex;
