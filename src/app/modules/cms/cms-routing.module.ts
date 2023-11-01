@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { RolComponent } from './pages/rol/rol.component';
 import { InitComponent } from './pages/init/init.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path:'roles',
         component:RolComponent
+      },
+      {
+        path: 'menus',
+        component: MenuComponent
       }
     ]
   }

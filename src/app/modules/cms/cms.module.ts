@@ -10,6 +10,7 @@ import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { RolComponent } from './pages/rol/rol.component';
 import { InitComponent } from './pages/init/init.component';
 import { SharedModule } from '../shared/shared.module';
+import { MenuComponent } from './pages/menu/menu.component';
 
 
 
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HomeAdminComponent,
     RolComponent,
-    InitComponent
+    InitComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
