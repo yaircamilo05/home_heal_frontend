@@ -14,25 +14,18 @@ export class SockectioService {
   });
 
   constructor() {
-    this.onConnect();
+    this.onConnection();
     this.onJoin();
     this.onDisconnect();
    }
 
-  onConnect(){
-    this.io.on('connect', () => {
-      //console.log("Connected");
-    });
+  onConnection(){
+    this.io.on('connection', () => {});
   }
-
   onJoin(){
-    this.io.on('join', (data) => {
-      //console.log(data);
-    });
+    this.io.on('join', (data) => {});
   }
   onDisconnect(){
-    this.io.on('disconnect', (data) => {
-      //console.log(data);
-    });
+    this.io.on('disconnect', (data) => {});
   }
 }

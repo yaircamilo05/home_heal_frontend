@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard.ts.guard';
+import { AdminGuard } from './guards/admin.guard.ts.guard';
+
+
 
 const routes: Routes = [
   {
@@ -16,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    //canActivate:[AuthGuard],
+    //canActivate:[AuthGuard,AdminGuard],
     loadChildren: () => import('./modules/cms/cms.module').then(m => m.CmsModule),
     data:{
       preload:true,
