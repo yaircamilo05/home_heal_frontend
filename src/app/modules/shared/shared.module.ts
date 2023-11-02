@@ -6,6 +6,8 @@ import { HeaderModalComponent } from './components/header-modal/header-modal.com
 import { ModalChatComponent } from './components/modal-chat/modal-chat.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalMenusComponent } from './components/modal-menus/modal-menus.component';
+import { ModalUserComponent } from './components/modal-user/modal-user.component';
+import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 
 
 
@@ -14,7 +16,9 @@ import { ModalMenusComponent } from './components/modal-menus/modal-menus.compon
     ButtonComponent,
     HeaderModalComponent,
     ModalChatComponent,
-    ModalMenusComponent
+    ModalMenusComponent,
+    ModalUserComponent,
+    ModalMenusRolesComponent
   ],
   exports: [
     ButtonComponent,
