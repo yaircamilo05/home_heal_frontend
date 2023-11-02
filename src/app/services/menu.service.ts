@@ -24,8 +24,8 @@ export class MenuService {
   }
     
   //metodo para crear un menu nuevo
-  createMenu(){
-
+  createMenu(data:MenuGetModel): Observable<ResponseCustomModel<MenuGetModel>>{
+    return this.http.post<ResponseCustomModel<MenuGetModel>>(`${this.server}/menu`,data);
   }
 
   //metodo para editar un menu

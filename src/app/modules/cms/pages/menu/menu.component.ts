@@ -33,6 +33,14 @@ export class MenuComponent {
     })
   }
 
+  openModalEditMenu(menu: MenuGetModel){
+
+  };
+
+  openModalDeleteMenu(menu: MenuGetModel){
+
+  };
+
   openModalCreateMenu(){
     let RefDialog = this.dialog.open(ModalMenusComponent, {
       minWidth: '800px',
@@ -47,6 +55,11 @@ export class MenuComponent {
         userName: ""
       }
   });
+
+  
+
+
+
 }
 
 }

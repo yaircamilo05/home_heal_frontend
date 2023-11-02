@@ -3,9 +3,20 @@
       <app-header-modal type="{{type}}" userName="{{userName}}" imageUser="{{imageUser}}" iconClass="{{iconClass}}"
         label="{{title}}"></app-header-modal>
     </div>
-    <div class="content-modal">
-        contenido del modal
-    </div>
+    <div class="content-modal" [formGroup]="form">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="title" class="form-control" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="icono">Icono</label>
+          <input type="text" id="icon" class="form-control" formControlName="icon">
+        </div>
+        <div class="form-group">
+          <label for="link">Link</label>
+          <input type="text" id="link" class="form-control" formControlName="link">
+        </div>
+      </div>
     <div class="footer-modal">
         <app-button type="primary" text="CREAR MENU" (click)="CreateMenu()"></app-button>
     </div>

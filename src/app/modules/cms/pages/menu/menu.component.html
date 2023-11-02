@@ -43,6 +43,7 @@
           <th scope="col">Titulo</th>
           <th scope="col">Icono</th>
           <th scope="col">Link</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -54,6 +55,16 @@
           </td>
           <td> 
             <a [routerLink]="menu.link">{{menu.link}}</a>
+          </td>
+          <td>
+            <div class="container-icons">
+              <div class="edit-icon" (click)="openModalEditMenu(menu)">
+                <span class="icon" [ngClass]="'fa-solid fa-pencil'"></span>
+              </div>
+              <div class="delete-icon" (click)="openModalDeleteMenu(menu)">
+                <span class="icon" [ngClass]="'fa-solid fa-trash'"></span>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>

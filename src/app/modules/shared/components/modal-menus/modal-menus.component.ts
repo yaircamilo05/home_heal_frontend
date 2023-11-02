@@ -9,6 +9,8 @@ import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { ModalService } from 'src/app/services/modal.service';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
+import { MenuService } from 'src/app/services/menu.service';
+import { MenuGetModel } from 'src/app/models/menu.model';
 
 
 interface InputDataModel{
@@ -44,12 +46,11 @@ export class ModalMenusComponent {
   form: FormGroup = new FormGroup({});
 
   constructor
-  ( public chatService: ChatService,
-    private authService: AuthService,
+  (
     private modalService: ModalService,
     private dialog: DialogRef<OutCustomModal,OutCustomModal>,
     @Inject(DIALOG_DATA) private data: InputDataModel,
-
+    private menuService: MenuService,
     private fb : FormBuilder)
   {
     this.title = data.title;
@@ -68,7 +69,9 @@ export class ModalMenusComponent {
 
   buildForm(){
     this.form = this.fb.group({
-        message: ['', Validators.required],
+      title: ['', Validators.required],
+      icon: ['', Validators.required],
+      link: ['', Validators.required]
     })};
 
   close(){
@@ -76,6 +79,13 @@ export class ModalMenusComponent {
   }
 
   CreateMenu(){
+    if (this.form.valid) {
+      let data:MenuGetModel = this.form.value
+      console.log(data);
+      this.menuService.createMenu(data).subscribe(()=>{
+        this.close();
+      });
+      };
     
   }
 
