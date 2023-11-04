@@ -17,6 +17,7 @@ export class MenuService {
     private http: HttpClient,
 
   ) { }
+  
 
   //metodo para crear una lista de menus con todos los menus que se encuentran en la base de datos
   getAllMenus(): Observable<ResponseCustomModel<MenuGetModel[]>>{
