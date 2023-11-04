@@ -2,10 +2,6 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MessageModel } from 'src/app/models/message.model';
-import { ChatService } from 'src/app/services/chat.service';
-import { StorageService } from 'src/app/services/storage.service';
-import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { ModalService } from 'src/app/services/modal.service';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
@@ -86,7 +82,7 @@ export class ModalMenusComponent {
         this.close();
       });
       };
-    
+
   }
 
 }

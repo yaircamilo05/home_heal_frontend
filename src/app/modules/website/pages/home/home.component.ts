@@ -10,6 +10,7 @@ import { TitlesModal } from 'src/app/common/titles.modal';
 import { Icons} from 'src/app/common/icon.modal';
 import { TypeModal } from 'src/app/common/type.modal';
 import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
+import { Roles } from 'src/app/common/rols.const';
 
 @Component({
   selector: 'app-home',

@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalMenusComponent } from './components/modal-menus/modal-menus.component';
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 
@@ -18,7 +19,8 @@ import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-m
     ModalChatComponent,
     ModalMenusComponent,
     ModalUserComponent,
-    ModalMenusRolesComponent
+    ModalMenusRolesComponent,
+    NotFoundComponent
   ],
   exports: [
     ButtonComponent,
