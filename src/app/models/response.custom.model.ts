@@ -1,3 +1,3 @@
-export interface ResponseCustomModel<T>{
-  data:T ;
+export interface ResponseCustomModel<T> {
+  data:T
 }
