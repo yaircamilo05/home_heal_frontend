@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard.ts.guard';
+import { AdminGuard } from './guards/admin.guard.ts.guard';
+import { NotFoundComponent } from './modules/shared/pages/not-found/not-found.component';
+
+
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule)
+    loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule),
+    pathMatch: 'full'
   },
   {
     path: 'website',
@@ -16,11 +22,15 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    //canActivate:[AuthGuard],
+    //canActivate:[AuthGuard,AdminGuard],
     loadChildren: () => import('./modules/cms/cms.module').then(m => m.CmsModule),
     data:{
       preload:true,
     },
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

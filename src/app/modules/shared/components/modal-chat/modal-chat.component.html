@@ -1,0 +1,38 @@
+<div>
+  <div>
+    <app-header-modal type="{{type}}" userName="{{userName}}" imageUser="{{imageUser}}" iconClass="{{iconClass}}"
+      label="{{title}}"></app-header-modal>
+  </div>
+  <form [formGroup]="form" class="container">
+    <div class="container-content-form">
+
+      <div class="container-messages" *ngFor="let message of chatService.chats">
+        <div [ngClass]="{'message-send': message.type === 1, 'message-recived': message.type === 2}"
+          class="message-send">
+          <div class="info-user">
+            <div class="container-image">
+              <img
+                src={{user?.file_img}}
+                alt="Imagen">
+            </div>
+            <div class="container-name-date">
+              <div class="name">{{message.nombre_remitente}} </div>
+              <div class="date">{{message.fecha}} - {{message.hora}}</div>
+            </div>
+          </div>
+          <div [ngClass]="{'content-message-send': message.type === 1, 'content-message-recived': message.type === 2}">
+            {{message.mensaje}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-modal">
+      <input type="text" formControlName="message" class="form-control" placeholder="escribe tu mensaje"
+        id="message-input">
+      <div class="input-group-append container-btn">
+        <app-button (click)="sendMessage()" type="success" text="Enviar"></app-button>
+      </div>
+    </div>
+  </form>
+</div>

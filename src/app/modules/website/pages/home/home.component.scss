@@ -4,10 +4,10 @@
 }
 
 .sidenav{
-  background: $principal;
+  background: $prin_user;
 }
 .header{
-  background: $secundary;
+  background: $sec_user;
   height: 100px;
 
 }
@@ -25,7 +25,7 @@
   padding: 5px 6px;
 }
 .opcion{
-  border-top: solid 2px $principal-lite;
+  border-top: solid 2px $back;
 }
 
 .icon-title{
@@ -36,7 +36,7 @@
 }
 
 .ultimo-menu-border {
-  border-bottom: 2px solid $principal-lite;
+  border-bottom: 2px solid white;
   margin: 8px 0; /* Opcional para ajustar el espaciado entre el último elemento y el borde rojo */
 }
 .title{

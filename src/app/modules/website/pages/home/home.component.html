@@ -12,7 +12,7 @@
         </div>
       </div>
     <mat-nav-list class="lista-opciones"  *ngFor="let menu of user?.menus; let last = last">
-      <a class="opcion" (click)="setLocation(menu)"  mat-list-item routerLink={{menu.link}}>
+      <a *ngIf="menu.title == 'Administración'" class="opcion" (click)="setLocation(menu)"  mat-list-item routerLink={{menu.link}}>
         <div class="icon-title">
           <div class="icon"><i class={{menu.icon}}></i></div>
           {{menu.title}}
@@ -22,6 +22,7 @@
       <hr *ngIf="last" class="ultimo-menu-border">
     </mat-nav-list>
     <div class="footer-sidenav">
+        <app-button type="primary" icon="fa-solid fa-message" text="CHAT" (click)="testChatModal()"></app-button>
         <app-button type="secondary" icon="fa-solid fa-user" text="CUENTA"></app-button>
         <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR"></app-button>
     </div>

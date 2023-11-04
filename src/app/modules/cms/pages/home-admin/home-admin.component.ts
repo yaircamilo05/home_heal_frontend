@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { MenuGetModel } from 'src/app/models/menu.model';
+import { Roles } from 'src/app/common/rols.const';
 
 @Component({
   selector: 'app-home-admin',
@@ -32,7 +33,6 @@ export class HomeAdminComponent {
     getUserLogged(){
       this.authService.user$.subscribe(user =>{
         this.user = user;
-        console.log('El user', this.user);
       });
     }
 

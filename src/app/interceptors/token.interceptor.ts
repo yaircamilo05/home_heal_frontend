@@ -22,7 +22,6 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private storageService:StorageService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('El token', ADD_TOKEN);
     if(request.context.get(ADD_TOKEN)){
       return this.addTokenToRequest(request,next);
     }
@@ -31,7 +30,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
   private addTokenToRequest(request: HttpRequest<unknown>, next:HttpHandler){
     const token = this.storageService.getToken();
-    console.log('El token', token);
     if(token){
       const authRequest = request.clone({
         headers:request.headers.set('Authorization', `Bearer ${token}`)
