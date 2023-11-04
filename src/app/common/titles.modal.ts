@@ -2,7 +2,7 @@ export const TitlesModal ={
   Confirmation: "Confirmación",
   Error: "Error",
   Alert: "Alerta",
-  Succeed: "Exito",
+  Succeed: "Éxito",
   Chat: "Chat",
-  Menu: "Menu",
+  Menu: "Menú",
 }

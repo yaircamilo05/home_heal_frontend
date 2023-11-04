@@ -9,6 +9,7 @@ import { ModalMenusComponent } from './components/modal-menus/modal-menus.compon
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
 
 
 
@@ -20,7 +21,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ModalMenusComponent,
     ModalUserComponent,
     ModalMenusRolesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ModalRolesComponent
   ],
   exports: [
     ButtonComponent,
