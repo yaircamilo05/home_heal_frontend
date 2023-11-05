@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {DialogModule} from '@angular/cdk/dialog';
+import { DialogModule } from '@angular/cdk/dialog';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderModalComponent } from './components/header-modal/header-modal.component';
 import { ModalChatComponent } from './components/modal-chat/modal-chat.component';
