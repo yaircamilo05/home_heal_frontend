@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { RolComponent } from './pages/rol/rol.component';
 import { InitComponent } from './pages/init/init.component';
@@ -9,21 +10,21 @@ import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component:HomeAdminComponent,
-    children:[
+    path: '',
+    component: HomeAdminComponent,
+    children: [
       {
-        path:'',
-        redirectTo:'init',
-        pathMatch:'full'
+        path: '',
+        redirectTo: 'init',
+        pathMatch: 'full'
       },
       {
-        path:'init',
-        component:InitComponent
+        path: 'init',
+        component: InitComponent
       },
       {
-        path:'roles',
-        component:RolComponent
+        path: 'roles',
+        component: RolComponent
       },
       {
         path: 'menus',

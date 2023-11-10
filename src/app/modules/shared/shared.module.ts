@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {DialogModule} from '@angular/cdk/dialog';
+import { DialogModule } from '@angular/cdk/dialog';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderModalComponent } from './components/header-modal/header-modal.component';
 import { ModalChatComponent } from './components/modal-chat/modal-chat.component';
@@ -9,6 +9,7 @@ import { ModalMenusComponent } from './components/modal-menus/modal-menus.compon
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
 
 
 
@@ -20,7 +21,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ModalMenusComponent,
     ModalUserComponent,
     ModalMenusRolesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ModalRolesComponent
   ],
   exports: [
     ButtonComponent,
