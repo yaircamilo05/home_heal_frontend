@@ -78,8 +78,10 @@ export class ModalMenusComponent {
     if (this.form.valid) {
       let data:MenuGetModel = this.form.value
       console.log(data);
-      this.menuService.createMenu(data).subscribe(()=>{
+      this.menuService.createMenu(data).subscribe(async ()=>{
         this.close();
+        var confirm = await this.modalService.openModalConfirmationPromise();
+        if (confirm.isConfirmed) window.location.reload();
       });
       };
 

@@ -6,6 +6,7 @@ import { TypeModal } from 'src/app/common/type.modal';
 import { MenuGetModel } from 'src/app/models/menu.model';
 import { ModalMenusComponent } from 'src/app/modules/shared/components/modal-menus/modal-menus.component';
 import { MenuService } from 'src/app/services/menu.service';
+import { ModalService } from 'src/app/services/modal.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +19,8 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private dialog: Dialog,
-    private menuServices: MenuService
+    private menuServices: MenuService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -43,24 +45,11 @@ export class MenuComponent implements OnInit {
     // Implementa esta función si necesitas editar menús
   }
 
-  openModalDeleteMenu(menu: MenuGetModel) {
-    Swal.fire({
-      title: "¿Seguro quieres?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      }
-    });
+  async openModalDeleteMenu(menu: MenuGetModel) {
+   var deleted = await this.modalService.openModalConfirmation();
+    if (deleted.isConfirmed){
+      this.DeleteMenu(menu.id);
+    }
   }
 
   openModalCreateMenu() {
@@ -78,4 +67,20 @@ export class MenuComponent implements OnInit {
       }
     });
   }
+
+  DeleteMenu(menuId: number) {
+    this.menuServices.deleteMenu(menuId).subscribe(
+      (response) => {
+        console.log(response); // Verifica si obtienes los datos correctamente
+        if (response && response.data) {
+          this.modalService.openModalConfirmationAction();
+          this.getAllMenus();
+        }
+      },
+      (error) => {
+        this.modalService.openModalErrorAction();
+      }
+    );
+  }
 }
+

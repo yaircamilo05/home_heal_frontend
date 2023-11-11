@@ -58,7 +58,7 @@ constructor(
       maxWidth: '50%',
       data: {
         title: TitlesModal.Confirmation,
-        question: Messages.EliminarRegistro,
+        question: Messages.DeleteRecord,
         iconClass: Icons.Question,
         type: TypeModal.Confirmation,
       }
