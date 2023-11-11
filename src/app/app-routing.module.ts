@@ -9,7 +9,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule),
-    pathMatch: 'full'
   },
   {
     path: '**',

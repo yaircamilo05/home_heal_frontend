@@ -10,7 +10,6 @@ const routes: Routes = [
   {
     path:'',
     component: LayoutComponent,
-    pathMatch: 'full',
     children: [
       {
         path: '',
@@ -18,12 +17,13 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        canActivate: [LoginGuard],
+
         path:'login',
+        canActivate: [LoginGuard],
         component: LoginComponent
       },
       {
-        path: 'register',  // Agrega la nueva ruta para tu componente de registro
+        path: 'register',
         component: RegisterComponent
       },
       {
