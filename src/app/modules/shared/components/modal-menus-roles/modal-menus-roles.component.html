@@ -1,1 +1,40 @@
-<p>modal-menus-roles works!</p>
+<div>
+  <div>
+    <app-header-modal type="{{type}}" userName="{{userName}}" imageUser="{{imageUser}}" iconClass="{{iconClass}}"
+      label="{{title}}"></app-header-modal>
+  </div>
+  <div class="content-modal" [formGroup]="form">
+    <div class="container">
+      <h2>Asignar Menús a Rol</h2>
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label for="rol">Seleccionar Rol:</label>
+          <select id="rol" formControlName="rol" class="form-control">
+            <option value="Super Administrador">Super Administrador</option>
+            <option value="Paciente">Paciente</option>
+            <option value="Familiar">Familiar</option>
+            <option value="Medico">Médico</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="menus">Seleccionar Menús:</label>
+          <select id="menus" formControlName="menus" class="form-control" multiple>
+            <option value="Administración">Administración</option>
+            <option value="Home">Home</option>
+            <option value="Roles">Roles</option>
+            <option value="Usuarios">Usuarios</option>
+            <option value="Modulos">Módulos</option>
+            <option value="Menus">Menús</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+      </form>
+    </div>
+
+  </div>
+  <div class="footer-modal">
+    <app-button type="primary" text="CREAR MENU" (click)="assingMenuToRol()"></app-button>
+  </div>
+</div>

@@ -9,8 +9,7 @@ import { ModalMenusComponent } from './components/modal-menus/modal-menus.compon
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-
-
+import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ModalMenusComponent,
     ModalUserComponent,
     ModalMenusRolesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CustomModalComponent
   ],
   exports: [
     ButtonComponent,

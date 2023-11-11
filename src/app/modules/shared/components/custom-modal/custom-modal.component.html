@@ -1,0 +1,13 @@
+<div class="container">
+  <div>
+    <app-header-modal type="{{type}}" iconClass="{{iconClass}}" label="{{title}}"></app-header-modal>
+  </div>
+  <div class="title">
+    <h2>{{question}}</h2>
+  </div>
+  <div class="buttons">
+      <app-button type="primary" text="CREAR MENU" (click)="closeWithResponse(false)"></app-button>
+      <app-button type="primary" text="CREAR MENU" (click)="closeWithResponse(true)"></app-button>
+  </div>
+</div>
+
