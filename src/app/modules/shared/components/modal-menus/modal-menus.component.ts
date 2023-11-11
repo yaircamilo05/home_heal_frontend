@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/services/menu.service';
 import { MenuGetModel } from 'src/app/models/menu.model';
 
 
-interface InputDataModel{
+interface InputDataModel {
   title: string,
   question: string,
   iconClass?: string,
@@ -32,23 +32,22 @@ export class ModalMenusComponent {
   question: string;
   pacienteId: number;
   iconClass: string | undefined = 'fa-solid fa-user';
-  type:string | undefined = 'Confirmation';
-  mensaje:string = "";
-  imageUser:string = "";
-  userName:string = "";
+  type: string | undefined = 'Confirmation';
+  mensaje: string = "";
+  imageUser: string = "";
+  userName: string = "";
 
-  nombreRemitente:string = "";
-  user:UserGetWithMenusModel | null = null;
+  nombreRemitente: string = "";
+  user: UserGetWithMenusModel | null = null;
   form: FormGroup = new FormGroup({});
 
   constructor
-  (
-    private modalService: ModalService,
-    private dialog: DialogRef<OutCustomModal,OutCustomModal>,
-    @Inject(DIALOG_DATA) private data: InputDataModel,
-    private menuService: MenuService,
-    private fb : FormBuilder)
-  {
+    (
+      private modalService: ModalService,
+      private dialog: DialogRef<OutCustomModal, OutCustomModal>,
+      @Inject(DIALOG_DATA) private data: InputDataModel,
+      private menuService: MenuService,
+      private fb: FormBuilder) {
     this.title = data.title;
     this.question = data.question;
     this.imageUser = data.imageUser;
@@ -63,27 +62,28 @@ export class ModalMenusComponent {
     });
   }
 
-  buildForm(){
+  buildForm() {
     this.form = this.fb.group({
       title: ['', Validators.required],
       icon: ['', Validators.required],
       link: ['', Validators.required]
-    })};
+    })
+  };
 
-  close(){
+  close() {
     this.dialog.close();
   }
 
-  CreateMenu(){
+  CreateMenu() {
     if (this.form.valid) {
-      let data:MenuGetModel = this.form.value
+      let data: MenuGetModel = this.form.value
       console.log(data);
-      this.menuService.createMenu(data).subscribe(async ()=>{
+      this.menuService.createMenu(data).subscribe(async () => {
         this.close();
         var confirm = await this.modalService.openModalConfirmationPromise();
         if (confirm.isConfirmed) window.location.reload();
       });
-      };
+    };
 
   }
 

@@ -11,16 +11,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AppComponent {
   title = 'home_heal_front';
 
-  constructor(private socketSevice: SockectioService,
-              private storageService:StorageService,
-              private authService: AuthService) { }
+  constructor(
+    private socketSevice: SockectioService,
+    private storageService: StorageService,
+    private authService: AuthService
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.userLogged();
   }
-  userLogged(){
+  userLogged() {
     const token = this.storageService.getToken();
-    if(token){
+    if (token) {
       this.authService.validateToken().subscribe();
     }
   }

@@ -1,5 +1,5 @@
 import { MenuGetModel } from "./menu.model";
-import { RolModel } from "./rol.model";
+import { RolOutModel } from "./rol.model";
 
 export interface UserCreateModel {
     name: string;
@@ -16,5 +16,5 @@ export interface UserGetWithMenusModel extends UserCreateModel {
     rol_id: number;
     file_img: string;
     menus: MenuGetModel[];
-    rol: RolModel
+    rol: RolOutModel
 }

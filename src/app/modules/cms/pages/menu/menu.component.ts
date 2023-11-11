@@ -30,7 +30,8 @@ export class MenuComponent implements OnInit {
   getAllMenus() {
     this.menuServices.getAllMenus().subscribe(
       (response) => {
-        console.log(response); // Verifica si obtienes los datos correctamente
+        // Verifica si obtienes los datos correctamente
+        console.log(response);
         if (response && response.data) {
           this.menus = response.data;
         }
