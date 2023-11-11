@@ -5,4 +5,5 @@ export const TitlesModal ={
   Succeed: "Exito",
   Chat: "Chat",
   Menu: "Menu",
+  Modules: "Modulos",
 }
