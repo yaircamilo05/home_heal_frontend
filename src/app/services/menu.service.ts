@@ -22,12 +22,17 @@ export class MenuService {
   }
 
   //metodo para crear un menu nuevo
-  createMenu(data: MenuGetModel): Observable<ResponseCustomModel<MenuGetModel>> {
-    return this.http.post<ResponseCustomModel<MenuGetModel>>(`${this.server}/menu`, data);
+  createMenu(data:MenuGetModel): Observable<ResponseCustomModel<MenuGetModel>>{
+    return this.http.post<ResponseCustomModel<MenuGetModel>>(`${this.server}/create_menu`,data);
   }
 
   //metodo para editar un menu
   editMenu() {
 
+  }
+
+  //metodo para eliminar un menu
+  deleteMenu(id:number): Observable<ResponseCustomModel<boolean>>{
+    return this.http.delete<ResponseCustomModel<boolean>>(`${this.server}/delete_menu/${id}`);
   }
 }

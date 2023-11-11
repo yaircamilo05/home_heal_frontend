@@ -7,11 +7,9 @@ import { ModalChatComponent } from './components/modal-chat/modal-chat.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalMenusComponent } from './components/modal-menus/modal-menus.component';
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
+import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
-import { ToastComponent } from './components/toast/toast.component';
-
 
 
 @NgModule({
@@ -23,8 +21,7 @@ import { ToastComponent } from './components/toast/toast.component';
     ModalUserComponent,
     ModalMenusRolesComponent,
     NotFoundComponent,
-    ModalRolesComponent,
-    ToastComponent
+    CustomModalComponent
   ],
   exports: [
     ButtonComponent

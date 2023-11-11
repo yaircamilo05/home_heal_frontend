@@ -138,6 +138,22 @@
     color: $alert;
 }
 
+.delete-icon{
+    cursor: pointer;
+}
+
+.edit-icon{
+    cursor: pointer;
+}
+
+.color-delete:hover{
+    color: $alert-lite;
+}
+
+.color-edit:hover{
+    color: $warning-lite;
+}
+
 
 
 

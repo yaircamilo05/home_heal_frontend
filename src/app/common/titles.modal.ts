@@ -3,8 +3,8 @@ export const TitlesModal = {
   Error: 'Error',
   Alert: 'Alerta',
   Succeed: 'Éxito',
-
   Chat: 'Chat',
   Menu: 'Menú',
   Rol: 'Rol',
+  Module: 'Módulo'
 }
