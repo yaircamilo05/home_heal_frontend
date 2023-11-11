@@ -6,4 +6,5 @@ export const TypeModal = {
   Chat: 'Chat',
   Menu: 'Menu',
   Rol: 'Rol',
+  Module: 'Module'
 }

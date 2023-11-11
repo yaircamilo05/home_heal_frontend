@@ -5,6 +5,7 @@ import Swal, { SweetAlertResult } from 'sweetalert2';
 import { TitlesModal } from '../common/titles.modal';
 import { Messages } from '../common/messages.const';
 
+
 @Injectable({
   providedIn: 'root'
 })

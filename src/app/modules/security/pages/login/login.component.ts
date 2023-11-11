@@ -5,7 +5,7 @@ import { Roles } from 'src/app/common/rols.const';
 import { Credentials } from 'src/app/models/credentials.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { ToastService } from 'src/app/services/toast.service';
+//import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toastService: ToastService
+    //private toastService: ToastService
   ) {
     this.builForm();
   }
@@ -57,12 +57,12 @@ export class LoginComponent implements OnInit {
         error: (err) => {
           if (err.status == 404) {
             console.log('¡Oh no! Tu correo no está registrado');
-            this.toastService.show('¡Oh no! Tu correo no está registrado', 'error');
+            //this.toastService.show('¡Oh no! Tu correo no está registrado', 'error');
           } else if (err.status == 500) {
             console.log('¡Oh no! Tu contraseña es incorrecta');
           }
         }
-        
+
       });
     }else{
       console.log('¡Oh no! Debes llenar todos los campos');

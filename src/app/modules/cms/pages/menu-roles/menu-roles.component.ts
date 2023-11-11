@@ -37,10 +37,10 @@ constructor(
       minHeight: '80%',
       maxWidth: '50%',
       data: {
-        title: TitlesModal.Modules,
+        title: TitlesModal.Module,
         question: '',
-        iconClass: Icons.Modules,
-        type: TypeModal.Modules,
+        iconClass: Icons.Module,
+        type: TypeModal.Module,
         imageUser: '',
         userName: ''
       }

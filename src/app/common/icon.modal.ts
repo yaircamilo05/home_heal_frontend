@@ -6,5 +6,6 @@ export const Icons = {
   Succeed: 'fa-solid fa-square-check',
   Chat: 'fa-solid fa-message',
   Menu: 'fa-solid fa-bars',
-  Rol: 'fa-solid fa-user-secret'
+  Rol: 'fa-solid fa-user-secret',
+  Module: 'fa-solid fa-cube'
 }
