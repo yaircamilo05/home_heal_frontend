@@ -10,6 +10,7 @@ import { ModalUserComponent } from './components/modal-user/modal-user.component
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 
 
@@ -22,10 +23,11 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
     ModalUserComponent,
     ModalMenusRolesComponent,
     NotFoundComponent,
-    ModalRolesComponent
+    ModalRolesComponent,
+    ToastComponent
   ],
   exports: [
-    ButtonComponent,
+    ButtonComponent
 
   ],
   imports: [
