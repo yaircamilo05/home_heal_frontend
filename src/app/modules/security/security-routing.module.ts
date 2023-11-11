@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { LoginGuard } from 'src/app/guards/login.guard.ts.guard';
 
 const routes: Routes = [
@@ -19,7 +20,11 @@ const routes: Routes = [
         canActivate: [LoginGuard],
         path:'login',
         component: LoginComponent
-      }
+      },
+      {
+        path: 'register',  // Agrega la nueva ruta para tu componente de registro
+        component: RegisterComponent
+      },
     ]
   }
 ];

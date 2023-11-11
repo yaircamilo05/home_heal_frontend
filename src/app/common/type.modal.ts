@@ -3,8 +3,8 @@ export const TypeModal = {
   Alert: 'Alert',
   Error: 'Error',
   Succeed: 'Success',
-
   Chat: 'Chat',
   Menu: 'Menu',
   Rol: 'Rol',
+  Module: 'Module'
 }

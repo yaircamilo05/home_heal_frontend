@@ -56,7 +56,7 @@ export class ModalRolesComponent implements OnInit {
     private modalService: ModalService,
     private dialog: DialogRef<OutCustomModal, OutCustomModal>,
     private rolService: RolService,
-    private fb: FormBuilder,
+    public fb: FormBuilder,
   ) {
     this.title = data.title
     this.question = data.question
