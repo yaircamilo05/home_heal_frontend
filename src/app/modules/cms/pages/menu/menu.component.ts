@@ -51,9 +51,9 @@ export class MenuComponent implements OnInit {
 
   openModalCreateMenu() {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
-      minWidth: '800px',
+      minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '50%',
+      maxWidth: '600px', 
       data: {
         title: TitlesModal.Menu,
         question: '',
@@ -67,9 +67,9 @@ export class MenuComponent implements OnInit {
 
   openModalEditMenu(menu: MenuGetModel) {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
-      minWidth: '800px',
+      minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '50%',
+      maxWidth: '600px', 
       data: {
         title: TitlesModal.Menu,
         question: '',
