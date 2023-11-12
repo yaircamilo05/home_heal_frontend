@@ -59,7 +59,6 @@ export class ModalService {
       text: message,
       background: "#FF6F60",
       color: "#fff",
-      //icon: "error",
       showConfirmButton: false,
       timerProgressBar: true,
       timer: 3000
