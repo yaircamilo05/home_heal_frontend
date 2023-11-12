@@ -1,1 +1,42 @@
-<p>modal-user works!</p>
+<div>
+    <div>
+        <app-header-modal type="{{type}}" userName="{{userName}}" imageUser="{{imageUser}}" iconClass="{{iconClass}}"
+            label="{{title}}"></app-header-modal>
+    </div>
+    <div class="content-modal">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Apellido</label>
+                <input type="text" id="icon" class="form-control" formControlName="lastname">
+            </div>
+            <div class="form-group">
+                <label for="email">Correo</label>
+                <input type="text" id="email" class="form-control" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label for="image">Imagen</label>
+                <input type="file" id="image" class="form-control" formControlName="image_url" (change)="OnFileSelected($event)">
+                <button [disabled]="isUploaded" (click)="UploadImage()" >Subir imagen</button>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select name="" id="" formControlName="rol_id">
+                    <option value="">Seleccione el rol</option>
+                    <option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+            </div>
+        </form>
+    </div>
+
+    <div class="footer-modal">
+        <app-button type="primary" text="Aceptar" (click)="CreateUser()" *ngIf="isUploaded || !changeImage"></app-button>
+    </div>
+</div>
