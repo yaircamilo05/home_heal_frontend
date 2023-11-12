@@ -11,6 +11,9 @@ import { Icons} from 'src/app/common/icon.modal';
 import { TypeModal } from 'src/app/common/type.modal';
 import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
 import { Roles } from 'src/app/common/rols.const';
+import { Messages } from 'src/app/common/messages.const';
+import { Router } from '@angular/router';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +31,9 @@ export class HomeComponent implements OnInit {
     );
     constructor(
       private authService: AuthService,
-      private dialog: Dialog
+      private dialog: Dialog,
+      private router: Router,
+      private modalService: ModalService
       ) {
 
     }
@@ -61,6 +66,15 @@ export class HomeComponent implements OnInit {
           userName: "Yuliana Blanco Martinez"
         }
     });
+  }
+
+  async logout(){
+
+    var logouted = await this.modalService.openModalConfirmation(Messages.Logout);
+    if(logouted.isConfirmed){
+      this.authService.logout();
+      this.router.navigate(['/login']);
+    }
   }
 
 }

@@ -16,18 +16,17 @@ export class ModalService {
     this.closeModalEvent.emit();
   }
 
-  openModalConfirmation(): Promise<SweetAlertResult<any>>{
-
-  return Swal.fire({
-      title: Messages.DeleteRecord,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#4CAF50",
-      cancelButtonColor: "#FF4848",
-      confirmButtonText: "ACEPTAR",
-      cancelButtonText: "CANCELAR",
-    });
-  }
+  openModalConfirmation(titleModal: string): Promise<SweetAlertResult<any>>{
+    return Swal.fire({
+        title: titleModal,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4CAF50",
+        cancelButtonColor: "#FF4848",
+        confirmButtonText: "ACEPTAR",
+        cancelButtonText: "CANCELAR",
+      });
+    }
 
   openModalConfirmationAction(){
     Swal.fire({
@@ -68,6 +67,7 @@ export class ModalService {
     Swal.fire({
       position: "top-end",
       text: message,
+      
       icon: "info",
       showConfirmButton: false,
       timer: 3000

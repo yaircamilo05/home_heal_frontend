@@ -1,8 +1,9 @@
 @import '/src/styles.scss';
 .primary{
-  background: $prin_admin;
+  background: $prin_user;
   border: none;
-  width: auto;
+  width: 115px;
+  padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   height: 35px;
@@ -11,12 +12,13 @@
 }
 
 .primary:hover{
-  background: $sec_admin;
+  background: #53ade5;
 }
 .secondary{
   background: $sec_admin;
   border: none;
-  width: auto;
+  width: 115px;
+  padding: 10px;
   cursor: pointer;
   border-radius: 4px;
   height: 35px;

@@ -1,5 +1,5 @@
 export const Messages = {
-  DeleteRecord: "¿Está seguro que desea eliminar el registro?",
+  DeleteRecord: "¿Estas seguro que deseas eliminar el registro?",
   SuccessAction: "Acción realizada con éxito",
   ErrorAction: "Error al realizar la acción",
   ErrorEmail: "Tu correo no está registrado",
@@ -7,6 +7,7 @@ export const Messages = {
   ErrorLogin: "Debes llenar todos los campos",
   WelcomeWebsite: "¡Hola! Esperamos que te encuentres mejor",
   WelcomeAdmin: "¡Hola! Te extrañamos",
+  Logout: "¿Estas seguro que deseas cerrar sesión?",
 }
 
 

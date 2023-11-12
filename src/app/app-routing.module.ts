@@ -8,8 +8,8 @@ const routes: Routes = [
 
   {
     path: '',
-    loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule),
-  },
+    loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule)
+  },     
   {
     path: 'website',
     //canActivate:[AuthGuard],
@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent
-  }	
+  }
 ];
 
 @NgModule({

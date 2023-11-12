@@ -47,7 +47,7 @@ export class MenuComponent implements OnInit {
   }
 
   async openModalDeleteMenu(menu: MenuGetModel) {
-   var deleted = await this.modalService.openModalConfirmation();
+   var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
     if (deleted.isConfirmed){
       this.DeleteMenu(menu.id);
     }

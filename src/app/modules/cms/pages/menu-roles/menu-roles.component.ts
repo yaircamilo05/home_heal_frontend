@@ -57,7 +57,7 @@ constructor(
   }
 
   async openModalDeleteMenuToRol(rolId: number) {
-    var deleted = await this.modalService.openModalConfirmation();
+    var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
      if (deleted.isConfirmed){
        this.DeleteMenu(this.menuId, rolId);
      }

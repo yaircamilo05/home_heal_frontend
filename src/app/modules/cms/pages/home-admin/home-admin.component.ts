@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { MenuGetModel } from 'src/app/models/menu.model';
 import { Roles } from 'src/app/common/rols.const';
+import { Router } from '@angular/router';
+import { ModalService } from 'src/app/services/modal.service';
+import { Messages } from 'src/app/common/messages.const';
 
 @Component({
   selector: 'app-home-admin',
@@ -20,7 +23,9 @@ export class HomeAdminComponent {
       map(result => result.matches),
       shareReplay()
     );
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private router: Router,
+                private modalService: ModalService) {
 
     }
     location: string = 'ADMINISTRACIÓN';
@@ -40,6 +45,13 @@ export class HomeAdminComponent {
       this.location = menu?.title.toUpperCase() || 'ADMINISTRACIÓN';
     }
 
-    
+     async logout(){
+
+      var logouted = await this.modalService.openModalConfirmation(Messages.Logout);
+      if(logouted.isConfirmed){
+        this.authService.logout();
+        this.router.navigate(['/login']);
+      }
+    }
 
 }
