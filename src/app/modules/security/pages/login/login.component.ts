@@ -82,7 +82,6 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       let data: Credentials = this.form.value
       this.authService.login(data).subscribe({
-
         next: (response) => {
         if (response) {
           this.authService.user$.subscribe(user => {
