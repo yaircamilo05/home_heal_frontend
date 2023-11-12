@@ -5,4 +5,6 @@ export const TypeModal = {
   Succeed: 'Success',
   Chat: 'Chat',
   Menu: 'Menu',
+  Rol: 'Rol',
+  Module: 'Module'
 }

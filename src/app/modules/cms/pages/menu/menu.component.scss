@@ -119,9 +119,42 @@
 .container-table{
     border: solid 1px gray;
 }
-table{
-    border-radius: 90px !important;
+
+.rounded-top-left {
+    border-top-left-radius: 10px; /* Ajusta el valor según tus preferencias */
+    /* Otras propiedades de estilo según sea necesario */
 }
+
+.rounded-top-right {
+    border-top-right-radius: 10px; /* Redondea la esquina superior izquierda */  
+    padding: 10px; /* Ajusta el relleno según tus preferencias */
+}
+
+.color-edit{
+    color: $warning;
+}
+
+.color-delete{
+    color: $alert;
+}
+
+.delete-icon{
+    cursor: pointer;
+}
+
+.edit-icon{
+    cursor: pointer;
+}
+
+.color-delete:hover{
+    color: $alert-lite;
+}
+
+.color-edit:hover{
+    color: $warning-lite;
+}
+
+
 
 
 

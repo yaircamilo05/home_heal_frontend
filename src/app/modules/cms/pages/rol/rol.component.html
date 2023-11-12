@@ -1,3 +1,68 @@
-<div class="container">
-  Aqui estaría la administración de los Roles de la plataforma
+<div class='container-window'>
+  <div class='header'>
+    <div class='header-division'>
+      <div class='container-input-filters'>
+        <div class='icon-filter'>
+          <span class='icon' [ngClass]='"fa-solid fa-filter"'></span>
+        </div>
+        <input
+          type='text'
+          formControlName='message'
+          class='form-control number-filter'
+          placeholder='N°'
+        />
+        <input
+          type='text'
+          formControlName='message'
+          class='form-control name-filter'
+          placeholder='Nombre'
+          id='message-input'
+        />
+      </div>
+      <div class='container-icons'>
+        <div class='search-filter'>
+          <span class='icon' [ngClass]='"fa-solid fa-magnifying-glass"'></span>
+        </div>
+        <div class='clear-filter'>
+          <span
+            class='icon'
+            [ngClass]='"fa-solid fa-filter-circle-xmark"'
+          ></span>
+        </div>
+      </div>
+    </div>
+    <div class='container-btn' (click)="openModalCreateRole()">
+        <span class='icon' [ngClass]='"fa-solid fa-plus"'></span>
+    </div>
+  </div>
+
+  <div class="">
+    <table class="table table-borderless">
+      <thead class="table-light text-center ">
+        <tr class="">
+          <th class="rounded-top-left" scope="col">No.</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th class="rounded-top-right" scope="col">Acciones</th>
+        </tr>
+      </thead>
+       <tbody class="">
+        <tr class="text-center" *ngFor="let rol of roles">
+          <th scope="row">{{rol.id}}</th>
+          <td>{{rol.name}}</td>
+          <td>{{rol.description}}</td>
+          <td class="d-flex justify-content-center align-items-center">
+            <div class="container-icons">
+              <div class="edit-icon" (click)="openModalEditRole(rol)">
+                <span class="icon" [ngClass]="'fa-solid fa-pen-to-square color-edit'" ></span>
+              </div>
+              <div class="delete-icon" (click)="openModalDeleteRole(rol.id)">
+                <span class="icon" [ngClass]="'fa-solid fa-trash-can color-delete'"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

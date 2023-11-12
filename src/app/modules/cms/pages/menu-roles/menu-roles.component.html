@@ -1,1 +1,61 @@
-<p>menu-roles works!</p>
+<div class="container-window">
+  <div class="header">
+    <div class="header-division">
+      <div class="container-input-filters">
+        <div class="icon-filter">
+          <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
+        </div>
+        <input type="text" formControlName="message" class="form-control number-filter" placeholder="N°" />
+        <input type="text" formControlName="message" class="form-control name-filter" placeholder="Nombre"
+          id="message-input" />
+      </div>
+      <div class="container-icons">
+        <div class="search-filter">
+          <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
+        </div>
+        <div class="clear-filter">
+          <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
+        </div>
+      </div>
+    </div>
+    <div class="container-btn" (click)="openModalAssignModuleToRol()">
+      <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
+    </div>
+  </div>
+  <div class="">
+    <table class="table table-borderless">
+      <thead class="table-light text-center ">
+        <tr class="">
+          <th class="rounded-top-left" scope="col">Núm</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Menus</th>
+          <th class="rounded-top-right" scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        <tr class="text-center" *ngFor="let role of rolsWithMenus">
+          <th scope="row">{{role.id}}</th>
+          <td>
+            {{role.name}}
+          </td>
+          <td>
+              <select class="form-control" (change)="selectMenu($event)">
+                <option *ngFor="let menu of role.menus" [value]="menu.id">
+                  {{ menu.title }}</option>
+              </select>
+          </td>
+          <td class="d-flex justify-content-center align-items-center">
+            <div class="form-control container-icons">
+              <div class="edit-icon" (click)="openModalEditModuleToRol()">
+                <span class="icon" [ngClass]="'fa-solid fa-pen-to-square color-edit'"></span>
+              </div>
+              <div class="delete-icon" (click)="openModalDeleteMenuToRol(role.id)">
+                <span class="icon" [ngClass]="'fa-solid fa-trash-can color-delete'"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

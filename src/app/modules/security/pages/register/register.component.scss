@@ -1,0 +1,61 @@
+.imgw{
+    height: 100vh;
+}
+
+.prin-user{
+    color: var(--success-lite-chat);
+}
+
+.user-image{
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    left: calc(50% - 50px);
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.text-form{
+    color: #999;
+}
+
+::placeholder {
+    color: #999;
+    opacity: 0.7; 
+}
+
+#fecha::placeholder {
+    color: #999; 
+    opacity: 0.7; 
+}
+
+#fecha {
+    color: #999; 
+    opacity: 0.7;
+}
+
+
+#seleccion::placeholder {
+    color: #999;
+    opacity: 0.7;
+}
+  
+
+#seleccion {
+    color: #999;
+    opacity: 0.7;
+}
+
+.btn-peligro{
+    background-color: #FF4848;
+    color: #fff;
+}
+
+.btn-confirmar{
+    background-color: #369cdd;
+    color: #fff;
+}
+
+.text-title-forms{
+    color: #369cdd;
+}

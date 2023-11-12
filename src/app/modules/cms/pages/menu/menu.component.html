@@ -36,17 +36,18 @@
     </div>
   </div>
   <div class="">
-    <table class="rounded-circle table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">N°</th>
-          <th scope="col">Titulo</th>
+    <table class="table table-borderless">
+      <thead class="table-light text-center ">
+        <tr class="">
+          <th class="rounded-top-left" scope="col">Núm</th>
+          <th scope="col">Título</th>
           <th scope="col">Icono</th>
           <th scope="col">Link</th>
+          <th class="rounded-top-right" scope="col">Acciones</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let menu of menus">
+      <tbody class="">
+        <tr class="text-center" *ngFor="let menu of menus">
           <th scope="row">{{menu.id}}</th>
           <td>{{menu.title}}</td>
           <td>
@@ -54,6 +55,16 @@
           </td>
           <td> 
             <a [routerLink]="menu.link">{{menu.link}}</a>
+          </td>
+          <td class="d-flex justify-content-center align-items-center">
+            <div class="container-icons">
+              <div class="edit-icon" (click)="openModalEditMenu(menu)">
+                <span class="icon" [ngClass]="'fa-solid fa-pen-to-square color-edit'" ></span>
+              </div>
+              <div class="delete-icon" (click)="openModalDeleteMenu(menu)">
+                <span class="icon" [ngClass]="'fa-solid fa-trash-can color-delete'"></span>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>

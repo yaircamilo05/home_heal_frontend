@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { LoginGuard } from 'src/app/guards/login.guard.ts.guard';
+import { NotFoundComponent } from '../shared/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -15,9 +17,14 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        canActivate: [LoginGuard],
+
         path:'login',
+        canActivate: [LoginGuard],
         component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
       }
     ]
   }

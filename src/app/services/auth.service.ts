@@ -16,30 +16,35 @@ import { UserGetWithMenusModel } from '../models/user.model';
 })
 export class AuthService {
 
-  server: string =`${environment.server}/account`;
+  server: string = `${environment.server}/account`;
   user = new BehaviorSubject<UserGetWithMenusModel | null>(null);
   user$ = this.user.asObservable();
 
   constructor(
     private http: HttpClient,
     private storageService: StorageService
-    ) { }
+  ) { }
 
-  login(credentials:Credentials):Observable<TokenModel>{
-    return this.http.post<TokenModel>(`${this.server}/login`,credentials)
-          .pipe(
-            tap(response => {
-              this.storageService.saveToken(response.token);
-              this.validateToken().subscribe();
-            })
-          );
+  login(credentials: Credentials): Observable<TokenModel> {
+    return this.http.post<TokenModel>(`${this.server}/login`, credentials)
+      .pipe(
+        tap(response => {
+          this.storageService.saveToken(response.token);
+          this.validateToken().subscribe();
+        })
+      );
   }
 
-  validateToken():Observable<ResponseCustomModel<UserGetWithMenusModel>>{
+  validateToken(): Observable<ResponseCustomModel<UserGetWithMenusModel>> {
     return this.http.get<ResponseCustomModel<UserGetWithMenusModel>>(`${this.server}/validate_token`, { context: addToken() })
     .pipe(tap(response =>{
         this.user.next(response.data)
       })
-    );
+      );
   };
+
+  logout(): void {
+    this.storageService.deleteToken();
+    this.user.next(null);
+  }
 }

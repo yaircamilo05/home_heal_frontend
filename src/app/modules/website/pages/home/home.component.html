@@ -6,7 +6,7 @@
           <h1 class="title">HOME HEAL</h1>
         </div>
         <div class="container-info-user">
-          <img src="{{user?.file_img}}" alt="Imagen">
+          <img src="{{user?.image_url}}" alt="Imagen">
           <h3 class="nombre-user">{{user?.name}}</h3>
           <p class="rol-name">{{user?.rol?.name}}</p>
         </div>
@@ -22,9 +22,8 @@
       <hr *ngIf="last" class="ultimo-menu-border">
     </mat-nav-list>
     <div class="footer-sidenav">
-        <app-button type="primary" icon="fa-solid fa-message" text="CHAT" (click)="testChatModal()"></app-button>
         <app-button type="secondary" icon="fa-solid fa-user" text="CUENTA"></app-button>
-        <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR"></app-button>
+        <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR" (click)="logout()"></app-button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content class="content">
