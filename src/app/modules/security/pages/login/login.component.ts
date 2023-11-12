@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
       let data:Credentials = this.form.value
       this.authService.login(data).subscribe({
         next: (data) => {
+          this.authService.validateToken();
+          console.log(this.user);
+          
           if(this.user?.rol_id != Roles.SUPERADMIN){
             this.router.navigate(['/website']);
             this.modalService.openToastWelcome(Messages.WelcomeWebsite);

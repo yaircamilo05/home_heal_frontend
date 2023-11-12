@@ -55,21 +55,27 @@ export class ModalService {
 
   openToastErrorAction(message: string){
     Swal.fire({
+      toast: true,
       position: "top-end",
-      title: TitlesModal.Error,
       text: message,
-      icon: "error",
+      background: "#FF6F60",
+      color: "#fff",
+      //icon: "error",
       showConfirmButton: false,
+      timerProgressBar: true,
       timer: 3000
     });
   }
 
   openToastWelcome(message: string){
     Swal.fire({
+      toast: true,
       position: "top-end",
       text: message,
-      icon: "info",
+      color: "#fff",
+      background: "#56B4E9",
       showConfirmButton: false,
+      timerProgressBar: true,
       timer: 3000
     });
   }
