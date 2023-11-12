@@ -18,6 +18,7 @@
     </div>
   </div>
   <div class="footer-modal">
-    <app-button type="primary" text="CREAR MENU" (click)="CreateMenu()"></app-button>
+    <app-button type="primary" text="CREAR MENU" (click)="CreateMenu()" *ngIf="!isEditing"></app-button>
+    <app-button type="primary" text="EDITAR MENU" (click)="EditMenu()" *ngIf="isEditing"></app-button>
   </div>
 </div>
