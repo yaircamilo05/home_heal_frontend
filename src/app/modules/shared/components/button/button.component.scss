@@ -2,7 +2,7 @@
 .primary{
   background: $prin_admin;
   border: none;
-  width: 115px;
+  width: auto;
   border-radius: 4px;
   cursor: pointer;
   height: 35px;
@@ -16,7 +16,7 @@
 .secondary{
   background: $sec_admin;
   border: none;
-  width: 115px;
+  width: auto;
   cursor: pointer;
   border-radius: 4px;
   height: 35px;
@@ -26,6 +26,18 @@
 
 .secondary:hover{
   background: $prin_admin;
+}
+
+.primary-user{
+  background: $prin_user;
+  border: none;
+  width: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 35px;
+  color: $back;
+  font-family: 'Montserrat', sans-serif;
+  text-size-adjust: 12px;
 }
 
 .success{
