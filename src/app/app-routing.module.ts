@@ -11,11 +11,6 @@ const routes: Routes = [
     loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule),
   },
   {
-    path: '**',
-    loadChildren: () => import('./modules/security/security.module').then(module => module.SecurityModule),
-    pathMatch: 'full'
-  },
-  {
     path: 'website',
     //canActivate:[AuthGuard],
     loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule),
@@ -30,7 +25,11 @@ const routes: Routes = [
     data:{
       preload:true,
     },
-  }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }	
 ];
 
 @NgModule({

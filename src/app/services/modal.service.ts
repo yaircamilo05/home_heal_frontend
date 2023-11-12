@@ -45,11 +45,32 @@ export class ModalService {
     });
   }
 
-  openModalErrorAction(){
+  openModalErrorAction(message: string){
     Swal.fire({
       title: TitlesModal.Error,
-      text: Messages.ErrorAction,
+      text: message,
       icon: "error"
+    });
+  }
+
+  openToastErrorAction(message: string){
+    Swal.fire({
+      position: "top-end",
+      title: TitlesModal.Error,
+      text: message,
+      icon: "error",
+      showConfirmButton: false,
+      timer: 3000
+    });
+  }
+
+  openToastWelcome(message: string){
+    Swal.fire({
+      position: "top-end",
+      text: message,
+      icon: "info",
+      showConfirmButton: false,
+      timer: 3000
     });
   }
 }

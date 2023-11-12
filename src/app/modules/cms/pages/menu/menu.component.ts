@@ -1,13 +1,13 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Icons } from 'src/app/common/icon.modal';
+import { Messages } from 'src/app/common/messages.const';
 import { TitlesModal } from 'src/app/common/titles.modal';
 import { TypeModal } from 'src/app/common/type.modal';
 import { MenuGetModel } from 'src/app/models/menu.model';
 import { ModalMenusComponent } from 'src/app/modules/shared/components/modal-menus/modal-menus.component';
 import { MenuService } from 'src/app/services/menu.service';
 import { ModalService } from 'src/app/services/modal.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -79,7 +79,7 @@ export class MenuComponent implements OnInit {
         }
       },
       (error) => {
-        this.modalService.openModalErrorAction();
+        this.modalService.openModalErrorAction(Messages.ErrorAction);
       }
     );
   }
