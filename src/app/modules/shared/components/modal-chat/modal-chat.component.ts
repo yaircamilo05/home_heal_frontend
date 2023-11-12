@@ -72,7 +72,7 @@ export class ModalChatComponent {
   }
   sendMessage() {
     let message:MessageModel ={
-      image_username: this.user?.file_img || '',
+      image_username: this.user?.image_url || '',
       image_destinatario: this.imageUser,
       type: 1,
       nombre_remitente: this.user?.name || '',
