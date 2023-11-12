@@ -39,44 +39,9 @@ export class LoginComponent implements OnInit {
   builForm() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['Hola123*', Validators.required]
+      password: ['', Validators.required]
     })
   }
-
-  // login() {
-  //   if (this.form.valid) {
-  //     let data: Credentials = this.form.value
-  //     this.authService.login(data).subscribe({
-  //       next: (data) => {
-  //         this.authService.user$.subscribe(user => {
-  //           this.user = user;
-  //           console.log(user);
-  //           console.log(user?.rol_id);
-  //           if (user?.rol_id != Roles.SUPERADMIN) {
-  //             this.router.navigate(['/website']);
-  //             this.modalService.openToastWelcome(Messages.WelcomeWebsite);
-  //           } else if (user?.rol_id == Roles.SUPERADMIN) {
-  //             this.router.navigate(['/admin']);
-  //             this.modalService.openToastWelcome(Messages.WelcomeAdmin);
-  //           }
-  //         });
-  //       },
-
-  //       error: (err) => {
-  //         if (err.status == 404) {
-  //           this.modalService.openToastErrorAction(Messages.ErrorEmail);
-  //         } else if (err.status == 500) {
-  //           this.modalService.openToastErrorAction(Messages.ErrorPassword);
-  //         }
-  //       }
-
-  //     });
-  //   } else {
-  //     this.modalService.openToastErrorAction(Messages.ErrorLogin);
-
-  //   }
-
-  // }
 
   login() {
     if (this.form.valid) {
