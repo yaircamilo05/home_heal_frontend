@@ -40,4 +40,6 @@ export class HomeAdminComponent {
       this.location = menu?.title.toUpperCase() || 'ADMINISTRACIÓN';
     }
 
+    
+
 }
