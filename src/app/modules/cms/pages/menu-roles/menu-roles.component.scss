@@ -41,10 +41,11 @@
 }
 
 .container-icons{
-    margin-left: 25px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  border: none;
 }
 
 .clear-filter{
@@ -136,6 +137,13 @@
 
 .color-delete{
     color: $alert;
+}
+.color-delete:hover{
+  color: $alert-lite;
+}
+
+.color-edit:hover{
+  color: $warning-lite;
 }
 
 
