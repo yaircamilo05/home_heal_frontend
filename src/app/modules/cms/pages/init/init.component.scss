@@ -1,4 +1,8 @@
 @import '/src/styles.scss';
+.container h1{
+  color: $text;
+}
+
 .container{
   display: flex;
   justify-content: center;
@@ -6,9 +10,46 @@
   font-size: xx-large;
   font-weight: bold;
   color: $text;
-  margin-top: 50px;
+  margin-top: 60px;
+  margin-bottom: 100px;
+  margin-left: 220px;
+  margin-right: 220px;
+  max-width: 550px;
 }
 
-.container h1{
+.card-text{
+  font-size: 14px;
+  font-weight: normal;
   color: $text;
+  text-align: center;
+  font-style: italic;
+  //margin-top: 50px;
+}
+
+.card {
+  height: auto; /* Ajusta la altura según tus necesidades */
+  //background-color: #F5F5F5;
+  border-width: 0cap;
+  padding: 20px;
+}
+
+.card-img-top {
+  max-height: 120px;
+  border-radius: 50%; /* Ajusta la altura máxima de la imagen según tus necesidades */
+  max-width: 120px;
+}
+
+.card-body {
+  padding: 1rem;
+  height: auto; /* Ajusta el relleno del cuerpo según tus necesidades */
+}
+
+.carousel-control-next-icon{
+  background-color: #7777;
+  border-radius: 50%;
+}
+
+.carousel-control-prev-icon{
+  background-color: #7777;
+  border-radius: 50%;
 }
