@@ -6,9 +6,27 @@
   font-size: xx-large;
   font-weight: bold;
   color: $text;
-  margin-top: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-.container h1{
-  color: $text;
+.card-text{
+  font-size: 14px;
+  font-weight: normal;
+  color: $prin_admin;
+  text-align: center;
+  //margin-top: 50px;
+}
+
+.card {
+  height: auto; /* Ajusta la altura según tus necesidades */
+}
+
+.card-img-top {
+  max-height: 252px; /* Ajusta la altura máxima de la imagen según tus necesidades */
+}
+
+.card-body {
+  padding: 1rem;
+  height: auto; /* Ajusta el relleno del cuerpo según tus necesidades */
 }
