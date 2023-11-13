@@ -27,8 +27,8 @@ export class MenuService {
   }
 
   //metodo para editar un menu
-  editMenu() {
-
+  editMenu(data:MenuGetModel): Observable<ResponseCustomModel<MenuGetModel>>{
+    return this.http.put<ResponseCustomModel<MenuGetModel>>(`${this.server}/edit_menu/${data.id}`,data);
   }
 
   //metodo para eliminar un menu
