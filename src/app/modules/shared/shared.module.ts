@@ -10,7 +10,6 @@ import { ModalUserComponent } from './components/modal-user/modal-user.component
 import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { SelectMultiComponent } from './select-multi/select-multi.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -24,7 +23,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ModalMenusRolesComponent,
     NotFoundComponent,
     CustomModalComponent,
-    SelectMultiComponent
   ],
   exports: [
     ButtonComponent
