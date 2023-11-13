@@ -42,10 +42,6 @@ export class MenuComponent implements OnInit {
     );
   }
 
-  openModalEditMenu(menu: MenuGetModel) {
-    // Implementa esta función si necesitas editar menús
-  }
-
   async openModalDeleteMenu(menu: MenuGetModel) {
    var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
     if (deleted.isConfirmed){
@@ -55,9 +51,9 @@ export class MenuComponent implements OnInit {
 
   openModalCreateMenu() {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
-      minWidth: '800px',
+      minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '50%',
+      maxWidth: '600px', 
       data: {
         title: TitlesModal.Menu,
         question: '',
@@ -65,6 +61,23 @@ export class MenuComponent implements OnInit {
         type: TypeModal.Menu,
         imageUser: '',
         userName: ''
+      }
+    });
+  }
+
+  openModalEditMenu(menu: MenuGetModel) {
+    let RefDialog = this.dialog.open(ModalMenusComponent, {
+      minWidth: '600px',
+      minHeight: '80%',
+      maxWidth: '600px', 
+      data: {
+        title: TitlesModal.Menu,
+        question: '',
+        iconClass: Icons.Menu,
+        type: TypeModal.Menu,
+        imageUser: '',
+        userName: '',
+        menu: menu
       }
     });
   }
