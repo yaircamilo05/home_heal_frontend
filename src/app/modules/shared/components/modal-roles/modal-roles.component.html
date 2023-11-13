@@ -1,29 +1,20 @@
 <div>
-    <div>
-        <!-- <app-header-modal type='{{type}}' userName='{{userName}}' imageUser='{{imageUser}}' iconClass='{{iconClass}}'
-            label='{{title}}'></app-header-modal> -->
+  <div>
+    <app-header-modal type='{{type}}' userName='{{userName}}' imageUser='{{imageUser}}' iconClass='{{iconClass}}'
+      label='{{title}}'></app-header-modal>
+  </div>
+  <div class='content-modal' [formGroup]="form">
+    <div class='form-group mb-3 ps-5 pe-5 pt-3'>
+      <label for='nombre'>Nombre</label>
+      <input type='text' id='title' class='form-control' formControlName='name'>
     </div>
-    <div *ngIf="action != actions.Delete" class='content-modal' >
-        <div class='form-group'>
-            <label for='nombre'>Nombre</label>
-            <input type='text' id='title' class='form-control' formControlName='name'>
-        </div>
-        <div class='form-group'>
-            <label for='icono'>Descripción</label>
-            <input type='text' id='icon' class='form-control' formControlName='description'>
-        </div>
+    <div class='form-group mb-3 ps-5 pe-5'>
+      <label for='icono'>Descripción</label>
+      <input type='text' id='icon' class='form-control' formControlName='description'>
     </div>
-    <div *ngIf="action == actions.Delete" class='content-modal'>
-        <div class='form-group'>
-            <label for='nombre'>¿Está seguro que desea eliminar el rol?</label>
-        </div>
+    <div class='footer-modal text-end pe-5 pb-3'>
+      <app-button *ngIf='!isEditing' (click)='CreateRol()'  type='primary' text='{{action}}'></app-button>
+      <app-button *ngIf=' isEditing' (click)='UpdateRol()' type='primary' text='{{action}}'></app-button>
     </div>
-    <div class='footer-modal'>
-        <!-- <app-button *ngIf='action == actions.Create' type='primary' text='{{action}}'
-            (click)='CreateRol()'></app-button>
-        <app-button *ngIf='action == actions.Update' type='primary' text='{{action}}'
-            (click)='UpdateRol()'></app-button>
-        <app-button *ngIf='action == actions.Delete' type='primary' text='{{action}}'
-            (click)='DeleteRol()'></app-button> -->
-    </div>
+  </div>
 </div>

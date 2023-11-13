@@ -7,6 +7,8 @@ import { TypeModal } from 'src/app/common/type.modal'
 import { Icons } from 'src/app/common/icon.modal'
 import { Actions } from 'src/app/common/actions'
 import { ModalRolesComponent } from 'src/app/modules/shared/components/modal-roles/modal-roles.component'
+import { ModalService } from 'src/app/services/modal.service'
+import { Messages } from 'src/app/common/messages.const'
 
 @Component({
   selector: 'app-rol',
@@ -16,11 +18,12 @@ import { ModalRolesComponent } from 'src/app/modules/shared/components/modal-rol
 export class RolComponent implements OnInit {
   roles: RolOutModel[] = []
   role: RolOutModel | null = null
-  role_id: number | undefined
+  // role_id: number | undefined
 
   constructor(
     private dialog: Dialog,
-    private rolService: RolService
+    private rolService: RolService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +60,12 @@ export class RolComponent implements OnInit {
     )
   }
 
+  async openModalDeleteRol(rol: RolOutModel) {
+    var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
+    if (deleted.isConfirmed) {
+      this.DeleteRole(rol.id);
+    }
+  }
 
   openModalCreateRole() {
     this.dialog.open(ModalRolesComponent, {
@@ -82,32 +91,29 @@ export class RolComponent implements OnInit {
       maxWidth: '50%',
       data: {
         title: `${Actions.Update} ${TitlesModal.Rol}`,
+        question: '',
         iconClass: Icons.Rol,
         type: TypeModal.Rol,
-        question: '',
         imageUser: '',
         userName: '',
+        rol: rol,
         action: Actions.Update,
-        rol: rol
       }
     })
   }
 
-  openModalDeleteRole(rol_id: number) {
-    this.dialog.open(ModalRolesComponent, {
-      minWidth: '800px',
-      minHeight: '80%',
-      maxWidth: '50%',
-      data: {
-        title: `${Actions.Delete} ${TitlesModal.Rol}`,
-        iconClass: Icons.Rol,
-        type: TypeModal.Rol,
-        question: '',
-        imageUser: '',
-        userName: '',
-        action: Actions.Delete,
-        role_id: rol_id
+  DeleteRole(rolId: number) {
+    this.rolService.deleteRole(rolId).subscribe(
+      (response) => {
+        if (response && response.data) {
+          this.modalService.openModalConfirmationAction()
+          this.getRoles()
+        }
+      },
+      (error) => {
+        this.modalService.openModalErrorAction(Messages.ErrorAction)
       }
-    })
+    )
   }
+
 }
