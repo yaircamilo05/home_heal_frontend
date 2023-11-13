@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import { Icons } from 'src/app/common/icon.modal';
+import { Messages } from 'src/app/common/messages.const';
 import { TitlesModal } from 'src/app/common/titles.modal';
 import { TypeModal } from 'src/app/common/type.modal';
 import { UserCreateModel, UserGetModel, UserGetWithMenusModel } from 'src/app/models/user.model';
@@ -60,10 +61,10 @@ export class UserComponent {
   }
 
   async openModalDeleteUser(user: UserGetModel) {
-   var deleted = await this.modalService.openModalConfirmation();
+   var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
     if (deleted.isConfirmed){
       this.DeleteUser(user.id);
-    } 
+    }
   }
 
   openModalCreateUser() {
@@ -94,7 +95,7 @@ export class UserComponent {
         }
       },
       (error) => {
-        this.modalService.openModalErrorAction();
+        this.modalService.openModalErrorAction(Messages.ErrorAction);
       }
     );
   }
