@@ -1,8 +1,9 @@
 @import '/src/styles.scss';
 .primary{
-  background: $prin_admin;
+  background: $prin_user;
   border: none;
   width: 115px;
+  padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   height: 35px;
@@ -11,12 +12,13 @@
 }
 
 .primary:hover{
-  background: $sec_admin;
+  background: #53ade5;
 }
 .secondary{
   background: $sec_admin;
   border: none;
   width: 115px;
+  padding: 10px;
   cursor: pointer;
   border-radius: 4px;
   height: 35px;
@@ -26,6 +28,18 @@
 
 .secondary:hover{
   background: $prin_admin;
+}
+
+.primary-user{
+  background: $prin_user;
+  border: none;
+  width: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 35px;
+  color: $back;
+  font-family: 'Montserrat', sans-serif;
+  text-size-adjust: 12px;
 }
 
 .success{
@@ -50,4 +64,8 @@
   align-items: center;
 }
 
+.btn-confirmar{
+  background-color: #369cdd;
+  color: #fff;
+}
 

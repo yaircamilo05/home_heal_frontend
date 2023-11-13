@@ -39,19 +39,14 @@
             {{role.name}}
           </td>
           <td>
-            <ul>
-              <select class="form-control">
-                <option *ngFor="let menu of role.menus" [value]="menu.id">
-                  {{ menu.title }}</option>
+              <select class="form-control" (change)="selectMenu($event)">
+                <option value="0" disabled selected>Ver menus</option>
+                <option *ngFor="let menu of role.menus" [value]="menu.id">{{ menu.title }}</option>
               </select>
-            </ul>
           </td>
           <td class="d-flex justify-content-center align-items-center">
-            <div class="container-icons">
-              <div class="edit-icon" (click)="openModalEditModuleToRol()">
-                <span class="icon" [ngClass]="'fa-solid fa-pen-to-square color-edit'"></span>
-              </div>
-              <div class="delete-icon" (click)="openModalDeleteModuleToRol()">
+            <div class="form-control container-icons">
+              <div class="delete-icon" (click)="openModalDeleteMenuToRol(role.id)">
                 <span class="icon" [ngClass]="'fa-solid fa-trash-can color-delete'"></span>
               </div>
             </div>

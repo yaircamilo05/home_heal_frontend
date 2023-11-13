@@ -1,13 +1,13 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Icons } from 'src/app/common/icon.modal';
+import { Messages } from 'src/app/common/messages.const';
 import { TitlesModal } from 'src/app/common/titles.modal';
 import { TypeModal } from 'src/app/common/type.modal';
 import { MenuGetModel } from 'src/app/models/menu.model';
 import { ModalMenusComponent } from 'src/app/modules/shared/components/modal-menus/modal-menus.component';
 import { MenuService } from 'src/app/services/menu.service';
 import { ModalService } from 'src/app/services/modal.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -42,12 +42,8 @@ export class MenuComponent implements OnInit {
     );
   }
 
-  openModalEditMenu(menu: MenuGetModel) {
-    // Implementa esta función si necesitas editar menús
-  }
-
   async openModalDeleteMenu(menu: MenuGetModel) {
-   var deleted = await this.modalService.openModalConfirmation();
+   var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
     if (deleted.isConfirmed){
       this.DeleteMenu(menu.id);
     }
@@ -55,9 +51,9 @@ export class MenuComponent implements OnInit {
 
   openModalCreateMenu() {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
-      minWidth: '800px',
+      minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '50%',
+      maxWidth: '600px', 
       data: {
         title: TitlesModal.Menu,
         question: '',
@@ -65,6 +61,23 @@ export class MenuComponent implements OnInit {
         type: TypeModal.Menu,
         imageUser: '',
         userName: ''
+      }
+    });
+  }
+
+  openModalEditMenu(menu: MenuGetModel) {
+    let RefDialog = this.dialog.open(ModalMenusComponent, {
+      minWidth: '600px',
+      minHeight: '80%',
+      maxWidth: '600px', 
+      data: {
+        title: TitlesModal.Menu,
+        question: '',
+        iconClass: Icons.Menu,
+        type: TypeModal.Menu,
+        imageUser: '',
+        userName: '',
+        menu: menu
       }
     });
   }
@@ -79,7 +92,7 @@ export class MenuComponent implements OnInit {
         }
       },
       (error) => {
-        this.modalService.openModalErrorAction();
+        this.modalService.openModalErrorAction(Messages.ErrorAction);
       }
     );
   }

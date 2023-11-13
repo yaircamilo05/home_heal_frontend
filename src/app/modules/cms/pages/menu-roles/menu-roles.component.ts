@@ -8,6 +8,7 @@ import { RolWithMenusModel } from 'src/app/models/rol.with.menus.model';
 import { CustomModalComponent } from 'src/app/modules/shared/components/custom-modal/custom-modal.component';
 import { ModalMenusRolesComponent } from 'src/app/modules/shared/components/modal-menus-roles/modal-menus-roles.component';
 import { MenusRolesService } from 'src/app/services/menus-roles.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-menu-roles',
@@ -16,9 +17,11 @@ import { MenusRolesService } from 'src/app/services/menus-roles.service';
 })
 export class MenuRolesComponent implements OnInit{
  rolsWithMenus: RolWithMenusModel[] = []
+ menuId: number = 0;
 constructor(
   private menusRolService:MenusRolesService,
-  private dialog: Dialog
+  private dialog: Dialog,
+  private modalService: ModalService
 ) { }
 
   ngOnInit(){
@@ -47,34 +50,24 @@ constructor(
     });
   }
 
-  openModalEditModuleToRol() {
+  async openModalDeleteMenuToRol(rolId: number) {
+    var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
+     if (deleted.isConfirmed){
+       this.DeleteMenu(this.menuId, rolId);
+     }
+   }
 
+   DeleteMenu(menuId: number, rolId: number) {
+    if(menuId != 0){
+      this.menusRolService.deleteMenuToRole(rolId, menuId).subscribe(response =>{
+        this.modalService.openModalConfirmationAction();
+        this.getRolesWithMenus();
+      });
+   }
   }
 
-  openModalDeleteModuleToRol() {
-    let RefDialog = this.dialog.open(CustomModalComponent, {
-      minWidth: '800px',
-      minHeight: '80%',
-      maxWidth: '50%',
-      data: {
-        title: TitlesModal.Confirmation,
-        question: Messages.DeleteRecord,
-        iconClass: Icons.Question,
-        type: TypeModal.Confirmation,
-      }
-    });
-
-    RefDialog.closed.subscribe((response) => {
-      console.log(response);
-      if (response) {
-        this.deleteMenuToRol();
-      }
-    });
-  }
-
-
-
-  deleteMenuToRol(){
-    console.log("deleteMenuToRol");
+  selectMenu(event: any): void {
+     this.menuId = event.target.value;
+     console.log('menuid',this.menuId, 'event',event);
   }
 }

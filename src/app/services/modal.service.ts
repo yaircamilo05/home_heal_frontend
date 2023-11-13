@@ -16,18 +16,18 @@ export class ModalService {
     this.closeModalEvent.emit();
   }
 
-  openModalConfirmation(): Promise<SweetAlertResult<any>>{
-
-  return Swal.fire({
-      title: Messages.DeleteRecord,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#4CAF50",
-      cancelButtonColor: "#FF4848",
-      confirmButtonText: "ACEPTAR",
-      cancelButtonText: "CANCELAR",
-    });
-  }
+  openModalConfirmation(titleModal: string): Promise<SweetAlertResult<any>>{
+    return Swal.fire({
+        title: titleModal,
+        icon: "warning",
+        iconColor: "#FF6F60",
+        showCancelButton: true,
+        cancelButtonColor: "#c8c4c4",
+        confirmButtonColor: "#3286C0",
+        confirmButtonText: "ACEPTAR",
+        cancelButtonText: "CANCELAR",
+      });
+    }
 
   openModalConfirmationAction(){
     Swal.fire({
@@ -45,11 +45,37 @@ export class ModalService {
     });
   }
 
-  openModalErrorAction(){
+  openModalErrorAction(message: string){
     Swal.fire({
       title: TitlesModal.Error,
-      text: Messages.ErrorAction,
+      text: message,
       icon: "error"
+    });
+  }
+
+  openToastErrorAction(message: string){
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      text: message,
+      background: "#FF6F60",
+      color: "#fff",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 3000
+    });
+  }
+
+  openToastWelcome(message: string){
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      text: message,
+      color: "#fff",
+      background: "#56B4E9",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 3000
     });
   }
 }

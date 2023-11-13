@@ -42,4 +42,9 @@ export class AuthService {
       })
       );
   };
+
+  logout(): void {
+    this.storageService.deleteToken();
+    this.user.next(null);
+  }
 }

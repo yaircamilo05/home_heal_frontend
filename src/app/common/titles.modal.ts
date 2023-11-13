@@ -1,10 +1,11 @@
 export const TitlesModal = {
   Confirmation: 'Confirmación',
-  Error: 'Error',
+  Error: '¡Oh no!',
   Alert: 'Alerta',
   Succeed: 'Éxito',
   Chat: 'Chat',
   Menu: 'Menú',
   Rol: 'Rol',
-  Module: 'Módulo'
+  Module: 'Módulo', 
+  User: 'Usuario',
 }

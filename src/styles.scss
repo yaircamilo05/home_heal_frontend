@@ -3,6 +3,8 @@
 $text: #333333;
 $back: #F5F5F5;
 
+$gray: #c8c4c4;
+
 $prin_user: #369CDD;
 $sec_user: #1E5877;
 
@@ -29,3 +31,24 @@ $alert-lite: #FFCACA;
 }
 html, body { height: 100%; }
 //body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.toast.success {
+  background-color: #28a745; /* Color de fondo para éxito */
+}
+
+.toast.warning {
+  background-color: #ffc107; /* Color de fondo para advertencia */
+}
+
+.toast.error {
+  background-color: #dc3545; /* Color de fondo para error */
+}

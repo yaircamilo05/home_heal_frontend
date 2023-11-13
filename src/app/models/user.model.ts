@@ -5,8 +5,10 @@ export interface UserCreateModel {
     name: string;
     lastname: string;
     email: string;
-    password: string;
+    image_url: string;
     rol_id: number;
+    password: string;
+    
 }
 
 export interface UserGetWithMenusModel extends UserCreateModel {
@@ -14,7 +16,16 @@ export interface UserGetWithMenusModel extends UserCreateModel {
     lastname: string;
     email: string;
     rol_id: number;
-    file_img: string;
+    image_url: string;
     menus: MenuGetModel[];
     rol: RolOutModel
+}
+
+export interface UserGetModel {
+    id: number;
+    name: string;
+    lastname: string;
+    email: string;
+    rol_id: number;
+    image_url: string;
 }
