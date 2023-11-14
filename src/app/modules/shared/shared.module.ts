@@ -14,6 +14,7 @@ import { SelectMultiComponent } from './select-multi/select-multi.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,11 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
     CustomModalComponent,
     SelectMultiComponent,
     ModalRolesComponent,
+    CarouselComponent,
   ],
   exports: [
-    ButtonComponent
+    ButtonComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
