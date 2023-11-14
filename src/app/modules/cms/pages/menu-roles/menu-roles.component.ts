@@ -31,8 +31,6 @@ constructor(
   getRolesWithMenus(){
     this.menusRolService.getAllRolsWithMenus().subscribe(response =>{
       this.rolsWithMenus = response.data;
-      console.log("Roles back", response.data);
-      console.log("Roles fron",this.rolsWithMenus);
     });
   }
 
@@ -52,10 +50,6 @@ constructor(
     });
   }
 
-  openModalEditModuleToRol() {
-
-  }
-
   async openModalDeleteMenuToRol(rolId: number) {
     var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
      if (deleted.isConfirmed){
@@ -64,12 +58,16 @@ constructor(
    }
 
    DeleteMenu(menuId: number, rolId: number) {
-    if(menuId == 0) menuId = 1;
-   console.log("Menu" ,menuId);
-   console.log("Rol" , rolId);
+    if(menuId != 0){
+      this.menusRolService.deleteMenuToRole(rolId, menuId).subscribe(response =>{
+        this.modalService.openModalConfirmationAction();
+        this.getRolesWithMenus();
+      });
+   }
   }
 
   selectMenu(event: any): void {
      this.menuId = event.target.value;
+     console.log('menuid',this.menuId, 'event',event);
   }
 }

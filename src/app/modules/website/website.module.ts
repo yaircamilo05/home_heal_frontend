@@ -24,7 +24,7 @@ import { InitComponent } from './pages/init/init.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ]
 })
 export class WebsiteModule { }
