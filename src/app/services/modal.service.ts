@@ -20,9 +20,10 @@ export class ModalService {
     return Swal.fire({
         title: titleModal,
         icon: "warning",
+        iconColor: "#FF6F60",
         showCancelButton: true,
-        confirmButtonColor: "#4CAF50",
-        cancelButtonColor: "#FF4848",
+        cancelButtonColor: "#c8c4c4",
+        confirmButtonColor: "#3286C0",
         confirmButtonText: "ACEPTAR",
         cancelButtonText: "CANCELAR",
       });

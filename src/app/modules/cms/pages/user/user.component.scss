@@ -1,0 +1,161 @@
+@import '/src/styles.scss';
+
+.container-window{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+}
+
+.header{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 50px;  
+    justify-content: space-between;
+  
+}
+
+.number-filter{
+    width: 30%;
+}
+
+.name-filter{
+    width: 60%;
+}
+
+.icon{
+    color:$text;
+    height: 25px;
+}
+
+.container-input-filters{
+    display: flex;
+    gap : 20px;
+    align-items: center;
+}
+
+.header-division{
+    display: flex;
+
+}
+
+.container-icons{
+    margin-left: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+}
+
+.clear-filter{
+    border: solid 1px $text;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    color: $back;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search-filter{
+    border: solid 1px $text;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    color: $back;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear-filter:hover{
+    color: $prin_admin;
+    border: solid 1px $prin_admin;
+}
+
+.search-filter:hover{
+    color: $prin_admin;
+    border: solid 1px $prin_admin;
+}
+
+
+.search-filter .icon:hover{
+    color: $prin_admin;
+}
+
+.clear-filter .icon:hover{
+    color: $prin_admin;
+}
+
+.container-btn .icon{
+    color: $success;
+}
+
+.container-btn{
+    border: solid 1px $success;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        background-color: $success;
+        .icon {
+            font-size: 24px; /* Ajusta el tamaño de fuente según tus necesidades */
+            color: $back;
+          }
+      }
+}
+
+.container-table{
+    border: solid 1px gray;
+}
+
+.rounded-top-left {
+    border-top-left-radius: 10px; /* Ajusta el valor según tus preferencias */
+    /* Otras propiedades de estilo según sea necesario */
+}
+
+.rounded-top-right {
+    border-top-right-radius: 10px; /* Redondea la esquina superior izquierda */  
+    padding: 10px; /* Ajusta el relleno según tus preferencias */
+}
+
+.color-edit{
+    color: $warning;
+}
+
+.color-delete{
+    color: $alert;
+}
+
+.delete-icon{
+    cursor: pointer;
+}
+
+.edit-icon{
+    cursor: pointer;
+}
+
+.color-delete:hover{
+    color: $alert-lite;
+}
+
+.color-edit:hover{
+    color: $warning-lite;
+}
+
+
+
+
+

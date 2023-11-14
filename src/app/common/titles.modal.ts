@@ -6,5 +6,6 @@ export const TitlesModal = {
   Chat: 'Chat',
   Menu: 'Menú',
   Rol: 'Rol',
-  Module: 'Módulo'
+  Module: 'Módulo', 
+  User: 'Usuario',
 }
