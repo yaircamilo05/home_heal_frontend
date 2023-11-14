@@ -8,6 +8,7 @@ import { FileService } from 'src/app/services/file.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { RolService } from 'src/app/services/rol.service';
 import { UserService } from 'src/app/services/user.service';
+import { FileModel } from './../../../../models/file.model';
 
 interface InputDataModel {
   title: string,
@@ -67,7 +68,7 @@ export class ModalUserComponent {
     this.pacienteId = data.pacienteId;
     this.userToUpdate = data.user
     this.isEdit= data.isEdit;
-    
+
     this.buildForm();
     if (this.isEdit){
       this.isUploaded = true;
@@ -120,12 +121,12 @@ export class ModalUserComponent {
         (error)=> {
           console.log('Ha ocurrido un error al crear el usuario', error);
         }
-        
+
       )
-    }; 
+    };
 
     }
-    
+
   }
 
   getAllRoles() {
@@ -146,7 +147,7 @@ export class ModalUserComponent {
   updateUser(){
     if(this.userToUpdate && this.form.valid){
       let user: UserCreateModel = this.form.value
-     
+
       if(this.urlImage==""){
         user.image_url = this.userToUpdate.image_url;
       }else{
@@ -161,7 +162,7 @@ export class ModalUserComponent {
         (error)=> {
           console.log('Ha ocurrido un error al actualizar el usuario', error);
         }
-        
+
       )
     }
   }
@@ -179,17 +180,21 @@ export class ModalUserComponent {
   UploadImage(){
     if(this.img){
       const formData: FormData = new FormData();
-      formData.append('file', this.img, this.img.name);
-      this.fileService.saveFileAzure(formData).subscribe(
+      var imageFile:FileModel = {
+        name: this.img.name,
+        file: this.img,
+        fileName: this.img.name
+      };
+      this.fileService.upload_file(imageFile).subscribe(
         (response) => {
           this.isUploaded = true;
           console.log('Imagen subida correctamente', response);
-          this.urlImage = response;
+          this.urlImage = response.data;
         },
         (error)=> {
           console.log('Ha ocurrido un error al subir la imagen', error);
         }
-        
+
       )
     }
   }
