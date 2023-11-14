@@ -78,4 +78,17 @@ export class ModalService {
       timer: 3000
     });
   }
+
+  openToastSuccessAction(message: string){
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      text: message,
+      background: "#4CAF50",
+      color: "#fff",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      timer: 3000
+    });
+  }
 }
