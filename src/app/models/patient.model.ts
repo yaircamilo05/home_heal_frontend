@@ -1,0 +1,17 @@
+export interface PatientRegister{
+    name: string,
+    lastname: string,
+    phone: string,
+    email: string,
+    cc: string,
+    password: string,
+    gender: string,
+    image_url: string,
+    birthdate: Date,
+    address: string,
+    description: string,
+    familiar_name: string,
+    familiar_lastname: string,
+    familiar_email: string,
+    familiar_phone: string,
+}

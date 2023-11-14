@@ -17,7 +17,7 @@
                     class="img-fluid user-image m-2 ">
                 </div>
                 <div class="col-md-12 text-center ">
-                  <button type="submit" class="m-2 btn btn-confirmar">Subir foto de perfil</button>
+                  <button type="submit" class="m-2 btn btn-blue-confirm">Subir foto de perfil</button>
                 </div>
               </div>
             </div>
@@ -25,19 +25,23 @@
             <div class="container">
               <div class="card col-md-12 h-60 m-1 p-2 w-60">
                 <h2 class="prin-user card-title text-center mb-2 text-title-forms">Tu familiar a cargo</h2>
-                <form class="p-2">
+                <form class="p-2 form" [formGroup]="form_familiar">
                   <div class="mb-3">
-                    <input id="name" type="text" placeholder="Nombre" class="form-control">
+                    <input formControlName="familiar_name" id="name" type="text" placeholder="Nombre" class="form-control">
                   </div>
                   <div class="mb-3">
-                    <input id="lastname" type="text" placeholder="Apellidos" class="form-control">
+                    <input formControlName="familiar_lastname" id="lastname" type="text" placeholder="Apellidos" class="form-control">
                   </div>
   
                   <div class="mb-3">
-                    <input id="email" type="text" placeholder="Correo" class="form-control">
+                    <input formControlName="familiar_email" id="email" type="text" placeholder="Correo" class="form-control" required/>
+                  </div>
+                  <div *ngIf="fg_familiar['familiar_email'].errors && (fg_familiar['familiar_email'].dirty || fg_familiar['familiar_email'].touched)">
+                    <p *ngIf="fg_familiar['familiar_email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                    <p *ngIf="fg_familiar['familiar_email']?.errors?.['familiar_email']" style="color: #FF6F60;">Recuerda el formato de email</p>
                   </div>
                   <div class="mb-2">
-                    <input id="phone" type="text" placeholder="Teléfono" class="form-control">
+                    <input formControlName="familiar_phone" id="phone" type="text" placeholder="Teléfono" class="form-control">
                   </div>
   
                 </form>
@@ -53,56 +57,68 @@
       <div class="h-100 pt-4 m-2">
         <div class="card-body">
           <h1 class=" text-center mb-4 fw-bold text-title-forms">TU REGISTRO</h1>
-          <form>
+          <form class="form" [formGroup]="form_patient">
             <div class="row mb-3 w-100 ">
               <div class="col-md-4 w-50">
-                <input type="text" class="form-control" id="name" placeholder="Nombre">
+                <input formControlName="name" type="text" class="form-control" id="name" placeholder="Nombre">
               </div>
               <div class="col-md-4 w-50">
-                <input type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                <input formControlName="lastname" type="text" class="form-control" id="lastname" placeholder="Apellidos">
               </div>
             </div>
 
             <div class="row mb-3 w-100 ">
               <div class="col-md-4 w-50">
-                <input type="text" class="form-control" id="phone" placeholder="Teléfono">
+                <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Teléfono">
               </div>
 
               <div class="col-md-4 w-50">
-                <input type="text" class="form-control" id="id" placeholder="CC">
+                <input formControlName="CC" type="text" class="form-control" id="id" placeholder="CC">
               </div>
             </div>
 
             <div class="mb-3 pe-4">
-              <input type="email" class="form-control" id="email" placeholder="Correo">
+              <input formControlName="email" type="email" class="form-control" id="email" placeholder="Correo">
             </div>
-            <div class="mb-3 pe-4">
-              <input type="password" class="form-control" id="password" placeholder="Contraseña">
+            <div *ngIf="fg_patient['email'].errors && (fg_patient['email'].dirty || fg_patient['email'].touched)">
+              <p *ngIf="fg_patient['email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+              <p *ngIf="fg_patient['email']?.errors?.['email']" style="color: #FF6F60;">Recuerda el formato de email</p>
+            </div>
+
+            <div class="input-group mb-3 pe-4">
+              <input formControlName="password" type="{{ showPassword ? 'text' : 'password' }}" id="password"
+                placeholder="Contraseña" class="form-control form-control-md" required/>
+              <button type="button" class="btn btn-outline-secondary border-start-0 border-end-0 border-top-0 border-bottom-0" (click)="togglePasswordVisibility()">
+                <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+              </button>
+            </div>
+            <div *ngIf="fg_patient['password'].errors && (fg_patient['password'].dirty || fg_patient['password'].touched)">
+              <p class="mb-0" *ngIf="fg_patient['password']?.errors?.['required']" style="color: #FF6F60;" >Este campo es requerido</p>
             </div>
 
             <div class="row mb-1 w-100 ">
               <div class="col-md-4 w-50">
                 <div class="mb-3">
                   <label for="seleccion" class="form-label text-form">Género</label>
-                  <select class="form-select" id="seleccion" name="seleccion">
-                    <option value="man">Masculino</option>
-                    <option value="woman">Femenino</option>
-                    <option value="other">Otro</option>
+                  <select formControlName="gender" class="form-select" id="seleccion" name="seleccion">
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                    <option value="O">Otro</option>
                   </select>
                 </div>
               </div>
 
               <div class="col-md-4 w-50">
                 <label for="seleccion" class="form-label text-form">Fecha nacimiento</label>
-                <input type="date" class="form-control" id="fecha" name="fecha">
+                <input formControlName="birthdate" type="date" class="form-control" id="fecha" name="fecha">
               </div>
             </div>
 
             <div class="mb-3 pe-4">
-              <input type="address" class="form-control" id="address" placeholder="Dirección">
+              <input formControlName="address" type="address" class="form-control" id="address" placeholder="Dirección">
             </div>
             <div class="mb-3 pe-4">
-              <input type="information" class="form-control" id="information" placeholder="Cuéntanos sobre ti">
+              <input formControlName="description" type="information" class="form-control" id="information" placeholder="Cuéntanos sobre ti">
             </div>
 
             
@@ -110,7 +126,7 @@
                 <div class="col">
                   <div class="text-end">
                     <button class="btn btn-red-cancel me-2">Cancelar</button>
-                    <button class="btn btn-blue-confirm">Registrarme</button>
+                    <button (click)="register()" class="btn btn-blue-confirm">Registrarme</button>
                   </div>
                 </div>
               </div>
