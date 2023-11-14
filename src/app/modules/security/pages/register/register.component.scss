@@ -21,16 +21,16 @@
 
 ::placeholder {
     color: #999;
-    opacity: 0.7; 
+    opacity: 0.7;
 }
 
 #fecha::placeholder {
-    color: #999; 
-    opacity: 0.7; 
+    color: #999;
+    opacity: 0.7;
 }
 
 #fecha {
-    color: #999; 
+    color: #999;
     opacity: 0.7;
 }
 
@@ -39,7 +39,7 @@
     color: #999;
     opacity: 0.7;
 }
-  
+
 
 #seleccion {
     color: #999;
@@ -58,4 +58,29 @@
 
 .text-title-forms{
     color: #369cdd;
+}
+
+.file-input-container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.input-file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.custom-file-label {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-label:hover {
+  background-color: #2980b9;
 }

@@ -1,20 +1,30 @@
 @import '/src/styles.scss';
-.container h1{
-  color: $text;
-}
+// .container h1{
+//   color: $text;
+// }
+
+// .container{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: xx-large;
+//   font-weight: bold;
+//   color: $text;
+//   margin-top: 60px;
+//   margin-bottom: 100px;
+//   margin-left: 220px;
+//   margin-right: 220px;
+//   max-width: 550px;
+// }
 
 .container{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: xx-large;
-  font-weight: bold;
-  color: $text;
-  margin-top: 60px;
-  margin-bottom: 100px;
-  margin-left: 220px;
-  margin-right: 220px;
-  max-width: 550px;
+  justify-content: center;
 }
 
 .card-text{

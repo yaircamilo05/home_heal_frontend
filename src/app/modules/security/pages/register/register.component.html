@@ -5,7 +5,6 @@
       <img src="assets/images/logo-register.png" alt="Descripción de la imagen" class="img-fluid imgw">
     </div>
 
-
     <div class="col-md-4">
       <div class=" h-100">
         <div class="">
@@ -16,9 +15,9 @@
                   <img src="assets/images/userImageNotFound.png" alt="Imagen del usuario"
                     class="img-fluid user-image m-2 ">
                 </div>
-                <div class="col-md-12 text-center ">
-                  <label for="seleccion" class="form-label text-form">Subir imagen de perfil</label>
-                  <input (change)="onFileSelected($event)" type="file" class="m-2 btn btn-blue-confirm">
+                <div class="col-md-12 text-center file-input-container">
+                  <label for="file-input" class="form-label text-form custom-file-label">Subir imagen de perfil</label>
+                  <input (change)="onFileSelected($event)" type="file" id="file-input" class="m-2 btn btn-blue-confirm input-file">
                 </div>
               </div>
             </div>
@@ -33,7 +32,7 @@
                   <div class="mb-3">
                     <input formControlName="familiar_lastname" id="lastname" type="text" placeholder="Apellidos" class="form-control">
                   </div>
-  
+
                   <div class="mb-3">
                     <input formControlName="familiar_email" id="email" type="text" placeholder="Correo" class="form-control" required/>
                   </div>
@@ -44,11 +43,11 @@
                   <div class="mb-2">
                     <input formControlName="familiar_phone" id="phone" type="text" placeholder="Teléfono" class="form-control">
                   </div>
-  
+
                 </form>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -122,7 +121,7 @@
               <input formControlName="description" type="information" class="form-control" id="information" placeholder="Cuéntanos sobre ti">
             </div>
 
-            
+
               <div class="row pe-4">
                 <div class="col">
                   <div class="text-end">
@@ -131,7 +130,7 @@
                   </div>
                 </div>
               </div>
-                     
+
 
           </form>
         </div>
