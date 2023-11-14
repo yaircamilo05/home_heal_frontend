@@ -17,7 +17,8 @@
                     class="img-fluid user-image m-2 ">
                 </div>
                 <div class="col-md-12 text-center ">
-                  <button type="submit" class="m-2 btn btn-blue-confirm">Subir foto de perfil</button>
+                  <label for="seleccion" class="form-label text-form">Subir imagen de perfil</label>
+                  <input (change)="onFileSelected($event)" type="file" class="m-2 btn btn-blue-confirm">
                 </div>
               </div>
             </div>
