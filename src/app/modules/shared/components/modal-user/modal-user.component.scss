@@ -4,3 +4,53 @@
     background: $back
     
 }
+.content-modal {
+    padding: 20px;
+    background-color: #f8f9fa;
+  
+    .form-group {
+      margin-bottom: 1rem;
+  
+      label {
+        font-weight: bold;
+        color: #495057;
+      }
+  
+      input[type="text"],
+      input[type="password"],
+      input[type="file"],
+      select {
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        color: #495057;
+        padding: .375rem .75rem;
+      }
+  
+      button {
+        margin-top: .5rem;
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        padding: .375rem .75rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+      }
+    }
+  }
+  
+  .footer-modal {
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: right;
+  
+   /*  app-button {
+      color: #fff;
+      background-color: #28a745;
+      border-color: #28a745;
+    } */
+  }
