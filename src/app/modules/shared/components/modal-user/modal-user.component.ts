@@ -8,6 +8,7 @@ import { FileService } from 'src/app/services/file.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { RolService } from 'src/app/services/rol.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 interface InputDataModel {
   title: string,
@@ -75,7 +76,7 @@ export class ModalUserComponent {
       this.form.controls['lastname'].setValue(this.userToUpdate?.lastname);
       this.form.controls['email'].setValue(this.userToUpdate?.email);
       this.form.controls['rol_id'].setValue(this.userToUpdate?.rol_id);
-      //this.form.controls['image_url'].setValue(this.userToUpdate?.image_url); Traer la imagen relacionada y cargarla en el input
+      
     }
 
     this.modalService.closeModalEvent.subscribe(() => {
@@ -115,7 +116,16 @@ export class ModalUserComponent {
         (response) => {
           this.close();
           console.log('Usuario creado correctamente', response.data);
-          window.location.reload();
+          this.modalService.openModalConfirmationPromise().then((result) => {
+            if (result.isConfirmed) {
+              this.close();
+              window.location.reload();
+            }
+          }
+          );
+
+          
+          
         },
         (error)=> {
           console.log('Ha ocurrido un error al crear el usuario', error);
@@ -154,9 +164,14 @@ export class ModalUserComponent {
       }
       this.userService.updateUser(user, this.userToUpdate.id).subscribe(
         (response) => {
-          this.close();
           console.log('Usuario actualizado correctamente', response.data);
-          window.location.reload();
+          this.modalService.openModalConfirmationPromise().then((result) => {
+            if (result.isConfirmed) {
+              this.close();
+              window.location.reload();
+            }
+          }
+          );
         },
         (error)=> {
           console.log('Ha ocurrido un error al actualizar el usuario', error);
@@ -185,6 +200,7 @@ export class ModalUserComponent {
           this.isUploaded = true;
           console.log('Imagen subida correctamente', response);
           this.urlImage = response;
+          this.modalService.openModalConfirmationAction();
         },
         (error)=> {
           console.log('Ha ocurrido un error al subir la imagen', error);
