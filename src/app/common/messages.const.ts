@@ -8,6 +8,9 @@ export const Messages = {
   WelcomeWebsite: "¡Hola! Esperamos que te encuentres mejor",
   WelcomeAdmin: "¡Hola! Te extrañamos",
   Logout: "¿Estas seguro que deseas cerrar sesión?",
+  SuccessRegister: "¡Bienvenido a la familia Home Heal!",
+  ImageError: "¡Oh no! No pudimos subir tu imagen",
+  ErrorRegister: "¡Oh no! Los correos ya están registrados",
 }
 
 

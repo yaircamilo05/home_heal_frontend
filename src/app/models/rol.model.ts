@@ -4,5 +4,5 @@ export interface RolModel {
 }
 
 export interface RolOutModel extends RolModel {
-    id: number;
+    id: number
 }
