@@ -11,9 +11,9 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    margin-bottom: 50px;  
+    margin-bottom: 50px;
     justify-content: space-between;
-  
+
 }
 
 .number-filter{
@@ -127,7 +127,7 @@
 }
 
 .rounded-top-right {
-    border-top-right-radius: 10px; /* Redondea la esquina superior izquierda */  
+    border-top-right-radius: 10px; /* Redondea la esquina superior izquierda */
     padding: 10px; /* Ajusta el relleno según tus preferencias */
 }
 
@@ -137,8 +137,13 @@
 
 .color-delete{
     color: $alert;
+
 }
 
+.color-chat{
+  color: $success;
+  position: relative;
+}
 .delete-icon{
     cursor: pointer;
 }
@@ -147,6 +152,10 @@
     cursor: pointer;
 }
 
+.chat-icon{
+  cursor: pointer;
+
+}
 .color-delete:hover{
     color: $alert-lite;
 }
@@ -155,7 +164,29 @@
     color: $warning-lite;
 }
 
+.color-chat:hover{
+  color: $success-lite;
+}
 
+.icon-container {
+  position: relative;
+}
+
+.new-message-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  bottom: 23px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background-color: #FF4848;
+  border-radius: 50%;
+}
 
 
 

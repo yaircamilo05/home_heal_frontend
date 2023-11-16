@@ -39,6 +39,7 @@ export class ModalChatComponent {
   user:UserGetWithMenusModel | null = null;
   form: FormGroup = new FormGroup({});
 
+
   constructor
   ( public chatService: ChatService,
     private authService: AuthService,
@@ -60,6 +61,7 @@ export class ModalChatComponent {
     this.modalService.closeModalEvent.subscribe(() => {
       this.close();
     });
+
   }
   ngOnInit(): void {
     this.getUserLogged();

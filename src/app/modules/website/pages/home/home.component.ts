@@ -10,7 +10,6 @@ import { TitlesModal } from 'src/app/common/titles.modal';
 import { Icons} from 'src/app/common/icon.modal';
 import { TypeModal } from 'src/app/common/type.modal';
 import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
-import { Roles } from 'src/app/common/rols.const';
 import { Messages } from 'src/app/common/messages.const';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/services/modal.service';
