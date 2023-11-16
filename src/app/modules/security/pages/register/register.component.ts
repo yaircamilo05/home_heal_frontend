@@ -17,7 +17,7 @@ export class RegisterComponent {
   form_patient: FormGroup = new FormGroup('');
   form_familiar: FormGroup = new FormGroup('');
   patient: PatientRegister | null = null;
-  image_file: File | null = null;
+  image_file!: File | null;
   showPassword: boolean = false;
   selected_file: boolean = false;
   url_image: string = '';
@@ -27,38 +27,25 @@ export class RegisterComponent {
     private patientService: PatientService,
     private modalService: ModalService,
     private router: Router
-    ) { 
-    
+    ) {
+
     this.buildForm();
   }
 
   register() {
 
     const formData = new FormData();
-    formData.append('name', this.form_patient.value.name);
-    formData.append('lastname', this.form_patient.value.lastname);
-    formData.append('phone', this.form_patient.value.phone);
-    formData.append('email', this.form_patient.value.email);
-    formData.append('cc', this.form_patient.value.CC);
-    formData.append('password', this.form_patient.value.password);
-    formData.append('birthdate', this.form_patient.value.birthdate);
-    formData.append('address', this.form_patient.value.address);
-    formData.append('description', this.form_patient.value.description);
-    formData.append('gender', this.form_patient.value.gender);
-
+    var user: PatientRegister = {
+      ...this.form_patient.value
+    };
+    console.log(user);
+    formData.append('user', JSON.stringify(user));
     if(this.selected_file){
-      console.log('entre');
-      
-      formData.append('image_file', this.image_file as File);
+      formData.append('image_file', this.image_file as File, this.image_file?.name);
     }
 
-    formData.append('familiar_name', this.form_familiar.value.familiar_name);
-    formData.append('familiar_lastname', this.form_familiar.value.familiar_lastname);
-    formData.append('familiar_email', this.form_familiar.value.familiar_email);
-    formData.append('familiar_phone', this.form_familiar.value.familiar_phone);
-
     console.log(formData.get('image_file'));
-    
+
     this.patientService.register_patient(formData).subscribe({
       next: (response) => {
         if(response) {
@@ -89,7 +76,7 @@ export class RegisterComponent {
       email: ['juanzapata_12@gmail.com', [Validators.required, Validators.email]],
       password: ['Hola123*', Validators.required]
     })
-    
+
     this.form_familiar = this.formBuilder.group({
       familiar_name: ['Juliana', [Validators.required]],
       familiar_lastname: ['Gómez', Validators.required],
