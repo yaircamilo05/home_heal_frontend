@@ -6,7 +6,7 @@ export interface PatientRegister{
     cc: string,
     password: string,
     gender: string,
-    image_url: string,
+    image_file: File,
     birthdate: Date,
     address: string,
     description: string,

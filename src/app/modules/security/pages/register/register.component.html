@@ -27,21 +27,21 @@
                 <h2 class="prin-user card-title text-center mb-2 text-title-forms">Tu familiar a cargo</h2>
                 <form class="p-2 form" [formGroup]="form_familiar">
                   <div class="mb-3">
-                    <input formControlName="familiar_name" id="name" type="text" placeholder="Nombre" class="form-control">
+                    <input formControlName="familiar_name" id="familiar_name" type="text" placeholder="Nombre" class="form-control">
                   </div>
                   <div class="mb-3">
-                    <input formControlName="familiar_lastname" id="lastname" type="text" placeholder="Apellidos" class="form-control">
+                    <input formControlName="familiar_lastname" id="familiar_lastname" type="text" placeholder="Apellidos" class="form-control">
                   </div>
 
                   <div class="mb-3">
-                    <input formControlName="familiar_email" id="email" type="text" placeholder="Correo" class="form-control" required/>
+                    <input formControlName="familiar_email" id="familiar_email" type="text" placeholder="Correo" class="form-control" required/>
                   </div>
                   <div *ngIf="fg_familiar['familiar_email'].errors && (fg_familiar['familiar_email'].dirty || fg_familiar['familiar_email'].touched)">
                     <p *ngIf="fg_familiar['familiar_email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
                     <p *ngIf="fg_familiar['familiar_email']?.errors?.['familiar_email']" style="color: #FF6F60;">Recuerda el formato de email</p>
                   </div>
                   <div class="mb-2">
-                    <input formControlName="familiar_phone" id="phone" type="text" placeholder="Teléfono" class="form-control">
+                    <input formControlName="familiar_phone" id="familiar_phone" type="text" placeholder="Teléfono" class="form-control">
                   </div>
 
                 </form>
