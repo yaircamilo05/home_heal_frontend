@@ -35,16 +35,34 @@ export class RegisterComponent {
   register() {
 
     const formData = new FormData();
-    var user: PatientRegister = {
-      ...this.form_patient.value
+
+    let user: PatientRegister = {
+      name: this.form_patient.get('name')?.value,
+      lastname: this.form_patient.get('lastname')?.value,
+      phone: this.form_patient.get('phone')?.value,
+      email: this.form_patient.get('email')?.value,
+      cc: this.form_patient.get('CC')?.value,
+      birthdate: this.form_patient.get('birthdate')?.value,
+      description: this.form_patient.get('description')?.value,
+      address: this.form_patient.get('address')?.value,
+      gender: this.form_patient.get('gender')?.value,
+      password: this.form_patient.get('password')?.value,
+      familiar_name: this.form_familiar.get('familiar_name')?.value,
+      familiar_lastname: this.form_familiar.get('familiar_lastname')?.value,
+      familiar_email: this.form_familiar.get('familiar_email')?.value,
+      familiar_phone: this.form_familiar.get('familiar_phone')?.value,
     };
+
     console.log(user);
     formData.append('user', JSON.stringify(user));
+
+    console.log(formData.get('user'));
+    
     if(this.selected_file){
-      formData.append('image_file', this.image_file as File, this.image_file?.name);
+      formData.append('image_file', this.image_file as File);
     }
 
-    console.log(formData.get('image_file'));
+    console.log(JSON.stringify(user));
 
     this.patientService.register_patient(formData).subscribe({
       next: (response) => {
