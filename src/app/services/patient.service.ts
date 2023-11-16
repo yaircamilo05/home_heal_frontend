@@ -13,7 +13,6 @@ export class PatientService {
   ) { }
 
   register_patient(patient: FormData) {
-  
     return this.http.post(`${this.server}/register_user`, patient);
   }
 }

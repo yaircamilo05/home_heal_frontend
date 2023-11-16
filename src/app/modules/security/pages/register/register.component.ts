@@ -21,6 +21,7 @@ export class RegisterComponent {
   showPassword: boolean = false;
   selected_file: boolean = false;
   url_image: string = '';
+  imageUrlNotUpload: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,7 +58,7 @@ export class RegisterComponent {
     formData.append('user', JSON.stringify(user));
 
     console.log(formData.get('user'));
-    
+
     if(this.selected_file){
       formData.append('image_file', this.image_file as File);
     }
@@ -116,12 +117,14 @@ export class RegisterComponent {
 
   }
 
-  onFileSelected(event: any){
-    this.image_file = event.target.files[0] as File;
-    this.selected_file = true;
-    console.log(this.image_file);
-    // this.form_patient.patchValue({
-    //   image_file: this.image_file
-    // })
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      this.image_file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrlNotUpload = e.target.result;
+      };
+      reader.readAsDataURL(this.image_file as File);
+    }
   }
 }
