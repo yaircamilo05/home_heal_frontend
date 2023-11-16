@@ -4,8 +4,12 @@ import { Icons } from 'src/app/common/icon.modal';
 import { Messages } from 'src/app/common/messages.const';
 import { TitlesModal } from 'src/app/common/titles.modal';
 import { TypeModal } from 'src/app/common/type.modal';
+import { MessageModel } from 'src/app/models/message.model';
 import { UserCreateModel, UserGetModel, UserGetWithMenusModel } from 'src/app/models/user.model';
+import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
 import { ModalUserComponent } from 'src/app/modules/shared/components/modal-user/modal-user.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { ChatService } from 'src/app/services/chat.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,12 +20,31 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent {
   users: UserGetModel[] = [];
-
+  user:UserGetWithMenusModel | null = null;
+  showNotificationNewMessage: boolean = false;
+  messagesRecived: MessageModel[] = [];
+  countMessageRecived: number = 0;
+  firtMessageRecived: MessageModel | null = null;
+  modalOpen: boolean = false;
+  notificationSound = new Audio('../../../../../assets/sounds/tono.mp3'); // Asegúrate de reemplazar esto con la ruta a tu archivo de audio
   constructor(
     private dialog: Dialog,
+    private chatService: ChatService,
     private userService: UserService,
-    private modalService: ModalService
-  ) {}
+    private modalService: ModalService,
+    private authService: AuthService
+  ) {
+    this.chatService.newMessageEvent.subscribe((message) => {
+      this.messagesRecived.push(message);
+      this.playNotificationSound();
+      this.firtMessageRecived = this.messagesRecived[0];
+      this.countMessageRecived = this.messagesRecived.length;
+      this.showNotificationNewMessage = true;
+      if(!this.modalOpen)
+        this.modalService.openToastWelcome(Messages.newMessage(message));
+      console.log('message', message, 'notification', this.showNotificationNewMessage);
+    });
+  }
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -42,6 +65,11 @@ export class UserComponent {
     );
   }
 
+  getUserLogged(){
+    this.authService.user$.subscribe(user =>{
+      this.user = user;
+    });
+  }
   openModalEditUser(user: UserGetModel) {
     this.dialog.open(ModalUserComponent, {
       minWidth: '800px',
@@ -99,4 +127,30 @@ export class UserComponent {
       }
     );
   }
+
+  openModalChat(user: UserGetModel){
+    this.showNotificationNewMessage = false;
+    this.modalOpen = true;
+    let RefDialog = this.dialog.open(ModalChatComponent, {
+      minWidth: '800px',
+      minHeight: '80%',
+      maxWidth: '50%',
+      data: {
+        title: TitlesModal.Chat,
+        question: "",
+        iconClass: Icons.Chat,
+        type: TypeModal.Chat,
+        imageUser: user.image_url,
+        userName: user.name,
+      }
+  });
+}
+
+showNoficationNewMessage(user:UserGetModel){
+  return this.showNotificationNewMessage && user.name === this.firtMessageRecived?.nombre_remitente && !this.modalOpen;
+}
+
+playNotificationSound() {
+  this.notificationSound.play();
+}
 }

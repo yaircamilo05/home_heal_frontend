@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { MessageModel } from '../models/message.model';
 import { SockectioService } from './sockectio.service';
 
@@ -7,9 +7,14 @@ import { SockectioService } from './sockectio.service';
 })
 export class ChatService {
   chats : MessageModel[] = [];
-
+  chatsRecived : MessageModel[] = [];
+  newMessageEvent: EventEmitter<MessageModel> = new EventEmitter<MessageModel>();
   constructor(private sockectioService: SockectioService) {
     this.onRecivedMessage();
+  }
+
+  notifacationNewMessage(message: MessageModel){
+    this.newMessageEvent.emit(message);
   }
 
   sendMessage(message: MessageModel){
@@ -19,6 +24,7 @@ export class ChatService {
 
   onRecivedMessage(){
     this.sockectioService.io.on('recivedmessage', (message:MessageModel)=>{
+      this.notifacationNewMessage(message);
       this.chats.push(message);
     });
   }
