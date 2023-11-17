@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SockectioService } from './services/sockectio.service';
 import { StorageService } from './services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserGetWithMenusModel } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +11,18 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AppComponent {
   title = 'home_heal_front';
-
+  user: UserGetWithMenusModel | null = null;
   constructor(
     private socketSevice: SockectioService,
     private storageService: StorageService,
     private authService: AuthService
-  ) { }
+  ) {
+
+   }
 
   ngOnInit() {
     this.userLogged();
+    this.socketSevice.onConnectToRoom();
   }
   userLogged() {
     const token = this.storageService.getToken();

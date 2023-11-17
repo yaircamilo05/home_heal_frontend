@@ -142,6 +142,7 @@ export class UserComponent {
         type: TypeModal.Chat,
         imageUser: user.image_url,
         userName: user.name,
+        room:user.email
       }
   });
 }

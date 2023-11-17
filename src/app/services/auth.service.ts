@@ -9,6 +9,7 @@ import { TokenModel } from '../models/token.model';
 import { addToken } from '../interceptors/token.interceptor';
 import { ResponseCustomModel } from '../models/response.custom.model';
 import { UserGetWithMenusModel } from '../models/user.model';
+import { SockectioService } from './sockectio.service';
 
 
 @Injectable({

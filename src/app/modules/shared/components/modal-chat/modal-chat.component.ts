@@ -9,6 +9,8 @@ import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { ModalService } from 'src/app/services/modal.service';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
+import { UserService } from './../../../../services/user.service';
+import { SockectioService } from './../../../../services/sockectio.service';
 
 interface InputDataModel{
   title: string,
@@ -17,7 +19,8 @@ interface InputDataModel{
   pacienteId: number,
   imageUser: string,
   userName: string,
-  type?: string
+  type?: string,
+  room: string
 }
 
 @Component({
@@ -34,6 +37,7 @@ export class ModalChatComponent {
   mensaje:string = "";
   imageUser:string = "";
   userName:string = "";
+  room:string = "";
 
   nombreRemitente:string = "";
   user:UserGetWithMenusModel | null = null;
@@ -44,6 +48,7 @@ export class ModalChatComponent {
   ( public chatService: ChatService,
     private authService: AuthService,
     private modalService: ModalService,
+    private socketioService: SockectioService,
     private dialog: DialogRef<OutCustomModal,OutCustomModal>,
     @Inject(DIALOG_DATA) private data: InputDataModel,
 
@@ -56,12 +61,15 @@ export class ModalChatComponent {
     this.userName = data.userName;
     this.type = data.type;
     this.pacienteId = data.pacienteId;
+    this.room = data.room;
+
     this.buildForm();
 
     this.modalService.closeModalEvent.subscribe(() => {
       this.close();
     });
 
+    socketioService.onConnectToRoom();
   }
   ngOnInit(): void {
     this.getUserLogged();
@@ -74,6 +82,7 @@ export class ModalChatComponent {
   }
   sendMessage() {
     let message:MessageModel ={
+      room: this.room,
       image_username: this.user?.image_url || '',
       image_destinatario: this.imageUser,
       type: 1,
@@ -123,8 +132,10 @@ export class ModalChatComponent {
      });
    }
 
+
    close(){
     this.dialog.close();
   }
+
 
 }
