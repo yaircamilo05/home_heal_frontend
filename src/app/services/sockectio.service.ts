@@ -12,7 +12,7 @@ export class SockectioService {
   user:UserGetWithMenusModel | null = null;
   io = io(`${environment.server}`,{
     path: `/${environment.pathsocket}`,
-    withCredentials: true,
+    withCredentials: false,
     autoConnect: true
   });
 
