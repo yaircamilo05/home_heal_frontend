@@ -4,6 +4,18 @@
             label="{{title}}"></app-header-modal>
     </div>
     <div class="content-modal">
+        <div class="col-md-12 h-40">
+            <div class="row">
+              <div class=" col-md-2 center">
+                <img *ngIf="!image_url_not_upload" src="assets/images/userImageNotFound.png" alt="Imagen del usuario" class="img-fluid user-image m-2 ">
+                <img *ngIf="image_url_not_upload" [src]="image_url_not_upload" alt="Imagen del usuario" class="img-fluid user-image m-2 ">
+              </div>
+              <div class="col-md-12 file-input-container">
+                <label for="file-input" class="form-label text-form custom-file-label">Subir imagen de perfil</label>
+                <input (change)="onFileSelected($event)" type="file" id="file-input" class="m-2 btn btn-blue-confirm input-file">
+              </div>
+            </div>
+          </div>
         <form [formGroup]="form">
             <div class="form-group">
                 <label for="name">Nombre</label>
@@ -18,9 +30,12 @@
                 <input type="text" id="email" class="form-control" formControlName="email">
             </div>
             <div class="form-group">
-                <label for="image">Imagen</label>
-                <input type="file" id="image" class="form-control" formControlName="image_url" (change)="OnFileSelected($event)">
-                <button [disabled]="isUploaded" (click)="UploadImage()" >Subir imagen</button>
+                <label for="email">Número de identificación</label>
+                <input type="text" id="cc" class="form-control" formControlName="cc">
+            </div>
+            <div class="form-group">
+                <label for="email">Teléfono</label>
+                <input type="text" id="phone" class="form-control" formControlName="phone">
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
@@ -37,6 +52,6 @@
     </div>
 
     <div class="footer-modal">
-        <app-button type="primary" text="Aceptar" (click)="CreateUser()" *ngIf="isUploaded || !changeImage"></app-button>
+        <app-button type="primary" text="Aceptar" (click)="CreateUser()"></app-button>
     </div>
 </div>

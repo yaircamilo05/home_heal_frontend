@@ -8,6 +8,8 @@ export interface UserCreateModel {
     image_url: string;
     rol_id: number;
     password: string;
+    cc: string;
+    phone: string;
     
 }
 

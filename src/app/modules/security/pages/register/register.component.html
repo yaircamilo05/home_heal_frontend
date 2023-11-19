@@ -89,7 +89,7 @@
               </div>
 
               <div class="col-md-4 w-50">
-                <input formControlName="CC" type="text" class="form-control" id="id" placeholder="CC" required>
+                <input formControlName="CC" type="text" class="form-control" id="id" placeholder="Número de identificación" required>
                 <div *ngIf="fg_patient['CC'].errors && (fg_patient['CC'].dirty || fg_patient['CC'].touched)">
                   <p *ngIf="fg_patient['CC']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
                 </div>
