@@ -7,6 +7,7 @@ import { InitComponent } from './pages/init/init.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
+import { TestSocketComponent } from './pages/test-socket/test-socket.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'menusroles',
         component: MenuRolesComponent
+      },
+      {
+        path: 'skt',
+        component: TestSocketComponent
       }
     ]
   }

@@ -1,0 +1,13 @@
+<div class="container mt-3">
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <label for="itemInput" class="form-label">Nuevo Item</label>
+      <input type="text" class="form-control" id="itemInput" name="newItem" formControlName="message" required>
+    </div>
+    <button (click)="addItem()"  type="submit" class="btn btn-primary">Añadir</button>
+  </form>
+
+  <ul class="list-group mt-3">
+    <li class="list-group-item" *ngFor="let item of items">{{ item }}</li>
+  </ul>
+</div>

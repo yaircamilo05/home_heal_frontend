@@ -13,7 +13,7 @@ export class AppComponent {
   title = 'home_heal_front';
   user: UserGetWithMenusModel | null = null;
   constructor(
-    private socketSevice: SockectioService,
+    // private socketSevice: SockectioService,
     private storageService: StorageService,
     private authService: AuthService
   ) {
@@ -22,7 +22,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.userLogged();
-    this.socketSevice.onConnectToRoom();
+    // this.socketSevice.onConnectToRoom();
   }
   userLogged() {
     const token = this.storageService.getToken();
