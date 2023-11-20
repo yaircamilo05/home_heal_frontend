@@ -38,14 +38,16 @@ export class ModalUserComponent {
   mensaje: string = "";
   imageUser: string = "";
   userName: string = "";
-  roles: RolOutModel[]= [];
+  roles: RolOutModel[] = [];
   userToUpdate: UserGetModel | null = null;
   isEdit: boolean = false;
-  img: File = new File([], '');
+  img: File | null = null;
   urlImage: string = "";
   isUploaded: boolean = false;
   changeImage: boolean = false;
   form: FormGroup = new FormGroup({});
+  image_url_not_upload: string = '';
+  selected_file: boolean = false;
 
   constructor
     (
@@ -65,10 +67,10 @@ export class ModalUserComponent {
     this.type = data.type;
     this.pacienteId = data.pacienteId;
     this.userToUpdate = data.user
-    this.isEdit= data.isEdit;
+    this.isEdit = data.isEdit;
 
     this.buildForm();
-    if (this.isEdit){
+    if (this.isEdit) {
       this.isUploaded = true;
       this.form.controls['name'].setValue(this.userToUpdate?.name);
       this.form.controls['lastname'].setValue(this.userToUpdate?.lastname);
@@ -92,7 +94,8 @@ export class ModalUserComponent {
       email: ['', Validators.required],
       password: ['', Validators.required],
       rol_id: ['', Validators.required],
-      image_url: ['']
+      cc: ['', Validators.required],
+      phone: ['', Validators.required],
     })
   };
 
@@ -102,38 +105,75 @@ export class ModalUserComponent {
 
   CreateUser() {
 
-    if(this.isEdit){
+    if (this.isEdit) {
       this.updateUser();
-    }else{
+    } else {
       console.log('Crear usuario')
-     if (this.form.valid) {
-      let data: UserCreateModel = this.form.value
-      console.log(data);
-      data.image_url= this.urlImage;
-      this.userService.createUser(data).subscribe(
-        (response) => {
-          this.close();
-          console.log('Usuario creado correctamente', response.data);
-          this.modalService.openModalConfirmationPromise().then((result) => {
-            if (result.isConfirmed) {
-              this.close();
-              window.location.reload();
+      if (this.form.valid) {
+
+        if (this.selected_file) {
+
+          let imageFile: FileModel = {
+            name: 'file',
+            file: this.img as File,
+            fileName: this.img?.name as string
+          };
+    
+          this.fileService.upload_file(imageFile).subscribe(
+            (response) => {
+              this.isUploaded = true;
+              this.urlImage = response;          
+              console.log(`Imagen subida correctamente: ${this.urlImage}`);
+              this.send_request();
+            },
+
+            (error) => {
+              console.log('Ha ocurrido un error al subir la imagen', error);
             }
-          }
-          );
-
-
-
-        },
-        (error)=> {
-          console.log('Ha ocurrido un error al crear el usuario', error);
+    
+          )
+        } else {
+          this.send_request();
         }
 
-      )
-    };
+        
+      };
 
     }
 
+  }
+
+  send_request() {
+    let data: UserCreateModel = {
+      name: this.form.value.name,
+      lastname: this.form.value.lastname,
+      email: this.form.value.email,
+      password: this.form.value.password,
+      rol_id: this.form.value.rol_id,
+      image_url: this.urlImage,
+      cc: this.form.value.cc,
+      phone: this.form.value.phone,
+    }
+
+    console.log(data);
+
+    this.userService.createUser(data).subscribe(
+      (response) => {
+        this.close();
+        console.log('Usuario creado correctamente', response.data);
+        this.modalService.openModalConfirmationPromise().then((result) => {
+          if (result.isConfirmed) {
+            this.close();
+            window.location.reload();
+          }
+        }
+        );
+      },
+      (error) => {
+        console.log('Ha ocurrido un error al crear el usuario', error);
+      }
+
+    )
   }
 
   getAllRoles() {
@@ -142,7 +182,7 @@ export class ModalUserComponent {
         // Verifica si obtienes los datos correctamente
         console.log(response);
         if (response && response.data) {
-            this.roles = response.data;
+          this.roles = response.data;
         }
       },
       (error) => {
@@ -151,13 +191,13 @@ export class ModalUserComponent {
     );
   }
 
-  updateUser(){
-    if(this.userToUpdate && this.form.valid){
+  updateUser() {
+    if (this.userToUpdate && this.form.valid) {
       let user: UserCreateModel = this.form.value
 
-      if(this.urlImage==""){
+      if (this.urlImage == "") {
         user.image_url = this.userToUpdate.image_url;
-      }else{
+      } else {
         user.image_url = this.urlImage;
       }
       this.userService.updateUser(user, this.userToUpdate.id).subscribe(
@@ -171,7 +211,7 @@ export class ModalUserComponent {
           }
           );
         },
-        (error)=> {
+        (error) => {
           console.log('Ha ocurrido un error al actualizar el usuario', error);
         }
 
@@ -179,38 +219,16 @@ export class ModalUserComponent {
     }
   }
 
-  OnFileSelected(event: any) {
-    if (event.target.files.length > 0) {
-      this.isUploaded = false;
-      this.changeImage = true;
-      const file = event.target.files[0];
-      console.log(file);
-      this.img = file;
-    }
-  }
-
-  UploadImage(){
-    if(this.img){
-      const formData: FormData = new FormData();
-      var imageFile:FileModel = {
-        name: this.img.name,
-        file: this.img,
-        fileName: this.img.name
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      this.img = event.target.files[0];
+      console.log(this.img);
+      this.selected_file = true;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.image_url_not_upload = e.target.result;        
       };
-      this.fileService.upload_file(imageFile).subscribe(
-        (response) => {
-          this.isUploaded = true;
-          this.urlImage = response.data;
-          this.modalService.openModalConfirmationAction();
-        },
-        (error)=> {
-          console.log('Ha ocurrido un error al subir la imagen', error);
-        }
-
-      )
+      reader.readAsDataURL(this.img as File);
     }
   }
-
-
-
 }

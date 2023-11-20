@@ -3,6 +3,7 @@ import { SockectioService } from './services/sockectio.service';
 import { StorageService } from './services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserGetWithMenusModel } from './models/user.model';
+import { AzurepsService } from './services/azureps.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.userLogged();
-    this.socketSevice.onConnectToRoom();
+    // this.socketSevice.onConnectToRoom();
   }
   userLogged() {
     const token = this.storageService.getToken();

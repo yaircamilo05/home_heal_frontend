@@ -1,6 +1,5 @@
 <div class="container-fluid p-0">
   <div class="row">
-
     <div class="col-md-4">
       <img src="assets/images/logo-register.png" alt="Descripción de la imagen" class="img-fluid imgw">
     </div>
@@ -12,8 +11,8 @@
             <div class="col-md-12 h-40">
               <div class="row">
                 <div class=" col-md-12 text-center">
-                  <img src="assets/images/userImageNotFound.png" alt="Imagen del usuario"
-                    class="img-fluid user-image m-2 ">
+                  <img *ngIf="!image_url_not_upload" src="assets/images/userImageNotFound.png" alt="Imagen del usuario" class="img-fluid user-image m-2 ">
+                  <img *ngIf="image_url_not_upload" [src]="image_url_not_upload" alt="Imagen del usuario" class="img-fluid user-image m-2 ">
                 </div>
                 <div class="col-md-12 text-center file-input-container">
                   <label for="file-input" class="form-label text-form custom-file-label">Subir imagen de perfil</label>
@@ -27,19 +26,27 @@
                 <h2 class="prin-user card-title text-center mb-2 text-title-forms">Tu familiar a cargo</h2>
                 <form class="p-2 form" [formGroup]="form_familiar">
                   <div class="mb-3">
-                    <input formControlName="familiar_name" id="familiar_name" type="text" placeholder="Nombre" class="form-control">
+                    <input formControlName="familiar_name" id="familiar_name" type="text" placeholder="Nombre" class="form-control" required>
+                    <div *ngIf="fg_familiar['familiar_name'].errors && (fg_familiar['familiar_name'].dirty || fg_familiar['familiar_name'].touched)">
+                      <p *ngIf="fg_familiar['familiar_name']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                    </div>
                   </div>
+                
                   <div class="mb-3">
-                    <input formControlName="familiar_lastname" id="familiar_lastname" type="text" placeholder="Apellidos" class="form-control">
+                    <input formControlName="familiar_lastname" id="familiar_lastname" type="text" placeholder="Apellidos" class="form-control" required>
+                    <div *ngIf="fg_familiar['familiar_lastname'].errors && (fg_familiar['familiar_lastname'].dirty || fg_familiar['familiar_lastname'].touched)">
+                      <p *ngIf="fg_familiar['familiar_lastname']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                    </div>
                   </div>
 
                   <div class="mb-3">
                     <input formControlName="familiar_email" id="familiar_email" type="text" placeholder="Correo" class="form-control" required/>
+                    <div *ngIf="fg_familiar['familiar_email'].errors && (fg_familiar['familiar_email'].dirty || fg_familiar['familiar_email'].touched)">
+                      <p *ngIf="fg_familiar['familiar_email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                      <p *ngIf="fg_familiar['familiar_email']?.errors?.['familiar_email']" style="color: #FF6F60;">Recuerda el formato de email</p>
+                    </div>
                   </div>
-                  <div *ngIf="fg_familiar['familiar_email'].errors && (fg_familiar['familiar_email'].dirty || fg_familiar['familiar_email'].touched)">
-                    <p *ngIf="fg_familiar['familiar_email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
-                    <p *ngIf="fg_familiar['familiar_email']?.errors?.['familiar_email']" style="color: #FF6F60;">Recuerda el formato de email</p>
-                  </div>
+
                   <div class="mb-2">
                     <input formControlName="familiar_phone" id="familiar_phone" type="text" placeholder="Teléfono" class="form-control">
                   </div>
@@ -60,36 +67,48 @@
           <form class="form" [formGroup]="form_patient">
             <div class="row mb-3 w-100 ">
               <div class="col-md-4 w-50">
-                <input formControlName="name" type="text" class="form-control" id="name" placeholder="Nombre">
+                <input formControlName="name" type="text" class="form-control" id="name" placeholder="Nombre" required>
+                <div *ngIf="fg_patient['name'].errors && (fg_patient['name'].dirty || fg_patient['name'].touched)">
+                  <p *ngIf="fg_patient['name']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                </div>
               </div>
               <div class="col-md-4 w-50">
-                <input formControlName="lastname" type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                <input formControlName="lastname" type="text" class="form-control" id="lastname" placeholder="Apellidos" required>
+                <div *ngIf="fg_patient['lastname'].errors && (fg_patient['lastname'].dirty || fg_patient['lastname'].touched)">
+                  <p *ngIf="fg_patient['lastname']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                </div>
               </div>
             </div>
 
             <div class="row mb-3 w-100 ">
               <div class="col-md-4 w-50">
-                <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Teléfono">
+                <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Teléfono" required>
+                <div *ngIf="fg_patient['phone'].errors && (fg_patient['phone'].dirty || fg_patient['phone'].touched)">
+                  <p *ngIf="fg_patient['phone']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                </div>
               </div>
 
               <div class="col-md-4 w-50">
-                <input formControlName="CC" type="text" class="form-control" id="id" placeholder="CC">
+                <input formControlName="CC" type="text" class="form-control" id="id" placeholder="Número de identificación" required>
+                <div *ngIf="fg_patient['CC'].errors && (fg_patient['CC'].dirty || fg_patient['CC'].touched)">
+                  <p *ngIf="fg_patient['CC']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                </div>
               </div>
             </div>
 
             <div class="mb-3 pe-4">
-              <input formControlName="email" type="email" class="form-control" id="email" placeholder="Correo">
-            </div>
-            <div *ngIf="fg_patient['email'].errors && (fg_patient['email'].dirty || fg_patient['email'].touched)">
-              <p *ngIf="fg_patient['email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
-              <p *ngIf="fg_patient['email']?.errors?.['email']" style="color: #FF6F60;">Recuerda el formato de email</p>
+              <input formControlName="email" type="email" class="form-control" id="email" placeholder="Correo" required>
+              <div *ngIf="fg_patient['email'].errors && (fg_patient['email'].dirty || fg_patient['email'].touched)">
+                <p *ngIf="fg_patient['email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                <p *ngIf="fg_patient['email']?.errors?.['email']" style="color: #FF6F60;">Recuerda el formato de email</p>
+              </div>
             </div>
 
             <div class="input-group mb-3 pe-4">
-              <input formControlName="password" type="{{ showPassword ? 'text' : 'password' }}" id="password"
+              <input formControlName="password" type="{{ show_password ? 'text' : 'password' }}" id="password"
                 placeholder="Contraseña" class="form-control form-control-md" required/>
               <button type="button" class="btn btn-outline-secondary border-start-0 border-end-0 border-top-0 border-bottom-0" (click)="togglePasswordVisibility()">
-                <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                <i class="fa" [ngClass]="{'fa-eye': !show_password, 'fa-eye-slash': show_password}"></i>
               </button>
             </div>
             <div *ngIf="fg_patient['password'].errors && (fg_patient['password'].dirty || fg_patient['password'].touched)">
@@ -112,26 +131,34 @@
                 <label for="seleccion" class="form-label text-form">Fecha nacimiento</label>
                 <input formControlName="birthdate" type="date" class="form-control" id="fecha" name="fecha">
               </div>
+              <div *ngIf="fg_patient['birthdate'].errors && (fg_patient['birthdate'].dirty || fg_patient['birthdate'].touched)">
+                <p *ngIf="fg_patient['birthdate']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+              </div>
             </div>
 
             <div class="mb-3 pe-4">
               <input formControlName="address" type="address" class="form-control" id="address" placeholder="Dirección">
             </div>
+            <div *ngIf="fg_patient['address'].errors && (fg_patient['address'].dirty || fg_patient['address'].touched)">
+              <p *ngIf="fg_patient['address']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+            </div>
             <div class="mb-3 pe-4">
               <input formControlName="description" type="information" class="form-control" id="information" placeholder="Cuéntanos sobre ti">
             </div>
 
-
-              <div class="row pe-4">
-                <div class="col">
-                  <div class="text-end">
-                    <button class="btn btn-red-cancel me-2">Cancelar</button>
-                    <button (click)="register()" class="btn btn-blue-confirm">Registrarme</button>
-                  </div>
+            <div class="row pe-4">
+              <div class="col">
+                <div class="text-end">
+                  <button (click)="cancel()" class="btn btn-red-cancel me-2">Cancelar</button>
+                  <button (click)="register()" class="btn btn-blue-confirm">
+                    <div *ngIf="!loading">Registrarme</div>
+                    <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </button>
                 </div>
               </div>
-
-
+            </div>
           </form>
         </div>
       </div>

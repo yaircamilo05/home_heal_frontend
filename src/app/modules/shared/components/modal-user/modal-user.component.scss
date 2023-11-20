@@ -54,3 +54,33 @@
       border-color: #28a745;
     } */
   }
+
+  .btn-blue-confirm{
+    background-color: #369cdd;
+    color: #fff;
+}
+
+.file-input-container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.input-file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.custom-file-label {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-label:hover {
+  background-color: #2980b9;
+}

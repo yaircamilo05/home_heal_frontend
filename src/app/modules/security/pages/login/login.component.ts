@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup('');
   user: UserGetWithMenusModel | null = null;
   showPassword: boolean = false;
+  loading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,6 +48,8 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.form.valid) {
       let data: Credentials = this.form.value
+
+      this.loading = true;
       this.authService.login(data).subscribe({
         next: (response) => {
         if (response) {
@@ -64,6 +67,7 @@ export class LoginComponent implements OnInit {
         }
       },
         error: (err) => {
+          this.loading = false;
           if (err.status == 404) {
             this.modalService.openToastErrorAction(Messages.ErrorEmail);
           } else if (err.status == 500) {

@@ -16,6 +16,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MenuComponent } from './pages/menu/menu.component';
 import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
+import { TestSocketComponent } from './pages/test-socket/test-socket.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,7 +28,8 @@ import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
     InitComponent,
     MenuComponent,
     UserComponent,
-    MenuRolesComponent
+    MenuRolesComponent,
+    TestSocketComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers:
     [

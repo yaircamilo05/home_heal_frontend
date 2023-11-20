@@ -14,9 +14,9 @@ export class FileService {
     private http: HttpClient,
   ) { }
 
-  upload_file(file: FileModel): Observable<ResponseCustomModel<string>> {
+  upload_file(file: FileModel): Observable<string> {
     const formData = new FormData();
     formData.append(file.name, file.file, file.fileName);
-    return this.http.post<ResponseCustomModel<string>>(`${this.server}/upload/`, formData);
+    return this.http.post<string>(`${this.server}/upload/`, formData);
   }
 }
