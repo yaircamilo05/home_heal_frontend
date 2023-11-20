@@ -3,6 +3,7 @@ import { SockectioService } from './services/sockectio.service';
 import { StorageService } from './services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserGetWithMenusModel } from './models/user.model';
+import { AzurepsService } from './services/azureps.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
   user: UserGetWithMenusModel | null = null;
   constructor(
     // private socketSevice: SockectioService,
+    private azurepsService: AzurepsService,
     private storageService: StorageService,
     private authService: AuthService
   ) {
