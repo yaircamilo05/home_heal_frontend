@@ -2,5 +2,5 @@ export const environment = {
   server: 'https://home-heal-api.azurewebsites.net',
   production: true,
   pathsocket: 'sockets',
-  serversockect: 'http://localhost:3000'
+  serversockect: 'https://home-heal-socket.azurewebsites.net',
 }
