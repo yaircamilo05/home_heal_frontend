@@ -8,6 +8,6 @@
   </form>
 
   <ul class="list-group mt-3">
-    <li class="list-group-item" *ngFor="let item of items">{{ item }}</li>
+    <li class="list-group-item" *ngFor="let item of azSocket.contents">{{ item.data }}</li>
   </ul>
 </div>

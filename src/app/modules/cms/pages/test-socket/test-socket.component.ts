@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ResponseCustomModel } from './../../../../models/response.custom.model';
+import { AzurepsService } from 'src/app/services/azureps.service';
 
 @Component({
   selector: 'app-test-socket',
@@ -10,12 +12,12 @@ export class TestSocketComponent {
   form: FormGroup = new FormGroup('');
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public azSocket: AzurepsService
   ) {
     this.builForm()
   }
-  items: string[] = [];
-  newItem: string = '';
+
 
 
   builForm() {
@@ -25,16 +27,15 @@ export class TestSocketComponent {
   }
 
   addItem() {
-    this.newItem = this.form.value.message
-    console.log(this.newItem)
-    if (this.newItem) {
-      this.items.push(this.newItem);
-      this.newItem = '';
+    const content:ResponseCustomModel<string> ={
+      data: this.form.value.message
+    }
+
+    if (content) {
+      this.azSocket.sendContent(content);
+      console.log(this.azSocket.contents);
     }
   }
-
-  
-  
 }
 
 
