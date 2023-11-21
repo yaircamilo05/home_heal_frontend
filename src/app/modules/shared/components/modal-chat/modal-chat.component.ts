@@ -1,18 +1,17 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { MessageModel } from 'src/app/models/message.model';
 import { ChatService } from 'src/app/services/chat.service';
-import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from './../../../../services/auth.service';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { ModalService } from 'src/app/services/modal.service';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
-import { UserService } from './../../../../services/user.service';
+import { ConversationModel } from 'src/app/models/conversation.model';
 import { SockectioService } from './../../../../services/sockectio.service';
+import { StorageService } from 'src/app/services/storage.service';
 
-interface InputDataModel{
+interface InputDataModel {
   title: string,
   question: string,
   iconClass?: string,
@@ -20,7 +19,8 @@ interface InputDataModel{
   imageUser: string,
   userName: string,
   type?: string,
-  room: string
+  room: string,
+  to: string
 }
 
 @Component({
@@ -33,26 +33,27 @@ export class ModalChatComponent {
   question: string;
   pacienteId: number;
   iconClass: string | undefined = 'fa-solid fa-user';
-  type:string | undefined = 'Confirmation';
-  mensaje:string = "";
-  imageUser:string = "";
-  userName:string = "";
-  room:string = "";
+  type: string | undefined = 'Confirmation';
+  mensaje: string = "";
+  imageUser: string = "";
+  userName: string = "";
+  room: string = "";
+  to: string = "";
 
-  nombreRemitente:string = "";
-  user:UserGetWithMenusModel | null = null;
+  nombreRemitente: string = "";
+  user: UserGetWithMenusModel | null = null;
   form: FormGroup = new FormGroup({});
 
 
   constructor
-  ( public chatService: ChatService,
-    private authService: AuthService,
-    private modalService: ModalService,
-    private dialog: DialogRef<OutCustomModal,OutCustomModal>,
-    @Inject(DIALOG_DATA) private data: InputDataModel,
+    (public chatService: ChatService,
+      private authService: AuthService,
+      private modalService: ModalService,
+      private storageService: StorageService,
+      private dialog: DialogRef<OutCustomModal, OutCustomModal>,
+      @Inject(DIALOG_DATA) private data: InputDataModel,
 
-    private fb : FormBuilder)
-  {
+      private fb: FormBuilder) {
     this.title = data.title;
     this.question = data.question;
     this.imageUser = data.imageUser;
@@ -61,6 +62,7 @@ export class ModalChatComponent {
     this.type = data.type;
     this.pacienteId = data.pacienteId;
     this.room = data.room;
+    this.to = data.to;
 
     this.buildForm();
 
@@ -71,16 +73,17 @@ export class ModalChatComponent {
   }
   ngOnInit(): void {
     this.getUserLogged();
-   }
+  }
 
-  buildForm(){
+  buildForm() {
     this.form = this.fb.group({
-        message: ['', Validators.required],
+      message: ['', Validators.required],
     });
   }
   sendMessage() {
-    let message:MessageModel ={
-      room: this.room,
+    let message: MessageModel = {
+      room: this.room || '',
+      email: this.user?.email || '',
       image_username: this.user?.image_url || '',
       image_destinatario: this.imageUser,
       type: 1,
@@ -89,21 +92,23 @@ export class ModalChatComponent {
       fecha: this.obtenerFechaActualMensaje(),
       hora: this.obtenerHoraMensaje()
     }
-    this.chatService.sendMessage(message);
+    this.chatService.sendMessagePrivate(message);
     this.form.controls['message'].setValue('');
   }
 
 
-
+  getUserConnected() {
+    this.chatService
+  }
   obtenerHoraMensaje(): string {
-      let fecha = new Date();
-      // Obtén la hora, minutos y segundos
-      let hora = fecha.getHours();
-      let minutos = fecha.getMinutes();
-      let segundos = fecha.getSeconds();
-      let horaEnString = `${hora.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-      return horaEnString;
-    }
+    let fecha = new Date();
+    // Obtén la hora, minutos y segundos
+    let hora = fecha.getHours();
+    let minutos = fecha.getMinutes();
+    let segundos = fecha.getSeconds();
+    let horaEnString = `${hora.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+    return horaEnString;
+  }
 
 
   obtenerFechaActualMensaje(): string {
@@ -123,15 +128,18 @@ export class ModalChatComponent {
     return fechaPrueba;
   }
 
+  getUserLogged() {
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
 
-   getUserLogged(){
-     this.authService.user$.subscribe(user =>{
-       this.user = user;
-     });
-   }
+  messageIsForMyOrSendForMy(message: MessageModel): boolean {
+    console.log(message);
+    return message.room == this.room || message.email == this.storageService.getUsername();
+  }
 
-
-   close(){
+  close() {
     this.dialog.close();
   }
 

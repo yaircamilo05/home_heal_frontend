@@ -94,7 +94,6 @@ export class ModalRolesComponent {
     console.log(this.form.value)
     if (this.form.valid) {
       let data: RolModel = this.form.value
-      console.log(data)
       this.rolService.createRole(data).subscribe(async () => {
         this.close()
         let confirm = await this.modalService.openModalConfirmationPromise()
@@ -121,15 +120,4 @@ export class ModalRolesComponent {
     }
   }
 
-  // DeleteRol() {
-  //   let id: number | undefined = this.role_id
-  //   console.log(id)
-  //   if (!id) {
-  //     console.log('No se puede eliminar el rol')
-  //     return
-  //   }
-  //   this.rolService.deleteRole(id).subscribe(() => {
-  //     this.close()
-  //   })
-  // }
 }

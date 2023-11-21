@@ -55,20 +55,20 @@ export class RegisterComponent {
 
     if(this.selected_file){
       formData.append('image_file', this.image_file as File);
-      this.send_request(formData);          
-  
+      this.send_request(formData);
+
     } else {
-      
+
       this.patientService.get_default_image().subscribe({
         next: (blob) => {
           let file = new File([blob], 'userImageNotFound.png', { type: 'image/png' });
           this.image_file = file;
           formData.append('image_file', this.image_file);
-          this.send_request(formData);          
+          this.send_request(formData);
         }
       })
 
-    }    
+    }
   }
 
   send_request(formData: FormData) {
@@ -83,7 +83,6 @@ export class RegisterComponent {
         }
       },
       error: (error) => {
-        console.log(error);
         this.loading = false;
         if (error.status == 500) {
           this.modalService.openToastErrorAction(Messages.ErrorRegister);

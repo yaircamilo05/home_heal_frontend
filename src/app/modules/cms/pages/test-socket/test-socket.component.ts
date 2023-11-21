@@ -33,7 +33,6 @@ export class TestSocketComponent {
 
     if (content) {
       this.azSocket.sendContent(content);
-      console.log(this.azSocket.contents);
     }
   }
 }

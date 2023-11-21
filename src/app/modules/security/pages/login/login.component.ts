@@ -7,6 +7,8 @@ import { Credentials } from 'src/app/models/credentials.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { SockectioService } from './../../../../services/sockectio.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,9 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private socketService: SockectioService,
+    private storageService: StorageService
   ) {
     this.builForm();
   }
@@ -65,6 +69,8 @@ export class LoginComponent implements OnInit {
             }
           });
         }
+        //conectarce al socket
+        this.storageService.saveUsername(data.email);
       },
         error: (err) => {
           this.loading = false;
