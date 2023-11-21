@@ -48,6 +48,7 @@ export class ModalUserComponent {
   form: FormGroup = new FormGroup({});
   image_url_not_upload: string = '';
   selected_file: boolean = false;
+  isDoctor: boolean = false;
 
   constructor
     (
@@ -72,11 +73,14 @@ export class ModalUserComponent {
     this.buildForm();
     if (this.isEdit) {
       this.isUploaded = true;
+      this.isDoctor = this.userToUpdate?.rol.id == 4 ? true : false;
       this.form.controls['name'].setValue(this.userToUpdate?.name);
       this.form.controls['lastname'].setValue(this.userToUpdate?.lastname);
       this.form.controls['email'].setValue(this.userToUpdate?.email);
-      this.form.controls['rol_id'].setValue(this.userToUpdate?.rol_id);
-
+      this.form.controls['rol_id'].setValue(this.userToUpdate?.rol.id);
+      this.form.controls['cc'].setValue(this.userToUpdate?.cc);
+      this.form.controls['phone'].setValue(this.userToUpdate?.phone);
+      this.form.controls['specialty'].setValue(this.userToUpdate?.specialty);
     }
 
     this.modalService.closeModalEvent.subscribe(() => {
@@ -96,6 +100,7 @@ export class ModalUserComponent {
       rol_id: ['', Validators.required],
       cc: ['', Validators.required],
       phone: ['', Validators.required],
+      specialty: [''],
     })
   };
 
@@ -153,6 +158,7 @@ export class ModalUserComponent {
       image_url: this.urlImage,
       cc: this.form.value.cc,
       phone: this.form.value.phone,
+      specialty: this.form.value.specialty,
     }
 
     console.log(data);
@@ -180,9 +186,9 @@ export class ModalUserComponent {
     this.rolService.getRoles().subscribe(
       (response) => {
         // Verifica si obtienes los datos correctamente
-        console.log(response);
+        console.log(response.data);
         if (response && response.data) {
-          this.roles = response.data;
+          this.roles = response.data.filter((rol) => rol.id == 1 || rol.id == 4);
         }
       },
       (error) => {
@@ -191,10 +197,75 @@ export class ModalUserComponent {
     );
   }
 
-  updateUser() {
+  updateUser(){
+
+    if (this.userToUpdate && this.form.valid) {
+
+      if (this.selected_file) {
+
+        let imageFile: FileModel = {
+          name: 'file',
+          file: this.img as File,
+          fileName: this.img?.name as string
+        };
+  
+        this.fileService.upload_file(imageFile).subscribe(
+          (response) => {
+            this.isUploaded = true;
+            this.urlImage = response;          
+            console.log(`Imagen subida correctamente: ${this.urlImage}`);
+            this.send_request_update();
+          },
+
+          (error) => {
+            console.log('Ha ocurrido un error al subir la imagen', error);
+          }
+  
+        )
+      } else {
+        this.send_request_update();
+      }
+
+      
+    };
+  }
+  send_request_update(){
+    let data: UserCreateModel = {
+      name: this.form.value.name,
+      lastname: this.form.value.lastname,
+      email: this.form.value.email,
+      password: this.form.value.password,
+      rol_id: this.form.value.rol_id,
+      image_url: this.urlImage,
+      cc: this.form.value.cc,
+      phone: this.form.value.phone,
+      specialty: this.form.value.specialty,
+    }
+
+    console.log(data);
+
+    this.userService.updateUser(data, this.userToUpdate?.id as number).subscribe(
+      (response) => {
+        this.close();
+        console.log('Usuario actualizado correctamente', response.data);
+        this.modalService.openModalConfirmationPromise().then((result) => {
+          if (result.isConfirmed) {
+            this.close();
+            window.location.reload();
+          }
+        }
+        );
+      },
+      (error) => {
+        console.log('Ha ocurrido un error al actualizar el usuario', error);
+      }
+
+    )
+  }
+ /*  updateUser() {
     if (this.userToUpdate && this.form.valid) {
       let user: UserCreateModel = this.form.value
-
+      console.log(user);
       if (this.urlImage == "") {
         user.image_url = this.userToUpdate.image_url;
       } else {
@@ -217,7 +288,7 @@ export class ModalUserComponent {
 
       )
     }
-  }
+  } */
 
   onFileSelected(event: any) {
     if (event.target.files && event.target.files.length > 0) {
@@ -229,6 +300,15 @@ export class ModalUserComponent {
         this.image_url_not_upload = e.target.result;        
       };
       reader.readAsDataURL(this.img as File);
+    }
+  }
+
+  onRoleSelected(event: any) {
+    if(event.target.value == 4){
+      this.isDoctor = true;
+    }
+    else{
+      this.isDoctor = false;
     }
   }
 }
