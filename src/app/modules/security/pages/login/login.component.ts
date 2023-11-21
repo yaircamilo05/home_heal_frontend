@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { Messages } from 'src/app/common/messages.const';
 import { Roles } from 'src/app/common/rols.const';
 import { Credentials } from 'src/app/models/credentials.model';
+import { EmailModel } from 'src/app/models/email.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private emailService: EmailService
   ) {
     this.builForm();
   }
@@ -58,8 +61,22 @@ export class LoginComponent implements OnInit {
               console.log(user);
               console.log(user?.rol_id);
               if (user?.rol_id != Roles.SUPERADMIN) {
-                this.router.navigate(['/website']);
-                this.modalService.openToastWelcome(Messages.WelcomeWebsite);
+                
+                let data : EmailModel = {
+                  hash: "Admin12345@notificaciones.sender",
+                  to_destination: user?.email
+                }
+
+                this.emailService.send_email(data).subscribe({
+                  next: (response) => {
+                    console.log(response);
+                    this.router.navigate(['/website']);
+                    this.modalService.openToastWelcome(Messages.WelcomeWebsite);
+                  },
+                  error: (err) => {
+                    console.log(err);
+                  }
+                });
               } else if (user?.rol_id == Roles.SUPERADMIN) {
                 this.router.navigate(['/admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);
