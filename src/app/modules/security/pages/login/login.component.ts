@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.user = user;
     });
   }
-  
+
   builForm() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -58,8 +58,6 @@ export class LoginComponent implements OnInit {
         if (response) {
           this.authService.user$.subscribe(user => {
             if (user != undefined) {
-              console.log(user);
-              console.log(user?.rol_id);
               if (user?.rol_id != Roles.SUPERADMIN) {
                 
                 let data : EmailModel = {

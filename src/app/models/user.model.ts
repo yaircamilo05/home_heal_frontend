@@ -7,9 +7,10 @@ export interface UserCreateModel {
     email: string;
     image_url: string;
     rol_id: number;
-    password: string;
     cc: string;
     phone: string;
+    password: string;
+    specialty: string;
     
 }
 
@@ -30,4 +31,8 @@ export interface UserGetModel {
     email: string;
     rol_id: number;
     image_url: string;
+    cc: string;
+    phone: string;
+    rol: RolOutModel
+    specialty: string;
 }
