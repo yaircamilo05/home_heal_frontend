@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit{
     hearth_rate: 0,
     blood_pressure: 0,
     O2_saturation: 0,
-    date: new Date(),
+    date: new Date().toLocaleString("es-CO", {timeZone: "America/Bogota"}),
     patient_id: 0,
   };
 
@@ -32,17 +32,19 @@ export class DashboardComponent implements OnInit{
     this.onUpdateVitalSigns();
   }
   ngOnInit(){
+    this.onUpdateVitalSigns();
     this.getVitalSignsHistory();
   }
 
   onUpdateVitalSigns() {
+    console.log("escuchando en tiempo real")
     this.vitalSingsService.socketService.io.on('update vital Signs', (response: VitalSignsHistoryModel)=>{
       console.log("Respuesta en tiempo real servidor EN DASHBOARD",response);
       const vitalRealTime:VitalSignsHistoryModel = {
         hearth_rate: response.hearth_rate,
         blood_pressure: response.blood_pressure,
         O2_saturation: response.O2_saturation,
-        date: new Date(),
+        date: response.date,
         patient_id: response.patient_id,
       };
 

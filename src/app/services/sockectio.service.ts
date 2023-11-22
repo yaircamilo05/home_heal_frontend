@@ -16,29 +16,28 @@ export class SockectioService implements OnInit{
   });
 
   constructor(private authService: AuthService) {
-    this.emitConnectedListener();
-    this.onConnectedListener();
-
+    this.emitWelcome();
+    this.onWelcome();
    }
   ngOnInit(){
-    this.getUserLogged();
+    this.emitWelcome();
+    this.onWelcome();
   }
 
-   emitConnectedListener(){
-    this.io.emit('connetedListener');
-   }
+  emitWelcome(){
+    this.io.emit('welcome');
+  }
 
-   onConnectedListener(){
-    this.io.on('connetedListener', (data)=>{
-      console.log(data);
+  onWelcome(){
+    this.io.on('welcome', (data)=>{
+      console.log('Welcome to server socket', data);
     });
-
-    
-   }
-
-   getUserLogged(){
-    this.authService.user$.subscribe((user)=>{
-      this.user = user;
+  }
+  connected_error(){
+    this.io.on("connect_error", (err) => {
+      if (err.message === "invalid username") {
+        console.log("error de conexion");
+      }
     });
-   }
+  }
 }

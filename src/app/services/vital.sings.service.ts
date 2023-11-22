@@ -31,7 +31,7 @@ export class VitalSingsService{
         hearth_rate: response.hearth_rate,
         blood_pressure: response.blood_pressure,
         O2_saturation: response.O2_saturation,
-        date: new Date(),
+        date: response.date,
         patient_id: response.patient_id,
       };
 

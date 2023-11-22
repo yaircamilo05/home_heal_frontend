@@ -27,6 +27,7 @@ export class ModalVitalSignsComponent implements OnInit {
   showTicks: boolean = false;
   step: number = 1;
   thumbLabel: boolean = false;
+  vitalSignsId: number | undefined = 0;
   value_o2_saturation;
   value_blood_presure;
   value_heart_rate;
@@ -54,6 +55,7 @@ export class ModalVitalSignsComponent implements OnInit {
 
   updateVitalSigns() {
     const vitalSigns:VitalSingsModel = {
+      id: this.vitalSignsId ,
       hearth_rate: this.value_heart_rate,
       blood_pressure: this.value_blood_presure,
       O2_saturation: this.value_o2_saturation,
