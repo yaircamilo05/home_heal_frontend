@@ -248,6 +248,7 @@ export class ModalUserComponent {
   
         )
       } else {
+        this.urlImage= this.userToUpdate.image_url;
         this.send_request_update();
       }
 
