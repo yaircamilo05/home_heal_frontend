@@ -7,5 +7,6 @@ export const Icons = {
   Chat: 'fa-solid fa-message',
   Menu: 'fa-solid fa-bars',
   Rol: 'fa-solid fa-user-secret',
-  Module: 'fa-solid fa-cube'
+  Module: 'fa-solid fa-cube',
+  vitalSigns: 'fa-solid fa-heartbeat',
 }
