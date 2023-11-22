@@ -8,6 +8,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 import { TestSocketComponent } from './pages/test-socket/test-socket.component';
+import { PatientComponent } from './pages/patient/patient.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'skt',
         component: TestSocketComponent
+      },
+      {
+        path: 'mypatients',
+        component: PatientComponent
       }
     ]
   }

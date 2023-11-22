@@ -1,0 +1,187 @@
+@import '/src/styles.scss';
+
+.btn-primary {
+    background-color: #369cdd !important;
+    border-color: #369cdd !important;
+    color: #ffffff; /* Texto blanco para mayor contraste */
+}
+
+.btn-custom-size {
+    width: 50px; /* ajusta el ancho según tu preferencia */
+    height: 50px; /* ajusta la altura según tu preferencia */
+}
+
+.img-fluid.rounded-circle {
+    border-radius: 50%;
+    width: 150px; // Establece un ancho fijo
+    height: 150px; // Establece una altura fija
+    object-fit: cover; // Asegura que la imagen cubra completamente el espacio sin distorsionarse
+}
+
+h3.card-adress {
+    color: #888; // Cambia esto al color que prefieras
+}
+
+.circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ffd700;
+}
+
+.card-text {
+    margin-bottom: 0; // Reduce el margen inferior
+}
+
+.row > .col > .card-text {
+    margin-bottom: 0; // Reduce el margen inferior
+}
+// Clases utilizadas para el componente de menus, de donde se obtuvieron unos elementos
+.container-window{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+}
+
+.header{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 50px;
+    justify-content: space-between;
+
+}
+
+.number-filter{
+    width: 30%;
+}
+
+.name-filter{
+    width: 60%;
+}
+
+.icon{
+    color:$text;
+    height: 25px;
+}
+
+.container-input-filters{
+    display: flex;
+    gap : 20px;
+    align-items: center;
+}
+
+.header-division{
+    display: flex;
+
+}
+
+.container-icons{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left: 20px;
+  align-items: center;
+  border: none;
+}
+
+.clear-filter{
+    border: solid 1px $text;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    color: $back;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search-filter{
+    border: solid 1px $text;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    color: $back;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear-filter:hover{
+    color: $prin_admin;
+    border: solid 1px $prin_admin;
+}
+
+.search-filter:hover{
+    color: $prin_admin;
+    border: solid 1px $prin_admin;
+}
+
+
+.search-filter .icon:hover{
+    color: $prin_admin;
+}
+
+.clear-filter .icon:hover{
+    color: $prin_admin;
+}
+
+.container-btn .icon{
+    color: $success;
+}
+
+.container-btn{
+    border: solid 1px $success;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        background-color: $success;
+        .icon {
+            font-size: 24px; /* Ajusta el tamaño de fuente según tus necesidades */
+            color: $back;
+          }
+      }
+}
+
+.container-table{
+    border: solid 1px gray;
+}
+
+.rounded-top-left {
+    border-top-left-radius: 10px; /* Ajusta el valor según tus preferencias */
+    /* Otras propiedades de estilo según sea necesario */
+}
+
+.rounded-top-right {
+    border-top-right-radius: 10px; /* Redondea la esquina superior izquierda */
+    padding: 10px; /* Ajusta el relleno según tus preferencias */
+}
+
+.color-edit{
+    color: $warning;
+    cursor: pointer;
+}
+
+.color-delete{
+    color: $alert;
+    cursor: pointer;
+}
+.color-delete:hover{
+  color: $alert-lite;
+}
+
+.color-edit:hover{
+  color: $warning-lite;
+}
