@@ -7,7 +7,7 @@ import { TypeModal } from 'src/app/common/type.modal';
 import { RolWithMenusModel } from 'src/app/models/rol.with.menus.model';
 import { CustomModalComponent } from 'src/app/modules/shared/components/custom-modal/custom-modal.component';
 import { ModalMenusRolesComponent } from 'src/app/modules/shared/components/modal-menus-roles/modal-menus-roles.component';
-import { MenusRolesService } from 'src/app/services/menus-roles.service';
+import { MenusRolesService } from 'src/app/services/menus.roles.service';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
