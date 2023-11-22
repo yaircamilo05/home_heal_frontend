@@ -46,11 +46,18 @@
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" class="form-control" formControlName="password">
+                <input type="password" id="password" class="form-control"  type="{{ show_password ? 'text' : 'password' }}" formControlName="password" >
+                <button type="button" class="btn btn-outline-secondary border-start-0 border-end-0 border-top-0 border-bottom-0" (click)="togglePasswordVisibility()">
+                    <i class="fa" [ngClass]="{'fa-eye': !show_password, 'fa-eye-slash': show_password}"></i>
+                  </button>
             </div>
             <div class="form-group" *ngIf="isDoctor">
                 <label for="specialty">Especialidad</label>
-                <input type="specialty" id="specialty" class="form-control" formControlName="specialty">
+                <select name="" id="" formControlName="specialty" (change)="onSpecialitySelected($event)">
+                    <option value="">Seleccione la especialidad</option>
+                    <option value="Medicina general">Medicina General</option>
+                    <option value="Cuidados paleativos">Cuidados paleativos</option>
+                </select>
             </div>
         </form>
     </div>

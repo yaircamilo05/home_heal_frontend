@@ -53,6 +53,7 @@ export class ModalUserComponent {
   image_url_not_upload: string = '';
   selected_file: boolean = false;
   isDoctor: boolean = false;
+  show_password: boolean = false;
 
   constructor
     (
@@ -334,5 +335,14 @@ export class ModalUserComponent {
     else{
       this.isDoctor = false;
     }
+  }
+
+  onSpecialitySelected(event: any) {
+    this.form.controls['specialty'].setValue(event.target.value);
+  }
+
+  togglePasswordVisibility() {
+    this.show_password = !this.show_password;
+
   }
 }
