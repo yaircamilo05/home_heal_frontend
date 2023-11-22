@@ -9,6 +9,10 @@ import { ModalService } from 'src/app/services/modal.service';
 import { RolService } from 'src/app/services/rol.service';
 import { UserService } from 'src/app/services/user.service';
 import { FileModel } from './../../../../models/file.model';
+import { EmailRegisterModel } from 'src/app/models/email.model';
+import { environment } from 'src/environments/environment.local';
+import { EmailService } from 'src/app/services/email.service';
+import { Messages } from 'src/app/common/messages.const';
 
 
 interface InputDataModel {
@@ -58,7 +62,8 @@ export class ModalUserComponent {
       private userService: UserService,
       private fb: FormBuilder,
       private rolService: RolService,
-      private fileService: FileService
+      private fileService: FileService,
+      private emailService: EmailService
     ) {
     this.title = data.title;
     this.question = data.question;
@@ -165,6 +170,7 @@ export class ModalUserComponent {
 
     this.userService.createUser(data).subscribe(
       (response) => {
+        this.send_email();
         this.close();
         console.log('Usuario creado correctamente', response.data);
         this.modalService.openModalConfirmationPromise().then((result) => {
@@ -177,9 +183,27 @@ export class ModalUserComponent {
       },
       (error) => {
         console.log('Ha ocurrido un error al crear el usuario', error);
+        this.modalService.openToastErrorAction(Messages.ErrorAction);
       }
 
     )
+  }
+
+  send_email() {
+
+    let name = this.isDoctor ? 'doctor' + " " + this.form.get('name')?.value : 'administrador' + " " + this.form.get('name')?.value; 
+    let data: EmailRegisterModel = {
+      hash: environment.hash_validator,
+      to_destination: this.form.get('email')?.value,
+      name: name,
+      password: this.form.get('password')?.value
+    }
+
+    this.emailService.send_email_register_doctor_admin(data).subscribe({
+      next: (response) => {
+        console.log(response);
+      }
+    });
   }
 
   getAllRoles() {

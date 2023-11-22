@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Messages } from 'src/app/common/messages.const';
 import { Roles } from 'src/app/common/rols.const';
 import { Credentials } from 'src/app/models/credentials.model';
-import { EmailModel } from 'src/app/models/email.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailService } from 'src/app/services/email.service';
@@ -59,22 +58,10 @@ export class LoginComponent implements OnInit {
           this.authService.user$.subscribe(user => {
             if (user != undefined) {
               if (user?.rol_id != Roles.SUPERADMIN) {
-                
-                let data : EmailModel = {
-                  hash: "Admin12345@notificaciones.sender",
-                  to_destination: user?.email
-                }
 
-                this.emailService.send_email(data).subscribe({
-                  next: (response) => {
-                    console.log(response);
-                    this.router.navigate(['/website']);
-                    this.modalService.openToastWelcome(Messages.WelcomeWebsite);
-                  },
-                  error: (err) => {
-                    console.log(err);
-                  }
-                });
+                this.router.navigate(['/website']);
+                this.modalService.openToastWelcome(Messages.WelcomeWebsite);
+              
               } else if (user?.rol_id == Roles.SUPERADMIN) {
                 this.router.navigate(['/admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);
