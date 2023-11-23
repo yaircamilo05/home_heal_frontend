@@ -1,0 +1,73 @@
+<div>
+  <div>
+    <app-header-modal iconClass="{{iconClass}}" label="{{title}}"></app-header-modal>
+  </div>
+  <div class="content-modal">
+
+    <div class="container">
+
+      <div class="container-inputs-sliders">
+        <div class="container-slider">
+          <div class="container-label-icon">
+            <span class="button-icon" [ngClass]="'fa-solid fa-heart-pulse'"></span>
+            <label for="heart_rate">Ritmo Cardiaco</label>
+          </div>
+          <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+            [discrete]="thumbLabel" [showTickMarks]="showTicks">
+            <input matSliderThumb [(ngModel)]="value_heart_rate" #sliderHeartRate>
+          </mat-slider>
+        </div>
+
+        <div class="container-slider">
+          <div class="container-label-icon">
+            <span class="button-icon" [ngClass]="'fa-solid fa-heart-circle-bolt'"></span>
+            <label for="blood_pressure">Presión Arterial</label>
+          </div>
+          <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+            [discrete]="thumbLabel" [showTickMarks]="showTicks">
+            <input matSliderThumb [(ngModel)]="value_blood_presure" #sliderPresion>
+          </mat-slider>
+        </div>
+
+        <div class="container-slider">
+
+          <div class="container-label-icon">
+            <span class="button-icon" [ngClass]="'fa-solid fa-lungs-virus'"></span>
+            <label for="O2_saturation">Saturación de Oxigeno</label>
+          </div>
+
+          <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+            [discrete]="thumbLabel" [showTickMarks]="showTicks">
+            <input id="O2_saturation" matSliderThumb [(ngModel)]="value_o2_saturation" #sliderSaturation>
+          </mat-slider>
+        </div>
+      </div>
+
+
+      <div class="inputs-values">
+
+        <div class="input-value">
+          <input type="number" [(ngModel)]="value_heart_rate" id="heart_rate" class="form-control" />
+          <label for="heart_rate">lat/min</label>
+        </div>
+
+        <div class="input-value">
+          <input type="number" id="blood_pressure" [(ngModel)]="value_blood_presure" class="form-control"
+            placeholder=" " />
+          <label for="blood_pressure">mm Hg</label>
+        </div>
+
+        <div class="input-value">
+          <input type="number" id="O2_saturation" [(ngModel)]="value_o2_saturation" class="form-control" />
+          <label for="O2_saturation">mg/L</label>
+        </div>
+        
+      </div>
+
+    </div>
+
+  </div>
+  <div class="footer-modal">
+    <app-button type="primary" text="ACEPTAR" (click)="updateVitalSigns()"></app-button>
+  </div>
+</div>

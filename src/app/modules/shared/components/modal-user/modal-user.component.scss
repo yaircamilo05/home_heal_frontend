@@ -5,11 +5,15 @@
     
 }
 .content-modal {
+    overflow-y: scroll;
+    max-height: 65vh;
     padding: 20px;
     background-color: #f8f9fa;
   
     .form-group {
-      margin-bottom: 1rem;
+      //margin-bottom: 1rem;
+      margin: 1rem;
+      
   
       label {
         font-weight: bold;

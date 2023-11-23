@@ -6,6 +6,7 @@ import { Roles } from 'src/app/common/rols.const';
 import { Credentials } from 'src/app/models/credentials.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private emailService: EmailService
   ) {
     this.builForm();
   }
@@ -56,8 +58,10 @@ export class LoginComponent implements OnInit {
           this.authService.user$.subscribe(user => {
             if (user != undefined) {
               if (user?.rol_id != Roles.SUPERADMIN) {
+
                 this.router.navigate(['/website']);
                 this.modalService.openToastWelcome(Messages.WelcomeWebsite);
+              
               } else if (user?.rol_id == Roles.SUPERADMIN) {
                 this.router.navigate(['/admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);

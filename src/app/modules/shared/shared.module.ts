@@ -14,7 +14,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
-
+import { ModalVitalSignsComponent } from './components/modal-vital-signs/modal-vital-signs.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
     ModalMenusRolesComponent,
     NotFoundComponent,
     CustomModalComponent,
+    ModalVitalSignsComponent,
+
   ],
   exports: [
     ButtonComponent,
@@ -40,7 +44,9 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }
