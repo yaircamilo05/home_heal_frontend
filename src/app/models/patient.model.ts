@@ -14,3 +14,25 @@ export interface PatientRegister{
     familiar_email: string,
     familiar_phone: string,
 }
+
+export enum EnumEStatusPatient {
+    STABLE = 1,
+    RISKY =  2,
+    CRITICAL = 3
+}
+
+export interface PatientCard{
+   patient_id:number,
+   name:string,
+   cc:string,
+   phone:string,
+   address:string,
+   age:string,
+   gender:string,
+   img_url:string,
+   status:EnumEStatusPatient
+}
+
+export interface PatientModel{
+  
+}

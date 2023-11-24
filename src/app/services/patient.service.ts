@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.local';
-import { PatientRegister } from '../models/patient.model';
+import { PatientCard, PatientRegister } from '../models/patient.model';
 import { Observable } from 'rxjs';
 import { ResponseCustomModel } from '../models/response.custom.model';
 
@@ -17,7 +17,7 @@ export class PatientService {
   register_patient(patient: FormData) {
     return this.http.post(`${this.server}/register_user`, patient);
   }
-  
+
    /**
    * Method to obtain the patients in the database
    * @returns List of patients
@@ -26,35 +26,19 @@ export class PatientService {
     return this.http.get<ResponseCustomModel<PatientRegister[]>>(`${this.server}/get_all_patients`);
   }
 
+  getPatientsByDoctorId(doctor_id: number): Observable<ResponseCustomModel<PatientCard[]>> {
+    return this.http.get<ResponseCustomModel<PatientCard[]>>(`${this.server}/get_patients_by_doctor_id/${doctor_id}`);
+  }
+
+  getPatientById(id: number): Observable<ResponseCustomModel<PatientRegister>> {
+    return this.http.get<ResponseCustomModel<PatientRegister>>(`${this.server}/get_patient_by_id/${id}`);
+  }
   /**
-   * 
+   *
    * @returns void
    */
   get_default_image(): Observable<Blob> {
     return this.http.get('assets/images/userImageNotFound.png', { responseType: 'blob' });
   }
 
-  /**
-   * Method to calculate the age of a patient
-   * @param birthdate 
-   * @returns 
-   */
-  calculateAge(birthdate: Date): number {
-    const actualDate = new Date();
-    const actualYear = actualDate.getFullYear();
-    const actualMounth = actualDate.getMonth() + 1;
-    const actualDay = actualDate.getDate();
-
-    const birthYear = birthdate.getFullYear();
-    const mounthYear = birthdate.getMonth() + 1;
-    const birthDay = birthdate.getDate();
-
-    let age = actualYear - birthYear;
-
-    if (actualMounth < mounthYear || (actualMounth === mounthYear && actualDay < birthDay)) {
-      age--;
-    }
-
-    return age;
-  }
 }

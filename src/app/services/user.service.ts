@@ -24,14 +24,15 @@ export class UserService {
 
   deleteUser(id:number): Observable<ResponseCustomModel<boolean>>{
     return this.http.delete<ResponseCustomModel<boolean>>(`${this.server}/delete_user/${id}`);
-  } 
+  }
+
 
   /**
    * Method to create a user
    * @param user User to create
    * @returns User created
    */
-  createUser(user: UserCreateModel): Observable<ResponseCustomModel<UserGetModel>> {  
+  createUser(user: UserCreateModel): Observable<ResponseCustomModel<UserGetModel>> {
     return this.http.post<ResponseCustomModel<UserGetModel>>(`${this.server}/create_user`, user);
   }
 

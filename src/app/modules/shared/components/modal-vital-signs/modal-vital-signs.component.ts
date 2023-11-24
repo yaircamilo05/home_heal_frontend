@@ -49,13 +49,13 @@ export class ModalVitalSignsComponent implements OnInit {
     });
 
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getVitalSigns();
   }
 
   updateVitalSigns() {
-    const vitalSigns:VitalSingsModel = {
-      id: this.vitalSignsId ,
+    const vitalSigns: VitalSingsModel = {
+      id: this.vitalSignsId,
       hearth_rate: this.value_heart_rate,
       blood_pressure: this.value_blood_presure,
       O2_saturation: this.value_o2_saturation,
@@ -67,14 +67,20 @@ export class ModalVitalSignsComponent implements OnInit {
   }
 
   getVitalSigns() {
-    this.vitalSingsService.getLastVitalSigns(this.patient_id).subscribe((response) => {
-      this.value_heart_rate = response.data.hearth_rate;
-      this.value_blood_presure = response.data.blood_pressure;
-      this.value_o2_saturation = response.data.O2_saturation;
-    });
+
+      this.vitalSingsService.getLastVitalSigns(this.patient_id).subscribe((response) => {
+        console.log("RESPONSE LAST VITALS", response);
+        if(response.data){
+          this.vitalSignsId = response.data.id;
+        this.value_heart_rate = response.data.hearth_rate;
+        this.value_blood_presure = response.data.blood_pressure;
+        this.value_o2_saturation = response.data.O2_saturation;
+        }
+      });
+
   }
 
-  close(){
+  close() {
     this.dialog.close();
   }
 

@@ -1,0 +1,61 @@
+<div *ngFor="let patient of patients">
+  <div class="d-flex justify-content-center align-items-center">
+      <div class="card w-75 mb-3">
+          <div class="row g-0">
+              <div class="col-md-4 mb-2 mt-2 d-flex align-items-center justify-content-around">
+                  <img [src]="patient.img_url" class="img-fluid rounded-circle" alt="Patient Image">
+              </div>
+              <div class="col-md-8">
+                  <div class="card-body row">
+                      <div class="col-9"> <!-- Esta columna ocupa el 75% del card-body -->
+                          <div class="d-flex mb-2 align-items-center">
+                              <div class="circle p-2 m-2"></div>
+                              <div class="container">
+                                  <h2 class="card-title m-1">{{patient.name}}</h2>
+                                  <h3 class="card-adress m-1">{{patient.address}}</h3>
+                              </div>
+                          </div>
+                          <div class="row mb-2">
+                              <div class="col">
+                                  <p><strong>Teléfono: </strong>{{patient.phone}}</p>
+                              </div>
+                              <div class="col">
+                                  <p><strong>Edad: </strong>{{patient.age}} años</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col">
+                                  <p><strong>N.I: </strong>{{patient.cc}}</p>
+                              </div>
+                              <div class="col">
+                                  <p><strong>Género: </strong>{{patient.gender}}</p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-3 pt-4"> <!-- Esta columna ocupa el 25% del card-body -->
+                          <div class="row">
+                              <div class="col-5 mb-1">
+                                  <button class="btn btn-primary btn-custom-size text-white"><strong><em>Dx</em></strong></button>
+                              </div>
+                              <div class="col-5 mb-1">
+                                  <button class="btn btn-primary btn-custom-size text-white"><strong><em>Cx</em></strong></button>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-5">
+                                  <button class="btn btn-primary btn-custom-size"><i class="fa-solid fa-plus fa-xl " style="color: #ffffff;"></i></button>
+                              </div>
+                              <div class="col-5">
+                                  <button (click)="redirectToDashboard(patient.patient_id)" class="btn btn-primary btn-custom-size"><i class="fa-solid fa-heart-pulse fa-xl" style="color: #ffffff;"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

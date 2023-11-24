@@ -9,6 +9,7 @@ import { TypeModal } from 'src/app/common/type.modal';
 import { UserGetModel } from './../../../../models/user.model';
 import { VitalSignsHistoryModel } from 'src/app/models/vital.signs.history';
 import { SockectioService } from './../../../../services/sockectio.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,12 +25,18 @@ export class DashboardComponent implements OnInit{
     patient_id: 0,
   };
 
+  patient_id: number = 0;
+
 
   constructor(
     public vitalSingsService: VitalSingsService,
-    private dialog: Dialog
+    private dialog: Dialog,
+    private route: ActivatedRoute,
   ) {
     this.onUpdateVitalSigns();
+    this.route.params.subscribe(params => {
+      this.patient_id = +params['patient_id'];
+    });
   }
   ngOnInit(){
     this.onUpdateVitalSigns();
@@ -61,15 +68,25 @@ export class DashboardComponent implements OnInit{
       data: {
         title: TitlesModal.vitalSigns('Nombre del paciente'),
         iconClass: Icons.vitalSigns,
-        pacientId: 12
+        pacientId: this.patient_id
       }
     });
   }
 
   getVitalSignsHistory() {
-    this.vitalSingsService.getVitalSignsHistory(12).subscribe((response) => {
+    this.vitalSingsService.getVitalSignsHistory(this.patient_id).subscribe((response) => {
+      if(response.data.length > 0){
       this.vitalSingsService.vistalsSigns = response.data;
       this.vitalSings =  this.vitalSingsService.vistalsSigns[ this.vitalSingsService.vistalsSigns.length - 1];
+      }else{
+        this.vitalSings = {
+          hearth_rate: 0,
+          blood_pressure: 0,
+          O2_saturation: 0,
+          date: new Date().toLocaleString("es-CO", {timeZone: "America/Bogota"}),
+          patient_id: 0,
+        };
+      }
     });
   }
 }

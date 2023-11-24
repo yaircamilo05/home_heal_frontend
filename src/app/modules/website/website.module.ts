@@ -10,13 +10,16 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PatientComponent } from './pages/patient/patient.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     InitComponent,
-    DashboardComponent
+    DashboardComponent,
+    PatientComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    ReactiveFormsModule
   ]
 })
 export class WebsiteModule { }

@@ -11,10 +11,11 @@ export interface UserCreateModel {
     phone: string;
     password: string;
     specialty: string;
-    
+
 }
 
 export interface UserGetWithMenusModel extends UserCreateModel {
+    id: number;
     name: string;
     lastname: string;
     email: string;
