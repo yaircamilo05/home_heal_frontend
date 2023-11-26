@@ -9,4 +9,5 @@ export interface AppointmentGetModel {
     patient_id: number;
     DoctorImageUrl: string;
     PatientImageUrl: string;
+    PatientDirection: string;
     }
