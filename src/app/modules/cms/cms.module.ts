@@ -27,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenuComponent,
     UserComponent,
     MenuRolesComponent,
-    TestSocketComponent
+    TestSocketComponent,
   ],
   imports: [
     CommonModule,

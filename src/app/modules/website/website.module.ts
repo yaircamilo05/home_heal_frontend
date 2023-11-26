@@ -12,6 +12,7 @@ import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
+import { AppointmentComponent } from './pages/appointment/appointment.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PatientComponent } from './pages/patient/patient.component';
     HomeComponent,
     InitComponent,
     DashboardComponent,
-    PatientComponent
+    PatientComponent,
+    AppointmentComponent
   ],
   imports: [
     CommonModule,
