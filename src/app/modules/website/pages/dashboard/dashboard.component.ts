@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit{
   }
 
   onUpdateVitalSigns() {
-    console.log("escuchando en tiempo real")
+    console.log("Escuchando en tiempo real...")
     this.vitalSingsService.socketService.io.on('update vital Signs', (response: VitalSignsHistoryModel)=>{
       console.log("Respuesta en tiempo real servidor EN DASHBOARD",response);
       const vitalRealTime:VitalSignsHistoryModel = {
