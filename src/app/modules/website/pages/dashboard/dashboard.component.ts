@@ -77,6 +77,7 @@ export class DashboardComponent implements OnInit{
     this.vitalSingsService.getVitalSignsHistory(this.patient_id).subscribe((response) => {
       if(response.data.length > 0){
       this.vitalSingsService.vistalsSigns = response.data;
+      console.log(this.vitalSingsService.vistalsSigns)
       this.vitalSings =  this.vitalSingsService.vistalsSigns[ this.vitalSingsService.vistalsSigns.length - 1];
       }else{
         this.vitalSings = {
