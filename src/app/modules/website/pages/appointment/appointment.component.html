@@ -18,28 +18,53 @@
             </div>
         </div>
     </div>
-    <div class="container-btn">
+    <div class="container-btn" *ngIf="userRolId == 2">
         <span class="icon" [ngClass]="'fa-solid fa-calendar-plus'"></span>
     </div>
 </div>
-<!-- Card de los pacientes: -->
-<div class="row pe-5 ps-5">
+
+<!-- Card para los doctores: -->
+<div class="row pe-5 ps-5 " *ngIf="userRolId == 4">
     <div *ngFor="let appointment of appointments" class="col-md-4 mb-3">
         <div class="card" style="width: 18rem; display: flex;">
             <div class="mb-0" style="display: flex; flex-direction: row; align-items: center;">
-                <!-- Establece un tamaño fijo para la imagen y mantiene su formato circular -->
                 <div style="flex: 1; padding: 10px;">
                     <img class="img-fluid rounded-circle" [src]="appointment.patient_photo" alt="Doctor Image"
                         style="width: 80px; height: 80px;">
                 </div>
                 <div style="flex: 2; padding: 10px;">
-                    <!-- Agrega clases mb-0 para reducir el margen inferior -->
                     <h3 class="mb-0">{{ appointment.patient_name }}</h3>
                     <h3 class="mb-0 card-text-ligth">{{ appointment.date }}</h3>
                 </div>
             </div>
             <div class="card-body p-1 mb-3">
-                <!-- Reduce el margen inferior de card-title -->
+                <h2 [ngClass]="{'text-pending': appointment.state === 'PENDIENTE', 'text-canceled': appointment.state === 'CANCELADA', 'text-completed': appointment.state === 'REALIZADA'}"
+                    class="card-title text-center mb-2" style="text-transform: uppercase;">{{ appointment.state }}</h2>
+                <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
+                <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
+            </div>
+            <div class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
+                <a href="#" class="btn btn-danger float-end"><i class="fa-solid fa-calendar-xmark"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card para los pacientes-->
+<div class="row pe-5 ps-5 " *ngIf="userRolId == 2">
+    <div *ngFor="let appointment of appointments" class="col-md-4 mb-3">
+        <div class="card" style="width: 18rem; display: flex;">
+            <div class="mb-0" style="display: flex; flex-direction: row; align-items: center;">
+                <div style="flex: 1; padding: 10px;">
+                    <img class="img-fluid rounded-circle" [src]="appointment.doctor_photo" alt="Doctor Image"
+                        style="width: 80px; height: 80px;">
+                </div>
+                <div style="flex: 2; padding: 10px;">
+                    <h3 class="mb-0">{{ appointment.doctor_name }}</h3>
+                    <h3 class="mb-0 card-text-ligth">{{ appointment.date }}</h3>
+                </div>
+            </div>
+            <div class="card-body p-1 mb-3">
                 <h2 [ngClass]="{'text-pending': appointment.state === 'PENDIENTE', 'text-canceled': appointment.state === 'CANCELADA', 'text-completed': appointment.state === 'REALIZADA'}"
                     class="card-title text-center mb-2" style="text-transform: uppercase;">{{ appointment.state }}</h2>
                 <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
