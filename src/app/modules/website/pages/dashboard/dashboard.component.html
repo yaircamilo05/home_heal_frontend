@@ -6,7 +6,7 @@
         <h2 class="text-dark ps-2"><strong class="display-6">Luz Elena</strong></h2>
         <i class="fa-solid fa-message fa-2xl pb-2 pe-2 ps-4" style="color: aquamarine; cursor: pointer;"></i>
       </div>
-      <button class="btn bg-vitalsing-blue m-3 text-white" (click)="openModalUpdateVitalsSigns()">GUARDAR SIGNOS
+      <button class="btn bg-vitalsing-blue m-3 text-white" (click)="openModalUpdateVitalsSigns()">ACTUALIZAR SIGNOS
         VITALES</button>
     </div>
 
@@ -58,7 +58,16 @@
         <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Gráfica de signos vitales</strong></h2>
       </div>
       <div class="container">
-        <app-graphics-all-against-all [seriesInput]="seriesOutput" ></app-graphics-all-against-all>
+        <apx-chart
+        [series]="chartOptions.series!"
+        [chart]="chartOptions.chart!"
+        [xaxis]="chartOptions.xaxis!"
+        [dataLabels]="chartOptions.dataLabels!"
+        [yaxis]="chartOptions.yaxis!"
+        [colors]="chartOptions.colors!"
+        [legend]="chartOptions.legend!"
+        [fill]="chartOptions.fill!"
+      ></apx-chart>
       </div>
     </div>
   </div>

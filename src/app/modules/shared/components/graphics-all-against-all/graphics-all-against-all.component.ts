@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, inject, Input, OnInit, signal } from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -34,6 +34,7 @@ export class GraphicsAllAgainstAllComponent implements OnInit{
   vitalSignsService = inject(VitalSingsService);
   public chartOptions!: Partial<ChartOptions>;
   @Input() seriesInput : GraphicSerieModel[] = []
+
 
   constructor() {}
   ngOnInit(): void {

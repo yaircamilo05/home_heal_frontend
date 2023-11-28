@@ -63,30 +63,10 @@ export class VitalSingsService{
       this.vistalsSigns.push(vitalRealTime);
       console.log("Vitalss Real Time", this.vistalsSigns);
       //this.getPatientById(response.patient_id, vitalRealTime);
-      this.getSeriesByGraphics();
-
     });
   }
 
-  getSeriesByGraphics(){
-    console.log("LLenando series")
-    this.series =[
-      {
-        name: "South",
-        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(),20)
-      },
-      {
-        name: "North",
-        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(),20)
-      },
-      {
-        name: "Central",
-        data: this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(),20)
-      }
-    ];
-  
-    console.log("SERIES LLENADAS", this.series)
-  }
+
   getPatientById(patient_id: number,vitalSigns: VitalSignsHistoryModel){
     // OBTENER LA INFO DEL PACIENTE CON SU FAMILIAR Y DOCTORES
      this.sendEmail(vitalSigns); //pasarle el paciente que obtuve
@@ -188,10 +168,6 @@ export class VitalSingsService{
 
   getVitalSignsHistory(patient_id: number):Observable<ResponseCustomModel<VitalSignsHistoryModel[]>>{
     return this.http.get<ResponseCustomModel<VitalSignsHistoryModel[]>>(`${this.sever}/get_vital_signs_history/${patient_id}`)
-    .pipe( tap(response =>{
-        this.getSeriesByGraphics();
-      })
-    );
   }
 
   getLastVitalSigns(patient_id: number){

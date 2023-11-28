@@ -1,33 +1,34 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { VitalSingsService } from '../../../../services/vital.sings.service';
 import { VitalSingsModel } from 'src/app/models/vital.sings.model';
 import { ModalVitalSignsComponent } from 'src/app/modules/shared/components/modal-vital-signs/modal-vital-signs.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { TitlesModal } from 'src/app/common/titles.modal';
 import { Icons } from 'src/app/common/icon.modal';
-import { TypeModal } from 'src/app/common/type.modal';
-import { UserGetModel } from './../../../../models/user.model';
 import { VitalSignsHistoryModel } from 'src/app/models/vital.signs.history';
-import { SockectioService } from './../../../../services/sockectio.service';
 import { ActivatedRoute } from '@angular/router';
 import { GraphicSerieModel } from 'src/app/models/serie.model';
-
+import { map, single } from 'rxjs';
+import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexDataLabels, ApexYAxis, ApexLegend, ApexFill } from "ng-apexcharts";
+export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; xaxis: ApexXAxis; dataLabels: ApexDataLabels; yaxis: ApexYAxis; colors: string[]; legend: ApexLegend; fill: ApexFill; };
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
   vitalSingsService = inject(VitalSingsService);
+  public chartOptions!: Partial<ChartOptions>;
+  @Input() seriesInput: GraphicSerieModel[] = [];
   public vitalSings: VitalSignsHistoryModel = {
     hearth_rate: 0,
     blood_pressure: 0,
     O2_saturation: 0,
-    date: new Date().toLocaleString("es-CO", {timeZone: "America/Bogota"}),
+    date: new Date().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
     patient_id: 0,
   };
   patient_id: number = 0;
-  series = this.vitalSingsService.seriesSignal;
+  seriesTest = signal<GraphicSerieModel[]>([])
   seriesOutput: GraphicSerieModel[] = [
 
   ]
@@ -41,16 +42,55 @@ export class DashboardComponent implements OnInit{
       this.patient_id = +params['patient_id'];
     });
   }
-  ngOnInit(){
+  ngOnInit() {
     this.onUpdateVitalSigns();
     this.getVitalSignsHistory();
+
+    this.chartOptions = {
+      series: [...this.seriesInput],
+      chart: {
+        type: "area",
+        height: 350,
+        stacked: true,
+        events: {
+          selection: function (chart, e) {
+            console.log(new Date(e.xaxis.min));
+          }
+        }
+      },
+      colors: ["#369cdd", "#FF4848", "#4cae4c"],
+      dataLabels: {
+        enabled: true
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          opacityFrom: 0.6,
+          opacityTo: 0.8
+        }
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      },
+      xaxis: {
+        type: "datetime",
+        labels: {
+          datetimeFormatter: {
+            year: 'yyyy',
+            month: 'MMM \'yy',
+            day: 'dd MMM',
+            hour: 'HH:mm',
+          }
+        }
+      }
+    };
   }
 
   onUpdateVitalSigns() {
     console.log("Escuchando en tiempo real...")
-    this.vitalSingsService.socketService.io.on('update vital Signs', (response: VitalSignsHistoryModel)=>{
-      console.log("Respuesta en tiempo real servidor EN DASHBOARD",response);
-      const vitalRealTime:VitalSignsHistoryModel = {
+    this.vitalSingsService.socketService.io.on('update vital Signs', (response: VitalSignsHistoryModel) => {
+      const vitalRealTime: VitalSignsHistoryModel = {
         hearth_rate: response.hearth_rate,
         blood_pressure: response.blood_pressure,
         O2_saturation: response.O2_saturation,
@@ -60,104 +100,136 @@ export class DashboardComponent implements OnInit{
 
       this.vitalSings = vitalRealTime;
       this.seriesOutput = this.getSeries(this.vitalSingsService.vistalsSigns)
-      console.log("SERIES DASH EN REAL TIME",this.seriesOutput)
-      console.log("Dashhhhhh", this.vitalSingsService.series)
+      this.seriesTest.set(this.seriesOutput);
     });
   }
   openModalUpdateVitalsSigns() {
     let RefDialog = this.dialog.open(ModalVitalSignsComponent,
-    {
-      minWidth: '800px',
-      minHeight: '80%',
-      maxWidth: '50%',
-      data: {
-        title: TitlesModal.vitalSigns('Nombre del paciente'),
-        iconClass: Icons.vitalSigns,
-        pacientId: this.patient_id
-      }
-    });
+      {
+        minWidth: '800px',
+        minHeight: '80%',
+        maxWidth: '50%',
+        data: {
+          title: TitlesModal.vitalSigns('Nombre del paciente'),
+          iconClass: Icons.vitalSigns,
+          pacientId: this.patient_id
+        }
+      });
   }
 
   getVitalSignsHistory() {
     this.vitalSingsService.getVitalSignsHistory(this.patient_id).subscribe((response) => {
-      if(response.data.length > 0){
-      this.vitalSingsService.vistalsSigns = response.data;
-
-      console.log(this.vitalSingsService.vistalsSigns)
-      this.vitalSings =  this.vitalSingsService.vistalsSigns[ this.vitalSingsService.vistalsSigns.length - 1];
-      }else{
+      if (response.data.length > 0) {
+        this.vitalSingsService.vistalsSigns = response.data;
+        this.seriesOutput = this.getSeries(this.vitalSingsService.vistalsSigns)
+        this.seriesTest.set(this.seriesOutput);
+        this.vitalSings = this.vitalSingsService.vistalsSigns[this.vitalSingsService.vistalsSigns.length - 1];
+      } else {
         this.vitalSings = {
           hearth_rate: 0,
           blood_pressure: 0,
           O2_saturation: 0,
-          date: new Date().toLocaleString("es-CO", {timeZone: "America/Bogota"}),
+          date: new Date().toLocaleString("es-CO", { timeZone: "America/Bogota" }),
           patient_id: 0,
         };
       }
-
+      this.addDataToSeries(this.seriesTest());
     });
-      this.seriesOutput = this.getSeries(this.vitalSingsService.vistalsSigns)
-      console.log("SERIES INITIAL DASH EN REAL TIME",this.seriesOutput)
-
   }
 
-  public generateDayWiseTimeSeries = function (baseval:number, count:number) {
-    var i = 0;
-    var series = [];
-    while (i < count) {
-      var x = baseval;
-      var y =
-        Math.floor(Math.random() * (60 - 10 + 1)) + 10;
+  addDataToSeries(series: GraphicSerieModel[]) {
+    console.log("AQUI LLEGARON LAS SERIES: " + JSON.stringify(series));
+    this.chartOptions = {
+      series: [...series],
+      chart: {
+        type: "area",
+        height: 350,
+        stacked: true,
+        events: {
+          selection: function (chart, e) {
+            console.log(new Date(e.xaxis.min));
+          }
+        }
+      },
+      colors: ["#369cdd", "#FF4848", "#4cae4c"],
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          opacityFrom: 0.6,
+          opacityTo: 0.8
+        }
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      },
+      xaxis: {
+        type: "datetime"
+      }
+    };
+  }
+  generateDataSerieHeartRate(datarecived: VitalSignsHistoryModel[]): number[][] {
+    const data = datarecived.map((item) => {
+      return [new Date(item.date).getTime(), item.hearth_rate];
+    }); //TODO: Mapear los datos para que se puedan graficar
 
-      series.push([x, y]);
-      baseval += 86400000;
-      i++;
-    }
-    return series;
-  };
+    return data;
+  }
+
+  generateDataSerieTemperature(datarecived: VitalSignsHistoryModel[]): number[][] {
+    const data = datarecived.map((item) => {
+      return [new Date(item.date).getTime(), item.blood_pressure];
+    }); //TODO: Mapear los datos para que se puedan graficar
+
+    return data;
+  }
+
+  generateDataSerieSaturation(datarecived: VitalSignsHistoryModel[]): number[][] {
+    const data = datarecived.map((item) => {
+      return [new Date(item.date).getTime(), item.O2_saturation];
+    }); //TODO: Mapear los datos para que se puedan graficar
+
+    return data;
+  }
+
+
 
   // Función para obtener la serie de temperatura
-getSerieTemperature(data: VitalSignsHistoryModel[]): GraphicSerieModel {
-  const temperatureData: number[][] = this.generateDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(),20);
+  getSerieTemperature(data: VitalSignsHistoryModel[]): GraphicSerieModel {
+    const temperatureData: number[][] = this.generateDataSerieTemperature(data);
+    return {
+      name: 'Temperatura',
+      data: temperatureData
+    };
+  }
 
-  return {
-    name: 'Temperatura',
-    data: temperatureData
-  };
-}
+  // Función para obtener la serie de frecuencia cardíaca (Heart Rate)
+  getSerieHeartRate(data: VitalSignsHistoryModel[]): GraphicSerieModel {
+    const heartRateData: number[][] = this.generateDataSerieHeartRate(data);
+    return {
+      name: 'Ritmo cardiaco',
+      data: heartRateData
+    };
+  }
 
-// Función para obtener la serie de frecuencia cardíaca (Heart Rate)
-getSerieHeartRate(data: VitalSignsHistoryModel[]): GraphicSerieModel {
-  const heartRateData: number[][] = this.generateDayWiseTimeSeries(
-    new Date("11 Feb 2017 GMT").getTime(),
-    20
-  );
+  // Función para obtener la serie de saturación de oxígeno (O2 Saturation)
+  getSerieSaturation(data: VitalSignsHistoryModel[]): GraphicSerieModel {
+    const saturationData: number[][] = this.generateDataSerieSaturation(data);
+    return {
+      name: 'Saturation O2',
+      data: saturationData
+    };
+  }
 
-  return {
-    name: 'Ritmo cardiaco',
-    data: heartRateData
-  };
-}
+  // Función para obtener todas las series juntas
+  getSeries(data: VitalSignsHistoryModel[]): GraphicSerieModel[] {
+    const temperatureSeries = this.getSerieTemperature(data);
+    const heartRateSeries = this.getSerieHeartRate(data);
+    const saturationSeries = this.getSerieSaturation(data);
 
-// Función para obtener la serie de saturación de oxígeno (O2 Saturation)
-getSerieSaturation(data: VitalSignsHistoryModel[]): GraphicSerieModel {
-  const saturationData: number[][] = this.generateDayWiseTimeSeries(
-    new Date("11 Feb 2017 GMT").getTime(),
-    20
-  );
-
-  return {
-    name: 'Saturation O2',
-    data: saturationData
-  };
-}
-
-// Función para obtener todas las series juntas
-getSeries(data: VitalSignsHistoryModel[]): GraphicSerieModel[] {
-  const temperatureSeries = this.getSerieTemperature(data);
-  const heartRateSeries = this.getSerieHeartRate(data);
-  const saturationSeries = this.getSerieSaturation(data);
-
-  return [temperatureSeries, heartRateSeries, saturationSeries];
-}
+    return [temperatureSeries, heartRateSeries, saturationSeries];
+  }
 }
