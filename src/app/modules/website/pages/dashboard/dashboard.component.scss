@@ -7,9 +7,23 @@
 }
 
 .bg-vitalsing-green{
-    background-color: #4cae4c; 
+    background-color: #4cae4c;
 }
 
+.header-graphic{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+.graphic-all-againt-alls{
+  margin-top: 30px;
+}
+
+.title-graphic{
+  font-size: larger;
+  font-weight: 100;
+}
 /* Agrega la clase de animación */
 .animated-heart {
     animation: heartbeat 2s infinite;

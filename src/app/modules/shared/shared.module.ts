@@ -17,6 +17,8 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
 import { ModalVitalSignsComponent } from './components/modal-vital-signs/modal-vital-signs.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
+import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import {MatIconModule} from '@angular/material/icon';
     NotFoundComponent,
     CustomModalComponent,
     ModalVitalSignsComponent,
+    GraphicsAllAgainstAllComponent,
 
   ],
   exports: [
     ButtonComponent,
-    CarouselComponent
+    CarouselComponent,
+    GraphicsAllAgainstAllComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,8 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     MatSliderModule,
-    MatIconModule
+    MatIconModule,
+    NgApexchartsModule
   ]
 })
 export class SharedModule { }
