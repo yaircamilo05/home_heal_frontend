@@ -19,6 +19,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { SendEmailComponent } from './send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +35,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     CustomModalComponent,
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
+    SendEmailComponent,
 
   ],
   exports: [
     ButtonComponent,
     CarouselComponent,
-    GraphicsAllAgainstAllComponent
+    GraphicsAllAgainstAllComponent,
+    SendEmailComponent,
   ],
   imports: [
     CommonModule,

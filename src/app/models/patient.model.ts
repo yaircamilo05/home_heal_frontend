@@ -24,8 +24,10 @@ export enum EnumEStatusPatient {
 export interface PatientCard{
    patient_id:number,
    name:string,
+   lastname:string,
    cc:string,
    phone:string,
+   emil:string,
    address:string,
    age:string,
    gender:string,
@@ -34,5 +36,5 @@ export interface PatientCard{
 }
 
 export interface PatientModel{
-  
+
 }

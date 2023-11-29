@@ -4,7 +4,9 @@
       <div class="d-flex align-items-center">
         <i class="fa-solid fa-heart fa-2xl pb-2 pe-2 ps-4 animated-heart" style="color: #FF4848;"></i>
         <h2 class="text-dark ps-2"><strong class="display-6">Luz Elena</strong></h2>
-        <i class="fa-solid fa-message fa-2xl pb-2 pe-2 ps-4" style="color: aquamarine; cursor: pointer;"></i>
+        <div class="container-btn-chat" (click)="openModalChat()">
+          <i class="fa-solid fa-message fa-2xl pb-2 pe-2 ps-4" style="color: #1E5877; cursor: pointer;"></i>
+        </div>
       </div>
       <button class="btn bg-vitalsing-blue m-3 text-white" (click)="openModalUpdateVitalsSigns()">ACTUALIZAR SIGNOS
         VITALES</button>
@@ -58,16 +60,9 @@
         <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Gráfica de signos vitales</strong></h2>
       </div>
       <div class="container">
-        <apx-chart
-        [series]="chartOptions.series!"
-        [chart]="chartOptions.chart!"
-        [xaxis]="chartOptions.xaxis!"
-        [dataLabels]="chartOptions.dataLabels!"
-        [yaxis]="chartOptions.yaxis!"
-        [colors]="chartOptions.colors!"
-        [legend]="chartOptions.legend!"
-        [fill]="chartOptions.fill!"
-      ></apx-chart>
+        <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
+          [dataLabels]="chartOptions.dataLabels!" [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!"
+          [legend]="chartOptions.legend!" [fill]="chartOptions.fill!"></apx-chart>
       </div>
     </div>
   </div>

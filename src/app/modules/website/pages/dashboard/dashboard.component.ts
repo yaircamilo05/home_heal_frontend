@@ -10,6 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 import { GraphicSerieModel } from 'src/app/models/serie.model';
 import { map, single } from 'rxjs';
 import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexDataLabels, ApexYAxis, ApexLegend, ApexFill } from "ng-apexcharts";
+import { UserGetModel } from 'src/app/models/user.model';
+import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
+import { TypeModal } from 'src/app/common/type.modal';
+import { MessageModel } from 'src/app/models/message.model';
+import { PatientService } from 'src/app/services/patient.service';
+import { PatientCard, PatientRegister } from 'src/app/models/patient.model';
 export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; xaxis: ApexXAxis; dataLabels: ApexDataLabels; yaxis: ApexYAxis; colors: string[]; legend: ApexLegend; fill: ApexFill; };
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +24,16 @@ export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; xaxi
 })
 export class DashboardComponent implements OnInit {
   vitalSingsService = inject(VitalSingsService);
+  patientService = inject(PatientService);
   public chartOptions!: Partial<ChartOptions>;
   @Input() seriesInput: GraphicSerieModel[] = [];
+  showNotificationNewMessage: boolean = false;
+  messagesRecived: MessageModel[] = [];
+  countMessageRecived: number = 0;
+  firtMessageRecived: MessageModel | null = null;
+  modalOpen: boolean = false;
+  notificationSound = new Audio('../../../../../assets/sounds/tono.mp3'); // Asegúrate de reemplazar esto con la ruta a tu archivo de audio
+
   public vitalSings: VitalSignsHistoryModel = {
     hearth_rate: 0,
     blood_pressure: 0,
@@ -29,9 +43,7 @@ export class DashboardComponent implements OnInit {
   };
   patient_id: number = 0;
   seriesTest = signal<GraphicSerieModel[]>([])
-  seriesOutput: GraphicSerieModel[] = [
-
-  ]
+  seriesOutput: GraphicSerieModel[] = []
 
   constructor(
     private dialog: Dialog,
@@ -138,7 +150,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addDataToSeries(series: GraphicSerieModel[]) {
-    console.log("AQUI LLEGARON LAS SERIES: " + JSON.stringify(series));
     this.chartOptions = {
       series: [...series],
       chart: {
@@ -231,5 +242,31 @@ export class DashboardComponent implements OnInit {
     const saturationSeries = this.getSerieSaturation(data);
 
     return [temperatureSeries, heartRateSeries, saturationSeries];
+  }
+
+  openModalChat() {
+    this.patientService.getPatientById(this.patient_id).subscribe((response) => {
+      const user: PatientCard = response.data;
+      this.showModalChat(user);
+    });
+  }
+
+  showModalChat(user: PatientCard) {
+      this.showNotificationNewMessage = false;
+      this.modalOpen = true;
+      let RefDialog = this.dialog.open(ModalChatComponent, {
+        minWidth: '800px',
+        minHeight: '80%',
+        maxWidth: '50%',
+        data: {
+          title: TitlesModal.Chat,
+          question: "",
+          iconClass: Icons.Chat,
+          type: TypeModal.Chat,
+          imageUser: user.img_url,
+          userName: user.name+" "+user.lastname,
+          room: user.emil
+        }
+      });
   }
 }

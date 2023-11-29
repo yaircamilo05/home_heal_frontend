@@ -30,8 +30,8 @@ export class PatientService {
     return this.http.get<ResponseCustomModel<PatientCard[]>>(`${this.server}/get_patients_by_doctor_id/${doctor_id}`);
   }
 
-  getPatientById(id: number): Observable<ResponseCustomModel<PatientRegister>> {
-    return this.http.get<ResponseCustomModel<PatientRegister>>(`${this.server}/get_patient_by_id/${id}`);
+  getPatientById(id: number): Observable<ResponseCustomModel<PatientCard>> {
+    return this.http.get<ResponseCustomModel<PatientCard>>(`${this.server}/get_patient_by_id/${id}`);
   }
   /**
    *
