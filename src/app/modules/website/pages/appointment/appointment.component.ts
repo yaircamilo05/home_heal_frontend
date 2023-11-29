@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppointmentGetModel } from 'src/app/models/appointment.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-appointment',
@@ -9,15 +10,17 @@ import { AppointmentsService } from 'src/app/services/appointments.service';
 })
 export class AppointmentComponent {
   appointments: AppointmentGetModel[] = [];
-
+  userRolId: number = 0;
 
 
   constructor(
-    private appointmentsService: AppointmentsService
+    private appointmentsService: AppointmentsService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
     this.getAppointmentsByUser();    
+    this.getRolId();
   }
 
   getAppointmentsByUser() {
@@ -33,5 +36,10 @@ export class AppointmentComponent {
         console.error('Error al obtener las citas:', error);
       }
     );
+  }
+
+  getRolId(){
+    this.userRolId = this.storageService.getRolId();
+    console.log('rol id = ' + this.userRolId);
   }
 }
