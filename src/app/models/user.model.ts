@@ -37,3 +37,4 @@ export interface UserGetModel {
     rol: RolOutModel
     specialty: string;
 }
+

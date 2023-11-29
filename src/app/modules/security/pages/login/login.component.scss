@@ -81,11 +81,18 @@
 
 ::placeholder {
   color: #999;
-  opacity: 0.7; 
+  opacity: 0.7;
 }
 
 .btn-blue-confirm{
   background-color: #369cdd;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
+}
+
+.link-recovery{
+  color: #0D598E;
+}
+.link-recovery:hover{
+  color: #56B4E9;
 }

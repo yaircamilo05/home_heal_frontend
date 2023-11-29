@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, signal } from '@angular/core';
 import { environment } from 'src/environments/environment.local';
 import { VitalSingsModel } from '../models/vital.sings.model';
 import { SockectioService } from './sockectio.service';
@@ -10,6 +10,18 @@ import { EmailService } from './email.service';
 import { StorageService } from './storage.service';
 import { Roles } from '../common/rols.const';
 import { EnumEStatusPatient } from '../models/patient.model';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexYAxis,
+  ApexLegend,
+  ApexFill
+} from "ng-apexcharts";
+import { GraphicSerieModel } from '../models/serie.model';
+import { Observable, tap } from 'rxjs';
 
 
 @Injectable({
@@ -20,6 +32,8 @@ export class VitalSingsService{
   sever:string = `${environment.server}/vitalsigns`;
   serverPatient:string = `${environment.server}/patient`;
   vistalsSigns:VitalSignsHistoryModel[] = [];
+  series:GraphicSerieModel[] = [];
+  seriesSignal = signal<GraphicSerieModel[]>([]);
   constructor(
     public socketService: SockectioService,
     private http: HttpClient,
@@ -48,10 +62,10 @@ export class VitalSingsService{
 
       this.vistalsSigns.push(vitalRealTime);
       console.log("Vitalss Real Time", this.vistalsSigns);
-      this.getPatientById(response.patient_id, vitalRealTime);
-
+      //this.getPatientById(response.patient_id, vitalRealTime);
     });
   }
+
 
   getPatientById(patient_id: number,vitalSigns: VitalSignsHistoryModel){
     // OBTENER LA INFO DEL PACIENTE CON SU FAMILIAR Y DOCTORES
@@ -152,11 +166,27 @@ export class VitalSingsService{
 
   }
 
-  getVitalSignsHistory(patient_id: number){
-    return this.http.get<ResponseCustomModel<VitalSignsHistoryModel[]>>(`${this.sever}/get_vital_signs_history/${patient_id}`);
+  getVitalSignsHistory(patient_id: number):Observable<ResponseCustomModel<VitalSignsHistoryModel[]>>{
+    return this.http.get<ResponseCustomModel<VitalSignsHistoryModel[]>>(`${this.sever}/get_vital_signs_history/${patient_id}`)
   }
 
   getLastVitalSigns(patient_id: number){
     return this.http.get<ResponseCustomModel<VitalSingsModel>>(`${this.sever}/get_last_vital_signs/${patient_id}`);
   }
+
+  public generateDayWiseTimeSeries = function (baseval:number, count:number) {
+    var i = 0;
+    var series = [];
+    while (i < count) {
+      var x = baseval;
+      var y =
+        Math.floor(Math.random() * (60 - 10 + 1)) + 10;
+
+      series.push([x, y]);
+      baseval += 86400000;
+      i++;
+    }
+    return series;
+  };
+
 }

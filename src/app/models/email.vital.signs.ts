@@ -17,3 +17,4 @@ export interface EmailVitalSignsData {
   state_o2_saturation: string;
   color_o2_saturation: string;
 }
+

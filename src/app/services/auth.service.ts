@@ -48,4 +48,12 @@ export class AuthService {
     this.storageService.deleteToken();
     this.user.next(null);
   }
+
+  recoveryPassword(email: string): Observable<ResponseCustomModel<boolean>> {
+    return this.http.post<ResponseCustomModel<boolean>>(`${this.server}/recovery_password`, { email });
+  }
+
+  changePassword(password: string, token: string): Observable<ResponseCustomModel<boolean>> {
+    return this.http.post<ResponseCustomModel<boolean>>(`${this.server}/change_password`, { password, token });
+  }
 }
