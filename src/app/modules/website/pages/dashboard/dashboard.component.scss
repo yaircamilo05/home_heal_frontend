@@ -1,0 +1,43 @@
+.bg-vitalsing-red{
+    background-color: #FF4848 ;
+}
+
+.bg-vitalsing-blue{
+    background-color: #369cdd ;
+}
+
+.bg-vitalsing-green{
+    background-color: #4cae4c;
+}
+
+.header-graphic{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+.graphic-all-againt-alls{
+  margin-top: 30px;
+}
+
+.title-graphic{
+  font-size: larger;
+  font-weight: 100;
+}
+/* Agrega la clase de animación */
+.animated-heart {
+    animation: heartbeat 2s infinite;
+}
+
+/* Define la animación de latido del corazón */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
       this.loading = true;
       this.authService.login(data).subscribe({
-        next: (response) => {
+      next: (response) => {
         if (response) {
           this.authService.user$.subscribe(user => {
             if (user != undefined) {

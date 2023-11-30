@@ -12,6 +12,8 @@ import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
+import { AppointmentComponent } from './pages/appointment/appointment.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { PatientComponent } from './pages/patient/patient.component';
     HomeComponent,
     InitComponent,
     DashboardComponent,
-    PatientComponent
+    PatientComponent,
+    AppointmentComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { PatientComponent } from './pages/patient/patient.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgApexchartsModule
   ]
 })
 export class WebsiteModule { }

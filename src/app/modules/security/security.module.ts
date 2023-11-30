@@ -6,12 +6,16 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './pages/register/register.component';
+import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     LayoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecoveryPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

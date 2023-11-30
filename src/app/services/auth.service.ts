@@ -10,6 +10,7 @@ import { addToken } from '../interceptors/token.interceptor';
 import { ResponseCustomModel } from '../models/response.custom.model';
 import { UserGetWithMenusModel } from '../models/user.model';
 import { SockectioService } from './sockectio.service';
+import { ResponseChangePasswordModel } from '../models/response.change.password';
 
 
 @Injectable({
@@ -47,5 +48,13 @@ export class AuthService {
   logout(): void {
     this.storageService.deleteToken();
     this.user.next(null);
+  }
+
+  recoveryPassword(email: string): Observable<ResponseCustomModel<boolean>> {
+    return this.http.post<ResponseCustomModel<boolean>>(`${this.server}/recovery_password`, { email });
+  }
+
+  changePassword(password: string, token: string): Observable<ResponseChangePasswordModel> {
+    return this.http.post<ResponseChangePasswordModel>(`${this.server}/change_password`, { password, token });
   }
 }
