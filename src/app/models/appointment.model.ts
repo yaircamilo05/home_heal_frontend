@@ -8,6 +8,8 @@ export interface AppointmentGetModel {
     doctor_id: number;
     patient_id: number;
     doctor_photo: string;
+    doctor_email: string;
     patient_photo: string;
     patient_address: string;
+    patient_email: string;
     }

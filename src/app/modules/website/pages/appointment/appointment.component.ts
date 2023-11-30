@@ -42,4 +42,40 @@ export class AppointmentComponent {
     this.userRolId = this.storageService.getRolId();
     console.log('rol id = ' + this.userRolId);
   }
+
+  cancelarCita(appointment: AppointmentGetModel){
+    console.log('cancelar cita');
+    this.appointmentsService.cancelAppointment(appointment).subscribe(
+      (response) => {
+        // Verifica si obtienes los datos correctamente
+        console.log(response);
+        if (response && response.data) {
+          console.log("los correos de los involucrados son:",
+          appointment.doctor_email + " " + appointment.patient_email)
+          this.getAppointmentsByUser();
+        }
+      },
+      (error) => {
+        console.error('Error al obtener las citas:', error);
+      }
+    );
+  }
+
+  marcarCitaRealizada(appointment: AppointmentGetModel){
+    console.log('marcar cita realizada');
+    this.appointmentsService.markAppointmentAsDone(appointment).subscribe(
+      (response) => {
+        // Verifica si obtienes los datos correctamente
+        console.log(response);
+        if (response && response.data) {
+          console.log("los correos de los involucrados son:",
+          appointment.doctor_email + " " + appointment.patient_email)
+          this.getAppointmentsByUser();
+        }
+      },
+      (error) => {
+        console.error('Error al obtener las citas:', error);
+      }
+    );
+  }
 }
