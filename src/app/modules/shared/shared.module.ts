@@ -14,7 +14,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
-
+import { ModalVitalSignsComponent } from './components/modal-vital-signs/modal-vital-signs.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatIconModule} from '@angular/material/icon';
+import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { SendEmailComponent } from './pages/send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +33,16 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
     ModalMenusRolesComponent,
     NotFoundComponent,
     CustomModalComponent,
+    ModalVitalSignsComponent,
+    GraphicsAllAgainstAllComponent,
+    SendEmailComponent,
+
   ],
   exports: [
     ButtonComponent,
-    CarouselComponent
+    CarouselComponent,
+    GraphicsAllAgainstAllComponent,
+    SendEmailComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +51,10 @@ import { ModalRolesComponent } from './components/modal-roles/modal-roles.compon
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatIconModule,
+    NgApexchartsModule
   ]
 })
 export class SharedModule { }

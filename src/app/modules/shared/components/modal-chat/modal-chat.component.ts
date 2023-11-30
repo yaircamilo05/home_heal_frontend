@@ -48,7 +48,6 @@ export class ModalChatComponent {
   ( public chatService: ChatService,
     private authService: AuthService,
     private modalService: ModalService,
-    private socketioService: SockectioService,
     private dialog: DialogRef<OutCustomModal,OutCustomModal>,
     @Inject(DIALOG_DATA) private data: InputDataModel,
 
@@ -69,7 +68,6 @@ export class ModalChatComponent {
       this.close();
     });
 
-    socketioService.onConnectToRoom();
   }
   ngOnInit(): void {
     this.getUserLogged();

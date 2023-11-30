@@ -9,6 +9,7 @@ import { Roles } from 'src/app/common/rols.const';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/services/modal.service';
 import { Messages } from 'src/app/common/messages.const';
+import { ImagesCarousel } from 'src/app/models/images.carousel';
 
 @Component({
   selector: 'app-home-admin',
@@ -30,6 +31,7 @@ export class HomeAdminComponent {
     }
     location: string = 'ADMINISTRACIÓN';
     user:UserGetWithMenusModel | null = null;
+   
 
     ngOnInit(): void {
       this.getUserLogged();

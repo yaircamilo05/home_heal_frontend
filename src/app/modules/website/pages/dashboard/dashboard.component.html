@@ -1,0 +1,70 @@
+<div class="container p-2">
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <i class="fa-solid fa-heart fa-2xl pb-2 pe-2 ps-4 animated-heart" style="color: #FF4848;"></i>
+        <h2 class="text-dark ps-2"><strong class="display-6">Luz Elena</strong></h2>
+        <div class="container-btn-chat" (click)="openModalChat()">
+          <i class="fa-solid fa-message fa-2xl pb-2 pe-2 ps-4" style="color: #1E5877; cursor: pointer;"></i>
+        </div>
+      </div>
+      <button class="btn bg-vitalsing-blue m-3 text-white" (click)="openModalUpdateVitalsSigns()">ACTUALIZAR SIGNOS
+        VITALES</button>
+    </div>
+
+  </div>
+  <div class="row m-2">
+    <div class="col-md-4">
+      <div class="card bg-vitalsing-blue text-white">
+        <div class="card-body">
+          <div class="row">
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-temperature-half fa-2xl pb-2 me-2"></i>
+              <h5 class="card-title p-2"><strong>Temperatura</strong></h5>
+            </div>
+          </div>
+          <p class="card-text display-1 text-center">{{vitalSings.blood_pressure}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-vitalsing-red text-white">
+        <div class="card-body">
+          <div class="row">
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-heart-pulse fa-2xl pb-2 me-2"></i>
+              <h5 class="card-title p-2"><strong>Ritmo Cardiaco</strong></h5>
+            </div>
+          </div>
+          <p class="card-text display-1 text-center">{{vitalSings.hearth_rate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-vitalsing-green text-white">
+        <div class="card-body">
+          <div class="row">
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-droplet fa-2xl pb-2 me-2"></i>
+              <h5 class="card-title p-2"><strong>Saturación O2</strong></h5>
+            </div>
+          </div>
+          <p class="card-text display-1 text-center">{{vitalSings.O2_saturation}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="graphic-all-againt-alls card col-md-12">
+    <div class="card-body">
+      <div class="header-graphic card-header">
+        <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Gráfica de signos vitales</strong></h2>
+      </div>
+      <div class="container">
+        <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
+          [dataLabels]="chartOptions.dataLabels!" [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!"
+          [legend]="chartOptions.legend!" [fill]="chartOptions.fill!"></apx-chart>
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngFor="let sig of series()">{{sig}}</div> -->
+</div>

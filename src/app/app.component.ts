@@ -14,8 +14,7 @@ export class AppComponent {
   title = 'home_heal_front';
   user: UserGetWithMenusModel | null = null;
   constructor(
-    // private socketSevice: SockectioService,
-    private azurepsService: AzurepsService,
+    private socketSevice: SockectioService,
     private storageService: StorageService,
     private authService: AuthService
   ) {

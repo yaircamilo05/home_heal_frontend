@@ -9,12 +9,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { InitComponent } from './pages/init/init.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PatientComponent } from './pages/patient/patient.component';
+import { AppointmentComponent } from './pages/appointment/appointment.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    InitComponent
+    InitComponent,
+    DashboardComponent,
+    PatientComponent,
+    AppointmentComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +33,8 @@ import { InitComponent } from './pages/init/init.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    ReactiveFormsModule,
+    NgApexchartsModule
   ]
 })
 export class WebsiteModule { }

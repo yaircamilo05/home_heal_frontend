@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.local';
 import { FileModel } from '../models/file.model';
 import { Observable } from 'rxjs';
-import { ResponseCustomModel } from '../models/response.custom.model';
 
 @Injectable({
   providedIn: 'root'
