@@ -62,14 +62,18 @@ export class LoginComponent implements OnInit {
               this.storageService.saveUserId(user.id);
               this.storageService.saveRolId(user.rol_id);
               this.storageService.saveUserName(user.name);
-              if (user?.rol_id != Roles.SUPERADMIN) {
-
+              if (user?.rol_id == Roles.PACIENTE) {
                 this.router.navigate(['/website']);
                 this.modalService.openToastWelcome(Messages.WelcomeWebsite);
-
               } else if (user?.rol_id == Roles.SUPERADMIN) {
                 this.router.navigate(['/admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);
+              } else if (user?.rol_id == Roles.MEDICO) {
+                this.router.navigate(['/website']);
+                this.modalService.openToastWelcome(Messages.WelcomeDoctor);
+              } else if (user?.rol_id == Roles.FAMILIAR) {
+                this.router.navigate(['/website']);
+                this.modalService.openToastWelcome(Messages.WelcomeFamiliar);
               }
             }
           });

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.local';
 import { ResponseCustomModel } from '../models/response.custom.model';
 import { DoctorModel } from '../models/doctor.model';
+import { UserCreateModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class DoctorService {
 
   getDoctorByUserId(userId: number): Observable<ResponseCustomModel<DoctorModel>> {
     return this.http.get<ResponseCustomModel<DoctorModel>>(`${this.server}/get_doctor_by_user_id/${userId}`);
+  }
+
+  createDoctor(doctor: UserCreateModel) {
+    return this.http.post(`${this.server}/create_doctor`, doctor);
   }
 
 

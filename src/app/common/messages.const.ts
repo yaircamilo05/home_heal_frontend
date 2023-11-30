@@ -9,6 +9,8 @@ export const Messages = {
   ErrorLogin: "¡Oh no! Debes llenar todos los campos",
   WelcomeWebsite: "¡Hola! Esperamos que te encuentres mejor",
   WelcomeAdmin: "¡Hola! Te extrañamos",
+  WelcomeDoctor: "¡Hola Doc! Te extrañamos",
+  WelcomeFamiliar: "¡Hola! Te extrañamos",
   Logout: "¿Estas seguro que deseas cerrar sesión?",
   SuccessRegister: "¡Bienvenido a la familia Home Heal!",
   ImageError: "¡Oh no! No pudimos subir tu imagen",
