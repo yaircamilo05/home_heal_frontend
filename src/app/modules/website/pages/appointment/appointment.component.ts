@@ -45,7 +45,13 @@ export class AppointmentComponent {
     console.log('rol id = ' + this.userRolId);
   }
 
-  async openModalDeleteAppointment(appointment: AppointmentGetModel) {
+  async openModalCancelAppointment(appointment: AppointmentGetModel) {
+
+    const appointmentDate = new Date(appointment.date);
+    if (appointmentDate < new Date()) {
+      //aqui podria ir el toast del error
+    }
+    else{
     var deleted = await this.modalService.openModalConfirmation(
       Messages.CancelAppointment
     );
@@ -67,11 +73,16 @@ export class AppointmentComponent {
           console.error('Error al obtener las citas:', error);
         }
       );
-    }
+  }
+}
+
   }
 
   marcarCitaRealizada(appointment: AppointmentGetModel) {
-    console.log('marcar cita realizada');
+
+    if (appointment.date > new Date()) {
+      //aqui podria ir el toast del error
+    } else {
     this.appointmentsService.markAppointmentAsDone(appointment).subscribe(
       (response) => {
         // Verifica si obtienes los datos correctamente
@@ -90,4 +101,5 @@ export class AppointmentComponent {
       }
     );
   }
+}
 }
