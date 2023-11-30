@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ResponseCustomModel } from './../../../../models/response.custom.model';
 import { ModalService } from 'src/app/services/modal.service';
 import { Messages } from 'src/app/common/messages.const';
+import { EmailRegisterModel } from 'src/app/models/email.model';
+import { environment } from 'src/environments/environment.local';
 
 @Component({
   selector: 'app-recovery-password',
@@ -48,7 +50,7 @@ export class RecoveryPasswordComponent {
     }
   }
 
-
+  
   get fg() {
     return this.form.controls;
   }
