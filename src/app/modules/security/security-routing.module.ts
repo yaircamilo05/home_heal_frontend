@@ -6,7 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginGuard } from 'src/app/guards/login.guard.ts.guard';
 import { NotFoundComponent } from '../shared/pages/not-found/not-found.component';
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
-import { SendEmailComponent } from '../shared/send-email/send-email.component';
+import { SendEmailComponent } from '../shared/pages/send-email/send-email.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 const routes: Routes = [

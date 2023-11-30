@@ -44,6 +44,10 @@
                         <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
                       </button>
                     </div>
+                    <div *ngIf="fg['password'].errors && (fg['password'].dirty || fg['password'].touched)">
+                      <p class="mb-0" *ngIf="fg['password']?.errors?.['required']" style="color: #FF6F60;">Este campo es
+                        requerido</p>
+                    </div>
                     <div class="form-outline" style="padding: 20px;">
                       <div class="input-group  form-check d-flex align-items-center justify-content-between m-0 flex-row p-0">
                         <div class="">
@@ -54,10 +58,6 @@
                           <a class="link-recovery" routerLink="/recovery-password" style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
                         </div>
                       </div>
-                    </div>
-                    <div *ngIf="fg['password'].errors && (fg['password'].dirty || fg['password'].touched)">
-                      <p class="mb-0" *ngIf="fg['password']?.errors?.['required']" style="color: #FF6F60;">Este campo es
-                        requerido</p>
                     </div>
                   </div>
 

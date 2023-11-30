@@ -13,12 +13,12 @@ import { Messages } from 'src/app/common/messages.const';
 })
 export class RecoveryPasswordComponent {
   form: FormGroup = new FormGroup('');
-  router = Inject(Router);
   loading: boolean = false;
   constructor(
     private autService: AuthService,
     private formBuilder: FormBuilder,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private router: Router
   ) {
     this.builForm();
   }
@@ -33,7 +33,10 @@ export class RecoveryPasswordComponent {
       this.loading = true;
       this.autService.recoveryPassword(this.form.value.email).subscribe({
         next: (response: ResponseCustomModel<boolean>) => {
-          this.router.navigate(['/security/send-email']);
+          if (response.data) {
+            this.loading = false;
+            this.router.navigate(['/send-email']);
+          }
         },
         error: (error) => {
           this.loading = false;

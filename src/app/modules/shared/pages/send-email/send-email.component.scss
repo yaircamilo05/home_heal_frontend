@@ -35,18 +35,6 @@
   justify-content: center;
   align-items: center;
 }
-.btn-send{
-  background: $prin_user;
-  border: none;
-  font-weight: 400;
-  width: 50%;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  height: 35px;
-  color: $back;
-  font-family: 'Montserrat', sans-serif;
-}
 
 .formulario{
   display: flex;
@@ -59,8 +47,12 @@
   margin-bottom: 180px;
 }
 
-
-
 .btn-send:hover{
   background: #53ade5;
+}
+
+.container-gif{
+  display: flex;
+  align-items: center;
+  justify-self: center;
 }
