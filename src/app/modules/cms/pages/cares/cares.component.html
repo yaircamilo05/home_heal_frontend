@@ -1,0 +1,26 @@
+<div>
+    <h1>Recuerda tener en cuenta estos cuidados para que tu condicion mejore...</h1>
+    <img src="unaimagen.jpg" alt="">
+
+    <div class="create">
+        <div class="container-btn" (click)="openForm()">
+            <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
+        </div>
+
+        <form [formGroup]="form" *ngIf="viewForm">
+            <p>Vamos a agregar un nuevo cuidado...</p>
+            <label for="care_description">Ingresa la descripcion: </label>
+            <input type="text" formControlName="description" name="care_description">
+            <button>Aceptar</button>
+            <button>Cancelar</button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="card" *ngFor="let care of cares">
+            <label for="descripcion">Descripcion</label>
+            <p class="care_description"></p>
+            <label for="medico">Médico:</label>
+            <p class="name_doctor">{{care.doctor[0].user.name}} {{care.doctor[0].user.lastname}}</p>
+        </div>
+    </div>
+</div>

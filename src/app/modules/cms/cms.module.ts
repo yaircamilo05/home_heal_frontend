@@ -18,6 +18,8 @@ import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 import { TestSocketComponent } from './pages/test-socket/test-socket.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CaresComponent } from './pages/cares/cares.component';
+import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component';
 
 
 
@@ -29,7 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenuComponent,
     UserComponent,
     MenuRolesComponent,
-    TestSocketComponent
+    TestSocketComponent,
+    CaresComponent,
+    DiagnosticsComponent
   ],
   imports: [
     CommonModule,
