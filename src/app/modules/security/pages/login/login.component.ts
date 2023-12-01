@@ -8,6 +8,7 @@ import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private modalService: ModalService,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private storageService: StorageService
   ) {
     this.builForm();
   }
@@ -53,15 +55,18 @@ export class LoginComponent implements OnInit {
 
       this.loading = true;
       this.authService.login(data).subscribe({
-        next: (response) => {
+      next: (response) => {
         if (response) {
           this.authService.user$.subscribe(user => {
             if (user != undefined) {
+              this.storageService.saveUserId(user.id);
+              this.storageService.saveRolId(user.rol_id);
+              this.storageService.saveUserName(user.name);
               if (user?.rol_id != Roles.SUPERADMIN) {
 
                 this.router.navigate(['/website']);
                 this.modalService.openToastWelcome(Messages.WelcomeWebsite);
-              
+
               } else if (user?.rol_id == Roles.SUPERADMIN) {
                 this.router.navigate(['/admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);

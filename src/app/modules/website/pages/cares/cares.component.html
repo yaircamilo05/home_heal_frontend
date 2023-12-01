@@ -16,11 +16,15 @@
         </form>
     </div>
     <div class="container">
+        <div class="message">
+            <p *ngIf="cares.length === 0">No hay cuidados registrados</p>
+        </div>
         <div class="card" *ngFor="let care of cares">
             <label for="descripcion">Descripcion</label>
-            <p class="care_description"></p>
+            <p class="care_description">{{care.description}}</p>
             <label for="medico">Médico:</label>
             <p class="name_doctor">{{care.doctor[0].user.name}} {{care.doctor[0].user.lastname}}</p>
         </div>
     </div>
 </div>
+

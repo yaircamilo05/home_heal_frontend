@@ -5,7 +5,6 @@
   <div class="content-modal">
 
     <div class="container">
-
       <div class="container-inputs-sliders">
         <div class="container-slider">
           <div class="container-label-icon">
@@ -21,7 +20,7 @@
         <div class="container-slider">
           <div class="container-label-icon">
             <span class="button-icon" [ngClass]="'fa-solid fa-heart-circle-bolt'"></span>
-            <label for="blood_pressure">Presión Arterial</label>
+            <label for="blood_pressure">Temperatura</label>
           </div>
           <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
             [discrete]="thumbLabel" [showTickMarks]="showTicks">
@@ -48,20 +47,20 @@
 
         <div class="input-value">
           <input type="number" [(ngModel)]="value_heart_rate" id="heart_rate" class="form-control" />
-          <label for="heart_rate">lat/min</label>
+          <label for="heart_rate">pul/min</label>
         </div>
 
         <div class="input-value">
           <input type="number" id="blood_pressure" [(ngModel)]="value_blood_presure" class="form-control"
             placeholder=" " />
-          <label for="blood_pressure">mm Hg</label>
+          <label for="blood_pressure">°C</label>
         </div>
 
         <div class="input-value">
           <input type="number" id="O2_saturation" [(ngModel)]="value_o2_saturation" class="form-control" />
           <label for="O2_saturation">mg/L</label>
         </div>
-        
+
       </div>
 
     </div>

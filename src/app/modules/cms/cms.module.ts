@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CmsRoutingModule } from './cms-routing.module';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
-
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { RolComponent } from './pages/rol/rol.component';
 import { InitComponent } from './pages/init/init.component';
@@ -18,8 +16,6 @@ import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 import { TestSocketComponent } from './pages/test-socket/test-socket.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CaresComponent } from './pages/cares/cares.component';
-import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component';
 
 
 
@@ -32,8 +28,6 @@ import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component'
     UserComponent,
     MenuRolesComponent,
     TestSocketComponent,
-    CaresComponent,
-    DiagnosticsComponent
   ],
   imports: [
     CommonModule,

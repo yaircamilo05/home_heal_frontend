@@ -9,6 +9,7 @@ import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 import { TestSocketComponent } from './pages/test-socket/test-socket.component';
 
+
 const routes: Routes = [
   {
     path: '',

@@ -21,6 +21,7 @@ export class CaresComponent {
 
   ngOnInit() {
     this.getCares();  
+    this.buildForm();
   }
 
   buildForm() {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { EmailRegisterModel } from '../models/email.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.local';
+import { EmailVitalSignsData } from '../models/email.vital.signs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class EmailService {
 
   send_email_register_doctor_admin(data: EmailRegisterModel): Observable<string> {
     return this.http.post<string>(`${this.server}/send_email_doctor_admin`, data)
+  }
+
+  send_email_vital_signs(data: EmailVitalSignsData): Observable<string> {
+    return this.http.post<string>(`${this.server}/send_email_vital_signs`, data)
   }
 
 
