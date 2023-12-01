@@ -22,6 +22,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { WebsiteRoutingModule } from '../website/website-routing.module';
+import { CalendarComponent } from './components/calendar/calendar.component';
 @NgModule({
   declarations: [
     ButtonComponent,
@@ -37,13 +38,14 @@ import { WebsiteRoutingModule } from '../website/website-routing.module';
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
-
+    CalendarComponent
   ],
   exports: [
     ButtonComponent,
     CarouselComponent,
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
