@@ -5,6 +5,7 @@ import { UserGetWithMenusModel } from '../models/user.model';
 import { ConversationModel } from '../models/conversation.model';
 import { UserSocketModel } from '../models/user.socket.model';
 import { StorageService } from './storage.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,11 @@ export class SockectioService {
     autoConnect: true
   });
 
-<<<<<<< .merge_file_u7hhWL
   constructor(private authService: AuthService) {
     this.emitWelcome();
     this.onWelcome();
    }
   ngOnInit(){
-=======
-  constructor(private storageService:StorageService) {
->>>>>>> .merge_file_yCY59j
     this.emitWelcome();
     this.onWelcome();
   }
