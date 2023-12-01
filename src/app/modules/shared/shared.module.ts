@@ -19,8 +19,9 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { SendEmailComponent } from './pages/send-email/send-email.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { WebsiteRoutingModule } from '../website/website-routing.module';
+import { CalendarComponent } from './components/calendar/calendar.component';
 @NgModule({
   declarations: [
     ButtonComponent,
@@ -35,14 +36,13 @@ import { SendEmailComponent } from './pages/send-email/send-email.component';
     CustomModalComponent,
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
-    SendEmailComponent,
-
+    CalendarComponent
   ],
   exports: [
     ButtonComponent,
     CarouselComponent,
     GraphicsAllAgainstAllComponent,
-    SendEmailComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +54,9 @@ import { SendEmailComponent } from './pages/send-email/send-email.component';
     ReactiveFormsModule,
     MatSliderModule,
     MatIconModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    FullCalendarModule,
+    WebsiteRoutingModule
   ]
 })
 export class SharedModule { }

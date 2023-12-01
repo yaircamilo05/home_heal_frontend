@@ -11,7 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgApexchartsModule } from 'ng-apexcharts';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +26,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    FullCalendarModule 
   ],
   providers:
   [

@@ -15,7 +15,8 @@ export const Messages = {
   SuccessRegister: "¡Bienvenido a la familia Home Heal!",
   ImageError: "¡Oh no! No pudimos subir tu imagen",
   ErrorRegister: "¡Oh no! Los correos ya están registrados",
-  newMessage: (mensaje:MessageModel) => `Tienes un nuevo mensaje de ${mensaje.nombre_remitente}`
+  newMessage: (mensaje:MessageModel) => `Tienes un nuevo mensaje de ${mensaje.nombre_remitente}`,
+  CancelAppointment: "¿Estas seguro que deseas cancelar la cita?",
 }
 
 

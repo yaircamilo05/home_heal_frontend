@@ -43,8 +43,9 @@
                 <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
                 <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
             </div>
-            <div class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
-                <a href="#" class="btn btn-danger float-end"><i class="fa-solid fa-calendar-xmark"></i></a>
+            <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
+                <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
+                <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </div>
     </div>
@@ -70,8 +71,9 @@
                 <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
                 <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
             </div>
-            <div class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
-                <a href="#" class="btn btn-danger float-end"><i class="fa-solid fa-calendar-xmark"></i></a>
+            <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
+                <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
+                <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </div>
     </div>

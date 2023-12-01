@@ -23,4 +23,12 @@ export class AppointmentsService {
     return this.http.get<ResponseCustomModel<AppointmentGetModel[]>>(`${this.server}/get_appointments_by_userId/${user}`
     );
   }
+
+  cancelAppointment(appointment: AppointmentGetModel): Observable<ResponseCustomModel<AppointmentGetModel>>{
+    return this.http.patch<ResponseCustomModel<AppointmentGetModel>>(`${this.server}/update_appointment_state/${appointment.id}/2`,null);
+  }
+
+  markAppointmentAsDone(appointment: AppointmentGetModel): Observable<ResponseCustomModel<AppointmentGetModel>>{
+    return this.http.patch<ResponseCustomModel<AppointmentGetModel>>(`${this.server}/update_appointment_state/${appointment.id}/1`,null);
+  }
 }

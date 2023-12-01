@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 @NgModule({
@@ -34,7 +35,16 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatIconModule,
     MatListModule,
     ReactiveFormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    FullCalendarModule,
+    SharedModule
+  ],
+  exports: [
+    HomeComponent,
+    InitComponent,
+    DashboardComponent,
+    PatientComponent,
+    AppointmentComponent
   ]
 })
 export class WebsiteModule { }
