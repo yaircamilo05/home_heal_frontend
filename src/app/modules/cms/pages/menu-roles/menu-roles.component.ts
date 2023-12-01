@@ -68,6 +68,5 @@ constructor(
 
   selectMenu(event: any): void {
      this.menuId = event.target.value;
-     console.log('menuid',this.menuId, 'event',event);
   }
 }

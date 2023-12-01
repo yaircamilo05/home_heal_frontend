@@ -33,8 +33,6 @@ export class RolComponent implements OnInit {
   getRoles() {
     this.rolService.getRoles().subscribe(
       (response) => {
-        // Verifica si obtienes los datos correctamente
-        console.log(response)
         if (response && response.data) {
           this.roles = response.data
         }
@@ -48,8 +46,6 @@ export class RolComponent implements OnInit {
   getRole(id: number) {
     this.rolService.getRole(id).subscribe(
       (response) => {
-        // Verifica si obtienes los datos correctamente
-        console.log(response)
         if (response && response.data) {
           this.role = response.data
         }

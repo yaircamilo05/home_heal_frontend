@@ -30,8 +30,6 @@ export class MenuComponent implements OnInit {
   getAllMenus() {
     this.menuServices.getAllMenus().subscribe(
       (response) => {
-        // Verifica si obtienes los datos correctamente
-        console.log(response);
         if (response && response.data) {
           this.menus = response.data;
         }
@@ -53,7 +51,7 @@ export class MenuComponent implements OnInit {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
       minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '600px', 
+      maxWidth: '600px',
       data: {
         title: TitlesModal.Menu,
         question: '',
@@ -69,7 +67,7 @@ export class MenuComponent implements OnInit {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
       minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '600px', 
+      maxWidth: '600px',
       data: {
         title: TitlesModal.Menu,
         question: '',
@@ -85,7 +83,6 @@ export class MenuComponent implements OnInit {
   DeleteMenu(menuId: number) {
     this.menuServices.deleteMenu(menuId).subscribe(
       (response) => {
-        console.log(response); // Verifica si obtienes los datos correctamente
         if (response && response.data) {
           this.modalService.openModalConfirmationAction();
           this.getAllMenus();

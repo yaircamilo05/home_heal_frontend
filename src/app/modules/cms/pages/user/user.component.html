@@ -7,7 +7,6 @@
           </div>
           <input
             type="text"
-            
             class="form-control number-filter"
             placeholder="N°"
           />
@@ -54,7 +53,11 @@
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.email}}</td>
+<<<<<<< .merge_file_5EreJu
             <td> {{user.rol.name}}</td>
+=======
+            <td> {{getRol(user.rol_id)}}</td>
+>>>>>>> .merge_file_AKAoMY
             <td>
               <img src="{{user.image_url}}" alt="" width="100" height="100" srcset="">
             </td>
@@ -70,7 +73,7 @@
                 <div class="chat-icon" (click)="openModalChat(user)">
                   <div class="icon-container">
                     <span class="icon" [ngClass]="'fa-solid fa-message color-chat'"></span>
-                    <div class="new-message-indicator" *ngIf="showNoficationNewMessage(user)">{{countMessageRecived}}</div>
+                    <div class="new-message-indicator" *ngIf="showNoficationNewMessage(user) && !this.openModalUser(user)">{{getCountMessageRecived(user)}}</div>
                   </div>
                 </div>
               </div>

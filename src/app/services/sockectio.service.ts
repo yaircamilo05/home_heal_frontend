@@ -1,25 +1,29 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment.local';
-import { SockectClient, SockectServer } from '../models/socket.client.model';
-import { AuthService } from './auth.service';
 import { UserGetWithMenusModel } from '../models/user.model';
+import { ConversationModel } from '../models/conversation.model';
+import { UserSocketModel } from '../models/user.socket.model';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SockectioService implements OnInit{
-  user:UserGetWithMenusModel | null = null;
-  io = io(`${environment.serversockect}/`,{
+export class SockectioService {
+  io = io(`${environment.serversockect}/`, {
     withCredentials: true,
     autoConnect: true
   });
 
+<<<<<<< .merge_file_u7hhWL
   constructor(private authService: AuthService) {
     this.emitWelcome();
     this.onWelcome();
    }
   ngOnInit(){
+=======
+  constructor(private storageService:StorageService) {
+>>>>>>> .merge_file_yCY59j
     this.emitWelcome();
     this.onWelcome();
   }

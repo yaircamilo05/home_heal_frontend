@@ -8,6 +8,7 @@ import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { SockectioService } from 'src/app/services/sockectio.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private modalService: ModalService,
     private emailService: EmailService,
+    private socketService: SockectioService,
     private storageService: StorageService
   ) {
     this.builForm();
@@ -78,6 +80,8 @@ export class LoginComponent implements OnInit {
             }
           });
         }
+        //conectarce al socket
+        this.storageService.saveUsername(data.email);
       },
         error: (err) => {
           this.loading = false;
