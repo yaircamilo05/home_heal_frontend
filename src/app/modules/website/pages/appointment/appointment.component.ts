@@ -102,4 +102,12 @@ export class AppointmentComponent {
     );
   }
 }
+
+  deshabilitarBoton(appointment: AppointmentGetModel) {
+    if (appointment.state != 'Pendiente') {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
