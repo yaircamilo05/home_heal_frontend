@@ -1,8 +1,11 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component,Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppointmentCreateModel } from 'src/app/models/appointments.create.model';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
+import { AppointmentsService } from 'src/app/services/appointments.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 interface InputDataModel{
   title: string,
@@ -35,13 +38,18 @@ export class ModalAppointmentComponent {
   iconClass: string | undefined = 'fa-solid fa-user';
   type:string | undefined = 'Confirmation';
   form: FormGroup = new FormGroup({});
+  hours: string[] = [];
+  reason: string = '';  
+  cont: number = 0;
   
   constructor
   (
     private modalService: ModalService,
     private dialog: DialogRef<OutCustomModal,OutCustomModal>,
     @Inject(DIALOG_DATA) private data: InputDataModel,
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private appointmentService: AppointmentsService,
+    private strorageService: StorageService
     )
   {
     this.title = data.title;
@@ -49,17 +57,41 @@ export class ModalAppointmentComponent {
     this.iconClass = data.iconClass;
     this.type = data.type;
     this.buildForm();
-
+    
     this.modalService.closeModalEvent.subscribe(() => {
       this.close();
     });
   }
 
-  
+  createAppointment(){
+    let appointment_data: AppointmentCreateModel = {
+      reason: this.reason,
+      date: this.form.value.date,
+      hour: this.form.value.hour,
+      speciality: this.form.value.speciality,
+      user_id: this.strorageService.getUserId()
+    }
+
+    console.log(appointment_data);
+    
+  }
+
+  getHours(){
+    this.appointmentService.getAvailableHoursByDate(this.form.value.date).subscribe(
+      (response) => {
+        this.hours = response.data;        
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   buildForm(){
     this.form = this.fb.group({
-      rol_id: [0,Validators.required],
-      menu_id: [0,Validators.required],
+      date: ['',Validators.required],
+      speciality: ['',Validators.required],
+      hour: ['',Validators.required]
     })};
 
   close(){
@@ -67,7 +99,7 @@ export class ModalAppointmentComponent {
   }
   
   getSymptomValue(value: string | undefined){
-    console.log(value);
+    this.cont++;
+    this.reason += this.cont > 1 ? ', ' + value : value;
   }
-
 }

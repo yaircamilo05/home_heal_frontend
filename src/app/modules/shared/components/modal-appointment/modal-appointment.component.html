@@ -1,18 +1,16 @@
 <div class="container">
   <div class="content-modal pe-5 pt-5 ps-5 pb-3">
-
+    <form [formGroup]="form">
     <div class="row" style="height: 80%;">
       <div class="col-6">
         <div class="mb-4">
           <label for="seleccion" class="form-label text-form">Fecha: </label>
-          <input type="date" class="form-control" id="fecha" name="fecha" show>
+          <input formControlName="date" (change)="getHours()" type="date" class="form-control" id="fecha" name="fecha" show>
         </div>
         <div class="mb-4">
           <label for="seleccion" class="form-label text-form">Hora: </label>
-          <select class="form-select" id="seleccion" name="seleccion">
-            <option value="7">7:00 am</option>
-            <option value="8">8:00 am</option>
-            <option value="+">Agregar más</option>
+          <select formControlName="hour" class="form-select" id="seleccion" name="seleccion">
+            <option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</option>
           </select>
         </div>
 
@@ -25,7 +23,7 @@
         <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
           <div class="d-flex flex-wrap justify-content-around" style="width: 100%;">
             <div *ngFor="let col of [0, 1, 2]">
-              <div *ngFor="let row of [0, 1, 2]" class="container-btn mb-3" (click)="getSymptomValue(iconsData[row * 3 + col].value)" style="cursor: pointer;">
+              <div *ngFor="let row of [0, 1, 2]" class="container-btn mb-3" (click)="getSymptomValue(iconsData[row * 3 + col].text)" style="cursor: pointer;">
                 <div class=" m-2 d-flex align-items-center justify-content-center">
                   <span class="" [ngClass]="'fa-solid fa-2xl ' + iconsData[row * 3 + col].class"
                     style="color: #3286C0"></span>
@@ -43,16 +41,17 @@
     <div class="row" style="height: 20%;">
       <div class="col-6">
         <label for="seleccion" class="form-label text-form">Especialidad: </label>
-          <select class="form-select" id="seleccion" name="seleccion">
-            <option value="Mg">Medicina general</option>
-            <option value="Cp">Cuidados Paliativos</option>
+          <select formControlName="speciality" class="form-select" id="seleccion" name="seleccion">
+            <option value="Medicina general">Medicina general</option>
+            <option value="Cuidados paleativos">Cuidados paliativos</option>
           </select>
       </div>
-
+    
       <div class="col-12 text-end">
         <button class="btn btn-danger m-2" (click)="close()">CANCELAR</button>
-        <button class="btn btn-success m-2">ACEPTAR</button>
+        <button class="btn btn-success m-2" (click)="createAppointment()">ACEPTAR</button>
       </div>
     </div>
+  </form>
   </div>
 </div>

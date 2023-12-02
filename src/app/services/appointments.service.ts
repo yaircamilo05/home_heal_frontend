@@ -31,4 +31,8 @@ export class AppointmentsService {
   markAppointmentAsDone(appointment: AppointmentGetModel): Observable<ResponseCustomModel<AppointmentGetModel>>{
     return this.http.patch<ResponseCustomModel<AppointmentGetModel>>(`${this.server}/update_appointment_state/${appointment.id}/1`,null);
   }
+
+  getAvailableHoursByDate(date: string): Observable<ResponseCustomModel<string[]>>{
+    return this.http.get<ResponseCustomModel<string[]>>(`${this.server}/get_available_hours/${date}`);
+  }
 }

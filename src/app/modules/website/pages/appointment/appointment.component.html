@@ -1,13 +1,12 @@
 <!--"Header" o filtros-->
-<div class="header pt-3 ps-3 pe-3">
+<div *ngIf="appointments.length > 0" class="header pt-3 ps-3 pe-3">
     <div class="header-division">
         <div class="container-input-filters">
             <div class="icon-filter">
                 <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
             </div>
-            <input type="text" formControlName="message" class="form-control number-filter" placeholder="N°" />
-            <input type="text" formControlName="message" class="form-control name-filter" placeholder="Nombre"
-                id="message-input" />
+            <input type="text" class="form-control number-filter" placeholder="N°" />
+            <input type="text" class="form-control name-filter" placeholder="Nombre" id="message-input" />
         </div>
         <div class="container-icons">
             <div class="search-filter">
@@ -20,6 +19,21 @@
     </div>
     <div class="container-btn" (click)="openModalAppointment()" *ngIf="userRolId == 2">
         <span class="icon" [ngClass]="'fa-solid fa-calendar-plus'"></span>
+    </div>
+</div>
+
+<!-- No hay citas -->
+<div *ngIf="appointments.length == 0">
+    <div class="container-button">
+        <div class="container-btn" (click)="openModalAppointment()" *ngIf="userRolId == 2">
+            <span class="icon" [ngClass]="'fa-solid fa-calendar-plus'"></span>
+        </div>
+    </div>
+    <div class="container-form">
+        <div class="container-gif">
+            <img class="centered-image"
+                src="../../../../../assets/images/data-search-not-found-illustration-concept-vector.jpg" alt="">
+        </div>
     </div>
 </div>
 
@@ -43,9 +57,12 @@
                 <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
                 <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
             </div>
-            <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
-                <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
-                <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i class="fa-solid fa-calendar-check"></i></a>
+            <div *ngIf="deshabilitarBoton(appointment)" class="mb-2 me-2"
+                style="align-self: flex-end; margin-top: auto;">
+                <a class="btn btn-danger float-end" (click)="openModalCancelAppointment(appointment)"
+                    style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
+                <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i
+                        class="fa-solid fa-calendar-check"></i></a>
             </div>
         </div>
     </div>
@@ -71,8 +88,10 @@
                 <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
                 <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
             </div>
-            <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
-                <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
+            <div *ngIf="deshabilitarBoton(appointment)" class="mb-2 me-2"
+                style="align-self: flex-end; margin-top: auto;">
+                <a class="btn btn-danger float-end" (click)="openModalCancelAppointment(appointment)"
+                    style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
             </div>
         </div>
     </div>
