@@ -17,6 +17,9 @@ export const Messages = {
   ErrorRegister: "¡Oh no! Los correos ya están registrados",
   newMessage: (mensaje:MessageModel) => `Tienes un nuevo mensaje de ${mensaje.nombre_remitente}`,
   CancelAppointment: "¿Estas seguro que deseas cancelar la cita?",
+  EmailSent: (message:string) => `¡Tu ${message} ha sido notificado!`,
+  ErrorCancelAppointment: "¡Oh no! No puedes cancelar una cita que ya ha pasado",
+  ErrorCheckAppointment: "¡Oh no! No puedes checar una cita que no ha pasado",
 }
 
 

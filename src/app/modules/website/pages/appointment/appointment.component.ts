@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { Messages } from 'src/app/common/messages.const';
 import { AppointmentGetModel } from 'src/app/models/appointment.model';
+import { EmailCancellationModel } from 'src/app/models/email.cancellation.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
+import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { environment } from 'src/environments/environment.local';
 
 @Component({
   selector: 'app-appointment',
@@ -17,8 +20,9 @@ export class AppointmentComponent {
   constructor(
     private appointmentsService: AppointmentsService,
     private storageService: StorageService,
-    private modalService: ModalService
-  ) {}
+    private modalService: ModalService,
+    private emailService: EmailService
+  ) { }
 
   ngOnInit(): void {
     this.getAppointmentsByUser();
@@ -49,14 +53,37 @@ export class AppointmentComponent {
 
     const appointmentDate = new Date(appointment.date);
     if (appointmentDate < new Date()) {
-      //aqui podria ir el toast del error
+      this.modalService.openToastErrorAction(Messages.ErrorCancelAppointment);
     }
-    else{
-    var deleted = await this.modalService.openModalConfirmation(
-      Messages.CancelAppointment
-    );
-    if (deleted.isConfirmed) {
-      this.appointmentsService.cancelAppointment(appointment).subscribe(
+    else {
+      var deleted = await this.modalService.openModalConfirmation(
+        Messages.CancelAppointment
+      );
+      if (deleted.isConfirmed) {
+        this.appointmentsService.cancelAppointment(appointment).subscribe(
+          (response) => {
+            // Verifica si obtienes los datos correctamente
+            console.log(response);
+            if (response && response.data) {
+              this.modalService.openModalConfirmationAction();
+              this.getAppointmentsByUser();
+              this.send_email(appointment);
+            }
+          },
+          (error) => {
+            console.error('Error al obtener las citas:', error);
+          }
+        );
+      }
+    }
+
+  }
+
+  marcarCitaRealizada(appointment: AppointmentGetModel) {
+    if (appointment.date > new Date()) {
+      this.modalService.openToastErrorAction(Messages.ErrorCheckAppointment);
+    } else {
+      this.appointmentsService.markAppointmentAsDone(appointment).subscribe(
         (response) => {
           // Verifica si obtienes los datos correctamente
           console.log(response);
@@ -71,40 +98,40 @@ export class AppointmentComponent {
         },
         (error) => {
           console.error('Error al obtener las citas:', error);
+          this.modalService.openToastErrorAction(Messages.ErrorCheckAppointment);
+
         }
       );
-  }
-}
-
+    }
   }
 
-  marcarCitaRealizada(appointment: AppointmentGetModel) {
+  send_email(appointment: AppointmentGetModel){
+    let to_destination: string = this.userRolId == 2 ? appointment.doctor_email : appointment.patient_email;
+    let name: string = this.userRolId == 2 ? appointment.doctor_name : appointment.patient_name;
 
-    if (appointment.date > new Date()) {
-      //aqui podria ir el toast del error
-    } else {
-    this.appointmentsService.markAppointmentAsDone(appointment).subscribe(
-      (response) => {
-        // Verifica si obtienes los datos correctamente
-        console.log(response);
-        if (response && response.data) {
-          console.log(
-            'los correos de los involucrados son:',
-            appointment.doctor_email + ' ' + appointment.patient_email
-          );
-          this.modalService.openModalConfirmationAction();
-          this.getAppointmentsByUser();
+    let data: EmailCancellationModel = {
+      hash: environment.hash_validator,
+      to_destination: to_destination,
+      name: name,
+      date: appointment.date.toString()
+    }
+
+    this.emailService.send_email_appointment_cancellation(data).subscribe({
+      next: (response) => {
+        if (response) {
+          console.log('email enviado');
+          let message = this.userRolId == 2 ? 'doctor' : 'paciente';
+          this.modalService.openToastWelcome(Messages.EmailSent(message));
         }
       },
-      (error) => {
-        console.error('Error al obtener las citas:', error);
+      error: (err) => {
+        console.log('error al enviar email');
       }
-    );
+    });
   }
-}
 
   deshabilitarBoton(appointment: AppointmentGetModel) {
-    if (appointment.state != 'Pendiente') {
+    if (appointment.state != 'PENDIENTE') {
       return false;
     } else {
       return true;

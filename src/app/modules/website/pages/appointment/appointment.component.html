@@ -25,7 +25,7 @@
 
 <!-- Card para los doctores: -->
 <div class="row pe-5 ps-5 " *ngIf="userRolId == 4">
-    <div *ngFor="let appointment of appointments" class="col-md-4 mb-3">
+    <div *ngFor="let appointment of appointments.reverse()" class="col-md-4 mb-3">
         <div class="card" style="width: 18rem; display: flex;">
             <div class="mb-0" style="display: flex; flex-direction: row; align-items: center;">
                 <div style="flex: 1; padding: 10px;">
@@ -53,7 +53,7 @@
 
 <!-- Card para los pacientes-->
 <div class="row pe-5 ps-5 " *ngIf="userRolId == 2">
-    <div *ngFor="let appointment of appointments" class="col-md-4 mb-3">
+    <div *ngFor="let appointment of appointments.reverse()" class="col-md-4 mb-3">
         <div class="card" style="width: 18rem; display: flex;">
             <div class="mb-0" style="display: flex; flex-direction: row; align-items: center;">
                 <div style="flex: 1; padding: 10px;">
@@ -73,7 +73,6 @@
             </div>
             <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
                 <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
-                <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i class="fa-solid fa-calendar-check"></i></a>
             </div>
         </div>
     </div>

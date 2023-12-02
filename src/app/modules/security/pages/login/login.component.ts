@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/website']);
                 this.modalService.openToastWelcome(Messages.WelcomeWebsite);
               } else if (user?.rol_id == Roles.SUPERADMIN) {
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/init-admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);
               } else if (user?.rol_id == Roles.MEDICO) {
                 this.router.navigate(['/website']);
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
             }
           });
         }
-        //conectarce al socket
+        //conectarse al socket
         this.storageService.saveUsername(data.email);
       },
         error: (err) => {
