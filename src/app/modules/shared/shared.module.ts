@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
+import { ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { SendEmailComponent } from './pages/send-email/send-email.component';
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
-
+    ModalAppointmentComponent,
   ],
   exports: [
     ButtonComponent,
