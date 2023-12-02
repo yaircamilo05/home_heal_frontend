@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { CalendarOptions, EventInput, EventSourceInput } from '@fullcalendar/core';
+import { DayCellContainer } from '@fullcalendar/core/internal';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 
@@ -42,10 +43,20 @@ export class CalendarComponent {
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin],
-      eventClick: function (info) {
-        alert('Evento seleccionado: ' + info.event.title);
-      },
       locale: 'es',
+      eventColor: '#D80A0A',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth',
+      },
+      buttonText: {
+        today: 'Hoy',
+        month: 'Mes',
+      },
     };
+    
   }
+
+
 }
