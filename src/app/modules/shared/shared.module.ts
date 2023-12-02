@@ -19,9 +19,15 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+<<<<<<< HEAD
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { WebsiteRoutingModule } from '../website/website-routing.module';
 import { CalendarComponent } from './components/calendar/calendar.component';
+=======
+import { SendEmailComponent } from './pages/send-email/send-email.component';
+import { ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
+
+>>>>>>> Feature/FHH012-Deashboard
 @NgModule({
   declarations: [
     ButtonComponent,
@@ -36,7 +42,12 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     CustomModalComponent,
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
+<<<<<<< HEAD
     CalendarComponent
+=======
+    SendEmailComponent,
+    ModalAppointmentComponent,
+>>>>>>> Feature/FHH012-Deashboard
   ],
   exports: [
     ButtonComponent,

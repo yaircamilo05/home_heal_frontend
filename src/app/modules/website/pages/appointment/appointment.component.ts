@@ -1,7 +1,12 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import { Messages } from 'src/app/common/messages.const';
 import { AppointmentGetModel } from 'src/app/models/appointment.model';
 import { EmailCancellationModel } from 'src/app/models/email.cancellation.model';
+import { Icons } from 'src/app/common/icon.modal';
+import { TitlesModal } from 'src/app/common/titles.modal';
+import { TypeModal } from 'src/app/common/type.modal';
+import { ModalAppointmentComponent } from 'src/app/modules/shared/components/modal-appointment/modal-appointment.component';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -21,7 +26,8 @@ export class AppointmentComponent {
     private appointmentsService: AppointmentsService,
     private storageService: StorageService,
     private modalService: ModalService,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private dialog: Dialog,
   ) { }
 
   ngOnInit(): void {
@@ -136,5 +142,20 @@ export class AppointmentComponent {
     } else {
       return true;
     }
+  }
+  openModalAppointment() {
+    let RefDialog = this.dialog.open(ModalAppointmentComponent, {
+      minWidth: '800px',
+      minHeight: '80%',
+      maxWidth: '50%',
+      data: {
+        title: TitlesModal.Module,
+        question: '',
+        iconClass: Icons.Module,
+        type: TypeModal.Module,
+        imageUser: '',
+        userName: ''
+      }
+    });
   }
 }

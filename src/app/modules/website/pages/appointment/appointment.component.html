@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="container-btn" *ngIf="userRolId == 2">
+    <div class="container-btn" (click)="openModalAppointment()" *ngIf="userRolId == 2">
         <span class="icon" [ngClass]="'fa-solid fa-calendar-plus'"></span>
     </div>
 </div>
