@@ -5,7 +5,7 @@ import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
-import { CaresComponent } from './pages/cares/cares.component';
+
 
 
 const routes: Routes = [
@@ -34,10 +34,6 @@ const routes: Routes = [
         path: 'myappointments',
         component: AppointmentComponent
       },
-      {
-        path: 'cares',
-        component: CaresComponent
-      }
     ]
   }
 ];
