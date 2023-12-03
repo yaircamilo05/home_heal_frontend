@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -24,7 +24,6 @@ import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
     DashboardComponent,
     PatientComponent,
     AppointmentComponent,
-    MultiplexorFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -35,9 +34,10 @@ import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatSliderModule,
     ReactiveFormsModule,
     NgApexchartsModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class WebsiteModule { }

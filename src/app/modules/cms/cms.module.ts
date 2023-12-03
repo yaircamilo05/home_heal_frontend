@@ -15,7 +15,8 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 import { TestSocketComponent } from './pages/test-socket/test-socket.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
 
 
 
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserComponent,
     MenuRolesComponent,
     TestSocketComponent,
+    // MultiplexorFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatListModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    
   ],
   providers:
     [

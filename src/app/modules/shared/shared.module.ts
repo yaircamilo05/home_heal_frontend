@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
+import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,13 +37,14 @@ import { SendEmailComponent } from './pages/send-email/send-email.component';
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
-
+    MultiplexorFilterPipe,
   ],
   exports: [
     ButtonComponent,
     CarouselComponent,
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
+    MultiplexorFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,7 @@ import { SendEmailComponent } from './pages/send-email/send-email.component';
     ReactiveFormsModule,
     MatSliderModule,
     MatIconModule,
-    NgApexchartsModule
+    NgApexchartsModule,
   ]
 })
 export class SharedModule { }

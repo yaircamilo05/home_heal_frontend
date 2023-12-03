@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { AppointmentGetModel } from 'src/app/models/appointment.model';
-import { AppointmentsService } from 'src/app/services/appointments.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { Component } from '@angular/core'
+import { AppointmentGetModel } from 'src/app/models/appointment.model'
+import { AppointmentsService } from 'src/app/services/appointments.service'
+import { StorageService } from 'src/app/services/storage.service'
 
 @Component({
   selector: 'app-appointment',
@@ -9,9 +9,12 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent {
-  appointments: AppointmentGetModel[] = [];
-  userRolId: number = 0;
+  appointments: AppointmentGetModel[] = []
+  userRolId: number = 0
 
+  searchText: string = ''
+  limit: number | undefined = 10
+  appState: string = ''
 
   constructor(
     private appointmentsService: AppointmentsService,
@@ -19,27 +22,33 @@ export class AppointmentComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getAppointmentsByUser();    
-    this.getRolId();
+    this.getAppointmentsByUser()
+    this.getRolId()
+  }
+
+  clearFilter() {
+    this.searchText = ''
+    this.limit = undefined
+    this.appState = ''
   }
 
   getAppointmentsByUser() {
     this.appointmentsService.getAppointmentsByUser().subscribe(
       (response) => {
         // Verifica si obtienes los datos correctamente
-        console.log(response);
+        console.log(response)
         if (response && response.data) {
-          this.appointments = response.data;
+          this.appointments = response.data
         }
       },
       (error) => {
-        console.error('Error al obtener las citas:', error);
+        console.error('Error al obtener las citas:', error)
       }
-    );
+    )
   }
 
-  getRolId(){
-    this.userRolId = this.storageService.getRolId();
-    console.log('rol id = ' + this.userRolId);
+  getRolId() {
+    this.userRolId = this.storageService.getRolId()
+    console.log('rol id = ' + this.userRolId)
   }
 }

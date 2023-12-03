@@ -20,6 +20,9 @@ export class RolComponent implements OnInit {
   role: RolOutModel | null = null
   // role_id: number | undefined
 
+  limit: number | undefined = 10
+  rolTitle: string = ''
+
   constructor(
     private dialog: Dialog,
     private rolService: RolService,
@@ -28,6 +31,11 @@ export class RolComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoles()
+  }
+
+  clearFilter() {
+    this.rolTitle = '';
+    this.limit = undefined;
   }
 
   getRoles() {
