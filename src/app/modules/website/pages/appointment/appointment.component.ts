@@ -15,6 +15,8 @@ export class AppointmentComponent {
   searchText: string = ''
   limit: number | undefined = 10
   appState: string = ''
+  startingDate: string = ''
+  // endingDate: string = ''
 
   constructor(
     private appointmentsService: AppointmentsService,
@@ -28,8 +30,10 @@ export class AppointmentComponent {
 
   clearFilter() {
     this.searchText = ''
-    this.limit = undefined
     this.appState = ''
+    this.startingDate = ''
+    // this.endingDate = ''
+    this.limit = undefined
   }
 
   getAppointmentsByUser() {

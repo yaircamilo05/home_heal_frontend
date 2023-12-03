@@ -10,17 +10,21 @@ import { ModalUserComponent } from './components/modal-user/modal-user.component
 import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 import { ModalMenusRolesComponent } from './components/modal-menus-roles/modal-menus-roles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ModalRolesComponent } from './components/modal-roles/modal-roles.component';
 import { ModalVitalSignsComponent } from './components/modal-vital-signs/modal-vital-signs.component';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatIconModule} from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatIconModule } from '@angular/material/icon';
 import { GraphicsAllAgainstAllComponent } from './components/graphics-all-against-all/graphics-all-against-all.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
 import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
@@ -39,13 +43,6 @@ import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
     SendEmailComponent,
     MultiplexorFilterPipe,
   ],
-  exports: [
-    ButtonComponent,
-    CarouselComponent,
-    GraphicsAllAgainstAllComponent,
-    SendEmailComponent,
-    MultiplexorFilterPipe,
-  ],
   imports: [
     CommonModule,
     DialogModule,
@@ -57,6 +54,19 @@ import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
     MatSliderModule,
     MatIconModule,
     NgApexchartsModule,
-  ]
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+  ],
+  exports: [
+    ButtonComponent,
+    CarouselComponent,
+    GraphicsAllAgainstAllComponent,
+    SendEmailComponent,
+    MultiplexorFilterPipe,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+  ],
 })
 export class SharedModule { }
