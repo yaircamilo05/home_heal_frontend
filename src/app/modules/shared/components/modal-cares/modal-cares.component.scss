@@ -91,24 +91,38 @@
     justify-content: center;
 
     .card {
-      margin: 20px;
-      width: 18rem;
-
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px 0 hsla(0, 0%, 0%, 0.2);
+      }
+    
       .card-body {
-        h5 {
+        .card-title {
           color: #333;
+          font-weight: bold;
+          font-size: 1.3em;
         }
-
-        h6 {
+    
+        .card-subtitle {
           color: #666;
+          font-size: 1em;
         }
-
-        p {
+    
+        .card-text {
           color: #333;
+          font-size: 0.9em;
         }
-
-        a {
+    
+        .card-link {
           color: #007bff;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

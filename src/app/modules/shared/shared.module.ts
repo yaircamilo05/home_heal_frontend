@@ -21,6 +21,7 @@ import { GraphicsAllAgainstAllComponent } from './components/graphics-all-agains
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
 import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
+import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ModalCaresComponent } from './components/modal-cares/modal-cares.compon
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
     ModalCaresComponent,
+    ModalDiagnosticComponent,
 
   ],
   exports: [
