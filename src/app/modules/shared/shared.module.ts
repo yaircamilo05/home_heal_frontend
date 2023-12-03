@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from "@angular/material/core";
 
 import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
+import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
 import { ModalDiagnosesComponent } from './components/modal-diagnoses/modal-diagnoses.component';
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ModalDiagnosesComponent } from './components/modal-diagnoses/modal-diag
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
     ModalCaresComponent,
+    ModalDiagnosticComponent,
     MultiplexorFilterPipe,
     ModalDiagnosesComponent,
   ],
