@@ -23,7 +23,7 @@ export interface DialogData {
 export class ModalCaresComponent {
   cares: Cares[] = [];
   form: FormGroup = new FormGroup({});
-  viewForm:boolean = false;
+  viewForm: boolean = false;
   id_patient: number = 0;
   constructor(
     private caresService: CaresService,
@@ -40,7 +40,7 @@ export class ModalCaresComponent {
   }
 
   ngOnInit() {
-    this.getCares();  
+    this.getCares();
     this.buildForm();
   }
   close() {
@@ -59,7 +59,7 @@ export class ModalCaresComponent {
     //?cambiarlo por el id del paciente del input
     this.caresService.getCares(this.id_patient).subscribe(
       (response) => {
-        if (response && response.data){
+        if (response && response.data) {
           this.cares = response.data;
         }
       },
@@ -70,36 +70,38 @@ export class ModalCaresComponent {
     );
   }
 
-  createCare(){
-    if(this.form.valid){
+  createCare() {
+    if (this.form.valid) {
       this.doctorService.getDoctorByUserId(this.storageService.getUserId()).subscribe(
-        (response)=>{
-          if(response && response.data){
+        (response) => {
+          if (response && response.data) {
             this.sendRequest(response.data.id)
           }
         },
-        (error:any)=>{
+        (error: any) => {
           console.error(error)
           this.modalService.openModalErrorAction("Ha ocurrido un error obteniendo el doctor")
         }
       )
-     
+
     }
 
   }
 
-  sendRequest(doctor_id: number){
+  sendRequest(doctor_id: number) {
     let data: CaresCreateModel = {
       description: this.form.value.description,
       doctor_id: doctor_id, // Buscarlo en el storage service 
       patient_id: this.id_patient // Cambiarlo por el input
-    } 
+    }
     this.caresService.createCare(data).subscribe(
       (response) => {
-        if (response && response.data){
+        if (response && response.data) {
           this.modalService.openModalConfirmationPromise().then((result) => {
             if (result.isConfirmed) {
-              window.location.reload();
+              // window.location.reload();
+              // this.caresService.loadCares(this.id_patient);
+              this.getCares()
             }
           })
         }
@@ -111,10 +113,10 @@ export class ModalCaresComponent {
     );
   }
 
-  deleteCare(id:number){
+  deleteCare(id: number) {
     this.caresService.deleteCare(id).subscribe(
-      (response)=>{
-        if(response && response.data){
+      (response) => {
+        if (response && response.data) {
           this.modalService.openModalConfirmationPromise().then((result) => {
             if (result.isConfirmed) {
               window.location.reload();
@@ -122,15 +124,15 @@ export class ModalCaresComponent {
           })
         }
       },
-      (error:any)=>{
+      (error: any) => {
         console.error(error)
         this.modalService.openModalErrorAction("Ha ocurrido un error eliminando el cuidado")
       }
     )
   }
 
-  openCloseForm(){
-    this.viewForm= !this.viewForm;
+  openCloseForm() {
+    this.viewForm = !this.viewForm;
   }
 
 }
