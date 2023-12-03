@@ -10,10 +10,11 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatSliderModule } from '@angular/material/slider';
 import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component';
 
 
@@ -24,7 +25,7 @@ import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component'
     InitComponent,
     DashboardComponent,
     PatientComponent,
-    AppointmentComponent,
+    AppointmentComponent,,
     DiagnosticsComponent, 
     
   ],
@@ -37,8 +38,10 @@ import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component'
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatSliderModule,
     ReactiveFormsModule,
     NgApexchartsModule,
+    FormsModule,,
 
 
   ]

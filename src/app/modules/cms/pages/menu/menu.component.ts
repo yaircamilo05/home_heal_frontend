@@ -17,11 +17,19 @@ import { ModalService } from 'src/app/services/modal.service';
 export class MenuComponent implements OnInit {
   menus: MenuGetModel[] = [];
 
+  menuTitle: string = ''
+  limit: number | undefined = 10;
+
   constructor(
     private dialog: Dialog,
     private menuServices: MenuService,
     private modalService: ModalService
-  ) {}
+  ) { }
+
+  clearFilter() {
+    this.menuTitle = '';
+    this.limit = undefined;
+  }
 
   ngOnInit(): void {
     this.getAllMenus();
@@ -43,8 +51,8 @@ export class MenuComponent implements OnInit {
   }
 
   async openModalDeleteMenu(menu: MenuGetModel) {
-   var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
-    if (deleted.isConfirmed){
+    var deleted = await this.modalService.openModalConfirmation(Messages.DeleteRecord);
+    if (deleted.isConfirmed) {
       this.DeleteMenu(menu.id);
     }
   }
@@ -53,7 +61,7 @@ export class MenuComponent implements OnInit {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
       minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '600px', 
+      maxWidth: '600px',
       data: {
         title: TitlesModal.Menu,
         question: '',
@@ -69,7 +77,7 @@ export class MenuComponent implements OnInit {
     let RefDialog = this.dialog.open(ModalMenusComponent, {
       minWidth: '600px',
       minHeight: '80%',
-      maxWidth: '600px', 
+      maxWidth: '600px',
       data: {
         title: TitlesModal.Menu,
         question: '',
