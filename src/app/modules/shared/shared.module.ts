@@ -27,7 +27,7 @@ import { MatNativeDateModule } from "@angular/material/core";
 
 import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
 import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
-import { ModalDiagnosesComponent } from './components/modal-diagnoses/modal-diagnoses.component';
+import { TruncatePipe } from 'src/app/common/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { ModalDiagnosesComponent } from './components/modal-diagnoses/modal-diag
     ModalCaresComponent,
     ModalDiagnosticComponent,
     MultiplexorFilterPipe,
-    ModalDiagnosesComponent,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
@@ -73,6 +73,7 @@ import { ModalDiagnosesComponent } from './components/modal-diagnoses/modal-diag
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    TruncatePipe,
   ],
 })
 export class SharedModule { }
