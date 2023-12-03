@@ -10,10 +10,11 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     InitComponent,
     DashboardComponent,
     PatientComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    MultiplexorFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatIconModule,
     MatListModule,
     ReactiveFormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    FormsModule
   ]
 })
 export class WebsiteModule { }
