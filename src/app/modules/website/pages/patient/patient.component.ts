@@ -8,6 +8,7 @@ import { DoctorService } from 'src/app/services/doctor.service'
 import { PatientService } from 'src/app/services/patient.service'
 import { StorageService } from 'src/app/services/storage.service'
 import { ModalCaresComponent } from 'src/app/modules/shared/components/modal-cares/modal-cares.component';
+import { ModalDiagnosesComponent } from 'src/app/modules/shared/components/modal-diagnoses/modal-diagnoses.component';
 
 @Component({
   selector: 'app-patient',
@@ -73,8 +74,19 @@ export class PatientComponent implements OnInit {
     })
   }
 
-  openCaresModal(patientId:number){
+  openCaresModal(patientId: number) {
     this.dialog.open(ModalCaresComponent, {
+      minWidth: '800px',
+      minHeight: '80%',
+      maxWidth: '50%',
+      data: {
+        patientId: patientId
+      }
+    })
+  }
+
+  openDiagnosesModal(patientId: number) {
+    this.dialog.open(ModalDiagnosesComponent, {
       minWidth: '800px',
       minHeight: '80%',
       maxWidth: '50%',
