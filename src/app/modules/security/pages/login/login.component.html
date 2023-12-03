@@ -1,68 +1,83 @@
 <div class="container-login">
-<div class="container mt-1">
-  <div class="row d-flex justify-content-center align-items-center">
-    <div class="col col-xl-8">
-      <div class="card" style="border-radius: 1rem;">
-        <div class="container-box row g-0">
-          <div class="div-logo col-md-6 col-lg-5 d-none d-md-block" style="border-radius: 1rem 0 0 1rem;">
-            <img src="../../../../../assets/icons/LogoGrandeHomeHeal.png"
-              alt="card" class="img-fluid h-100" style="border-radius: 1rem 0 0 1rem;" />
-          </div>
-          <div class="col-md-6 col-lg-7 d-flex align-items-center">
-            <div class="button-register position-absolute top-0 end-0 mt-3 me-4">
-              <app-button routerLink="/register" type="primary-user" text="REGISTRARME" ></app-button>
+  <div class="container mt-1">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col col-xl-8">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="container-box row g-0">
+            <div class="div-logo col-md-6 col-lg-5 d-none d-md-block" style="border-radius: 1rem 0 0 1rem;">
+              <img src="../../../../../assets/icons/LogoGrandeHomeHeal.png" alt="card" class="img-fluid h-100"
+                style="border-radius: 1rem 0 0 1rem;" />
             </div>
-            <div class="card-body p-10 p-lg-5 text-black">
-              <form class="form" [formGroup]="form">
-                <div class="d-flex flex-column align-items-center mt-5">
-                  <div class="col mb-3 pb-1">
-                    <i class="fas fa-heartbeat fa-2x me-3" style="color: #FF6F60;"></i>
-                  </div>
-                  <div class="col mb-3 pb-1 text-center">
-                    <span class="h1 fw-bold mb-0" ><h5 class="title center">BIENVENIDO</h5></span>
-                  </div>
-                </div>
-
-                <div class="form-outline">
-                  <input formControlName="email" type="email" id="email"
-                  placeholder="Correo electrónico" class="form-control form-control-md" required/>
-                  <div *ngIf="fg['email'].errors && (fg['email'].dirty || fg['email'].touched)">
-                    <p *ngIf="fg['email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
-                    <p *ngIf="fg['email']?.errors?.['email']" style="color: #FF6F60;">Recuerda el formato de email</p>
-                  </div>
-                    
-                </div>
-                <div class="form-outline mb-2">
-                  <div class="input-group">
-                    <input formControlName="password" type="{{ showPassword ? 'text' : 'password' }}" id="password"
-                      placeholder="Contraseña" class="form-control form-control-md" required/>
-                    <button type="button" class="btn btn-outline-secondary border-start-0 border-end-0 border-top-0 border-bottom-0" (click)="togglePasswordVisibility()">
-                      <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
-                    </button>
-                  </div>
-                  <div *ngIf="fg['password'].errors && (fg['password'].dirty || fg['password'].touched)">
-                    <p class="mb-0" *ngIf="fg['password']?.errors?.['required']" style="color: #FF6F60;" >Este campo es requerido</p>
-                  </div>
-                </div>
-                <div class="d-flex flex-column align-items-center">
-                <div class="col pt-1 mb-4 center">
-                  <button (click)="login()" class="btn btn-blue-confirm">
-                    <div *ngIf="!loading">INGRESAR</div>
-                    <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
-                      <span class="sr-only">Loading...</span>
-                    </div>
-                  </button>
-                </div>
-                <a href="#!" class="col small center" style="color: #1E5877;">Made by ArchiTech TM</a>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="button-register position-absolute top-0 end-0 mt-3 me-4">
+                <app-button routerLink="/register" type="primary-user" text="REGISTRARME"></app-button>
               </div>
-              </form>
-          
+              <div class="card-body p-10 p-lg-5 text-black">
+                <form class="form" [formGroup]="form">
+                  <div class="d-flex flex-column align-items-center mt-5">
+                    <div class="col mb-3 pb-1">
+                      <i class="fas fa-heartbeat fa-2x me-3" style="color: #FF6F60;"></i>
+                    </div>
+                    <div class="col mb-3 pb-1 text-center">
+                      <span class="h1 fw-bold mb-0">
+                        <h5 class="title center">BIENVENIDO</h5>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-outline">
+                    <input formControlName="email" type="email" id="email" placeholder="Correo electrónico"
+                      class="form-control form-control-md" required />
+                    <div *ngIf="fg['email'].errors && (fg['email'].dirty || fg['email'].touched)">
+                      <p *ngIf="fg['email']?.errors?.['required']" style="color: #FF6F60;">Este campo es requerido</p>
+                      <p *ngIf="fg['email']?.errors?.['email']" style="color: #FF6F60;">Recuerda el formato de email</p>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <div class="input-group">
+                      <input formControlName="password" type="{{ showPassword ? 'text' : 'password' }}" id="password"
+                        placeholder="Contraseña" class="form-control form-control-md" required />
+                      <button type="button"
+                        class="btn btn-outline-secondary border-start-0 border-end-0 border-top-0 border-bottom-0"
+                        (click)="togglePasswordVisibility()">
+                        <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                      </button>
+                    </div>
+                    <div *ngIf="fg['password'].errors && (fg['password'].dirty || fg['password'].touched)">
+                      <p class="mb-0" *ngIf="fg['password']?.errors?.['required']" style="color: #FF6F60;">Este campo es
+                        requerido</p>
+                    </div>
+                    <div class="form-outline" style="padding: 20px;">
+                      <div class="input-group  form-check d-flex align-items-center justify-content-between m-0 flex-row p-0">
+                        <div class="">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1" style="color: gainsboro; background: white;">Te recordamos</label>
+                        </div>
+                        <div class="">
+                          <a class="link-recovery" routerLink="/recovery-password" style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-column align-items-center">
+                    <div class="col pt-1 mb-4 center">
+                      <button (click)="login()" class="btn btn-blue-confirm">
+                        <div *ngIf="!loading">INGRESAR</div>
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </button>
+                    </div>
+                    <a href="https://instagram.com/archi.techteam?igshid=M2RkZGJiMzhjOQ==" class="col small center" style="color: #1E5877;">Made by ArchiTech TM</a>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-</div>
-

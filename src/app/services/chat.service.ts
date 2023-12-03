@@ -24,7 +24,7 @@ export class ChatService {
 
   onRecivedMessage(){
     this.sockectioService.io.on('recivedmessage', (message:MessageModel)=>{
-      console.log("Mensaje recieved message");
+      message.type = 2;
       this.notifacationNewMessage(message);
       this.chats.push(message);
     });

@@ -5,7 +5,7 @@ import { MenuGetModel } from 'src/app/models/menu.model';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
 import { RolOutModel } from 'src/app/models/rol.model';
 import { MenuService } from 'src/app/services/menu.service';
-import { MenusRolesService } from 'src/app/services/menus-roles.service';
+import { MenusRolesService } from 'src/app/services/menus.roles.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { RolService } from 'src/app/services/rol.service';
 
