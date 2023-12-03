@@ -25,9 +25,8 @@ import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component'
     InitComponent,
     DashboardComponent,
     PatientComponent,
-    AppointmentComponent,,
-    DiagnosticsComponent, 
-    
+    AppointmentComponent,
+    DiagnosticsComponent,
   ],
   imports: [
     CommonModule,
@@ -41,9 +40,7 @@ import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component'
     MatSliderModule,
     ReactiveFormsModule,
     NgApexchartsModule,
-    FormsModule,,
-
-
+    FormsModule,
   ]
 })
 export class WebsiteModule { }
