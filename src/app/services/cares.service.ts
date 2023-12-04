@@ -9,8 +9,6 @@ import { BehaviorSubject, Observable, tap } from 'rxjs'
   providedIn: 'root'
 })
 export class CaresService {
-  private caresSource = new BehaviorSubject<Cares[]>([])
-  cares$: Observable<Cares[]> = this.caresSource.asObservable()
 
   server: string = `${environment.server}/cares`
 
@@ -18,25 +16,9 @@ export class CaresService {
     private http: HttpClient,
   ) { }
 
-  updateCares(cares: Cares[]) {
-    this.caresSource.next(cares)
-  }
-  loadCares(patient_id: number) {
-    this.getCares(patient_id).subscribe(
-      (response: ResponseCustomModel<Cares[]>) => {
-        this.updateCares(response.data)
-      },
-      error => {
-        console.error('Error al cargar las aproximaciones', error)
-      }
-    )
-  }
 
   getCares(patientId: number): Observable<ResponseCustomModel<Cares[]>> {
     return this.http.get<ResponseCustomModel<Cares[]>>(`${this.server}/get-cares-by-patient-id/${patientId}`)
-      .pipe(tap(() => {
-        this.loadCares(patientId) // Recargar los cuidados después de obtenerlos
-      }))
   }
 
   createCare(care: CaresCreateModel): Observable<ResponseCustomModel<CaresBaseModel>> {
