@@ -26,10 +26,12 @@
           <button (click)="openCloseForm()">Cancelar</button>
         </div>
       </form>
-      <div class="no_diagnoses" *ngIf="diagnoses.length == 0">
-        <h1>Este paciente no tiene dignósticos registrados..</h1>
-      </div>
+      
     </div>
+  </div>
+
+  <div class="no_diagnoses" *ngIf="diagnoses.length == 0">
+    <h1>Este paciente no tiene dignósticos registrados..</h1>
   </div>
 
   <div class="container d-flex flex-wrap justify-content-center">
