@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   vitalSingsService = inject(VitalSingsService);
   patientService = inject(PatientService);
   public chartOptions!: Partial<ChartOptions>;
+  public radialBarOptions!: Partial<ChartOptions>;
   @Input() seriesInput: GraphicSerieModel[] = [];
   showNotificationNewMessage: boolean = false;
   messagesRecived: MessageModel[] = [];
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit {
     patient_id: 0,
   };
   patient_id: number = 0;
+  patient_name: string = "";
   seriesTest = signal<GraphicSerieModel[]>([])
   seriesOutput: GraphicSerieModel[] = []
 
@@ -57,7 +59,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.onUpdateVitalSigns();
     this.getVitalSignsHistory();
+    this.getPatientName();
 
+    // Área
     this.chartOptions = {
       series: [...this.seriesInput],
       chart: {
@@ -97,6 +101,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
+    
   }
 
   onUpdateVitalSigns() {
@@ -115,6 +120,7 @@ export class DashboardComponent implements OnInit {
       this.seriesTest.set(this.seriesOutput);
     });
   }
+  
   openModalUpdateVitalsSigns() {
     let RefDialog = this.dialog.open(ModalVitalSignsComponent,
       {
@@ -251,6 +257,14 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  getPatientName(){
+    this.patientService.getPatientById(this.patient_id).subscribe((response) => {
+      const user: PatientCard = response.data;
+      console.log("Nombre del paciente", user.name+" "+user.lastname);
+      this.patient_name = user.name;
+    });
+  }
+
   showModalChat(user: PatientCard) {
       this.showNotificationNewMessage = false;
       this.modalOpen = true;
@@ -265,7 +279,7 @@ export class DashboardComponent implements OnInit {
           type: TypeModal.Chat,
           imageUser: user.img_url,
           userName: user.name+" "+user.lastname,
-          room: user.emil
+          room: user.email
         }
       });
   }
