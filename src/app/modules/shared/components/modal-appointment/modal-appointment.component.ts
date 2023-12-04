@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppointmentCreateModel } from 'src/app/models/appointments.create.model';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
+import { DoctorService } from 'src/app/services/doctor.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -41,6 +42,7 @@ export class ModalAppointmentComponent {
   hours: string[] = [];
   reason: string = '';  
   cont: number = 0;
+  doctors: any[] = [];
   
   constructor
   (
@@ -49,7 +51,8 @@ export class ModalAppointmentComponent {
     @Inject(DIALOG_DATA) private data: InputDataModel,
     private fb : FormBuilder,
     private appointmentService: AppointmentsService,
-    private strorageService: StorageService
+    private strorageService: StorageService,
+    private doctorService: DoctorService
     )
   {
     this.title = data.title;
@@ -68,7 +71,7 @@ export class ModalAppointmentComponent {
       reason: this.reason,
       date: this.form.value.date,
       hour: this.form.value.hour,
-      speciality: this.form.value.speciality,
+      doctor_id: this.form.value.doctor,
       user_id: this.strorageService.getUserId()
     }
 
@@ -77,9 +80,22 @@ export class ModalAppointmentComponent {
   }
 
   getHours(){
-    this.appointmentService.getAvailableHoursByDate(this.form.value.date).subscribe(
+    console.log(this.form.value.doctor);
+    
+    this.appointmentService.getAvailableHoursByDate(this.form.value.date, this.form.value.doctor).subscribe(
       (response) => {
         this.hours = response.data;        
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getDoctors(){
+    this.doctorService.getDoctorsBySpecialty(this.form.value.speciality).subscribe(
+      (response) => {
+        this.doctors = response.data;
       },
       (error) => {
         console.log(error);
@@ -91,7 +107,8 @@ export class ModalAppointmentComponent {
     this.form = this.fb.group({
       date: ['',Validators.required],
       speciality: ['',Validators.required],
-      hour: ['',Validators.required]
+      hour: ['',Validators.required],
+      doctor: ['',Validators.required]
     })};
 
   close(){

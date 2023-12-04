@@ -4,13 +4,20 @@
     <div class="row" style="height: 80%;">
       <div class="col-6">
         <div class="mb-4">
-          <label for="seleccion" class="form-label text-form">Fecha: </label>
-          <input formControlName="date" (change)="getHours()" type="date" class="form-control" id="fecha" name="fecha" show>
+          <label for="seleccion" class="form-label text-form"><strong>Fecha:</strong></label>
+          <input formControlName="date" type="date" class="form-control" id="fecha" name="fecha" show>
         </div>
         <div class="mb-4">
-          <label for="seleccion" class="form-label text-form">Hora: </label>
-          <select formControlName="hour" class="form-select" id="seleccion" name="seleccion">
-            <option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</option>
+          <label for="seleccion" class="form-label text-form"><strong>Especialidad:</strong></label>
+          <select formControlName="speciality" (change)="getDoctors()" class="form-select" id="seleccion" name="seleccion">
+            <option value="Medicina general">Medicina general</option>
+            <option value="Cuidados paleativos">Cuidados paliativos</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="seleccion" class="form-label text-form"><strong>Doctor:</strong></label>
+          <select formControlName="doctor" class="form-select" (change)="getHours()" id="seleccion" name="seleccion">
+            <option *ngFor="let doctor of doctors" value="{{doctor.id}}">{{doctor.full_name}}</option>
           </select>
         </div>
 
@@ -40,10 +47,9 @@
 
     <div class="row" style="height: 20%;">
       <div class="col-6">
-        <label for="seleccion" class="form-label text-form">Especialidad: </label>
-          <select formControlName="speciality" class="form-select" id="seleccion" name="seleccion">
-            <option value="Medicina general">Medicina general</option>
-            <option value="Cuidados paleativos">Cuidados paliativos</option>
+        <label for="seleccion" class="form-label text-form"><strong>Horas disponibles:</strong></label>
+          <select formControlName="hour" class="form-select" id="seleccion" name="seleccion">
+            <option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</option>
           </select>
       </div>
     

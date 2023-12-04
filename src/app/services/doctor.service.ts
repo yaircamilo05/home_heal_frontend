@@ -31,5 +31,9 @@ export class DoctorService {
     return this.http.post(`${this.server}/create_doctor`, doctor);
   }
 
+  getDoctorsBySpecialty(speciality: string): Observable<ResponseCustomModel<DoctorModel[]>> {
+    return this.http.get<ResponseCustomModel<DoctorModel[]>>(`${this.server}/get_doctors_by_speciality/${speciality}`);
+  }
+
 
 }
