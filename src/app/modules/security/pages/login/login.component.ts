@@ -8,11 +8,7 @@ import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
-<<<<<<< .merge_file_nstWBZ
-import { SockectioService } from 'src/app/services/sockectio.service';
-=======
 import { SockectioService } from './../../../../services/sockectio.service';
->>>>>>> .merge_file_UHnuMd
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -31,10 +27,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private modalService: ModalService,
-<<<<<<< .merge_file_nstWBZ
     private emailService: EmailService,
-=======
->>>>>>> .merge_file_UHnuMd
     private socketService: SockectioService,
     private storageService: StorageService
   ) {
@@ -87,11 +80,7 @@ export class LoginComponent implements OnInit {
             }
           });
         }
-<<<<<<< .merge_file_nstWBZ
-        //conectarse al socket
-=======
         //conectarce al socket
->>>>>>> .merge_file_UHnuMd
         this.storageService.saveUsername(data.email);
       },
         error: (err) => {

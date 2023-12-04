@@ -10,11 +10,13 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { InitComponent } from './pages/init/init.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { MatSliderModule } from '@angular/material/slider';
+import { CalendarComponent } from '../shared/components/calendar/calendar.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     InitComponent,
     DashboardComponent,
     PatientComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -34,17 +37,19 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatSliderModule,
     ReactiveFormsModule,
     NgApexchartsModule,
     FullCalendarModule,
-    SharedModule
+    FormsModule
   ],
   exports: [
     HomeComponent,
     InitComponent,
     DashboardComponent,
     PatientComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    FormsModule,
   ]
 })
 export class WebsiteModule { }

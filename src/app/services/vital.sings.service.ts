@@ -71,6 +71,7 @@ export class VitalSingsService{
     // OBTENER LA INFO DEL PACIENTE CON SU FAMILIAR Y DOCTORES
      this.sendEmail(vitalSigns); //pasarle el paciente que obtuve
   }
+
   calculateStatusPatientByVitalSigns(vitalSigns: VitalSignsHistoryModel){
     let status:EnumEStatusPatient = EnumEStatusPatient.STABLE;
     if(vitalSigns.hearth_rate >= 120 || vitalSigns.hearth_rate <= 50){
@@ -85,13 +86,24 @@ export class VitalSingsService{
         status = EnumEStatusPatient.RISKY;
     }
 
-    if(vitalSigns.O2_saturation >= 95 || vitalSigns.O2_saturation <= 90){
+    if(vitalSigns.O2_saturation <= 85){
         status = EnumEStatusPatient.CRITICAL;
-    }else if(vitalSigns.O2_saturation >= 90 && vitalSigns.O2_saturation < 95){
+    }else if(vitalSigns.O2_saturation >= 86 && vitalSigns.O2_saturation <= 90){
         status = EnumEStatusPatient.RISKY;
     }
 
     return status;
+  }
+
+  convertVitalSingsToVitalSignsHistory(vitalSigns: VitalSingsModel):VitalSignsHistoryModel{
+    const vitalSignsHistory:VitalSignsHistoryModel = {
+      hearth_rate: vitalSigns.hearth_rate,
+      blood_pressure: vitalSigns.blood_pressure,
+      O2_saturation: vitalSigns.O2_saturation,
+      date: new Date().toString(),
+      patient_id: vitalSigns.patient_id,
+    };
+    return vitalSignsHistory;
   }
 
   calculateStatusVitalSign(vitalSign:number, min:number, max:number){

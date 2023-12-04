@@ -1,25 +1,59 @@
-<!--"Header" o filtros-->
-<div *ngIf="appointments.length > 0" class="header pt-3 ps-3 pe-3">
-    <div class="header-division">
-        <div class="container-input-filters">
-            <div class="icon-filter">
-                <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
-            </div>
-            <input type="text" class="form-control number-filter" placeholder="N°" />
-            <input type="text" class="form-control name-filter" placeholder="Nombre" id="message-input" />
-        </div>
-        <div class="container-icons">
-            <div class="search-filter">
-                <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
-            </div>
-            <div class="clear-filter">
-                <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
-            </div>
-        </div>
+<!--'Header' o filtros-->
+<div class='header pt-3 ps-3 pe-3'>
+  <div class='header-division'>
+    <div class='container-input-filters'>
+      <div class='icon-filter'>
+        <span class='icon' [ngClass]='"fa-solid fa-filter"'></span>
+      </div>
+      <input [(ngModel)]='limit' type='number' name='limit' class='form-control' placeholder='N°' />
+
+      <input [(ngModel)]='searchText' type='text' name='searchText' class='form-control' *ngIf='userRolId == 2'
+        placeholder='Nombre del doctor' />
+      <input [(ngModel)]='searchText' type='text' name='searchText' class='form-control' *ngIf='userRolId == 4'
+        placeholder='Nombre del paciente' />
+
+      <div class='radio-buttons form-control' style='display: flex; flex-direction: row;'>
+        <span style='padding-right: 1rem; align-items: center; justify-content: center;'>
+          <input type='radio' id='pendiente' name='estado' [(ngModel)]='appState' value='PENDIENTE'>
+          <label for='pendiente'>
+            <p class='text-black'>Pendiente</p>
+          </label>
+        </span>
+        <span style='padding-right: 1rem; align-items: center; justify-content: center;'>
+          <input type='radio' id='realizado' name='estado' [(ngModel)]='appState' value='REALIZADA'>
+          <label for='realizado'>
+            <p class='text-black'>Realizada</p>
+          </label>
+        </span>
+        <span style='padding-right: 1rem; align-items: center; justify-content: center;'>
+          <input type='radio' id='rechazado' name='estado' [(ngModel)]='appState' value='CANCELADA'>
+          <label for='rechazado'>
+            <p class='text-black'>Cancelada</p>
+          </label>
+        </span>
+      </div>
+
+      <div class='form-control' style='display: flex; flex-direction: row;'>
+        <p>Fecha inicial</p>
+        <input [(ngModel)]='startingDate' type='date' name='startingDate' class='form-control'
+          placeholder='Fecha de inicio'>
+      </div>
+
+      <!-- <input [(ngModel)]='endingDate' type='date' name='endingDate' class='form-control' placeholder='Fecha de fin'> -->
+
     </div>
-    <div class="container-btn" (click)="openModalAppointment()" *ngIf="userRolId == 2">
-        <span class="icon" [ngClass]="'fa-solid fa-calendar-plus'"></span>
+    <div class='container-icons'>
+      <!-- <div class='search-filter'>
+        <span class='icon' [ngClass]=''fa-solid fa-magnifying-glass''></span>
+      </div> -->
+      <div class='clear-filter' (click)='clearFilter()'>
+        <span class='icon' [ngClass]='"fa-solid fa-filter-circle-xmark"'></span>
+      </div>
     </div>
+  </div>
+  <div class='container-btn' (click)="openModalAppointment()" *ngIf='userRolId == 2'>
+    <span class='icon' [ngClass]='"fa-solid fa-calendar-plus"' ></span>
+  </div>
 </div>
 
 <!-- No hay citas -->
@@ -38,61 +72,79 @@
 </div>
 
 <!-- Card para los doctores: -->
-<div class="row pe-5 ps-5 " *ngIf="userRolId == 4">
-    <div *ngFor="let appointment of appointments.reverse()" class="col-md-4 mb-3">
-        <div class="card" style="width: 18rem; display: flex;">
-            <div class="mb-0" style="display: flex; flex-direction: row; align-items: center;">
-                <div style="flex: 1; padding: 10px;">
-                    <img class="img-fluid rounded-circle" [src]="appointment.patient_photo" alt="Doctor Image"
-                        style="width: 80px; height: 80px;">
-                </div>
-                <div style="flex: 2; padding: 10px;">
-                    <h3 class="mb-0">{{ appointment.patient_name }}</h3>
-                    <h3 class="mb-0 card-text-ligth">{{ appointment.date }}</h3>
-                </div>
-            </div>
-            <div class="card-body p-1 mb-3">
-                <h2 [ngClass]="{'text-pending': appointment.state === 'PENDIENTE', 'text-canceled': appointment.state === 'CANCELADA', 'text-completed': appointment.state === 'REALIZADA'}"
-                    class="card-title text-center mb-2" style="text-transform: uppercase;">{{ appointment.state }}</h2>
-                <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
-                <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
-            </div>
-            <div *ngIf="deshabilitarBoton(appointment)" class="mb-2 me-2"
-                style="align-self: flex-end; margin-top: auto;">
-                <a class="btn btn-danger float-end" (click)="openModalCancelAppointment(appointment)"
-                    style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
-                <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i
-                        class="fa-solid fa-calendar-check"></i></a>
-            </div>
+<div class='row pe-5 ps-5 ' *ngIf='userRolId == 4'>
+  <!-- startDate: startingDate, endDate: endingDate -->
+  <div *ngFor='let appointment of appointments.reverse() | multiplexorFilterPipe: {
+        patient_name: searchText, state: appState, date: startingDate
+      } : limit' class='col-md-4 mb-3'>
+    <!-- <div *ngFor='let appointment of appointments' > -->
+    <div class='card' style='width: 18rem; display: flex;'>
+      <div class='mb-0' style='display: flex; flex-direction: row; align-items: center;'>
+        <div style='flex: 1; padding: 10px;'>
+          <img class='img-fluid rounded-circle' [src]='appointment.patient_photo' alt='Doctor Image'
+            style='width: 80px; height: 80px;'>
         </div>
+        <div style='flex: 2; padding: 10px;'>
+          <h3 class='mb-0'>{{ appointment.patient_name }}</h3>
+          <h3 class='mb-0 card-text-ligth'>{{ appointment.date }}</h3>
+        </div>
+      </div>
+      <div class='card-body p-1 mb-3'>
+        <h2
+          [ngClass]='{"text-pending": appointment.state === "PENDIENTE", "text-canceled": appointment.state === "CANCELADA", "text-completed": appointment.state === "REALIZADA"}'
+          class='card-title text-center mb-2' style='text-transform: uppercase;'>{{ appointment.state }}</h2>
+        <p class='card-text text-center'> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
+        <p class='card-text text-center'><strong>Razón: </strong>{{ appointment.reason }}</p>
+      </div>
+      <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
+        <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
+        <a class="btn btn-success float-end" (click)="marcarCitaRealizada(appointment)"><i class="fa-solid fa-calendar-check"></i></a>
     </div>
+    </div>
+  </div>
 </div>
 
 <!-- Card para los pacientes-->
-<div class="row pe-5 ps-5 " *ngIf="userRolId == 2">
-    <div *ngFor="let appointment of appointments.reverse()" class="col-md-4 mb-3">
-        <div class="card" style="width: 18rem; display: flex;">
-            <div class="mb-0" style="display: flex; flex-direction: row; align-items: center;">
-                <div style="flex: 1; padding: 10px;">
-                    <img class="img-fluid rounded-circle" [src]="appointment.doctor_photo" alt="Doctor Image"
-                        style="width: 80px; height: 80px;">
-                </div>
-                <div style="flex: 2; padding: 10px;">
-                    <h3 class="mb-0">{{ appointment.doctor_name }}</h3>
-                    <h3 class="mb-0 card-text-ligth">{{ appointment.date }}</h3>
-                </div>
-            </div>
-            <div class="card-body p-1 mb-3">
-                <h2 [ngClass]="{'text-pending': appointment.state === 'PENDIENTE', 'text-canceled': appointment.state === 'CANCELADA', 'text-completed': appointment.state === 'REALIZADA'}"
-                    class="card-title text-center mb-2" style="text-transform: uppercase;">{{ appointment.state }}</h2>
-                <p class="card-text text-center"> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
-                <p class="card-text text-center"><strong>Razón: </strong>{{ appointment.reason }}</p>
-            </div>
-            <div *ngIf="deshabilitarBoton(appointment)" class="mb-2 me-2"
-                style="align-self: flex-end; margin-top: auto;">
-                <a class="btn btn-danger float-end" (click)="openModalCancelAppointment(appointment)"
-                    style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
-            </div>
+<div class='row pe-5 ps-5 ' *ngIf='userRolId == 2'>
+  <div *ngFor='let appointment of appointments.reverse()| multiplexorFilterPipe: {
+    doctor_name: searchText, state: appState, date: startingDate
+  }: limit' class='col-md-4 mb-3'>
+    <div class='card' style='width: 18rem; display: flex;'>
+      <div class='mb-0' style='display: flex; flex-direction: row; align-items: center;'>
+        <div style='flex: 1; padding: 10px;'>
+          <img class='img-fluid rounded-circle' [src]='appointment.doctor_photo' alt='Doctor Image'
+            style='width: 80px; height: 80px;'>
         </div>
+        <div style='flex: 2; padding: 10px;'>
+          <h3 class='mb-0'>{{ appointment.doctor_name }}</h3>
+          <h3 class='mb-0 card-text-ligth'>{{ appointment.date }}</h3>
+        </div>
+      </div>
+      <div class='card-body p-1 mb-3'>
+        <h2
+          [ngClass]='{"text-pending": appointment.state === "PENDIENTE", "text-canceled": appointment.state === "CANCELADA", "text-completed": appointment.state === "REALIZADA"}'
+          class='card-title text-center mb-2' style='text-transform: uppercase;'>{{ appointment.state }}</h2>
+        <p class='card-text text-center'> <strong>Dirección: </strong>{{ appointment.patient_address }}</p>
+        <p class='card-text text-center'><strong>Razón: </strong>{{ appointment.reason }}</p>
+      </div>
+      <div *ngIf="deshabilitarBoton(appointment)"  class="mb-2 me-2" style="align-self: flex-end; margin-top: auto;">
+        <a  class="btn btn-danger float-end"  (click)="openModalCancelAppointment(appointment)" style="margin-inline-start: 10px;"><i class="fa-solid fa-calendar-xmark"></i></a>
     </div>
+    </div>
+  </div>
 </div>
+
+
+<!--
+  <mat-form-field style='color-scheme: unset;'>
+    <input matInput [matDatepicker]='picker1' placeholder='Fecha de inicio' [(ngModel)]='startDate'>
+    <mat-datepicker-toggle matSuffix [for]=' picker1'></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]='picker2' placeholder='Fecha de fin' [(ngModel)]='endDate'>
+    <mat-datepicker-toggle matSuffix [for]='picker2'></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+-->

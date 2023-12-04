@@ -22,7 +22,7 @@ export class ModalVitalSignsComponent implements OnInit {
   iconClass: string;
   form: FormGroup = new FormGroup({});
   disabled: boolean = false;
-  max: number = 50;
+  max: number = 100;
   min: number = 0;
   showTicks: boolean = false;
   step: number = 1;

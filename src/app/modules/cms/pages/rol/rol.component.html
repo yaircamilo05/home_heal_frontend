@@ -5,16 +5,15 @@
         <div class='icon-filter'>
           <span class='icon' [ngClass]='"fa-solid fa-filter"'></span>
         </div>
-        <input type='text' formControlName='message' class='form-control number-filter' placeholder='N°' />
-        <input type='text' formControlName='message' class='form-control name-filter' placeholder='Nombre'
-          id='message-input' />
+        <input [(ngModel)]="limit" type="number" name="limit" class="form-control" placeholder="N°" />
+        <input [(ngModel)]="rolTitle" type='text' name="rolTitle" class='form-control' placeholder='Rol' />
       </div>
       <div class='container-icons'>
         <div class='search-filter'>
-          <span class='icon' [ngClass]='"fa-solid fa-magnifying-glass"'></span>
+          <span class='icon' [ngClass]="'fa-solid fa-magnifying-glass'"></span>
         </div>
-        <div class='clear-filter'>
-          <span class='icon' [ngClass]='"fa-solid fa-filter-circle-xmark"'></span>
+        <div class="clear-filter" (click)="clearFilter()">
+          <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
         </div>
       </div>
     </div>
@@ -34,7 +33,7 @@
         </tr>
       </thead>
       <tbody class="">
-        <tr class="text-center" *ngFor="let rol of roles">
+        <tr class="text-center" *ngFor="let rol of roles | multiplexorFilterPipe: {rol: rolTitle}: limit">
           <th scope="row">{{rol.id}}</th>
           <td>{{rol.name}}</td>
           <td>{{rol.description}}</td>

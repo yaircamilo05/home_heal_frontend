@@ -1,17 +1,17 @@
-import { Dialog } from '@angular/cdk/dialog';
-import { Component } from '@angular/core';
-import { Messages } from 'src/app/common/messages.const';
-import { AppointmentGetModel } from 'src/app/models/appointment.model';
-import { EmailCancellationModel } from 'src/app/models/email.cancellation.model';
-import { Icons } from 'src/app/common/icon.modal';
-import { TitlesModal } from 'src/app/common/titles.modal';
-import { TypeModal } from 'src/app/common/type.modal';
-import { ModalAppointmentComponent } from 'src/app/modules/shared/components/modal-appointment/modal-appointment.component';
-import { AppointmentsService } from 'src/app/services/appointments.service';
-import { EmailService } from 'src/app/services/email.service';
-import { ModalService } from 'src/app/services/modal.service';
-import { StorageService } from 'src/app/services/storage.service';
-import { environment } from 'src/environments/environment.local';
+import { Dialog } from '@angular/cdk/dialog'
+import { Component } from '@angular/core'
+import { Icons } from 'src/app/common/icon.modal'
+import { Messages } from 'src/app/common/messages.const'
+import { TitlesModal } from 'src/app/common/titles.modal'
+import { TypeModal } from 'src/app/common/type.modal'
+import { AppointmentGetModel } from 'src/app/models/appointment.model'
+import { EmailCancellationModel } from 'src/app/models/email.cancellation.model'
+import { ModalAppointmentComponent } from 'src/app/modules/shared/components/modal-appointment/modal-appointment.component'
+import { AppointmentsService } from 'src/app/services/appointments.service'
+import { EmailService } from 'src/app/services/email.service'
+import { ModalService } from 'src/app/services/modal.service'
+import { StorageService } from 'src/app/services/storage.service'
+import { environment } from 'src/environments/environment.local'
 
 @Component({
   selector: 'app-appointment',
@@ -19,8 +19,14 @@ import { environment } from 'src/environments/environment.local';
   styleUrls: ['./appointment.component.scss'],
 })
 export class AppointmentComponent {
-  appointments: AppointmentGetModel[] = [];
-  userRolId: number = 0;
+  appointments: AppointmentGetModel[] = []
+  userRolId: number = 0
+
+  searchText: string = ''
+  limit: number | undefined = 10
+  appState: string = ''
+  startingDate: string = ''
+  // endingDate: string = ''
 
   constructor(
     private appointmentsService: AppointmentsService,
@@ -31,28 +37,36 @@ export class AppointmentComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getAppointmentsByUser();
-    this.getRolId();
+    this.getAppointmentsByUser()
+    this.getRolId()
+  }
+
+  clearFilter() {
+    this.searchText = ''
+    this.appState = ''
+    this.startingDate = ''
+    // this.endingDate = ''
+    this.limit = undefined
   }
 
   getAppointmentsByUser() {
     this.appointmentsService.getAppointmentsByUser().subscribe(
       (response) => {
         // Verifica si obtienes los datos correctamente
-        console.log(response);
+        console.log(response)
         if (response && response.data) {
-          this.appointments = response.data;
+          this.appointments = response.data
         }
       },
       (error) => {
-        console.error('Error al obtener las citas:', error);
+        console.error('Error al obtener las citas:', error)
       }
-    );
+    )
   }
 
   getRolId() {
-    this.userRolId = this.storageService.getRolId();
-    console.log('rol id = ' + this.userRolId);
+    this.userRolId = this.storageService.getRolId()
+    console.log('rol id = ' + this.userRolId)
   }
 
   async openModalCancelAppointment(appointment: AppointmentGetModel) {
@@ -144,6 +158,8 @@ export class AppointmentComponent {
     }
   }
   openModalAppointment() {
+    console.log("entre");
+    
     let RefDialog = this.dialog.open(ModalAppointmentComponent, {
       minWidth: '800px',
       minHeight: '80%',
@@ -157,5 +173,8 @@ export class AppointmentComponent {
         userName: ''
       }
     });
+
+    console.log(RefDialog);
+    
   }
 }

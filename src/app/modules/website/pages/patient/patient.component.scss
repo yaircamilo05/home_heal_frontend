@@ -3,40 +3,56 @@
 .btn-primary {
     background-color: #369cdd !important;
     border-color: #369cdd !important;
-    color: #ffffff; /* Texto blanco para mayor contraste */
+    color: #ffffff; 
 }
 
 .btn-custom-size {
-    width: 50px; /* ajusta el ancho según tu preferencia */
-    height: 50px; /* ajusta la altura según tu preferencia */
+    width: 50px; 
+    height: 50px; 
 }
 
 .img-fluid.rounded-circle {
     border-radius: 50%;
-    width: 150px; // Establece un ancho fijo
-    height: 150px; // Establece una altura fija
-    object-fit: cover; // Asegura que la imagen cubra completamente el espacio sin distorsionarse
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover; 
 }
 
 h3.card-adress {
-    color: #888; // Cambia esto al color que prefieras
+    color: #888; 
 }
 
-.circle {
+.circle-flag{
     width: 35px;
     height: 35px;
     border-radius: 50%;
+}
+
+.circle-noregister{    
+    background-color: #777;
+    opacity: 0.5;
+}
+
+.circle-stable{
+    background-color: #4caf50;
+}
+
+.circle-risky{
     background-color: #ffd700;
 }
 
+.circle-critical{    
+    background-color: #FF4848;
+}
+
 .card-text {
-    margin-bottom: 0; // Reduce el margen inferior
+    margin-bottom: 0; 
 }
 
 .row > .col > .card-text {
-    margin-bottom: 0; // Reduce el margen inferior
+    margin-bottom: 0; 
 }
-// Clases utilizadas para el componente de menus, de donde se obtuvieron unos elementos
+
 .container-window{
     display: flex;
     flex-direction: column;
@@ -149,7 +165,7 @@ h3.card-adress {
     &:hover {
         background-color: $success;
         .icon {
-            font-size: 24px; /* Ajusta el tamaño de fuente según tus necesidades */
+            font-size: 24px; 
             color: $back;
           }
       }
@@ -160,13 +176,12 @@ h3.card-adress {
 }
 
 .rounded-top-left {
-    border-top-left-radius: 10px; /* Ajusta el valor según tus preferencias */
-    /* Otras propiedades de estilo según sea necesario */
+    border-top-left-radius: 10px;
 }
 
 .rounded-top-right {
-    border-top-right-radius: 10px; /* Redondea la esquina superior izquierda */
-    padding: 10px; /* Ajusta el relleno según tus preferencias */
+    border-top-right-radius: 10px; 
+    padding: 10px; 
 }
 
 .color-edit{
@@ -184,4 +199,27 @@ h3.card-adress {
 
 .color-edit:hover{
   color: $warning-lite;
+}
+
+.circle-noregister{    
+    background-color: #777;
+    opacity: 0.5;
+}
+
+.circle-stable{
+    background-color: #4caf50;
+}
+
+.circle-risky{
+    background-color: #ffd700;
+}
+
+.circle-critical{    
+    background-color: #FF4848;
+}
+
+.circle-flag{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 }

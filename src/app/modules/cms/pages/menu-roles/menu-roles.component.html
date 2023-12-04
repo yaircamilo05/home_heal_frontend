@@ -5,16 +5,16 @@
         <div class="icon-filter">
           <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
         </div>
-        <input type="text" formControlName="message" class="form-control number-filter" placeholder="N°" />
-        <input type="text" formControlName="message" class="form-control name-filter" placeholder="Nombre"
-          id="message-input" />
+        <input [(ngModel)]="limit" type="number" name="limit" class="form-control" placeholder="N°" />
+        <input [(ngModel)]="roleName" type="text" name="roleName" class="form-control name-filter"
+          placeholder="Rol específico" />
       </div>
       <div class="container-icons">
         <div class="search-filter">
           <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
         </div>
-        <div class="clear-filter">
-          <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
+        <div class='clear-filter' (click)='clearFilter()'>
+          <span class='icon' [ngClass]='"fa-solid fa-filter-circle-xmark"'></span>
         </div>
       </div>
     </div>
@@ -33,16 +33,18 @@
         </tr>
       </thead>
       <tbody class="">
-        <tr class="text-center" *ngFor="let role of rolsWithMenus">
+        <tr class="text-center" *ngFor="let role of rolsWithMenus | multiplexorFilterPipe: {
+            name: roleName
+        }: limit">
           <th scope="row">{{role.id}}</th>
           <td>
             {{role.name}}
           </td>
           <td>
-              <select class="form-control" (change)="selectMenu($event)">
-                <option value="0" disabled selected>Ver menus</option>
-                <option *ngFor="let menu of role.menus" [value]="menu.id">{{ menu.title }}</option>
-              </select>
+            <select class="form-control" (change)="selectMenu($event)">
+              <option value="0" disabled selected>Ver menus</option>
+              <option *ngFor="let menu of role.menus" [value]="menu.id">{{ menu.title }}</option>
+            </select>
           </td>
           <td class="d-flex justify-content-center align-items-center">
             <div class="form-control container-icons">
