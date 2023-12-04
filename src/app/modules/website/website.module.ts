@@ -16,6 +16,7 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatSliderModule } from '@angular/material/slider';
+import { CalendarComponent } from '../shared/components/calendar/calendar.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
     DashboardComponent,
     PatientComponent,
     AppointmentComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,6 @@ import { MatSliderModule } from '@angular/material/slider';
     ReactiveFormsModule,
     NgApexchartsModule,
     FullCalendarModule,
-    SharedModule,
     FormsModule
   ],
   exports: [

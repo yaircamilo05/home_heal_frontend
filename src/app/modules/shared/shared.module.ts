@@ -47,7 +47,7 @@ import {  ModalAppointmentComponent } from './components/modal-appointment/modal
     SendEmailComponent,
     MultiplexorFilterPipe,
     ModalAppointmentComponent
-  ],
+    ],
   imports: [
     CommonModule,
     DialogModule,
@@ -62,6 +62,7 @@ import {  ModalAppointmentComponent } from './components/modal-appointment/modal
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    FullCalendarModule
   ],
   exports: [
     ButtonComponent,
@@ -72,6 +73,7 @@ import {  ModalAppointmentComponent } from './components/modal-appointment/modal
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    FullCalendarModule
   ],
 })
 export class SharedModule { }
