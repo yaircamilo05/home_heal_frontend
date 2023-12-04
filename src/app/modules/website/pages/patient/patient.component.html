@@ -46,7 +46,7 @@
                   <div class="card-body row">
                       <div class="col-9"> <!-- Esta columna ocupa el 75% del card-body -->
                           <div class="d-flex mb-2 align-items-center">
-                              <div class="circle p-2 m-2"></div>
+                              <div class="circle p-2 m-2"  [ngClass]="{'circle-noregister': patient.status === 1, 'circle-stable': patient.status === 2, 'circle-risky': patient.status === 3, 'circle-critical': patient.status === 4}"></div></div>
                               <div class="container">
                                   <h2 class="card-title m-1">{{patient.name}}</h2>
                                   <h3 class="card-adress m-1">{{patient.address}}</h3>
@@ -94,5 +94,4 @@
           </div>
       </div>
   </div>
-</div>
 

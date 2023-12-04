@@ -185,3 +185,20 @@ h3.card-adress {
 .color-edit:hover{
   color: $warning-lite;
 }
+
+.circle-noregister{    
+    background-color: #777;
+    opacity: 0.5;
+}
+
+.circle-stable{
+    background-color: #4caf50;
+}
+
+.circle-risky{
+    background-color: #ffd700;
+}
+
+.circle-critical{    
+    background-color: #FF4848;
+}
