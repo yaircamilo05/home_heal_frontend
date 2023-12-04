@@ -14,7 +14,7 @@
               <img src={{message?.image_username}} alt="Imagen">
             </div>
             <div class="container-name-date">
-              <div class="name">{{message.nombre_remitente}} </div>
+              <div class="name">{{message.nombre_remitente}}</div>
               <div class="date">{{message.fecha}} - {{message.hora}}</div>
             </div>
           </div>
@@ -29,7 +29,7 @@
       <input type="text" formControlName="message" class="form-control" placeholder="escribe tu mensaje"
         id="message-input">
       <div class="input-group-append container-btn">
-        <app-button (click)="sendMessage()" type="success" text="Enviar"></app-button>
+        <button class="btn btn-close-white" (click)="sendMessage()" ><i class="fa-solid fa-paper-plane fa-xl" style="color: #ffffff"></i></button>
       </div>
     </div>
   </form>

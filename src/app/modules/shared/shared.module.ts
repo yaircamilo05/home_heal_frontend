@@ -4,7 +4,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderModalComponent } from './components/header-modal/header-modal.component';
 import { ModalChatComponent } from './components/modal-chat/modal-chat.component';
-import { ReactiveFormsModule, FormsModule, } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ModalMenusComponent } from './components/modal-menus/modal-menus.component';
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
 import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
@@ -76,4 +76,4 @@ import {  ModalAppointmentComponent } from './components/modal-appointment/modal
     FullCalendarModule
   ],
 })
-export class SharedModule { }
+export class SharedModule {}
