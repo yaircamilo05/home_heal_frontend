@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   vitalSingsService = inject(VitalSingsService);
   patientService = inject(PatientService);
   public chartOptions!: Partial<ChartOptions>;
+  public radialBarOptions!: Partial<ChartOptions>;
   @Input() seriesInput: GraphicSerieModel[] = [];
   showNotificationNewMessage: boolean = false;
   messagesRecived: MessageModel[] = [];
@@ -58,6 +59,7 @@ export class DashboardComponent implements OnInit {
     this.onUpdateVitalSigns();
     this.getVitalSignsHistory();
 
+    // Área
     this.chartOptions = {
       series: [...this.seriesInput],
       chart: {
@@ -97,6 +99,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
+    
   }
 
   onUpdateVitalSigns() {
@@ -115,6 +118,7 @@ export class DashboardComponent implements OnInit {
       this.seriesTest.set(this.seriesOutput);
     });
   }
+  
   openModalUpdateVitalsSigns() {
     let RefDialog = this.dialog.open(ModalVitalSignsComponent,
       {
