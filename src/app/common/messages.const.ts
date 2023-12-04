@@ -20,6 +20,7 @@ export const Messages = {
   EmailSent: (message:string) => `¡Tu ${message} ha sido notificado!`,
   ErrorCancelAppointment: "¡Oh no! No puedes cancelar una cita que ya ha pasado",
   ErrorCheckAppointment: "¡Oh no! No puedes checar una cita que no ha pasado",
+  SuccessAppointment: "¡Tu cita ha sido agendada!",
 }
 
 

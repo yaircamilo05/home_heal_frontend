@@ -22,13 +22,14 @@ export class RegisterComponent {
   selected_file: boolean = false;
   image_url_not_upload: string = '';
   loading: boolean = false;
+  isRegisterClicked = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private patientService: PatientService,
-    private modalService: ModalService,
     private router: Router,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private modalService: ModalService,
     ) {
 
     this.buildForm();
@@ -77,6 +78,8 @@ export class RegisterComponent {
 
   send_request(formData: FormData) {
     this.loading = true;
+    this.isRegisterClicked = true;
+    this.send_email();
     this.patientService.register_patient(formData).subscribe({
       next: (response) => {
         if(response) {
@@ -93,7 +96,7 @@ export class RegisterComponent {
           this.modalService.openToastErrorAction(Messages.ErrorRegister);
         }
       }
-    })
+    });
   }
 
   send_email() {
@@ -107,9 +110,9 @@ export class RegisterComponent {
     let data_familiar: EmailRegisterModel = {
       hash: environment.hash_validator,
       to_destination: this.form_familiar.get('familiar_email')?.value,
-      name: this.form_patient.get('familiar_name')?.value,
+      name: this.form_familiar.value.familiar_name,
       password: this.form_patient.get('password')?.value
-    }
+    }    
 
     this.emailService.send_email_register_patient(data_patient).subscribe({
       next: (response) => {

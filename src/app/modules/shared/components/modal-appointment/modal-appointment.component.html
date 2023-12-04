@@ -30,8 +30,8 @@
         <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
           <div class="d-flex flex-wrap justify-content-around" style="width: 100%;">
             <div *ngFor="let col of [0, 1, 2]">
-              <div *ngFor="let row of [0, 1, 2]" class="container-btn mb-3" (click)="getSymptomValue(iconsData[row * 3 + col].text)" style="cursor: pointer;">
-                <div class=" m-2 d-flex align-items-center justify-content-center">
+              <div *ngFor="let row of [0, 1, 2]" class="container-btn mb-3" (click)="getSymptomValue(iconsData[row * 3 + col].text)" style="cursor: pointer;" [ngClass]="{'selected-icon': selectedIcons.includes(iconsData[row * 3 + col].text)}">
+                <div class=" m-2 d-flex align-items-center justify-content-center" >
                   <span class="" [ngClass]="'fa-solid fa-2xl ' + iconsData[row * 3 + col].class"
                     style="color: #3286C0"></span>
                 </div>
@@ -54,7 +54,7 @@
       </div>
     
       <div class="col-12 text-end">
-        <button class="btn btn-danger m-2" (click)="close()">CANCELAR</button>
+        <button *ngIf="!isAcceptClicked" class="btn btn-danger m-2" (click)="close()">CANCELAR</button>
         <button class="btn btn-success m-2" (click)="createAppointment()">ACEPTAR</button>
       </div>
     </div>

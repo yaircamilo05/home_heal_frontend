@@ -149,7 +149,7 @@
             <div class="row pe-4">
               <div class="col">
                 <div class="text-end">
-                  <button (click)="cancel()" class="btn btn-red-cancel me-2">Cancelar</button>
+                  <button *ngIf="!isRegisterClicked" (click)="cancel()" class="btn btn-red-cancel me-2">Cancelar</button>
                   <button (click)="register()" class="btn btn-blue-confirm">
                     <div *ngIf="!loading">Registrarme</div>
                     <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">

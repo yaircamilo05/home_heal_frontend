@@ -1,12 +1,18 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component,Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { co } from '@fullcalendar/core/internal-common';
+import { Messages } from 'src/app/common/messages.const';
 import { AppointmentCreateModel } from 'src/app/models/appointments.create.model';
+import { DoctorAppointmentModel } from 'src/app/models/doctor.appointment.model';
+import { EmailAppointmentModel } from 'src/app/models/email.appointment.model';
 import { OutCustomModal } from 'src/app/models/out.custom.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { environment } from 'src/environments/environment.local';
 
 interface InputDataModel{
   title: string,
@@ -43,6 +49,9 @@ export class ModalAppointmentComponent {
   reason: string = '';  
   cont: number = 0;
   doctors: any[] = [];
+  doctor: any;
+  isAcceptClicked = false;
+  selectedIcons : string[] = [];
   
   constructor
   (
@@ -52,7 +61,8 @@ export class ModalAppointmentComponent {
     private fb : FormBuilder,
     private appointmentService: AppointmentsService,
     private strorageService: StorageService,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private emailService: EmailService
     )
   {
     this.title = data.title;
@@ -67,6 +77,7 @@ export class ModalAppointmentComponent {
   }
 
   createAppointment(){
+    this.isAcceptClicked = true;
     let appointment_data: AppointmentCreateModel = {
       reason: this.reason,
       date: this.form.value.date,
@@ -75,13 +86,66 @@ export class ModalAppointmentComponent {
       user_id: this.strorageService.getUserId()
     }
 
-    console.log(appointment_data);
+    this.appointmentService.postAppointment(appointment_data).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.close();
+        window.location.reload();
+        this.send_email(response.data.data_patient);
+
+
+      },
+      error: (error) => {
+        console.log(error);
+        this.modalService.openToastErrorAction(Messages.ErrorAction);
+      }
+    });
+  }
+
+  send_email(patient: any){
+    this.doctorService.getDoctorById(this.form.value.doctor).subscribe({
+      next: (response) => {
+        this.doctor = response.data;
+        
+        let email_data: EmailAppointmentModel = {
+          hash: environment.hash_validator,
+          to_destination: [this.doctor.email, patient.email],
+          name: 'tú',
+          text: 'Tienes una nueva cita programada',
+          date: this.form.value.date + ' ' + this.form.value.hour,
+          address: patient.address,
+          reason: this.reason,
+          name_patient: patient.full_name,
+          cc_patient: patient.cc,
+          phone_patient: patient.phone,
+          email_patient: patient.email,
+          name_doctor: this.doctor.full_name,
+          cc_doctor: this.doctor.cc,
+          phone_doctor: this.doctor.phone,
+          email_doctor: this.doctor.email,
+          problem: 'llevar a cabo la cita',
+          relationship: ''
+        }
+    
+        console.log(email_data);
+    
+        this.emailService.send_email_appointment(email_data).subscribe({
+          next: (response) => {
+            console.log(response);
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
     
   }
 
   getHours(){
-    console.log(this.form.value.doctor);
-    
     this.appointmentService.getAvailableHoursByDate(this.form.value.date, this.form.value.doctor).subscribe(
       (response) => {
         this.hours = response.data;        
@@ -96,6 +160,7 @@ export class ModalAppointmentComponent {
     this.doctorService.getDoctorsBySpecialty(this.form.value.speciality).subscribe(
       (response) => {
         this.doctors = response.data;
+        
       },
       (error) => {
         console.log(error);
@@ -115,8 +180,16 @@ export class ModalAppointmentComponent {
     this.dialog.close();
   }
   
-  getSymptomValue(value: string | undefined){
-    this.cont++;
-    this.reason += this.cont > 1 ? ', ' + value : value;
+  getSymptomValue(value: string){
+    const index = this.selectedIcons.indexOf(value);
+    if (index > -1) {
+    // Si el icono ya está seleccionado, quítalo del array
+    this.selectedIcons.splice(index, 1);
+   } else {
+    // Si el icono no está seleccionado, añádelo al array
+    this.selectedIcons.push(value);
+  }
+    this.reason = this.selectedIcons.join(',');
+    console.log(this.reason);
   }
 }
