@@ -10,23 +10,26 @@ import { MenuGetModel } from '../models/menu.model';
   providedIn: 'root'
 })
 export class MenusRolesService {
-  rol_server: string =`${environment.server}/rol`;
-  server: string =`${environment.server}/rol_menu`;
+  rol_server: string = `${environment.server}/rol`;
+  server: string = `${environment.server}/rol_menu`;
 
 
   constructor(
     private http: HttpClient,
 
   ) { }
-  getAllRolsWithMenus(): Observable<ResponseCustomModel<RolWithMenusModel[]>>{
+  getAllRolsWithMenus(): Observable<ResponseCustomModel<RolWithMenusModel[]>> {
     return this.http.get<ResponseCustomModel<RolWithMenusModel[]>>(`${this.rol_server}/roles_with_menus`);
   }
 
-  asignMenuToRole(rol_id:number, menu_id:number): Observable<ResponseCustomModel<MenuGetModel[]>>{
-    return this.http.post<ResponseCustomModel<MenuGetModel[]>>(`${this.server}/asign_menu_to_role`,{"rol_id":rol_id,"menu_id":menu_id});
+  asignMenuToRole(rol_id: number, menu_id: number): Observable<ResponseCustomModel<MenuGetModel[]>> {
+    return this.http.post<ResponseCustomModel<MenuGetModel[]>>(
+      `${this.server}/asign_menu_to_role`,
+      { "rol_id": rol_id, "menu_id": menu_id }
+    );
   }
 
-  deleteMenuToRole(rol_id:number, menu_id:number): Observable<ResponseCustomModel<boolean>>{
+  deleteMenuToRole(rol_id: number, menu_id: number): Observable<ResponseCustomModel<boolean>> {
     return this.http.delete<ResponseCustomModel<boolean>>(`${this.server}/delete_menu_to_role/${rol_id}/${menu_id}`);
   }
 
