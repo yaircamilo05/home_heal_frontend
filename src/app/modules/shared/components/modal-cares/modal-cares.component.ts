@@ -135,4 +135,8 @@ export class ModalCaresComponent {
     this.viewForm = !this.viewForm;
   }
 
+  getRole(){
+    return this.storageService.getRolId();
+  }
+
 }

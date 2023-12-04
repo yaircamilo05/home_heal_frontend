@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="create_space">
+    <div class="create_space" *ngIf="getRole() == 4">
         <div class="container-btn" (click)="openCloseForm()">
             <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
         </div>
