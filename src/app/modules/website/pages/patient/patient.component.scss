@@ -22,24 +22,26 @@ h3.card-adress {
     color: #888; 
 }
 
-.circle-stable{
+.circle-flag{
     width: 35px;
     height: 35px;
     border-radius: 50%;
+}
+
+.circle-noregister{    
+    background-color: #777;
+    opacity: 0.5;
+}
+
+.circle-stable{
     background-color: #4caf50;
 }
 
 .circle-risky{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
     background-color: #ffd700;
 }
 
-.circle-critical{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+.circle-critical{    
     background-color: #FF4848;
 }
 

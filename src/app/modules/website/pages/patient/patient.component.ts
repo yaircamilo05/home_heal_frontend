@@ -20,6 +20,7 @@ export class PatientComponent {
   value_o2_saturation: number | undefined = 0;
   value_blood_presure: number | undefined = 0;
   value_heart_rate: number | undefined = 0;
+  showDescription: boolean[] = new Array(this.patients.length).fill(false)
 
   constructor(
     private patientService: PatientService,
@@ -39,7 +40,7 @@ export class PatientComponent {
       (response) => {
         if (response && response.data) {
           this.patients = response.data;
-          this.updateStatusPatient();
+          //this.updateStatusPatient();
         }
       },
       (error) => {
@@ -48,6 +49,7 @@ export class PatientComponent {
     );
   }
 
+  // En espera de optimización
   updateStatusPatient() {
     console.log('Entró al método updateStatusPatient');
     this.patients.forEach((patient) => {
@@ -75,6 +77,10 @@ export class PatientComponent {
   redirectToDashboard(patientId: number) {
     this.router.navigate(['/website/dashboard', patientId]);
   }
+   
+  toggleDescription(index: number): void {
+    this.showDescription[index] = !this.showDescription[index];
+  }
 
   getDoctorLogged() {
     var userId = this.storageService.getUserId();
@@ -83,7 +89,6 @@ export class PatientComponent {
       console.log('RESPONSE', response);
       if (response && response.data) {
         this.doctorId = response.data.id;
-        console.log('DOCTOR ID', this.doctorId);
         this.getAllPatients(this.doctorId);        
       }
     });

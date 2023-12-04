@@ -16,9 +16,10 @@ export interface PatientRegister{
 }
 
 export enum EnumEStatusPatient {
-    STABLE = 1,
-    RISKY =  2,
-    CRITICAL = 3
+    NOREGISTER = 1,
+    STABLE = 2,
+    RISKY =  3,
+    CRITICAL = 4
 }
 
 export interface PatientCard{
@@ -27,8 +28,9 @@ export interface PatientCard{
    lastname:string,
    cc:string,
    phone:string,
-   emil:string,
+   email:string,
    address:string,
+   description:string,
    age:string,
    gender:string,
    img_url:string,

@@ -5,7 +5,7 @@
                 <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
             </div>
             <input type="text" class="form-control number-filter" placeholder="N°" />
-            <input type="text" class="name-filter" placeholder="Nombre" id="message-input" />
+            <input type="text" class="form-control name-filter" placeholder="Nombre" id="message-input" />
         </div>
         <div class="container-icons">
             <div class="search-filter">
@@ -15,10 +15,10 @@
                 <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 
-<div *ngFor="let patient of patients">
+<div *ngFor="let patient of patients; let i = index">
     <div class="d-flex justify-content-center align-items-center">
         <div class="card w-75 mb-3">
             <div class="row g-0">
@@ -29,8 +29,8 @@
                     <div class="card-body row">
                         <div class="col-9">
                             <div class="d-flex mb-2 align-items-center">
-                                <div class="p-2 m-2"
-                                    [ngClass]="{'circle-stable': patient.status === 1, 'circle-risky': patient.status === 2, 'circle-critical': patient.status === 3}">
+                                <div class="circle-flag p-2 m-2"
+                                    [ngClass]="{'circle-noregister': patient.status === 1, 'circle-stable': patient.status === 2, 'circle-risky': patient.status === 3, 'circle-critical': patient.status === 4}">
                                 </div>
                                 <div class="container">
                                     <h2 class="card-title m-1">{{patient.name}}</h2>
@@ -53,6 +53,12 @@
                                     <p><strong>Género: </strong>{{patient.gender}}</p>
                                 </div>
                             </div>
+                            <div class="col-12 mt-3" *ngIf="showDescription[i]">
+                                <p><strong>Descripción:</strong> {{patient.description}}</p>
+                            </div>
+                            <div class="col-12 mt-3" *ngIf="showDescription[i]">
+                                <p><strong>Correo: </strong> {{patient.email}}</p>
+                            </div>
                         </div>
 
                         <div class="col-3 pt-4">
@@ -68,9 +74,15 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-5">
-                                    <button class="btn btn-primary btn-custom-size"><i class="fa-solid fa-plus fa-xl "
-                                            style="color: #ffffff;"></i></button>
+                                <div class="col-5" *ngIf="!showDescription[i]">
+                                    <button class="btn btn-primary btn-custom-size" (click)="toggleDescription(i)"><i
+                                            class="fa-solid fa-plus fa-xl" style="color: #ffffff;"></i></button>
+
+                                </div>
+                                <div class="col-5" *ngIf="showDescription[i]">
+                                    <button class="btn btn-primary btn-custom-size" (click)="toggleDescription(i)"><i
+                                            class="fa-solid fa-minus fa-xl" style="color: #ffffff;"></i></button>
+                                            
                                 </div>
                                 <div class="col-5">
                                     <button (click)="redirectToDashboard(patient.patient_id)"
