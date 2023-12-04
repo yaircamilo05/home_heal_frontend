@@ -47,14 +47,14 @@
 
 .container-title{
   padding: 4px;
-  background: radial-gradient(black, transparent);
+  font-size: 25px;
   //background: $prin_user;
   border-radius: 8px;
 
 }
 .content img{
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
