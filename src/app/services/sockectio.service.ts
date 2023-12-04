@@ -5,7 +5,6 @@ import { UserGetWithMenusModel } from '../models/user.model';
 import { ConversationModel } from '../models/conversation.model';
 import { UserSocketModel } from '../models/user.socket.model';
 import { StorageService } from './storage.service';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +15,7 @@ export class SockectioService {
     autoConnect: true
   });
 
-  constructor(private authService: AuthService) {
-    this.emitWelcome();
-    this.onWelcome();
-   }
-  ngOnInit(){
+  constructor(private storageService:StorageService) {
     this.emitWelcome();
     this.onWelcome();
   }
