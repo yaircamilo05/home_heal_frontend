@@ -17,6 +17,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatSliderModule } from '@angular/material/slider';
 import { CalendarComponent } from '../shared/components/calendar/calendar.component';
+import { DiagnosticsComponent } from './pages/diagnostics/diagnostics.component';
+
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CalendarComponent } from '../shared/components/calendar/calendar.compon
     DashboardComponent,
     PatientComponent,
     AppointmentComponent,
-    CalendarComponent
+    CalendarComponent,
+    DiagnosticsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -49,7 +53,7 @@ import { CalendarComponent } from '../shared/components/calendar/calendar.compon
     DashboardComponent,
     PatientComponent,
     AppointmentComponent,
-    FormsModule,
+    FormsModule
   ]
 })
 export class WebsiteModule { }

@@ -40,4 +40,5 @@ export class UserService {
     return this.http.put<ResponseCustomModel<UserGetModel>>(`${this.server}/edit_user/${id}`,user);
   }
 
+
 }

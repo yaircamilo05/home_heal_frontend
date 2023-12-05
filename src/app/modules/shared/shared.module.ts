@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from "@angular/material/core";
 import {  ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
 
+import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
+import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,10 @@ import {  ModalAppointmentComponent } from './components/modal-appointment/modal
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
     MultiplexorFilterPipe,
-    ModalAppointmentComponent
-    ],
+    ModalAppointmentComponent,
+    ModalCaresComponent,
+    ModalDiagnosticComponent,
+  ],
   imports: [
     CommonModule,
     DialogModule,

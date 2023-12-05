@@ -38,3 +38,15 @@ export interface UserGetModel {
     specialty: string;
 }
 
+
+export interface UserBD{
+    image_url: string;
+    id: number;
+    password: string;
+    phone: string;
+    rol_id: number;
+    lastname: string;
+    name: string;
+    email: string;  
+    cc: string;
+}

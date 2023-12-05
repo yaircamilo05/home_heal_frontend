@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { environment } from 'src/environments/environment.local'
 import { ResponseCustomModel } from '../models/response.custom.model'
 import { BehaviorSubject, Observable, tap } from 'rxjs'
+import { Cares, CaresBaseModel, CaresCreateModel } from '../models/cares.model'
 
 @Injectable({
   providedIn: 'root'
