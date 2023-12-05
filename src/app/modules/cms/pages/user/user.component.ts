@@ -190,7 +190,6 @@ export class UserComponent {
   }
   playNotificationSound() {
     this.notificationSound.play();
-    
   }
 }
-  
+
