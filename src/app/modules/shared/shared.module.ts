@@ -27,8 +27,7 @@ import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from "@angular/material/core";
-import {  ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
-
+import { ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
 import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
 import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
 import { TruncatePipe } from 'src/app/common/truncate.pipe';
@@ -48,14 +47,11 @@ import { TruncatePipe } from 'src/app/common/truncate.pipe';
     ModalVitalSignsComponent,
     GraphicsAllAgainstAllComponent,
     SendEmailComponent,
-    MultiplexorFilterPipe,
     ModalAppointmentComponent,
-    ModalCaresComponent,
-    ModalDiagnosticComponent,
-    ModalCaresComponent,
-    ModalDiagnosticComponent,
     MultiplexorFilterPipe,
-    TruncatePipe,
+    ModalCaresComponent,
+    ModalDiagnosticComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -84,6 +80,7 @@ import { TruncatePipe } from 'src/app/common/truncate.pipe';
     MatNativeDateModule,
     FullCalendarModule,
     TruncatePipe,
+    MultiplexorFilterPipe,
   ],
 })
 export class SharedModule {}
