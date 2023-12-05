@@ -7,6 +7,7 @@ import { PatientComponent } from './pages/patient/patient.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 
 
+
 const routes: Routes = [
   {
     path:'',
@@ -32,7 +33,7 @@ const routes: Routes = [
       {
         path: 'myappointments',
         component: AppointmentComponent
-      }
+      },
     ]
   }
 ];
