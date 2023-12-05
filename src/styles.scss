@@ -52,3 +52,21 @@ html, body { height: 100%; }
 .toast.error {
   background-color: #dc3545; /* Color de fondo para error */
 }
+
+///////////////////////////////////////////////////////////
+/// estilos para el calendario
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #E5E5E5 !important;
+}
+
+
+body .fc .fc-col-header-cell {
+  background-color: $prin_user !important; /* color rojo para las cabeceras de los días de la semana */
+  color: #000000 !important; /* color negro para el texto */
+}
+
+
+.fc-col-header-cell-cushion{
+color: #000000 !important;
+}

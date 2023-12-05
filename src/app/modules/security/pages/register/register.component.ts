@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Messages } from 'src/app/common/messages.const';
+import { EmailRegisterModel } from 'src/app/models/email.model';
 import { PatientRegister } from 'src/app/models/patient.model';
+import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { PatientService } from 'src/app/services/patient.service';
+import { environment } from 'src/environments/environment.local';
 
 @Component({
   selector: 'app-register',
@@ -19,12 +22,14 @@ export class RegisterComponent {
   selected_file: boolean = false;
   image_url_not_upload: string = '';
   loading: boolean = false;
+  isRegisterClicked = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private patientService: PatientService,
+    private router: Router,
+    private emailService: EmailService,
     private modalService: ModalService,
-    private router: Router
     ) {
 
     this.buildForm();
@@ -73,11 +78,14 @@ export class RegisterComponent {
 
   send_request(formData: FormData) {
     this.loading = true;
+    this.isRegisterClicked = true;
+    this.send_email();
     this.patientService.register_patient(formData).subscribe({
       next: (response) => {
         if(response) {
           this.modalService.openToastSuccessAction(Messages.SuccessRegister);
           this.router.navigate(['/login']);
+          this.send_email();
           console.log(response);
           this.loading = false;
         }
@@ -88,7 +96,35 @@ export class RegisterComponent {
           this.modalService.openToastErrorAction(Messages.ErrorRegister);
         }
       }
-    })
+    });
+  }
+
+  send_email() {
+    let data_patient: EmailRegisterModel = {
+      hash: environment.hash_validator,
+      to_destination: this.form_patient.get('email')?.value,
+      name: this.form_patient.get('name')?.value,
+      password: this.form_patient.get('password')?.value
+    }
+
+    let data_familiar: EmailRegisterModel = {
+      hash: environment.hash_validator,
+      to_destination: this.form_familiar.get('familiar_email')?.value,
+      name: this.form_familiar.value.familiar_name,
+      password: this.form_patient.get('password')?.value
+    }    
+
+    this.emailService.send_email_register_patient(data_patient).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.emailService.send_email_register_patient(data_familiar).subscribe({
+          next: (response) => {
+            console.log(response);
+          }
+        });
+      }
+    });
+    
   }
 
   buildForm() {

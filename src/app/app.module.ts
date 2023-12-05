@@ -10,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { FullCalendarModule } from '@fullcalendar/angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    NgApexchartsModule,
+    FullCalendarModule 
   ],
   providers:
   [

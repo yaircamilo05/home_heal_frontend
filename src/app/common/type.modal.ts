@@ -8,4 +8,5 @@ export const TypeModal = {
   Rol: 'Rol',
   Module: 'Module',
   User: 'User',
+  vitalSigns: 'vitalSigns',
 }

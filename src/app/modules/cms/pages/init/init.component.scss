@@ -16,7 +16,20 @@
 //   margin-right: 220px;
 //   max-width: 550px;
 // }
+.container-ilustracions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.constiner-image-one img{
+  width: 200px;
+  height: 200px;
+}
 
+.container-image-two img{
+  width: 200px;
+  height: 230px;
+}
 .container{
   width: 100%;
   margin: 0;
@@ -62,4 +75,11 @@
 .carousel-control-prev-icon{
   background-color: #7777;
   border-radius: 50%;
+}
+
+.img-fluid.rounded-circle {
+  border-radius: 50%;
+  width: 150px; // Establece un ancho fijo
+  height: 150px; // Establece una altura fija
+  object-fit: cover; // Asegura que la imagen cubra completamente el espacio sin distorsionarse
 }

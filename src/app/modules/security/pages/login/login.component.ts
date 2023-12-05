@@ -6,6 +6,7 @@ import { Roles } from 'src/app/common/rols.const';
 import { Credentials } from 'src/app/models/credentials.model';
 import { UserGetWithMenusModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SockectioService } from './../../../../services/sockectio.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private modalService: ModalService,
+    private emailService: EmailService,
     private socketService: SockectioService,
     private storageService: StorageService
   ) {
@@ -55,16 +57,25 @@ export class LoginComponent implements OnInit {
 
       this.loading = true;
       this.authService.login(data).subscribe({
-        next: (response) => {
+      next: (response) => {
         if (response) {
           this.authService.user$.subscribe(user => {
             if (user != undefined) {
-              if (user?.rol_id != Roles.SUPERADMIN) {
+              this.storageService.saveUserId(user.id);
+              this.storageService.saveRolId(user.rol_id);
+              this.storageService.saveUserName(user.name);
+              if (user?.rol_id == Roles.PACIENTE) {
                 this.router.navigate(['/website']);
                 this.modalService.openToastWelcome(Messages.WelcomeWebsite);
               } else if (user?.rol_id == Roles.SUPERADMIN) {
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/init-admin']);
                 this.modalService.openToastWelcome(Messages.WelcomeAdmin);
+              } else if (user?.rol_id == Roles.MEDICO) {
+                this.router.navigate(['/website']);
+                this.modalService.openToastWelcome(Messages.WelcomeDoctor);
+              } else if (user?.rol_id == Roles.FAMILIAR) {
+                this.router.navigate(['/website']);
+                this.modalService.openToastWelcome(Messages.WelcomeFamiliar);
               }
             }
           });

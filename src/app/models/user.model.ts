@@ -7,13 +7,15 @@ export interface UserCreateModel {
     email: string;
     image_url: string;
     rol_id: number;
-    password: string;
     cc: string;
     phone: string;
-    
+    password: string;
+    specialty: string;
+
 }
 
 export interface UserGetWithMenusModel extends UserCreateModel {
+    id: number;
     name: string;
     lastname: string;
     email: string;
@@ -30,4 +32,21 @@ export interface UserGetModel {
     email: string;
     rol_id: number;
     image_url: string;
+    cc: string;
+    phone: string;
+    rol: RolOutModel
+    specialty: string;
+}
+
+
+export interface UserBD{
+    image_url: string;
+    id: number;
+    password: string;
+    phone: string;
+    rol_id: number;
+    lastname: string;
+    name: string;
+    email: string;  
+    cc: string;
 }

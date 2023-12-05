@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { InitComponent } from './pages/init/init.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PatientComponent } from './pages/patient/patient.component';
+import { AppointmentComponent } from './pages/appointment/appointment.component';
+
+
 
 const routes: Routes = [
   {
@@ -14,9 +19,21 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'dashboard/:patient_id',
+        component: DashboardComponent
+      },
+      {
         path:'init',
         component: InitComponent
-      }
+      },
+      {
+        path: 'mypatients',
+        component: PatientComponent
+      },
+      {
+        path: 'myappointments',
+        component: AppointmentComponent
+      },
     ]
   }
 ];
