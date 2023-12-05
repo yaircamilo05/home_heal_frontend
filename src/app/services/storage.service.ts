@@ -20,6 +20,17 @@ export class StorageService {
     return '';
   }
 
+  saveUsername(username: string){
+    sessionStorage.setItem('username', username);
+  }
+
+  getUsername(): string {
+    const username = sessionStorage.getItem('username')
+    if (username) {
+      return username;
+    }
+    return '';
+  }
   deleteToken(): void {
     sessionStorage.removeItem('token');
   }

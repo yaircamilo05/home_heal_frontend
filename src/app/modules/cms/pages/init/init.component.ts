@@ -8,18 +8,4 @@ import { ImagesCarousel } from 'src/app/models/images.carousel';
 })
 export class InitComponent {
 
-    images:ImagesCarousel[] = [
-    {
-      imageSrc: '../../../../../assets/images/anciana-canas-tomando-selfie-telefono-movil-persona-mayor-disfruta-tecnologia_442523-221.avif',
-      imageAlt: 'Image',
-      title: 'Luz Ángela López',
-      description:'Increíble cómo la plataforma trajo la fiesta al hospital en casa. ¡El equipo médico es como mi grupo de rock personal, siempre listos para rockear el tratamiento y hacerme sentir genial!'
-    },
-    {
-      imageSrc: '../../../../../assets/icons/LogoGrandeHomeHeal.png',
-      imageAlt: 'Image',
-      title: 'Luz Ángela López',
-      description:'Increíble cómo la plataforma trajo la fiesta al hospital en casa. ¡El equipo médico es como mi grupo de rock personal, siempre listos para rockear el tratamiento y hacerme sentir genial!'
-    }
-  ]
 }

@@ -71,6 +71,7 @@ export class VitalSingsService{
     // OBTENER LA INFO DEL PACIENTE CON SU FAMILIAR Y DOCTORES
      this.sendEmail(vitalSigns); //pasarle el paciente que obtuve
   }
+
   calculateStatusPatientByVitalSigns(vitalSigns: VitalSignsHistoryModel){
     let status:EnumEStatusPatient = EnumEStatusPatient.STABLE;
     if(vitalSigns.hearth_rate >= 120 || vitalSigns.hearth_rate <= 50){
@@ -85,13 +86,24 @@ export class VitalSingsService{
         status = EnumEStatusPatient.RISKY;
     }
 
-    if(vitalSigns.O2_saturation >= 95 || vitalSigns.O2_saturation <= 90){
+    if(vitalSigns.O2_saturation <= 85){
         status = EnumEStatusPatient.CRITICAL;
-    }else if(vitalSigns.O2_saturation >= 90 && vitalSigns.O2_saturation < 95){
+    }else if(vitalSigns.O2_saturation >= 86 && vitalSigns.O2_saturation <= 90){
         status = EnumEStatusPatient.RISKY;
     }
 
     return status;
+  }
+
+  convertVitalSingsToVitalSignsHistory(vitalSigns: VitalSingsModel):VitalSignsHistoryModel{
+    const vitalSignsHistory:VitalSignsHistoryModel = {
+      hearth_rate: vitalSigns.hearth_rate,
+      blood_pressure: vitalSigns.blood_pressure,
+      O2_saturation: vitalSigns.O2_saturation,
+      date: new Date().toString(),
+      patient_id: vitalSigns.patient_id,
+    };
+    return vitalSignsHistory;
   }
 
   calculateStatusVitalSign(vitalSign:number, min:number, max:number){
@@ -111,10 +123,10 @@ export class VitalSingsService{
         subjet = "Signos vitales estables";
         break;
       case EnumEStatusPatient.RISKY:
-        subjet = "Signos vitales en riesgo";
+        subjet = "IMPORTANTE - Signos vitales en riesgo";
         break;
       case EnumEStatusPatient.CRITICAL:
-        subjet = "Signos vitales en estado critico";
+        subjet = "URGENTE - Signos vitales en estado crítico";
         break;
     }
     return subjet;
@@ -129,14 +141,14 @@ export class VitalSingsService{
     let relationship = "";
     if(rolId == Roles.MEDICO){
         //obtener el familiar del paciente para obtener el email y el nombre
-        emails.push("luian.me0714@gmail.com")
-        emails.push("yulianablancomartinez@gmail.com")
-        name ="Luis Andres"
+        emails.push("juliana.gomez21225@ucaldas.edu.co")
+        emails.push("juliana.gomez21225@ucaldas.edu.co")
+        name ="Juliana"
         relationship = "familiar";
     }else if(rolId == Roles.FAMILIAR){
         //obtener los medicos del paciente para obtener los emails
-        emails.push("luis.1702018273@ucaldas.edu.co")
-        emails.push("yulianablancomartinez@gmail.com")
+        emails.push("juliana.gomez21225@ucaldas.edu.co")
+        emails.push("juliana.gomez21225@ucaldas.edu.co")
         name ="Doc."
         relationship = "paciente";
     }
@@ -159,6 +171,9 @@ export class VitalSingsService{
       state_o2_saturation: statusPatient.toString(),
       color_o2_saturation: "#000000",
     }
+
+    console.log("Data email", dataEmail);
+    
 
     this.emailService.send_email_vital_signs(dataEmail).subscribe((response)=>{
       console.log("Respuesta del servidor", response);

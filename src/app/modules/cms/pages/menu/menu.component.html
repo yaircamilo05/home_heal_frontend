@@ -1,68 +1,55 @@
-<div class="container-window">
-  <div class="header">
-    <div class="header-division">
-      <div class="container-input-filters">
-        <div class="icon-filter">
-          <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
+<div class='container-window'>
+  <div class='header'>
+    <div class='header-division'>
+      <div class='container-input-filters'>
+        <div class='icon-filter'>
+          <span class='icon' [ngClass]='"fa-solid fa-filter"'></span>
         </div>
-        <input
-          type="text"
-          formControlName="message"
-          class="form-control number-filter"
-          placeholder="N°"
-        />
-        <input
-          type="text"
-          formControlName="message"
-          class="form-control name-filter"
-          placeholder="Nombre"
-          id="message-input"
-        />
+        <input [(ngModel)]='limit' type='number' name='limit' class='form-control' placeholder='N°' />
+        <input [(ngModel)]='menuTitle' type='text' name='title' class='form-control' placeholder='Título'
+          id='message-input' />
       </div>
-      <div class="container-icons">
-        <div class="search-filter">
-          <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
-        </div>
-        <div class="clear-filter">
-          <span
-            class="icon"
-            [ngClass]="'fa-solid fa-filter-circle-xmark'"
-          ></span>
+      <div class='container-icons'>
+        <!-- <div class='search-filter'>
+          <span class='icon' [ngClass]=''fa-solid fa-magnifying-glass''></span>
+        </div> -->
+        <div class='clear-filter' (click)='clearFilter()'>
+          <span class='icon' [ngClass]='"fa-solid fa-filter-circle-xmark"'></span>
         </div>
       </div>
     </div>
-    <div class="container-btn" (click)="openModalCreateMenu()">
-        <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
+    <div class='container-btn' (click)='openModalCreateMenu()'>
+      <span class='icon' [ngClass]='"fa-solid fa-plus"'></span>
     </div>
   </div>
-  <div class="">
-    <table class="table table-borderless">
-      <thead class="table-light text-center ">
-        <tr class="">
-          <th class="rounded-top-left" scope="col">Núm</th>
-          <th scope="col">Título</th>
-          <th scope="col">Icono</th>
-          <th scope="col">Link</th>
-          <th class="rounded-top-right" scope="col">Acciones</th>
+  <div class=''>
+    <table class='table table-borderless'>
+      <thead class='table-light text-center '>
+        <tr class=''>
+          <th class='rounded-top-left' scope='col'>No.</th>
+          <th scope='col'>Título</th>
+          <th scope='col'>Icono</th>
+          <th scope='col'>Link</th>
+          <th class='rounded-top-right' scope='col'>Acciones</th>
         </tr>
       </thead>
-      <tbody class="">
-        <tr class="text-center" *ngFor="let menu of menus">
-          <th scope="row">{{menu.id}}</th>
+      <tbody class=''>
+        <tr class='text-center' *ngFor='let menu of menus | multiplexorFilterPipe: {title: menuTitle} : limit'>
+          <th scope='row'>{{menu.id}}</th>
           <td>{{menu.title}}</td>
           <td>
-            <span class="icon" [ngClass]= "menu.icon"></span>
+            <span class='icon' [ngClass]='menu.icon'></span>
           </td>
-          <td> 
-            <a [routerLink]="menu.link">{{menu.link}}</a>
+          <td>
+            <a [routerLink]='menu.link'>{{menu.link}}</a>
           </td>
-          <td class="d-flex justify-content-center align-items-center">
-            <div class="container-icons">
-              <div class="edit-icon" (click)="openModalEditMenu(menu)">
-                <span class="icon" [ngClass]="'fa-solid fa-pen-to-square color-edit'" ></span>
+          <td class='d-flex justify-content-center align-items-center'>
+            <div class='container-icons'>
+              <div class='edit-icon' (click)='openModalEditMenu(menu)'>
+                <span class='icon' [ngClass]='"fa-solid fa-pen-to-square color-edit"'></span>
               </div>
-              <div class="delete-icon" (click)="openModalDeleteMenu(menu)">
-                <span class="icon" [ngClass]="'fa-solid fa-trash-can color-delete'"></span>
+              <div class='delete-icon' (click)='openModalDeleteMenu(menu)'>
+                <span class='icon' [ngClass]='"fa-solid fa-trash-can color-delete"'></span>
               </div>
             </div>
           </td>

@@ -167,6 +167,14 @@
       }
 }
 
+.container-button{
+    background-color: white;
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    align-items: center;
+    height: 100%; 
+}
+
 .container-table{
     border: solid 1px gray;
 }
@@ -197,3 +205,38 @@
 .color-edit:hover{
   color: $warning-lite;
 }
+
+
+.container-gif{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.container-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+.container-image img{
+    width: 200px;
+    height: 200px;
+}
+
+.container-form{
+    background: white;
+    width: auto;
+    height: auto;
+    /* display: flex; */
+    display: grid;
+    align-items: center;
+  }
+
+  .centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  }

@@ -16,7 +16,20 @@
 //   margin-right: 220px;
 //   max-width: 550px;
 // }
+.container-ilustracions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.constiner-image-one img{
+  width: 200px;
+  height: 200px;
+}
 
+.container-image-two img{
+  width: 200px;
+  height: 230px;
+}
 .container{
   width: 100%;
   margin: 0;

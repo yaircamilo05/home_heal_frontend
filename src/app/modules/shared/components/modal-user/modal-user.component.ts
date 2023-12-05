@@ -13,6 +13,7 @@ import { EmailRegisterModel } from 'src/app/models/email.model';
 import { environment } from 'src/environments/environment.local';
 import { EmailService } from 'src/app/services/email.service';
 import { Messages } from 'src/app/common/messages.const';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 
 interface InputDataModel {
@@ -64,7 +65,8 @@ export class ModalUserComponent {
       private fb: FormBuilder,
       private rolService: RolService,
       private fileService: FileService,
-      private emailService: EmailService
+      private emailService: EmailService,
+      private doctorService: DoctorService
     ) {
     this.title = data.title;
     this.question = data.question;
@@ -135,7 +137,12 @@ export class ModalUserComponent {
               this.isUploaded = true;
               this.urlImage = response;          
               console.log(`Imagen subida correctamente: ${this.urlImage}`);
-              this.send_request();
+
+              if(!this.isDoctor) {
+                this.send_request();
+              } else {
+                this.create_doctor();
+              }
             },
 
             (error) => {
@@ -152,6 +159,32 @@ export class ModalUserComponent {
 
     }
 
+  }
+
+  create_doctor() {
+    let data: UserCreateModel = {
+      name: this.form.value.name,
+      lastname: this.form.value.lastname,
+      email: this.form.value.email,
+      password: this.form.value.password,
+      rol_id: this.form.value.rol_id,
+      image_url: this.urlImage,
+      cc: this.form.value.cc,
+      phone: this.form.value.phone,
+      specialty: this.form.value.specialty,
+    }
+    this.doctorService.createDoctor(data).subscribe({
+      next: (response) => {
+        console.log('Creacion del doctor');
+        this.send_email();
+        this.modalService.openModalConfirmationPromise().then((result) => {
+          if (result.isConfirmed) {
+            this.close();
+            window.location.reload();
+          }
+        });
+      }
+    });
   }
 
   send_request() {

@@ -4,6 +4,8 @@ import { EmailRegisterModel } from '../models/email.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.local';
 import { EmailVitalSignsData } from '../models/email.vital.signs';
+import { EmailCancellationModel } from '../models/email.cancellation.model';
+import { EmailAppointmentModel } from '../models/email.appointment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,14 @@ export class EmailService {
 
   send_email_vital_signs(data: EmailVitalSignsData): Observable<string> {
     return this.http.post<string>(`${this.server}/send_email_vital_signs`, data)
+  }
+
+  send_email_appointment_cancellation(data: EmailCancellationModel): Observable<string> {
+    return this.http.post<string>(`${this.server}/send_email_appointment_cancellation`, data)
+  }
+
+  send_email_appointment(data: EmailAppointmentModel): Observable<string> {
+    return this.http.post<string>(`${this.server}/send_email_appointment_confirmation`, data)
   }
 
 

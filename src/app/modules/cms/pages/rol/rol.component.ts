@@ -20,6 +20,9 @@ export class RolComponent implements OnInit {
   role: RolOutModel | null = null
   // role_id: number | undefined
 
+  limit: number | undefined = 10
+  rolTitle: string = ''
+
   constructor(
     private dialog: Dialog,
     private rolService: RolService,
@@ -30,11 +33,14 @@ export class RolComponent implements OnInit {
     this.getRoles()
   }
 
+  clearFilter() {
+    this.rolTitle = '';
+    this.limit = undefined;
+  }
+
   getRoles() {
     this.rolService.getRoles().subscribe(
       (response) => {
-        // Verifica si obtienes los datos correctamente
-        console.log(response)
         if (response && response.data) {
           this.roles = response.data
         }
@@ -48,8 +54,6 @@ export class RolComponent implements OnInit {
   getRole(id: number) {
     this.rolService.getRole(id).subscribe(
       (response) => {
-        // Verifica si obtienes los datos correctamente
-        console.log(response)
         if (response && response.data) {
           this.role = response.data
         }
