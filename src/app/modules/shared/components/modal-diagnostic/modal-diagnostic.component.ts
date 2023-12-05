@@ -20,9 +20,9 @@ export class ModalDiagnosticComponent {
   form: FormGroup = new FormGroup({})
   viewForm: boolean = false
   id_patient: number = 0
-  
+
   showMore: boolean = false
-  
+
   // actualVitalSigns: VitalSingsService
 
   constructor(
