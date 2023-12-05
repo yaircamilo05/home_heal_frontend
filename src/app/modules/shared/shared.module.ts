@@ -31,6 +31,7 @@ import {  ModalAppointmentComponent } from './components/modal-appointment/modal
 
 import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
 import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
+import { TruncatePipe } from 'src/app/common/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,10 @@ import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-di
     ModalAppointmentComponent,
     ModalCaresComponent,
     ModalDiagnosticComponent,
+    ModalCaresComponent,
+    ModalDiagnosticComponent,
+    MultiplexorFilterPipe,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
@@ -77,7 +82,8 @@ import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-di
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    FullCalendarModule
+    FullCalendarModule,
+    TruncatePipe,
   ],
 })
 export class SharedModule {}

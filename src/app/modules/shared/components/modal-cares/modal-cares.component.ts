@@ -1,15 +1,15 @@
-import { DIALOG_DATA, Dialog } from '@angular/cdk/dialog';
-import { Component, Inject, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Cares, CaresCreateModel } from 'src/app/models/cares.model';
-import { DoctorModel } from 'src/app/models/doctor.model';
-import { CaresService } from 'src/app/services/cares.service';
-import { DoctorService } from 'src/app/services/doctor.service';
-import { ModalService } from 'src/app/services/modal.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { DIALOG_DATA, Dialog } from '@angular/cdk/dialog'
+import { Component, Inject, Input } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Cares, CaresCreateModel } from 'src/app/models/cares.model'
+import { DoctorModel } from 'src/app/models/doctor.model'
+import { CaresService } from 'src/app/services/cares.service'
+import { DoctorService } from 'src/app/services/doctor.service'
+import { ModalService } from 'src/app/services/modal.service'
+import { StorageService } from 'src/app/services/storage.service'
 
 export interface DialogData {
-  patientId: number;
+  patientId: number
 }
 
 @Component({
@@ -21,10 +21,11 @@ export interface DialogData {
 
 
 export class ModalCaresComponent {
-  cares: Cares[] = [];
-  form: FormGroup = new FormGroup({});
-  viewForm: boolean = false;
-  id_patient: number = 0;
+  cares: Cares[] = []
+  form: FormGroup = new FormGroup({})
+  viewForm: boolean = false
+  id_patient: number = 0
+
   constructor(
     private caresService: CaresService,
     private modalService: ModalService,
@@ -33,24 +34,24 @@ export class ModalCaresComponent {
     private dialog: Dialog,
     @Inject(DIALOG_DATA) private data: DialogData,
   ) {
-    this.id_patient = data.patientId;
+    this.id_patient = data.patientId
     this.modalService.closeModalEvent.subscribe(() => {
-      this.close();
-    });
+      this.close()
+    })
   }
 
   ngOnInit() {
-    this.getCares();
-    this.buildForm();
+    this.getCares()
+    this.buildForm()
   }
   close() {
-    this.dialog.closeAll();
+    this.dialog.closeAll()
   }
 
   buildForm() {
     this.form = new FormGroup({
       description: new FormControl('', [Validators.required]),
-    });
+    })
   }
 
 
@@ -60,14 +61,14 @@ export class ModalCaresComponent {
     this.caresService.getCares(this.id_patient).subscribe(
       (response) => {
         if (response && response.data) {
-          this.cares = response.data;
+          this.cares = response.data
         }
       },
       (error: any) => {
         this.modalService.openModalErrorAction("Ha ocurrido un error obteniendo los cuidados")
-        console.log(error);
+        console.log(error)
       }
-    );
+    )
   }
 
   createCare() {
@@ -99,8 +100,8 @@ export class ModalCaresComponent {
         if (response && response.data) {
           this.modalService.openModalConfirmationPromise().then((result) => {
             if (result.isConfirmed) {
-              // window.location.reload();
-              // this.caresService.loadCares(this.id_patient);
+              // window.location.reload()
+              // this.caresService.loadCares(this.id_patient)
               this.getCares()
             }
           })
@@ -108,9 +109,9 @@ export class ModalCaresComponent {
       },
       (error: any) => {
         this.modalService.openModalErrorAction("Ha ocurrido un error creando el cuidado")
-        console.log(error);
+        console.log(error)
       }
-    );
+    )
   }
 
   deleteCare(id: number) {
@@ -119,7 +120,7 @@ export class ModalCaresComponent {
         if (response && response.data) {
           this.modalService.openModalConfirmationPromise().then((result) => {
             if (result.isConfirmed) {
-              window.location.reload();
+              window.location.reload()
             }
           })
         }
@@ -132,7 +133,7 @@ export class ModalCaresComponent {
   }
 
   openCloseForm() {
-    this.viewForm = !this.viewForm;
+    this.viewForm = !this.viewForm
   }
 
   getRole(){

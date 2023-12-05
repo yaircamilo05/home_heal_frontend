@@ -1,1 +1,58 @@
-<p>modal-diagnostic works!</p>
+<div class="parent">
+  <div>
+    <app-header-modal iconClass="fa-solid fa-hand-holding-medical" label="Diagnoses"></app-header-modal>
+  </div>
+  <div class="header">
+    <div class="title">
+      <h1>Estos son los diagnósticos que se te han encomendado, cuídate mucho! </h1>
+    </div>
+    <div class="foto">
+      <img class="foto" width="200px"
+        src="https://previews.123rf.com/images/natalimis/natalimis1705/natalimis170500079/77967820-cuidados-médicos-en-forma-de-un-conjunto-de-símbolos-en-las-manos-médico.jpg">
+    </div>
+  </div>
+
+  <div class="create_space" *ngIf="getRole()== 4">
+    <div class="container-btn" (click)="openCloseForm()">
+      <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
+    </div>
+    <div class="container">
+      <form [formGroup]="form" *ngIf="viewForm">
+        <p>Vamos a agregar un nuevo diagnostico.</p>
+        <label for="diagnosis_description">Ingresa la descripcion: </label>
+        <textarea type="text" formControlName="description" name="diagnosis_description"></textarea>
+        <div>
+          <button (click)="createDiagnosis()">Aceptar</button>
+          <button (click)="openCloseForm()">Cancelar</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <div class="no_diagnoses" *ngIf="diagnoses.length == 0">
+    <h1>Este paciente no tiene dignósticos registrados..</h1>
+  </div>
+
+  <div class="container d-flex flex-wrap justify-content-center">
+
+    <div class="card m-4" style="width: 18rem;" *ngFor="let diagnosis of diagnoses">
+      <div class="card-body">
+        <h5 class="card-title">Se te han diagnosticado las siguientes patologías</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Son las siguientes..</h6>
+        <p class="card-text">
+          {{ expandedDiagnosis[diagnosis.id] ? diagnosis.description : (diagnosis.description | truncateText:100) }}
+
+          <a *ngIf="diagnosis.description.length > 100" class="card-link" (click)="toggleExpand(diagnosis.id)">
+            {{ expandedDiagnosis[diagnosis.id] ? 'Leer menos' : 'Leer más' }}
+          </a>
+        </p>
+
+        <a class="card-link">Recomendado por: {{diagnosis.doctor[0].user.name}}
+          {{diagnosis.doctor[0].user.lastname}}</a>
+      </div>
+    </div>
+
+
+  </div>
+</div>

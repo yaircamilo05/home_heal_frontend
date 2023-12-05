@@ -1,14 +1,14 @@
 import { Doctor } from "./doctor.model";
 
 
-export interface CaresBaseModel{
+export interface CaresBaseModel {
     description: string;
     doctor_patient_id: number;
 }
 
-export interface Cares extends CaresBaseModel{
+export interface Cares extends CaresBaseModel {
     id: number;
-    doctor:Doctor[];
+    doctor: Doctor[];
 }
 
 export interface CaresCreateModel {

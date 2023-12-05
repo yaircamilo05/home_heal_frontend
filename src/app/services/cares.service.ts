@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from 'src/environments/environment.local'
+import { Cares, CaresBaseModel, CaresCreateModel } from '../models/cares.model'
 import { ResponseCustomModel } from '../models/response.custom.model'
 import { BehaviorSubject, Observable, tap } from 'rxjs'
-import { Cares, CaresBaseModel, CaresCreateModel } from '../models/cares.model'
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,6 @@ export class CaresService {
 
   getCares(patientId: number): Observable<ResponseCustomModel<Cares[]>> {
     return this.http.get<ResponseCustomModel<Cares[]>>(`${this.server}/get-cares-by-patient-id/${patientId}`)
-      .pipe(tap(() => {
-        this.loadCares(patientId) // Recargar los cuidados después de obtener
-      }))
   }
 
   createCare(care: CaresCreateModel): Observable<ResponseCustomModel<CaresBaseModel>> {

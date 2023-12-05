@@ -1,13 +1,14 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PatientCard } from 'src/app/models/patient.model';
-import { UserGetWithMenusModel } from 'src/app/models/user.model';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { PatientCard } from 'src/app/models/patient.model'
+import { UserGetWithMenusModel } from 'src/app/models/user.model'
+import { AuthService } from 'src/app/services/auth.service'
+import { DoctorService } from 'src/app/services/doctor.service'
+import { PatientService } from 'src/app/services/patient.service'
+import { StorageService } from 'src/app/services/storage.service'
 import { ModalCaresComponent } from 'src/app/modules/shared/components/modal-cares/modal-cares.component';
-import { AuthService } from 'src/app/services/auth.service';
-import { DoctorService } from 'src/app/services/doctor.service';
-import { PatientService } from 'src/app/services/patient.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { ModalDiagnosticComponent } from 'src/app/modules/shared/components/modal-diagnostic/modal-diagnostic.component';
 
 @Component({
   selector: 'app-patient',
@@ -27,10 +28,9 @@ export class PatientComponent implements OnInit {
     private patientService: PatientService,
     private router: Router,
     private dialog: Dialog,
-    private authService: AuthService,
     private storageService: StorageService,
-    private doctorService:DoctorService
-  ) {}
+    private doctorService: DoctorService,
+  ) { }
 
   ngOnInit() {
     this.getDoctorLogged()
@@ -80,6 +80,17 @@ export class PatientComponent implements OnInit {
 
   openCaresModal(patientId: number) {
     this.dialog.open(ModalCaresComponent, {
+      minWidth: '800px',
+      minHeight: '80%',
+      maxWidth: '50%',
+      data: {
+        patientId: patientId
+      }
+    })
+  }
+
+  openDiagnosesModal(patientId: number) {
+    this.dialog.open(ModalDiagnosticComponent, {
       minWidth: '800px',
       minHeight: '80%',
       maxWidth: '50%',
