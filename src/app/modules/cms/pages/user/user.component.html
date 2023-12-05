@@ -1,33 +1,4 @@
 <div class="container-window">
-    <div class="header">
-      <div class="header-division">
-        <div class="container-input-filters">
-          <div class="icon-filter">
-            <span class="icon" [ngClass]="'fa-solid fa-filter'"></span>
-          </div>
-          <input
-            type="text"
-            class="form-control number-filter"
-            placeholder="N°"
-          />
-          <input
-            type="text"
-
-            class="form-control name-filter"
-            placeholder="Nombre"
-            id="message-input"
-          />
-        </div>
-        <div class="container-icons">
-          <div class="search-filter">
-            <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
-          </div>
-          <div class="clear-filter">
-            <span
-              class="icon"
-              [ngClass]="'fa-solid fa-filter-circle-xmark'"
-            ></span>
-          </div>
   <div class="header">
     <div class="header-division">
       <div class="container-input-filters">
@@ -41,8 +12,8 @@
       </div>
       <div class="container-icons">
         <!-- <div class="search-filter">
-          <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
-        </div> -->
+        <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
+      </div> -->
         <div class="clear-filter" (click)="clearFilter()">
           <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
         </div>
@@ -66,9 +37,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center" *ngFor="let user of users | multiplexorFilterPipe: {
-            name: forename, lastname: surname, email: mail
-        }: limit">
+        <tr class="text-center" *ngFor="let user of users.reverse() | multiplexorFilterPipe: {
+          name: forename, lastname: surname, email: mail
+      }: limit">
           <th scope="row">{{user.id}}</th>
           <td>{{user.name}}</td>
           <td>{{user.lastname}}</td>
@@ -89,7 +60,8 @@
               <div class="chat-icon" (click)="openModalChat(user)">
                 <div class="icon-container">
                   <span class="icon" [ngClass]="'fa-solid fa-message color-chat'"></span>
-                  <div class="new-message-indicator" *ngIf="showNoficationNewMessage(user)">{{countMessageRecived}}
+                  <div class="new-message-indicator" *ngIf="showNoficationNewMessage(user)">
+                    {{countMessageRecived}}
                   </div>
                 </div>
               </div>
