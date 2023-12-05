@@ -22,7 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private storageService: StorageService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (request.context.get(ADD_TOKEN)) {
+    if (request.context.get(ADD_TOKEN) || !request.context.get(ADD_TOKEN)) {
       return this.addTokenToRequest(request, next);
     }
     return next.handle(request);
