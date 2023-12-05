@@ -141,4 +141,8 @@ export class ModalDiagnosticComponent {
   openCloseForm() {
     this.viewForm = !this.viewForm
   }
+
+  getRole(){
+    return this.storageService.getRolId()
+  }
 }
