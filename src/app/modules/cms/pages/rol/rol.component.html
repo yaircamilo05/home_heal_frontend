@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody class="">
-        <tr class="text-center" *ngFor="let rol of roles | multiplexorFilterPipe: {rol: rolTitle}: limit">
+        <tr class="text-center" *ngFor="let rol of roles | multiplexorFilterPipe: {name: rolTitle}: limit">
           <th scope="row">{{rol.id}}</th>
           <td>{{rol.name}}</td>
           <td>{{rol.description}}</td>

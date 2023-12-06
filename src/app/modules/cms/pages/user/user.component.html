@@ -12,8 +12,8 @@
       </div>
       <div class="container-icons">
         <!-- <div class="search-filter">
-          <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
-        </div> -->
+        <span class="icon" [ngClass]="'fa-solid fa-magnifying-glass'"></span>
+      </div> -->
         <div class="clear-filter" (click)="clearFilter()">
           <span class="icon" [ngClass]="'fa-solid fa-filter-circle-xmark'"></span>
         </div>
@@ -60,7 +60,8 @@
               <div class="chat-icon" (click)="openModalChat(user)">
                 <div class="icon-container">
                   <span class="icon" [ngClass]="'fa-solid fa-message color-chat'"></span>
-                  <div class="new-message-indicator" *ngIf="showNoficationNewMessage(user)">{{countMessageRecived}}
+                  <div class="new-message-indicator" *ngIf="showNoficationNewMessage(user)">
+                    {{countMessageRecived}}
                   </div>
                 </div>
               </div>
