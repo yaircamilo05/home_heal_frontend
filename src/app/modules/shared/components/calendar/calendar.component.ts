@@ -26,7 +26,8 @@ export class CalendarComponent {
     try {
       const response = await this.appointmentService.getAppointmentsByUser().toPromise();
       console.log(response);
-      this.events = response!.data.map((appointment) => {
+      const pendingAppointments = response!.data.filter(appointment => appointment.state === 'PENDIENTE');
+      this.events = pendingAppointments.map((appointment) => {
         return {
           date: appointment.date,
           title: "Cita con " + appointment.patient_name,
