@@ -1,0 +1,48 @@
+<div class="parent">
+  <div>
+    <app-header-modal iconClass="fa-solid fa-hand-holding-medical" label="Cares"></app-header-modal>
+  </div>
+  <div class="header">
+    <div class="title">
+      <h1 class="row">
+        En base a los signos vitales del paciente seleccionado, van a generarse una serie de recomendaciones o
+        hechos
+        sobre su condición clínica.
+      </h1>
+
+
+    </div>
+    <div class="foto">
+      <img class="row foto" width="200px"
+        src="https://www.medicaldevice-network.com/wp-content/uploads/sites/23/2021/11/shutterstock_1214112883-compressed-1.jpg">
+    </div>
+
+  </div>
+
+  <div class="create_space" *ngIf="getRole() == 4">
+    <div class=" justify-content-center">
+      <div class="row-cols-4 m-5">
+
+        <mat-progress-spinner *ngIf="patientCares.length == 0" [color]="color" [mode]="mode">
+        </mat-progress-spinner>
+
+        <div *ngIf="patientCares.length > 0" class="col-1 container-btn">
+          <app-button (click)="regenerateCares()" type="primary" icon="fa-solid fa-rotate-right"
+            text="Nuevos"></app-button>
+        </div>
+
+        <div *ngIf="patientCares.length > 0" class="col-10 container d-flex flex-wrap justify-content-center">
+          <div class="card m-4" style="width: 18rem;" *ngFor="let care of patientCares">
+            <div class="card-body">
+              <h5 class="card-title">{{care.title}}</h5>
+              <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Ten en cuenta...</h6> -->
+              <p class="card-text">{{care.description}}</p>
+              <button (click)="implementCare(care)" class="primary">Implementar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

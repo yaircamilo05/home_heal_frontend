@@ -40,6 +40,7 @@ export class CaresService {
   createCare(care: CaresCreateModel): Observable<ResponseCustomModel<CaresBaseModel>> {
     return this.http.post<ResponseCustomModel<CaresBaseModel>>(`${this.server}/create-care`, care)
   }
+
   deleteCare(id: number): Observable<ResponseCustomModel<boolean>> {
     return this.http.delete<ResponseCustomModel<boolean>>(`${this.server}/delete-care/${id}`)
   }

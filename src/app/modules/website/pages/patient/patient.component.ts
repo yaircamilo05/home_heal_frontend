@@ -9,6 +9,7 @@ import { PatientService } from 'src/app/services/patient.service'
 import { StorageService } from 'src/app/services/storage.service'
 import { ModalCaresComponent } from 'src/app/modules/shared/components/modal-cares/modal-cares.component';
 import { ModalDiagnosticComponent } from 'src/app/modules/shared/components/modal-diagnostic/modal-diagnostic.component';
+import { ModalGenerativeCaresComponent } from 'src/app/modules/shared/components/modal-generative-cares/modal-generative-cares.component';
 
 @Component({
   selector: 'app-patient',
@@ -78,16 +79,6 @@ export class PatientComponent implements OnInit {
     })
   }
 
-  openCaresModal(patientId: number) {
-    this.dialog.open(ModalCaresComponent, {
-      minWidth: '800px',
-      minHeight: '80%',
-      maxWidth: '50%',
-      data: {
-        patientId: patientId
-      }
-    })
-  }
 
   openDiagnosesModal(patientId: number) {
     this.dialog.open(ModalDiagnosticComponent, {
@@ -99,5 +90,18 @@ export class PatientComponent implements OnInit {
       }
     })
   }
+
+  openCaresModal(patientId: number) {
+    this.dialog.open(ModalCaresComponent, {
+      minWidth: '800px',
+      minHeight: '80%',
+      maxWidth: '50%',
+      data: {
+        patientId: patientId
+      }
+    })
+  }
+
+
 
 }
