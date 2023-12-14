@@ -1,0 +1,337 @@
+[
+  {
+    "step": 1,
+    "icon": "fa-solid fa-circle-exclamation",
+    "title": "Identificación del Problema",
+    "subtitle": "Descripción y planteamiento",
+    "summary": [
+      "La atención médica ha experimentado una evolución significativa en los últimos años, con un enfoque creciente en la prestación de servicios de salud en el hogar para mejorar la comodidad del paciente y reducir la congestión en las instalaciones médicas. La tecnología ha facilitado esta transición, permitiendo la gestión remota de pacientes y la coordinación eficiente entre médicos, pacientes y sus familias.",
+      "Aunque la hospitalización en casa y la telemedicina se están volviendo más comunes, la gestión eficiente de las citas médicas, el monitoreo remoto de los pacientes y la comunicación transparente entre los médicos y las familias de los pacientes son aspectos que aún presentan desafíos."
+    ]
+  },
+  {
+    "step": 2,
+    "icon": "fa-solid fa-people-group",
+    "title": "Definición del equipo de trabajo",
+    "subtitle": "Integrantes del equipo",
+    "tables": [
+      {
+        "subtitle": "DESARROLLADORES",
+        "columns": [
+          "Rol",
+          "Nombre",
+          "E-mail",
+          "Teléfono"
+        ],
+        "rows": [
+          {
+            "Rol": "Líder",
+            "Nombre": "Juliana Gómez Galindo",
+            "E-mail": "juliana.gomez212252@ucaldas.edu.co",
+            "Teléfono": "313 6824950"
+          },
+          {
+            "Rol": "Administrador de desarrollo",
+            "Nombre": "David Ramírez Cruz",
+            "E-mail": "david.ramirez22171@ucaldas.edu.co",
+            "Teléfono": "312 8387350"
+          },
+          {
+            "Rol": "Administrador de desarrollo",
+            "Nombre": "Luis Andrés Martínez Estremor",
+            "E-mail": "luis.1702018273@ucaldas.edu.co",
+            "Teléfono": "302 3776136"
+          },
+          {
+            "Rol": "Administrador de calidad",
+            "Nombre": "Yair Camilo Sánchez Bulla",
+            "E-mail": "yair.sanchez21369@ucaldas.edu.co",
+            "Teléfono": "320 9341935"
+          },
+          {
+            "Rol": "Administrador de planeación",
+            "Nombre": "Over Haider Castrillón Valencia",
+            "E-mail": "over.castrillon22396@ucaldas.edu.co",
+            "Teléfono": "319 3153380"
+          },
+          {
+            "Rol": "Administrador de soporte",
+            "Nombre": "Juan David Zapata López",
+            "E-mail": "juan.zapata22871@ucaldas.edu.co",
+            "Teléfono": "310 4572663"
+          }
+        ]
+      },
+      {
+        "subtitle": "STAKEHOLDERS",
+        "columns": [
+          "Nombre",
+          "Descripción",
+          "Responsabilidades"
+        ],
+        "rows": [
+          {
+            "Nombre": "Reinel Tabares Soto",
+            "Descripción": "Profesor de la materia",
+            "Responsabilidades": "Definir los criterios de evaluación\n, Guiar la asignación de roles\n, Verificar el cumplimiento de actividades\n, Evaluar la calidad de las entregas"
+          },
+          {
+            "Nombre": "Johan Piña",
+            "Descripción": "Monitor de la materia",
+            "Responsabilidades": "Estar atento a inquietudes sobre el proyecto\n, Brindar apoyo constante para la realización del proyecto"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "step": 3,
+    "icon": "fa-solid fa-bullseye",
+    "title": "Objetivos de negocio",
+    "subtitle": "Objetivos a cumplir para un proyecto exitoso!",
+    "tables": [
+      {
+        "subtitle": "OBJETIVOS",
+        "columns": [
+          "ID",
+          "Descripción del objetivo de negocio"
+        ],
+        "rows": [
+          {
+            "ID": "ON-01",
+            "Descripción del objetivo de negocio": "Monitorear signos vitales en tiempo real."
+          },
+          {
+            "ID": "ON-02",
+            "Descripción del objetivo de negocio": "Generar diagnósticos y cuidados en función de los signos vitales de un paciente."
+          },
+          {
+            "ID": "ON-03",
+            "Descripción del objetivo de negocio": "Generar citas para un paciente específico y un médico específico."
+          },
+          {
+            "ID": "ON-04",
+            "Descripción del objetivo de negocio": "Intercambiar información, de forma constante, sobre el estado de un paciente a su familiar a cargo."
+          },
+          {
+            "ID": "ON-05",
+            "Descripción del objetivo de negocio": "Reducir la congestión en el centro médico"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "step": 4,
+    "icon": "fa-solid fa-percent",
+    "title": "Requisitos funcionales",
+    "subtitle": "El qué se necesita",
+    "tables": [
+      {
+        "subtitle": "",
+        "columns": [
+          "Identificador",
+          "Caracteristica",
+          "Prioridad",
+          "Objetivos asociados",
+          "Criterios de aceptación"
+        ],
+        "rows": [
+          {
+            "Identificador": "RF-01",
+            "Caracteristica": "Administración",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "-"
+            ],
+            "Criterios de aceptación": [
+              "El sistema debe incluir un módulo de administración"
+            ]
+          },
+          {
+            "Identificador": "RF-02",
+            "Caracteristica": "Acceso al sistema",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "-"
+            ],
+            "Criterios de aceptación": [
+              "El sistema debe permitir registrarse e iniciar sesión",
+              "El sistema debe contar con roles para tener acceso a propiedades específicas."
+            ]
+          },
+          {
+            "Identificador": "RF-02",
+            "Caracteristica": "Monitoreo de un paciente",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "ON-01"
+            ],
+            "Criterios de aceptación": [
+              "El sistema debe permitir a un médico monitorear los signos vitales de un paciente",
+              "El sistema debe permitir actualizar los signos vitales de un paciente por su familiar a cargo"
+            ]
+          },
+          {
+            "Identificador": "RF-03",
+            "Caracteristica": "Gestión de citas",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "ON-02",
+              "ON-03"
+            ],
+            "Criterios de aceptación": [
+              "El sistema debe permitir a un médico agregar diagnósticos y cuidados al historial de un paciente específico.",
+              "El sistema debe permitir a un paciente solicitar una cita en el horario que desee y cancelarla",
+              "El sistema debe asignar un médico a un paciente",
+              "El sistema debe notificar cuando se asigna una nueva cita"
+            ]
+          },
+          {
+            "Identificador": "RF-04",
+            "Caracteristica": "Comunicación",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "ON-04"
+            ],
+            "Criterios de aceptación": [
+              "El sistema debe notificar cuando los signos vitales de un paciente se hayan modificado",
+              "El sistema debe permitir comunicación con un médico"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "step": 5,
+    "icon": "fa-solid fa-code-pull-request",
+    "title": "Requisitos no funcionales",
+    "subtitle": "El cómo se necesita",
+    "tables": [
+      {
+        "subtitle": "",
+        "columns": [
+          "Identificador",
+          "Caracteristica",
+          "Prioridad",
+          "Objetivos asociados",
+          "Criterios de aceptación"
+        ],
+        "rows": [
+          {
+            "Identificador": "RNF-01",
+            "Caracteristica": "Acceso al sistema",
+            "Prioridad": "Media",
+            "Objetivos asociados": [
+              "-"
+            ],
+            "Criterios de aceptación": [
+              "Debe ser de forma segura"
+            ]
+          },
+          {
+            "Identificador": "RNF-02",
+            "Caracteristica": "Monitoreo de un paciente",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "ON-01"
+            ],
+            "Criterios de aceptación": [
+              "El monitoreo de los signos vitales de un paciente debe ser en tiempo real",
+              "Los signos vitales deben visualizarse en un dashboard",
+              "Los signos vitales deben clasificarse en ESTABLE, RIESGOSO y CRÍTICO a partir de ciertos rangos ingresados al sistema."
+            ]
+          },
+          {
+            "Identificador": "RNF-03",
+            "Caracteristica": "Notificaciones",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "ON-04"
+            ],
+            "Criterios de aceptación": [
+              "Las notificaciones del sistema deben enviarse vía e-mail"
+            ]
+          },
+          {
+            "Identificador": "RNF-04",
+            "Caracteristica": "Comunicación",
+            "Prioridad": "Alta",
+            "Objetivos asociados": [
+              "ON-04"
+            ],
+            "Criterios de aceptación": [
+              "La comunicación con un médico debe ser en tiempo real a través de un chat en línea"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "step": 6,
+    "icon": "fa-solid fa-file-waveform",
+    "title": "Historias de usuario",
+    "subtitle": "Instrucciones para entendimiento de perspectivas",
+    "tables": [
+      {
+        "subtitle": "Acá se comprenden varias formas para entender lo que se utilizará en la aplicación.",
+        "columns": [
+          "Identificador",
+          "Historia de usuario"
+        ],
+        "rows": [
+          {
+            "Identificador": "HU-01",
+            "Historia de usuario": "Como administrador quiero poder acceder a la información de pacientes, sus familiares y los médicos del centro para tener un control completo de su información."
+          },
+          {
+            "Identificador": "HU-02",
+            "Historia de usuario": "Como usuario quiero poder loguearme en el sistema de manera segura para acceder a funcionalidades específicas para mi."
+          },
+          {
+            "Identificador": "HU-03",
+            "Historia de usuario": "Como médico quiero poder monitorear y actualizar los signos vitales de mis pacientes en tiempo real para estar al tanto de su estado."
+          },
+          {
+            "Identificador": "HU-04",
+            "Historia de usuario": "Como médico quiero poder ingresar los diagnósticos y cuidados para mis pacientes para que ellos y sus familias estén al tanto de mis recomendaciones."
+          },
+          {
+            "Identificador": "HU-05",
+            "Historia de usuario": "Como médico quiero poder asignarle una cita a un paciente específico para revisarlo en el momento que considero pertinente."
+          },
+          {
+            "Identificador": "HU-06",
+            "Historia de usuario": "Como médico quiero poder recibir e-mails cuando se me asigne una cita con un paciente y cuando sus signos vitales sean actualizados por su familiar."
+          },
+          {
+            "Identificador": "HU-07",
+            "Historia de usuario": "Como familiar quiero poder conocer el estado de mi pariente para estar al tanto de lo que necesita."
+          },
+          {
+            "Identificador": "HU-08",
+            "Historia de usuario": "Como familiar quiero poder actualizar los signos vitales de mi pariente para que su médico esté informado de su estado."
+          },
+          {
+            "Identificador": "HU-09",
+            "Historia de usuario": "Como familiar quiero poder recibir e-mails cuando los SV, diagnósticos o cuidados de mi pariente sean actualizados o se le haya agendado una cita para estar informado."
+          },
+          {
+            "Identificador": "HU-10",
+            "Historia de usuario": "Como paciente quiero poder programar una cita en el horario que desee para que un médico me revise en casa y me ayude a sentirme mejor."
+          },
+          {
+            "Identificador": "HU-11",
+            "Historia de usuario": "Como paciente quiero poder recibir e-mails con la información de mis citas para estar listo para recibir a mi médico."
+          },
+          {
+            "Identificador": "HU-12",
+            "Historia de usuario": "Como paciente quiero poder cancelar una cita para informar al doctor que ya no puedo recibirlo en el horario preestablecido."
+          }
+        ]
+      }
+    ]
+  }
+]

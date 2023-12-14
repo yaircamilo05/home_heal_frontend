@@ -1,0 +1,239 @@
+<main>
+  <div class='container text-center'>
+    <div class='row align-items-start'>
+
+      <div class='col text-black'>
+        <mat-accordion (multi)='multipleFoldables'>
+
+          <mat-expansion-panel [expanded]='step === 0'>
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Registro Histórico de Cambios en el Documento
+              </mat-panel-title>
+              <mat-panel-description>
+                Registro del proceso de elicitación de requisitos
+                <img src='../../../../../assets/images/architech-black-logo.jpg' alt='architech-team' width="25px">
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class='subtitle'>
+              <hr class='contractor'>
+              <h2><strong>Proyecto Home Heal Tech</strong></h2>
+              <hr class='contractor'>
+            </div>
+
+            <table class='table table-borderless'>
+              <thead class='table-light text-center'>
+                <tr class='rounded-top-left'>
+                  <th scope='col'>Código</th>
+                  <th scope='col'>Fecha</th>
+                  <th scope='col'>Elaboró</th>
+                  <th scope='col'>Descripción Cambio</th>
+                  <th scope='col'>Versión</th>
+                </tr>
+              </thead>
+              <tbody class='rounded-bottom'>
+                <tr scope='row' class='text-center'>
+                  <th>D-VIS-IS-UC</th>
+                  <td>17/03/2020</td>
+                  <td>Reinel Tabares Soto</td>
+                  <td>Documento Inicial</td>
+                  <td>0.2</td>
+                </tr>
+                <tr scope='row' class='text-center'>
+                  <th></th>
+                  <td>11/11/2023</td>
+                  <td>Juliana Gómez Galindo</td>
+                  <td>Diligenciamiento del Documento</td>
+                  <td>0.2</td>
+                </tr>
+                <!-- <tr scope='row' class='text-center'>
+                  <th></th>
+                  <td>13/12/2023</td>
+                  <td>Over Haider Castrillón Valencia</td>
+                  <td>Implementación del documento</td>
+                  <td>0.2</td>
+                </tr> -->
+              </tbody>
+            </table>
+
+            <mat-action-row>
+              <button mat-button color='warn' (click)='prevStep()'>
+                Anterior</button>
+              <button *ngIf='step < StepLimit' (click)='nextStep()' mat-button color='primary'>
+                Siguiente</button>
+              <button *ngIf='step === StepLimit' (click)='resetStep()' mat-button color='primary'>
+                Terminamos!</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <section *ngFor='let item of intro'>
+
+            <mat-expansion-panel [expanded]='step === item.step' (click)='panelOpenState=item.step'>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{item.title}}
+                </mat-panel-title>
+
+                <mat-panel-description>
+                  {{item.subtitle}}
+                  <mat-icon class="{{item.icon}}"></mat-icon>
+                </mat-panel-description>
+
+              </mat-expansion-panel-header>
+
+              <!-- Content -->
+
+              <div class='subtitle'>
+                <hr class='contractor'>
+                <h2>{{item.title}}</h2>
+                <hr class='contractor'>
+              </div>
+
+              {{item.summary? item.summary : ''}}
+
+              <div *ngFor="let table of item.tables">
+
+                <div class='subtitle' style="align-items: start;">
+                  <h3><i>{{ table.subtitle }}</i></h3>
+                </div>
+
+                <table class='table table-borderless'>
+                  <thead class='table-light text-center'>
+                    <tr>
+                      <th *ngFor="let col of table.columns">{{ col }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of table.rows">
+                      <td *ngFor="let col of table.columns">
+
+                        <div
+                          *ngIf='col === "Criterios de aceptación" || col === "Objetivos asociados"; else notListable'>
+                          <ul>
+                            <li *ngFor='let texto of row[col]'>
+                              {{ texto }}
+                            </li>
+                          </ul>
+                        </div>
+                        <ng-template #notListable>
+                          {{ row[col] }}
+                        </ng-template>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-action-row>
+                <button mat-button color='warn' (click)='prevStep()'>
+                  Anterior</button>
+                <button *ngIf='step < StepLimit' (click)='nextStep()' mat-button color='primary'>
+                  Siguiente</button>
+                <button *ngIf='step === StepLimit' (click)='resetStep()' mat-button color='primary'>
+                  Terminamos!</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+          </section>
+
+
+          <section *ngFor='let item of useCases'>
+
+            <mat-expansion-panel [expanded]='step === item.step' (click)='panelOpenState=item.step'>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{item.title? item.title : 'Mock Title'}}
+                </mat-panel-title>
+
+                <mat-panel-description>
+                  {{item.subtitle}}
+                  <mat-icon>date_range</mat-icon>
+                </mat-panel-description>
+
+              </mat-expansion-panel-header>
+
+              <!-- Content -->
+
+              <div class='subtitle'>
+                <hr class='contractor'>
+                <h2>{{item.title}}</h2>
+                <hr class='contractor'>
+              </div>
+
+              <div *ngFor="let table of item.tables">
+                <div class='subtitle' style="align-items: start;">
+                  <h3><i>{{ table.subtitle }}</i></h3>
+                </div>
+
+                <table>
+                  <!-- Recorre cada columna -->
+                  <tr *ngFor="let col of table.columns">
+                    <th>{{ col }}</th>
+                    <!-- Recorre cada fila para esa columna -->
+                    <td *ngFor="let row of table.rows">
+                      <!-- Si el valor es un array, únelo con comas, de lo contrario, muéstralo directamente -->
+                      <div *ngIf="isArray(row[col]); else plainText" style="margin-left: 3em; margin-right: 3em;">
+                        <ol>
+                          <li *ngFor=" let item of row[col]">
+                            {{ item }}
+                          </li>
+                        </ol>
+                      </div>
+                      <ng-template #plainText>
+                        {{ row[col] }}
+                      </ng-template>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-action-row>
+                <button mat-button color='warn' (click)='prevStep()'>
+                  Anterior</button>
+                <button *ngIf='step < StepLimit' (click)='nextStep()' mat-button color='primary'>
+                  Siguiente</button>
+                <button *ngIf='step === StepLimit' (click)='resetStep()' mat-button color='primary'>
+                  Terminamos!</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+          </section>
+
+
+          <mat-expansion-panel [expanded]='step === 9'>
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Diagrama de Casos de uso </mat-panel-title>
+              <mat-panel-description>
+                Visualización del diagrama
+                <img src='../../../../../assets/images/architech-black-logo.jpg' alt='architech-team' width="25px">
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <img src="../../../../../assets/images/use-cases.png" alt="use_cases" srcset="">
+
+            <mat-action-row>
+              <button mat-button color='warn' (click)='prevStep()'>
+                Anterior</button>
+              <button *ngIf='step < StepLimit' (click)='nextStep()' mat-button color='primary'>
+                Siguiente</button>
+              <button *ngIf='step === StepLimit' (click)='resetStep()' mat-button color='primary'>
+                Terminamos!</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <br>
+
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+
+</main>

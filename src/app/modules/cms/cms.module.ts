@@ -16,8 +16,7 @@ import { UserComponent } from './pages/user/user.component';
 import { MenuRolesComponent } from './pages/menu-roles/menu-roles.component';
 import { TestSocketComponent } from './pages/test-socket/test-socket.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
-
+import { RequierementsComponent } from './pages/requierements/requierements.component';
 
 
 @NgModule({
@@ -29,7 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserComponent,
     MenuRolesComponent,
     TestSocketComponent,
-    // MultiplexorFilterPipe,
+    RequierementsComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +42,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    
   ],
   providers:
     [
