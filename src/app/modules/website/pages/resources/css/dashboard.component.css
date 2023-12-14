@@ -1,0 +1,56 @@
+@charset "UTF-8";
+.bg-button-blue {
+  background-color: #369cdd;
+}
+
+.bg-vitalsing-red {
+  border: 1.5px solid #FF4848;
+  background-color: #ffffff;
+  color: #FF4848;
+}
+
+.bg-vitalsing-blue {
+  border: 1.5px solid #369cdd;
+  background-color: #ffffff;
+  color: #369cdd;
+}
+
+.bg-vitalsing-yellow {
+  border: 1.5px solid #ffd700;
+  background-color: #ffffff;
+  color: #ffd700;
+}
+
+.header-graphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.graphic-all-againt-alls {
+  margin-top: 30px;
+}
+
+.title-graphic {
+  font-size: larger;
+  font-weight: 100;
+}
+
+/* Agrega la clase de animación */
+.animated-heart {
+  animation: heartbeat 2s infinite;
+}
+
+/* Define la animación de latido del corazón */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}/*# sourceMappingURL=dashboard.component.css.map */
