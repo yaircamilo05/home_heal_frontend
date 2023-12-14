@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="card-text text-center d-flex justify-content-center">
-            <p class=" display-1 d-inline-block" >{{vitalSings.hearth_rate}}</p>
+            <p class=" display-1 d-inline-block">{{vitalSings.hearth_rate}}</p>
             <p class="display-6 d-inline-block m-2">LPM</p>
           </div>
         </div>
@@ -58,22 +58,62 @@
           <div class="card-text text-center d-flex justify-content-center">
             <p class="display-1 d-inline-block">{{vitalSings.O2_saturation}}</p>
             <p class="display-6 d-inline-block m-2">%</p>
-          </div>          
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="graphic-all-againt-alls card col-md-12">
-    <div class="card-body">
+
+
+ <div class="graphic-all-againt-alls card col-md-12">
+  <div class="row"> 
+    <div class="card-body col-md-6">
       <div class="header-graphic card-header">
         <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Gráfica de signos vitales</strong></h2>
       </div>
-      <div class="container">
+      <div class="container-fluid">
         <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
           [dataLabels]="chartOptions.dataLabels!" [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!"
           [legend]="chartOptions.legend!" [fill]="chartOptions.fill!"></apx-chart>
       </div>
     </div>
+    <div class="card-body col-md-6">
+      <div class="header-graphic card-header">
+        <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Ritmo cardíaco</strong></h2>
+      </div>
+      <div class="container-fluid">
+        <apx-chart [series]="chartHearthRateOptions.series!" [chart]="chartHearthRateOptions.chart!"
+          [xaxis]="chartHearthRateOptions.xaxis!" [dataLabels]="chartHearthRateOptions.dataLabels!"
+          [yaxis]="chartHearthRateOptions.yaxis!" [colors]="chartHearthRateOptions.colors!"
+          [legend]="chartHearthRateOptions.legend!" [fill]="chartHearthRateOptions.fill!"></apx-chart>
+      </div>
+    </div>
   </div>
-  <!-- <div *ngFor="let sig of series()">{{sig}}</div> -->
+
+  <div class="row">
+    <div class="card-body col-md-6">
+      <div class="header-graphic card-header">
+        <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Temperatura</strong></h2>
+      </div>
+      <div class="container-fluid">
+        <apx-chart [series]="chartTemperatureOptions.series!" [chart]="chartTemperatureOptions.chart!"
+          [xaxis]="chartTemperatureOptions.xaxis!" [dataLabels]="chartTemperatureOptions.dataLabels!"
+          [colors]="chartTemperatureOptions.colors!" [yaxis]="chartTemperatureOptions.yaxis!"
+          [fill]="chartTemperatureOptions.fill!"></apx-chart>
+      </div>
+    </div>
+    <div class="card-body col-md-6">
+      <div class="header-graphic card-header">
+        <h2 class="text-dark card-title"><strong class="display-6 title-graphic">Saturación O2</strong></h2>
+      </div>
+      <div class="container-fluid">
+        <apx-chart [series]="chartSaturationOptions.series!" [chart]="chartSaturationOptions.chart!"
+          [xaxis]="chartSaturationOptions.xaxis!" [dataLabels]="chartSaturationOptions.dataLabels!"
+          [yaxis]="chartSaturationOptions.yaxis!" [colors]="chartSaturationOptions.colors!"
+          [legend]="chartSaturationOptions.legend!" [fill]="chartSaturationOptions.fill!"></apx-chart>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

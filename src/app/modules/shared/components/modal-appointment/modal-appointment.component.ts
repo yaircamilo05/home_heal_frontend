@@ -92,6 +92,7 @@ export class ModalAppointmentComponent {
         this.close();
         window.location.reload();
         this.send_email(response.data.data_patient);
+        this.modalService.openToastWelcome(Messages.SuccessAppointment)
 
 
       },
@@ -127,7 +128,7 @@ export class ModalAppointmentComponent {
           relationship: ''
         }
     
-        console.log(email_data);
+        console.log("email: "+email_data);
     
         this.emailService.send_email_appointment(email_data).subscribe({
           next: (response) => {

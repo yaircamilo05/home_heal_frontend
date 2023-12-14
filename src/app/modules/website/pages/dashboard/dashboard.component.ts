@@ -9,14 +9,14 @@ import { VitalSignsHistoryModel } from 'src/app/models/vital.signs.history';
 import { ActivatedRoute } from '@angular/router';
 import { GraphicSerieModel } from 'src/app/models/serie.model';
 import { map, single } from 'rxjs';
-import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexDataLabels, ApexYAxis, ApexLegend, ApexFill } from "ng-apexcharts";
+import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexDataLabels, ApexYAxis, ApexLegend, ApexFill, ApexPlotOptions } from "ng-apexcharts";
 import { UserGetModel } from 'src/app/models/user.model';
 import { ModalChatComponent } from 'src/app/modules/shared/components/modal-chat/modal-chat.component';
 import { TypeModal } from 'src/app/common/type.modal';
 import { MessageModel } from 'src/app/models/message.model';
 import { PatientService } from 'src/app/services/patient.service';
 import { PatientCard, PatientRegister } from 'src/app/models/patient.model';
-export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; xaxis: ApexXAxis; dataLabels: ApexDataLabels; yaxis: ApexYAxis; colors: string[]; legend: ApexLegend; fill: ApexFill; };
+export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; plotOptions: ApexPlotOptions; xaxis: ApexXAxis; dataLabels: ApexDataLabels; yaxis: ApexYAxis; colors: string[]; legend: ApexLegend; fill: ApexFill; };
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -26,7 +26,9 @@ export class DashboardComponent implements OnInit {
   vitalSingsService = inject(VitalSingsService);
   patientService = inject(PatientService);
   public chartOptions!: Partial<ChartOptions>;
-  public radialBarOptions!: Partial<ChartOptions>;
+  public chartHearthRateOptions!: Partial<ChartOptions>;
+  public chartTemperatureOptions!: Partial<ChartOptions>;
+  public chartSaturationOptions!: Partial<ChartOptions>;
   @Input() seriesInput: GraphicSerieModel[] = [];
   showNotificationNewMessage: boolean = false;
   messagesRecived: MessageModel[] = [];
@@ -45,6 +47,7 @@ export class DashboardComponent implements OnInit {
   patient_id: number = 0;
   patient_name: string = "";
   seriesTest = signal<GraphicSerieModel[]>([])
+  serieHearthRate: GraphicSerieModel[] = []
   seriesOutput: GraphicSerieModel[] = []
 
   constructor(
@@ -60,49 +63,50 @@ export class DashboardComponent implements OnInit {
     this.onUpdateVitalSigns();
     this.getVitalSignsHistory();
     this.getPatientName();
-
-    // Área
-    this.chartOptions = {
-      series: [...this.seriesInput],
-      chart: {
-        type: "area",
-        height: 350,
-        stacked: true,
-        events: {
-          selection: function (chart, e) {
-            console.log(new Date(e.xaxis.min));
-          }
-        }
-      },
-      colors: ["#369cdd", "#FF4848", "#4cae4c"],
-      dataLabels: {
-        enabled: true
-      },
-      fill: {
-        type: "gradient",
-        gradient: {
-          opacityFrom: 0.6,
-          opacityTo: 0.8
-        }
-      },
-      legend: {
-        position: "top",
-        horizontalAlign: "left"
-      },
-      xaxis: {
-        type: "datetime",
-        labels: {
-          datetimeFormatter: {
-            year: 'yyyy',
-            month: 'MMM \'yy',
-            day: 'dd MMM',
-            hour: 'HH:mm',
-          }
-        }
-      }
-    };
-    
   }
+
+  // inicializeGraphics() {
+  //   // Área
+  //   this.chartOptions = {
+  //     series: [...this.seriesInput],
+  //     chart: {
+  //       type: "area",
+  //       height: 350,
+  //       stacked: true,
+  //       events: {
+  //         selection: function (chart, e) {
+  //           console.log(new Date(e.xaxis.min));
+  //         }
+  //       }
+  //     },
+  //     colors: ["#369cdd", "#FF4848", "#ffd700"],
+  //     dataLabels: {
+  //       enabled: true
+  //     },
+  //     fill: {
+  //       type: "gradient",
+  //       gradient: {
+  //         opacityFrom: 0.6,
+  //         opacityTo: 0.8
+  //       }
+  //     },
+  //     legend: {
+  //       position: "top",
+  //       horizontalAlign: "left"
+  //     },
+  //     xaxis: {
+  //       type: "datetime",
+  //       labels: {
+  //         datetimeFormatter: {
+  //           year: 'yyyy',
+  //           month: 'MMM',
+  //           day: 'dd MMM',
+  //           hour: 'HH:mm',
+  //         }
+  //       }
+  //     }
+  //   };
+  // }
 
   onUpdateVitalSigns() {
     console.log("Escuchando en tiempo real...")
@@ -152,7 +156,67 @@ export class DashboardComponent implements OnInit {
         };
       }
       this.addDataToSeries(this.seriesTest());
+      this.addDataToHearthRateSeries(this.seriesTest().filter((item) => item.name == 'Ritmo cardíaco'));
+      this.addDataToTemperatureSerie(this.seriesTest().filter((item) => item.name == 'Temperatura'));
+      this.addDataToSaturationSerie(this.seriesTest().filter((item) => item.name == 'Saturación de O2'));
     });
+  }
+
+  addDataToSaturationSerie(serie: GraphicSerieModel[]) {
+    this.chartSaturationOptions = {
+      series: [...serie],
+      chart: {
+        height: 350,
+        type: "bar"
+      },
+      colors: ["#369cdd"],
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "horizontal",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [50, 0, 100, 100]
+        }
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      },
+      xaxis: {
+        type: "datetime"
+      }
+    };
+  }
+
+  addDataToTemperatureSerie(serie: GraphicSerieModel[]) {
+    this.chartTemperatureOptions = {
+      series: [...serie],
+      chart: {
+        type: "heatmap",
+        height: 350,
+      },
+      colors: ["#ffd700"],
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+      },
+      xaxis: {
+        type: "datetime",
+        labels: {
+          show: false
+        }
+        
+      }
+    };
   }
 
   addDataToSeries(series: GraphicSerieModel[]) {
@@ -168,7 +232,7 @@ export class DashboardComponent implements OnInit {
           }
         }
       },
-      colors: ["#369cdd", "#FF4848", "#4cae4c"],
+      colors: ["#FF4848", "#ffd700","#369cdd"],
       dataLabels: {
         enabled: false
       },
@@ -188,6 +252,36 @@ export class DashboardComponent implements OnInit {
       }
     };
   }
+
+  addDataToHearthRateSeries(series: GraphicSerieModel[]) {
+    this.chartHearthRateOptions = {
+      series: [...series],
+      chart: {
+        type: "line",
+        height: 350,
+        stacked: true,
+        events: {
+          selection: function (chart, e) {
+            console.log(new Date(e.xaxis.min));
+          }
+        }
+      },
+      colors: ["#FF4848"],
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      },
+      xaxis: {
+        type: "datetime"
+      }
+    };
+  }
+
   generateDataSerieHeartRate(datarecived: VitalSignsHistoryModel[]): number[][] {
     const data = datarecived.map((item) => {
       return [new Date(item.date).getTime(), item.hearth_rate];
@@ -227,7 +321,7 @@ export class DashboardComponent implements OnInit {
   getSerieHeartRate(data: VitalSignsHistoryModel[]): GraphicSerieModel {
     const heartRateData: number[][] = this.generateDataSerieHeartRate(data);
     return {
-      name: 'Ritmo cardiaco',
+      name: 'Ritmo cardíaco',
       data: heartRateData
     };
   }
@@ -236,7 +330,7 @@ export class DashboardComponent implements OnInit {
   getSerieSaturation(data: VitalSignsHistoryModel[]): GraphicSerieModel {
     const saturationData: number[][] = this.generateDataSerieSaturation(data);
     return {
-      name: 'Saturation O2',
+      name: 'Saturación de O2',
       data: saturationData
     };
   }
@@ -247,7 +341,7 @@ export class DashboardComponent implements OnInit {
     const heartRateSeries = this.getSerieHeartRate(data);
     const saturationSeries = this.getSerieSaturation(data);
 
-    return [temperatureSeries, heartRateSeries, saturationSeries];
+    return [heartRateSeries, temperatureSeries, saturationSeries];
   }
 
   openModalChat() {
