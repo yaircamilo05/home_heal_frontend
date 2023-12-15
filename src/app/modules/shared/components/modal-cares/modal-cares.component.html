@@ -4,7 +4,8 @@
     </div>
     <div class="header">
         <div class="title">
-            <h1>Recuerda tener en cuenta estos cuidados para que tu condicion mejore...</h1>
+            <h1 *ngIf="getRole()==2 || getRole()==3">Recuerda tener en cuenta estos cuidados para que tu condicion mejore...</h1>
+            <h1 *ngIf="getRole()==4">Estos son los cuidados de tu paciente...</h1>
         </div>
         <div class="foto">
             <img class="foto" width="200px"
