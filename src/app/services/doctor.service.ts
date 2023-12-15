@@ -36,5 +36,8 @@ export class DoctorService {
     return this.http.get<ResponseCustomModel<DoctorAppointmentModel[]>>(`${this.server}/get_doctors_by_speciality/${speciality}`);
   }
 
+  getDoctorsByPatientId(id: number): Observable<ResponseCustomModel<DoctorAppointmentModel[]>> {
+    return this.http.get<ResponseCustomModel<DoctorAppointmentModel[]>>(`${this.server}/get_doctors_by_patient_id/${id}`);
+  }
 
 }

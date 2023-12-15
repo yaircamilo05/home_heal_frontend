@@ -24,6 +24,8 @@ import { GraphicSerieModel } from '../models/serie.model';
 import { Observable, tap } from 'rxjs';
 import { PatientService } from './patient.service';
 import { DatePipe } from '@angular/common';
+import { DoctorService } from './doctor.service';
+import { DoctorAppointmentModel } from '../models/doctor.appointment.model';
 
 
 @Injectable({
@@ -42,7 +44,8 @@ export class VitalSingsService {
     private http: HttpClient,
     private emailService: EmailService,
     private storageService: StorageService,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private doctorService: DoctorService
   ) {
     this.onSaveVitalSings();
   }
@@ -78,7 +81,7 @@ export class VitalSingsService {
     });
   }
 
-  
+
   calculateStatusPatientByVitalSigns(vitalSigns: VitalSignsHistoryModel) {
     let status: EnumEStatusPatient = EnumEStatusPatient.STABLE;
     if (vitalSigns.hearth_rate >= 120 || vitalSigns.hearth_rate <= 50) {
@@ -146,56 +149,79 @@ export class VitalSingsService {
     let name: string = "";
     let statusPatient: EnumEStatusPatient = this.calculateStatusPatientByVitalSigns(vitalSigns);
     let relationship = "";
+    //obtener el familiar del paciente para obtener el email y el nombre
+    emails.push(patient.email_familiar);
+    name = patient.family_name;
+    relationship = "familiar";
 
-    if (rolId == Roles.MEDICO) {
-      //obtener el familiar del paciente para obtener el email y el nombre
-      emails.push(patient.email_familiar);
-      name = patient.family_name;
-      relationship = "familiar";
-    } else if (rolId == Roles.FAMILIAR) {
-      //obtener los medicos del paciente para obtener los emails
-      emails.push()
-      name = "Doc."
-      relationship = "paciente";
+    if (rolId == Roles.FAMILIAR) {
+      this.doctorService.getDoctorsByPatientId(patient.patient_id).subscribe((response) => {
+        //obtener los medicos del paciente para obtener los emails
+        emails = response.data.map((doctor) => doctor.email);
+        name = "Doc."
+        relationship = "paciente";
+
+        const dataEmail: EmailVitalSignsData = {
+          hash: environment.hash_validator,
+          to_destination: emails,
+          subject: this.getSubjetByStatusPatient(statusPatient),
+          name: name,
+          relationship: relationship,
+          date: this.current_date!,
+          name_editor: username,
+          name_patient: patient.name,
+          hearth_rate: vitalSigns.hearth_rate.toString(),
+          state_hearth_rate: EnumEStatusPatient[statusPatient],
+          color_hearth_rate: "#FFD700",
+          blood_pressure: vitalSigns.blood_pressure.toString(),
+          state_blood_pressure: EnumEStatusPatient[statusPatient],
+          color_blood_pressure: "#FF4848",
+          o2_saturation: vitalSigns.O2_saturation.toString(),
+          state_o2_saturation: EnumEStatusPatient[statusPatient],
+          color_o2_saturation: "#7ED957",
+        }
+
+        this.emailService.send_email_vital_signs(dataEmail).subscribe((response) => {
+          console.log("Respuesta del servidor para el doctor", response);
+        });
+      });
+    } else {
+
+      const dataEmail: EmailVitalSignsData = {
+        hash: environment.hash_validator,
+        to_destination: emails,
+        subject: this.getSubjetByStatusPatient(statusPatient),
+        name: name,
+        relationship: relationship,
+        date: this.current_date!,
+        name_editor: username,
+        name_patient: patient.name,
+        hearth_rate: vitalSigns.hearth_rate.toString(),
+        state_hearth_rate: EnumEStatusPatient[statusPatient],
+        color_hearth_rate: "#FFD700",
+        blood_pressure: vitalSigns.blood_pressure.toString(),
+        state_blood_pressure: EnumEStatusPatient[statusPatient],
+        color_blood_pressure: "#FF4848",
+        o2_saturation: vitalSigns.O2_saturation.toString(),
+        state_o2_saturation: EnumEStatusPatient[statusPatient],
+        color_o2_saturation: "#7ED957",
+      }
+
+      console.log("Data email", dataEmail);
+      this.emailService.send_email_vital_signs(dataEmail).subscribe((response) => {
+        console.log("Respuesta del servidor para el familiar", response);
+      });
     }
-
-    const dataEmail: EmailVitalSignsData = {
-      hash: environment.hash_validator,
-      to_destination: emails,
-      subject: this.getSubjetByStatusPatient(statusPatient),
-      name: name,
-      relationship: relationship,
-      date: this.current_date!,
-      name_editor: username,
-      name_patient: patient.name,
-      hearth_rate: vitalSigns.hearth_rate.toString(),
-      state_hearth_rate: EnumEStatusPatient[statusPatient],
-      color_hearth_rate: "#FFD700",
-      blood_pressure: vitalSigns.blood_pressure.toString(),
-      state_blood_pressure: EnumEStatusPatient[statusPatient],
-      color_blood_pressure: "#FF4848",
-      o2_saturation: vitalSigns.O2_saturation.toString(),
-      state_o2_saturation: EnumEStatusPatient[statusPatient],
-      color_o2_saturation: "#7ED957",
-    }
-
-    console.log("Data email", dataEmail);
-    this.emailService.send_email_vital_signs(dataEmail).subscribe((response) => {
-      console.log("Respuesta del servidor", response);
-    });
-
   }
 
-  sendEmailFamiliar(dataEmil: EmailVitalSignsData) {
-    this.emailService.send_email_vital_signs(dataEmil).subscribe((response) => {
-      console.log("Respuesta del servidor", response);
+  getDoctorsPatient(id: number): DoctorAppointmentModel[] {
+    this.doctorService.getDoctorsByPatientId(id).subscribe((response) => {
+      if (response.data) {
+        return response.data;
+      }
+      return [];
     });
-  }
-
-  sendEmailDoctor(dataEmil: EmailVitalSignsData,) {
-    this.emailService.send_email_vital_signs(dataEmil).subscribe((response) => {
-      console.log("Respuesta del servidor", response);
-    });
+    return [];
   }
 
   getVitalSignsHistory(patient_id: number): Observable<ResponseCustomModel<VitalSignsHistoryModel[]>> {
