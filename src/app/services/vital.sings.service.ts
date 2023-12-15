@@ -73,25 +73,62 @@ export class VitalSingsService{
   }
 
   calculateStatusPatientByVitalSigns(vitalSigns: VitalSignsHistoryModel){
-    let status:EnumEStatusPatient = EnumEStatusPatient.STABLE;
+    let status:EnumEStatusPatient = EnumEStatusPatient.ESTABLE;
+    const statusHearthRate = this.calculateStatusForHearthRate(vitalSigns);
+    const statusBloodPressure = this.calculateStatusForBloodPressure(vitalSigns);
+    const statusO2Saturation = this.calculateStatusForO2Saturation(vitalSigns);
+    if(statusHearthRate == EnumEStatusPatient.CRITICO || statusBloodPressure == EnumEStatusPatient.CRITICO || statusO2Saturation == EnumEStatusPatient.CRITICO){
+        status = EnumEStatusPatient.CRITICO;
+    }else if(statusHearthRate == EnumEStatusPatient.RIESGOSO || statusBloodPressure == EnumEStatusPatient.RIESGOSO || statusO2Saturation == EnumEStatusPatient.RIESGOSO){
+        status = EnumEStatusPatient.RIESGOSO;
+    }
+
+    return status;
+  }
+
+  calculateColorByStatusVitalSign(status:EnumEStatusPatient){
+    let color:string = "";
+    switch(status){
+      case EnumEStatusPatient.ESTABLE:
+        color = "#7ED957";
+        break;
+      case EnumEStatusPatient.RIESGOSO:
+        color = "#FFD700";
+        break;
+      case EnumEStatusPatient.CRITICO:
+        color = "#FF4848";
+        break;
+    }
+    return color;
+  }
+
+  calculateStatusForHearthRate(vitalSigns: VitalSignsHistoryModel){
+    let status:EnumEStatusPatient = EnumEStatusPatient.ESTABLE;
     if(vitalSigns.hearth_rate >= 120 || vitalSigns.hearth_rate <= 50){
-        status = EnumEStatusPatient.CRITICAL;
+        status = EnumEStatusPatient.CRITICO;
     }else if((vitalSigns.hearth_rate >= 100 && vitalSigns.hearth_rate < 120) || (vitalSigns.hearth_rate > 50 && vitalSigns.hearth_rate <= 60)){
-        status = EnumEStatusPatient.RISKY;
+        status = EnumEStatusPatient.RIESGOSO;
     }
+    return status;
+  }
 
+  calculateStatusForBloodPressure(vitalSigns: VitalSignsHistoryModel){
+    let status:EnumEStatusPatient = EnumEStatusPatient.ESTABLE;
     if(vitalSigns.blood_pressure >= 40 || vitalSigns.blood_pressure <= 35){
-        status = EnumEStatusPatient.CRITICAL;
-    }else if(vitalSigns.blood_pressure >= 38 && vitalSigns.blood_pressure < 40){
-        status = EnumEStatusPatient.RISKY;
+        status = EnumEStatusPatient.CRITICO;
+    }else if(vitalSigns.blood_pressure > 37 && vitalSigns.blood_pressure < 40){
+        status = EnumEStatusPatient.RIESGOSO;
     }
+    return status;
+  }
 
+  calculateStatusForO2Saturation(vitalSigns: VitalSignsHistoryModel){
+    let status:EnumEStatusPatient = EnumEStatusPatient.ESTABLE;
     if(vitalSigns.O2_saturation <= 85){
-        status = EnumEStatusPatient.CRITICAL;
-    }else if(vitalSigns.O2_saturation >= 86 && vitalSigns.O2_saturation <= 90){
-        status = EnumEStatusPatient.RISKY;
+        status = EnumEStatusPatient.CRITICO;
+    }else if(vitalSigns.O2_saturation >= 86 && vitalSigns.O2_saturation < 95){
+        status = EnumEStatusPatient.RIESGOSO;
     }
-
     return status;
   }
 
@@ -107,11 +144,11 @@ export class VitalSingsService{
   }
 
   calculateStatusVitalSign(vitalSign:number, min:number, max:number){
-    let status:EnumEStatusPatient = EnumEStatusPatient.STABLE;
+    let status:EnumEStatusPatient = EnumEStatusPatient.ESTABLE;
     if(vitalSign >= max || vitalSign <= min){
-        status = EnumEStatusPatient.CRITICAL;
+        status = EnumEStatusPatient.CRITICO;
     }else if(vitalSign >= min && vitalSign < max){
-        status = EnumEStatusPatient.RISKY;
+        status = EnumEStatusPatient.RIESGOSO;
     }
     return status;
   }
@@ -119,13 +156,13 @@ export class VitalSingsService{
   getSubjetByStatusPatient(status:EnumEStatusPatient){
     let subjet:string = "";
     switch(status){
-      case EnumEStatusPatient.STABLE:
+      case EnumEStatusPatient.ESTABLE:
         subjet = "Signos vitales estables";
         break;
-      case EnumEStatusPatient.RISKY:
+      case EnumEStatusPatient.RIESGOSO:
         subjet = "IMPORTANTE - Signos vitales en riesgo";
         break;
-      case EnumEStatusPatient.CRITICAL:
+      case EnumEStatusPatient.CRITICO:
         subjet = "URGENTE - Signos vitales en estado crítico";
         break;
     }

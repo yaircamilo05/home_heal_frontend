@@ -52,6 +52,7 @@ export class ModalAppointmentComponent {
   doctor: any;
   isAcceptClicked = false;
   selectedIcons : string[] = [];
+  loading: boolean = false;
   
   constructor
   (
@@ -78,6 +79,7 @@ export class ModalAppointmentComponent {
 
   createAppointment(){
     this.isAcceptClicked = true;
+    this.loading = true;
     let appointment_data: AppointmentCreateModel = {
       reason: this.reason,
       date: this.form.value.date,
