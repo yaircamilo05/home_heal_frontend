@@ -143,6 +143,7 @@ export class DashboardComponent implements OnInit {
         this.vitalSings = vitalRealTime;
         this.seriesOutput = this.getSeries(this.vitalSingsService.vistalsSigns);
         this.seriesTest.set(this.seriesOutput);
+        this.getVitalSignsHistory();
       }
     );
   }
@@ -153,7 +154,7 @@ export class DashboardComponent implements OnInit {
       minHeight: '80%',
       maxWidth: '50%',
       data: {
-        title: TitlesModal.vitalSigns('Nombre del paciente'),
+        title: TitlesModal.vitalSigns(this.patient_name),
         iconClass: Icons.vitalSigns,
         pacientId: this.patient_id,
       },
