@@ -7,6 +7,7 @@ import { CaresService } from 'src/app/services/cares.service'
 import { DoctorService } from 'src/app/services/doctor.service'
 import { ModalService } from 'src/app/services/modal.service'
 import { StorageService } from 'src/app/services/storage.service'
+import { ModalGenerativeCaresComponent } from '../modal-generative-cares/modal-generative-cares.component'
 
 export interface DialogData {
   patientId: number
@@ -136,8 +137,19 @@ export class ModalCaresComponent {
     this.viewForm = !this.viewForm
   }
 
-  getRole(){
+  getRole() {
     return this.storageService.getRolId();
+  }
+
+  openGenerativeModal() {
+    this.dialog.open(ModalGenerativeCaresComponent, {
+      minWidth: '800px',
+      minHeight: '40%',
+      maxWidth: '80%',
+      data: {
+        patientId: this.id_patient
+      }
+    })
   }
 
 }

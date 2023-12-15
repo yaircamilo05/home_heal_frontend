@@ -17,4 +17,6 @@ export interface CaresCreateModel {
     patient_id: number;
 }
 
-
+export interface GeneratedCare extends CaresCreateModel {
+    title: string;
+}
