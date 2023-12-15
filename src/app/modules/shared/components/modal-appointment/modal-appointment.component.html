@@ -55,7 +55,12 @@
     
       <div class="col-12 text-end">
         <button *ngIf="!isAcceptClicked" class="btn btn-danger m-2" (click)="close()">CANCELAR</button>
-        <button class="btn btn-success m-2" (click)="createAppointment()">ACEPTAR</button>
+        <button (click)="createAppointment()" class="btn btn-blue-success">
+          <div *ngIf="!loading">INGRESAR</div>
+          <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
       </div>
     </div>
   </form>
