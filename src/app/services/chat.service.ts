@@ -32,10 +32,11 @@ export class ChatService {
   onRecivedMessagePrivate(){
     return this.sockectioService.io.on('privateMessage', (response:ResponseSocketModel<MessageModel>)=>{
       response.content.type = 2;
+      console.log("Repuesta del servidor de los mensajes privados", response.content);
       this.notifacationNewMessage(response.content);
-      if(this.messageIsForMy(response.content)){
+      //if(this.messageIsForMy(response.content)){
         this.chats.push(response.content);
-      }
+      //}
     });
   }
 
