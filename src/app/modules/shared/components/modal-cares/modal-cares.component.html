@@ -4,7 +4,8 @@
     </div>
     <div class="header">
         <div class="title">
-            <h1>Recuerda tener en cuenta estos cuidados para que tu condicion mejore...</h1>
+            <h1 *ngIf="getRole()==2 || getRole()==3">Recuerda tener en cuenta estos cuidados para que tu condicion mejore...</h1>
+            <h1 *ngIf="getRole()==4">Estos son los cuidados de tu paciente...</h1>
         </div>
         <div class="foto">
             <img class="foto" width="200px"
@@ -13,21 +14,32 @@
     </div>
 
     <div class="create_space" *ngIf="getRole() == 4">
-        <div class="container-btn" (click)="openCloseForm()">
-            <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
-        </div>
-        <div class="container">
-            <form [formGroup]="form" *ngIf="viewForm">
-                <p>Vamos a agregar un nuevo cuidado...</p>
-                <label for="care_description">Ingresa la descripcion: </label>
-                <textarea type="text" formControlName="description" name="care_description"></textarea>
-                <div>
-                    <button (click)="createCare()">Aceptar</button>
-                    <button (click)="openCloseForm()">Cancelar</button>
+        <div class="row justify-content-center">
+
+            <div class="col-4">
+                <div class=" container-btn" (click)="openCloseForm()">
+                    <span class="icon" [ngClass]="'fa-solid fa-plus'"></span>
                 </div>
-            </form>
-            
+                <div class="container">
+                    <form [formGroup]="form" *ngIf="viewForm">
+                        <p>Vamos a agregar un nuevo cuidado...</p>
+                        <label for="care_description">Ingresa la descripcion: </label>
+                        <textarea type="text" formControlName="description" name="care_description"></textarea>
+                        <div>
+                            <button (click)="createCare()">Aceptar</button>
+                            <button (click)="openCloseForm()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-4 container-btn">
+                <app-button (click)="openGenerativeModal()" type="primary" icon="fa-solid fa-wand-sparkles" text="Con IA"></app-button>
+            </div>
+
         </div>
+
+
     </div>
     <div class="no_cares" *ngIf="cares.length == 0">
         <h1>Este paciente no tiene cuidados registrados..</h1>

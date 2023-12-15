@@ -131,3 +131,16 @@ input{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
 }
+
+::ng-deep .blue-slider .mat-slider-thumb {
+  background-color: #0000ff !important;
+}
+
+::ng-deep .blue-slider .mat-slider-track-fill {
+  background-color: #0000ff !important;
+}
+
+::ng-deep .blue-slider .mat-slider-track-background {
+  background-color: #0000ff !important;
+}
+

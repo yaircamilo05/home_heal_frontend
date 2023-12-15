@@ -1,0 +1,33 @@
+main {
+  padding-top: 1em;
+}
+
+mat-accordion {
+  --mat-expansion-container-background-color: white;
+  --mat-expansion-header-text-color: black;
+  --mat-expansion-header-description-color: grey;
+  --mat-expansion-container-text-color: black;
+}
+
+mat-panel-description {
+  justify-content: space-between;
+}
+
+.subtitle {
+  color: #2b65c2;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+
+  hr {
+    width: 61.8%;
+    border: 1px solid #2b65c2
+  }
+}
+
+mat-expansion-panel {
+  padding-block: 1em;  
+}

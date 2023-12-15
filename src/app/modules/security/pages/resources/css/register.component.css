@@ -1,0 +1,100 @@
+.imgw {
+  height: 100vh;
+}
+
+.prin-user {
+  color: var(--success-lite-chat);
+}
+
+.user-image {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: calc(50% - 50px);
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.text-form {
+  color: #999;
+}
+
+::-moz-placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+::placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+#fecha::-moz-placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+#fecha::placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+#fecha {
+  color: #999;
+  opacity: 0.7;
+}
+
+#seleccion::-moz-placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+#seleccion::placeholder {
+  color: #999;
+  opacity: 0.7;
+}
+
+#seleccion {
+  color: #999;
+  opacity: 0.7;
+}
+
+.btn-red-cancel {
+  background-color: #FF4848;
+  color: #fff;
+}
+
+.btn-blue-confirm {
+  background-color: #369cdd;
+  color: #fff;
+}
+
+.text-title-forms {
+  color: #369cdd;
+}
+
+.file-input-container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: auto;
+}
+
+.input-file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.custom-file-label {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-label:hover {
+  background-color: #2980b9;
+}/*# sourceMappingURL=register.component.css.map */

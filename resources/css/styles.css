@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Montserrat:wght@300;400;600&family=Quicksand:wght@300;500;700&family=Roboto+Condensed:ital,wght@0,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,300&display=swap");
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.toast.success {
+  background-color: #28a745; /* Color de fondo para éxito */
+}
+
+.toast.warning {
+  background-color: #ffc107; /* Color de fondo para advertencia */
+}
+
+.toast.error {
+  background-color: #dc3545; /* Color de fondo para error */
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #E5E5E5 !important;
+}
+
+body .fc .fc-col-header-cell {
+  background-color: #369CDD !important; /* color rojo para las cabeceras de los días de la semana */
+  color: #000000 !important; /* color negro para el texto */
+}
+
+.fc-col-header-cell-cushion {
+  color: #000000 !important;
+}/*# sourceMappingURL=styles.css.map */

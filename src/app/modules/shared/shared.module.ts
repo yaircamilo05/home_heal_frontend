@@ -27,11 +27,15 @@ import { MultiplexorFilterPipe } from 'src/app/common/filter.pipe';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from "@angular/material/core";
-import {  ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
+import { ModalAppointmentComponent } from './components/modal-appointment/modal-appointment.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 import { ModalCaresComponent } from './components/modal-cares/modal-cares.component';
 import { ModalDiagnosticComponent } from './components/modal-diagnostic/modal-diagnostic.component';
 import { TruncatePipe } from 'src/app/common/truncate.pipe';
+import { ModalGenerativeCaresComponent } from './components/modal-generative-cares/modal-generative-cares.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,7 @@ import { TruncatePipe } from 'src/app/common/truncate.pipe';
     ModalMenusComponent,
     ModalRolesComponent,
     ModalUserComponent,
+    ModalGenerativeCaresComponent,
     ModalMenusRolesComponent,
     NotFoundComponent,
     CustomModalComponent,
@@ -56,6 +61,7 @@ import { TruncatePipe } from 'src/app/common/truncate.pipe';
     ModalDiagnosticComponent,
     MultiplexorFilterPipe,
     TruncatePipe,
+    ModalGenerativeCaresComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +77,9 @@ import { TruncatePipe } from 'src/app/common/truncate.pipe';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
   ],
   exports: [
     ButtonComponent,
@@ -83,7 +91,8 @@ import { TruncatePipe } from 'src/app/common/truncate.pipe';
     MatInputModule,
     MatNativeDateModule,
     FullCalendarModule,
+    MatExpansionModule,
     TruncatePipe,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
