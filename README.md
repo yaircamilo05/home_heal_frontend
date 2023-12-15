@@ -1,27 +1,50 @@
-# HomeHealFront
+# Este es el Frontend de la Plataforma Home-Heal
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.3.
+¡Bienvenido al repositorio del Frontend de la Plataforma Home-Heal! Este componente es la interfaz de usuario crucial para interactuar con la aplicación Home-Heal.
 
-## Development server
+## Requisitos Adicionales
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para el completo funcionamiento del frontend, también son necesarios los siguientes proyectos:
 
-## Code scaffolding
+1. *Backend Home-Heal:*
+   Asegúrate de tener el Backend de Home-Heal correctamente configurado y desplegado. Puedes encontrar el repositorio [aquí](https://github.com/yaircamilo05/home_heal_backend).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. *Socket Home-Heal:*
+   El Socket de Home-Heal es esencial para la comunicación en tiempo real. Asegúrate de tenerlo instalado y funcionando correctamente. Puedes encontrar el repositorio [aquí](https://github.com/yaircamilo05/home_heal_socket).
 
-## Build
+## Configuración del Frontend
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Asegúrate de seguir estos pasos para la correcta configuración del frontend:
 
-## Running unit tests
+1. *Instala Angular CLI:*
+   Si no tienes Angular CLI instalado, sigue los pasos de instalación en la [documentación oficial](https://angular.io/cli). Esto se requiere para gestionar y ejecutar proyectos Angular.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Clona este repositorio en tu máquina local.
 
-## Running end-to-end tests
+    bash
+    git clone https://github.com/yaircamilo05/home_heal_frontend.git
+    
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Instala las dependencias necesarias.
 
-## Further help
+    bash
+    npm install
+    
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Configura las variables de entorno según tus necesidades en el archivo .env.
+
+5. Inicia el frontend.
+
+    bash
+    ng serve
+    
+
+   El frontend estará disponible en http://localhost:4200/ por defecto.
+
+¡Listo! El Frontend de la Plataforma Home-Heal está ahora configurado y listo para su uso.
+
+## Contribuciones
+
+Si deseas contribuir a este proyecto, ¡te damos la bienvenida! Por favor, consulta nuestras pautas de contribución antes de enviar cualquier solicitud.
+
+¡Gracias por ser parte de Home-Heal!
