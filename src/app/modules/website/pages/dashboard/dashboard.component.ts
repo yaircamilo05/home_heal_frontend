@@ -139,13 +139,16 @@ export class DashboardComponent implements OnInit {
           date: response.date,
           patient_id: response.patient_id,
         };
-
+        console.log('ESTOS SON LOS SIGNOS QUE LLEGAN EN TIEMPO REAL QUE DEVERIAN ENVIAR EL EMAIL', response);
+        this.vitalSingsService.getPatientAndSendEmail(this.patient_id,response);
         this.vitalSings = vitalRealTime;
         this.seriesOutput = this.getSeries(this.vitalSingsService.vistalsSigns);
         this.seriesTest.set(this.seriesOutput);
         this.getVitalSignsHistory();
+
       }
     );
+
   }
 
   openModalUpdateVitalsSigns() {
