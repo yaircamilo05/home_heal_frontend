@@ -31,7 +31,7 @@ export class HomeAdminComponent {
     }
     location: string = 'ADMINISTRACIÓN';
     user:UserGetWithMenusModel | null = null;
-   
+
 
     ngOnInit(): void {
       this.getUserLogged();
@@ -41,6 +41,10 @@ export class HomeAdminComponent {
       this.authService.user$.subscribe(user =>{
         this.user = user;
       });
+    }
+
+    home(){
+      this.router.navigate(['/admin/init-admin']);
     }
 
     setLocation(menu:MenuGetModel){

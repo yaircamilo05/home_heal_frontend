@@ -1,38 +1,53 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-      <div>
-        <div class="container-header-menu">
-          <h1 class="title">HOME HEAL</h1>
-        </div>
-        <div class="container-info-user">
-          <img src="{{user?.image_url}}" alt="Imagen">
-          <h3 class="nombre-user">{{user?.name}}</h3>
-          <p class="rol-name">{{user?.rol?.name}}</p>
-        </div>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <div>
+      <div class="container-header-menu">
+        <h1 class="title">HOME HEAL</h1>
       </div>
-    <mat-nav-list class="lista-opciones"  *ngFor="let menu of user?.menus; let last = last">
-      <a class="opcion" (click)="setLocation(menu)"  mat-list-item routerLink={{menu.link}}>
-        <div class="icon-title">
-          <div class="icon"><i class={{menu.icon}}></i></div>
-          {{menu.title}}
-        </div>
+      <div class="container-info-user">
+        <img src="{{user?.image_url}}" alt="Imagen">
+        <h3 class="nombre-user">{{user?.name}}</h3>
+        <p class="rol-name">{{user?.rol?.name}}</p>
+      </div>
+    </div>
+    <div *ngIf="user?.rol_id !== 3">
+      <mat-nav-list class="lista-opciones" *ngFor="let menu of user?.menus; let last = last">
+        <a class="opcion" (click)="setLocation(menu)" mat-list-item routerLink={{menu.link}}>
+          <div class="icon-title">
+            <div class="icon"><i class={{menu.icon}}></i></div>
+            {{menu.title}}
+          </div>
 
-      </a>
-      <hr *ngIf="last" class="ultimo-menu-border">
-    </mat-nav-list>
+        </a>
+        <hr *ngIf="last" class="ultimo-menu-border">
+      </mat-nav-list>
+    </div>
+    <div *ngIf="user?.rol_id === 3">
+      <mat-nav-list class="lista-opciones" *ngFor="let menu of user?.menus; let last = last">
+        <a *ngIf="menu.title === 'Mi familiar'" class="opcion" (click)="redirectToDashboardWithPatient()" mat-list-item>
+          <div class="icon-title">
+            <div class="icon"><i class={{menu.icon}}></i></div>
+            {{menu.title}}
+          </div>
+        </a>
+        <a *ngIf="menu.title !== 'Mi familiar'" class="opcion" (click)="setLocation(menu)" mat-list-item routerLink={{menu.link}}>
+          <div class="icon-title">
+            <div class="icon"><i class={{menu.icon}}></i></div>
+            {{menu.title}}
+          </div>
+        </a>
+        <hr *ngIf="last" class="ultimo-menu-border">
+      </mat-nav-list>
+    </div>
     <div class="footer-sidenav">
-        <app-button type="secondary" icon="fa-solid fa-user" text="CUENTA"></app-button>
-        <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR" (click)="logout()"></app-button>
+      <app-button type="secondary" icon="fa-solid fa-house-user" text="INICIO" (click)="home()"></app-button>
+      <app-button type="secondary" icon="fa-solid fa-right-from-bracket" text="SALIR" (click)="logout()"></app-button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content class="content">
-    <mat-toolbar  class="header" color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+    <mat-toolbar class="header" color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -40,7 +55,7 @@
         <img src="../../../../../assets/icons/Blanco-elemento.png" alt="Logo">
       </div>
       <div class="location">
-          {{location}}
+        {{location}}
       </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
