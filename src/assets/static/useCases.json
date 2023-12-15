@@ -1,0 +1,344 @@
+[
+  {
+    "step": 7,
+    "icon": "fa-solid fa-suitcase",
+    "title": "Especificación de casos de uso",
+    "subtitle": "Tablificación de resultados obtenidos",
+    "tables": [
+      {
+        "subtitle": "PRIMERO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-001",
+            "Nombre del Caso de Uso": "Pedir cita",
+            "Prioridad": "Alta",
+            "Actores": "Paciente",
+            "Descripción": "El usuario podrá pedir una cita de acuerdo con la disponibilidad que decida",
+            "Precondiciones": [
+              "Usuario debe estar logueado con rol de paciente"
+            ],
+            "Flujo Básico": [
+              "El usuario da click en la opción 'Mis citas'",
+              "El usuario da click en el botón de 'Pedir cita'",
+              "El sistema muestra el formulario para pedir una cita, con los campos de fecha, hora, especialidad y sintomatología",
+              "El usuario ingresa los datos requeridos",
+              "El sistema verifica que exista algún médico con disponibilidad en ese horario y lo asigna a la cita",
+              "El sistema muestra un mensaje de cita registrada"
+            ],
+            "Flujos Alternativos": [
+              "Si no existe ningún médico disponible en el horario seleccionado, se muestra un mensaje de alerta informándolo, y se pide que se cambie la selección."
+            ],
+            "Postcondiciones": [
+              "Se crea la nueva cita y se envía notificación a los involucrados"
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "SEGUNDO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-002",
+            "Nombre del Caso de Uso": "Pedir cita",
+            "Prioridad": "Media",
+            "Actores": "Médico",
+            "Descripción": "El médico agendará una cita con un paciente especifico",
+            "Precondiciones": [
+              "Usuario debe estar logueado con rol de médico"
+            ],
+            "Flujo Básico": [
+              "El usuario da click en la opción del menú “Mis pacientes”",
+              "El médico selecciona el paciente al que asignará la cita",
+              "El sistema abre una ventana con la información completa del paciente seleccionado",
+              "El médico selecciona la opción “Asignar cita”",
+              "El médico indica el horario para la cita",
+              "el sistema verifica que ni el medico ni el paciente tengan alguna cita programada en este horario",
+              "el sistema muestra un mensaje de cita creada"
+            ],
+            "Flujos Alternativos": [
+              "Si el médico o el paciente no está disponible en este horario se muestra un mensaje de alerta informando sobre esto, y se pide que se cambie esta información."
+            ],
+            "Postcondiciones": [
+              "Se crea la nueva cita y se notifica a todos los involucrados"
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "TERCERO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-003",
+            "Nombre del Caso de Uso": "Cancelar cita",
+            "Prioridad": "Baja",
+            "Actores": "Paciente",
+            "Descripción": "Usuario decide cancelar una cita",
+            "Precondiciones": [
+              "Usuario debe estar logueado con rol de paciente",
+              "Usuario debe tener al menos 1 cita pendiente"
+            ],
+            "Flujo Básico": [
+              "El usuario da click en la opción del menú “Mis citas”",
+              "El sistema muestra todas las citas pendientes del usuario",
+              "El usuario selecciona el botón “Cancelar cita” y se le pedirá una confirmación",
+              "el sistema muestra un mensaje de cita cancelada"
+            ],
+            "Flujos Alternativos": [
+              "Si no hay ninguna cita pendiente, el sistema muestra un mensaje informando"
+            ],
+            "Postcondiciones": [
+              "La cita cambia a un estado cancelada y se notifica a los involucrados"
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "CUARTO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-004",
+            "Nombre del Caso de Uso": "Agregar diagnóstico (Dx) al historial de diagnósticos",
+            "Prioridad": "Alta",
+            "Actores": "Médico",
+            "Descripción": "Permitir la inserción al historial de Dx de un paciente específico en HomeHeal.",
+            "Precondiciones": [
+              "El actor debe de estar autenticado en el sistema con rol de médico."
+            ],
+            "Flujo Básico": [
+              "El médico selecciona la opción “Mis pacientes\"",
+              "El sistema muestra la lista de los pacientes asignados al médico",
+              "El médico selecciona el botón “Dx” del paciente específico.",
+              "El sistema muestra una ventana emergente con el historial de diagnósticos del paciente.",
+              "El médico selecciona la opción “Añadir diagnóstico”.",
+              "El sistema le presenta un formulario para ingresar los detalles del diagnóstico.",
+              "El médico completa el formulario proporcionando la información que es necesaria.",
+              "El médico presiona el botón” Agregar”.",
+              "El sistema muestra un mensaje de que el diagnóstico se ha añadido exitosamente."
+            ],
+            "Flujos Alternativos": [
+              "Si el Médico decide cancelar la operación, selecciona la opción “Cancelar”, y el sistema vuelve a la vista anterior.",
+              "Si la información proporcionada es inválida (por ejemplo, campos obligatorios están vacíos), el sistema muestra mensajes de error y solicita al médico que corrija los errores antes de proceder."
+            ],
+            "Postcondiciones": [
+              "Se registra un nuevo diagnóstico al paciente.",
+              "El familiar asociado al paciente es notificado de la realización de un diagnóstico médico nuevo."
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "QUINTO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-005",
+            "Nombre del Caso de Uso": "Agregar cuidado (Cx) al historial de diagnósticos",
+            "Prioridad": "Alta",
+            "Actores": "Médico",
+            "Descripción": "Permitir la inserción al historial de Cx de un paciente específico en el sistema.",
+            "Precondiciones": [
+              "El actor debe de estar autenticado en el sistema con rol de médico."
+            ],
+            "Flujo Básico": [
+              "El médico selecciona la opción 'Mis pacientes'",
+              "El sistema muestra la lista de los pacientes asignados al médico",
+              "El médico selecciona el botón “Cx” del paciente específico.",
+              "El sistema muestra una ventana emergente con el historial de cuidados del paciente.",
+              "El médico selecciona la opción “Añadir cuidado”.",
+              "El sistema le presenta un formulario para ingresar los detalles del cuidado.",
+              "El médico completa el formulario proporcionando la información que es necesaria (como descripción del cuidado, fecha, motivo).",
+              "El médico presiona el botón” Agregar”.",
+              "El sistema valida la información ingresada.",
+              "El sistema muestra un mensaje de que el cuidado se ha añadido exitosamente."
+            ],
+            "Flujos Alternativos": [
+              "Si el Médico decide cancelar la operación, selecciona la opción “Cancelar”, y el sistema vuelve a la vista anterior.",
+              "Si la información proporcionada es inválida (por ejemplo, campos obligatorios están vacíos), el sistema muestra mensajes de error y solicita al médico que corrija los errores antes de proceder."
+            ],
+            "Postcondiciones": [
+              "Se registra un nuevo cuidado al paciente.",
+              "El familiar asociado al paciente es notificado de la realización de un nuevo cuidado médico nuevo."
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "SEXTO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-006",
+            "Nombre del Caso de Uso": "Actualizar Signos Vitales",
+            "Prioridad": "Alta",
+            "Actores": "Médico y familiar",
+            "Descripción": "Permite a los profesionales médicos y familiares, asignar los signos vitales de los pacientes que reciben atención médica en sus hogares.",
+            "Precondiciones": [
+              "El paciente debe estar registrado en el sistema 'HomeHeal'.",
+              "Los actores deben tener credenciales válidas y acceso autorizado al perfil del paciente."
+            ],
+            "Flujo Básico": [
+              "El Actor inicia sesión en el sistema 'HomeHeal' con sus credenciales.",
+              "El Actor busca y selecciona al paciente al que desea asignar signos vitales si es Si es familiar el sistema le muestra su pariente.",
+              "El Actor le da click a la opción 'Actualizar signos vitales' y se abre una ventana modal con los campos necesarios para asignar los signos vitales al paciente, el botón Aceptar y Cancelar.",
+              "El Actor da click en el botón 'Aceptar' el sistema valida la información y la guarda junto con fecha y hora."
+            ],
+            "Flujos Alternativos": [
+              "Si los signos están por fuera de los rangos normales, el sistema notifica al médico y al familiar del paciente sobre esto, vía email.",
+              "Después de asignar los signos vitales, el médico puede actualizar el historial de diagnósticos y cuidados del paciente si es necesario y el sistema debe notificar al familiar."
+            ],
+            "Postcondiciones": [
+              "Los signos vitales del paciente se han registrado en la base de datos y están disponibles para su visualización por parte del Médico y los familiares del paciente.",
+              "El historial de diagnósticos y cuidados del paciente se actualiza si es necesario.",
+              "Se generan alertas si los valores de los signos vitales del paciente cambiaron."
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "SÉPTIMO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-007",
+            "Nombre del Caso de Uso": "Visualizar signos vitales del paciente",
+            "Prioridad": "Alta",
+            "Actores": "Médico",
+            "Descripción": "El médico observa en la plataforma los signos vitales actuales de sus pacientes",
+            "Precondiciones": [
+              "El usuario debe estar registrado como médico",
+              "El usuario debe iniciar sesión"
+            ],
+            "Flujo Básico": [
+              "El actor selecciona la opción 'Mis pacientes'",
+              "El sistema despliega la lista de los pacientes que tiene asignado el médico.",
+              "El actor selecciona la opción 'Visualizar signos vitales'",
+              "El sistema despliega el dashboard con los signos vitales actuales de la persona seleccionada (Presión arterial, frecuencia cardíaca y saturación de oxígeno)"
+            ],
+            "Flujos Alternativos": [
+              "El paciente no tiene registrados signos vitales: El sistema indica esto a través de un mensaje"
+            ],
+            "Postcondiciones": [
+              ""
+            ]
+          }
+        ]
+      },
+      {
+        "subtitle": "OCTAVO",
+        "columns": [
+          "ID del Caso de Uso",
+          "Nombre del Caso de Uso",
+          "Prioridad",
+          "Actores",
+          "Descripción",
+          "Precondiciones",
+          "Flujo Básico",
+          "Flujos Alternativos",
+          "Postcondiciones"
+        ],
+        "rows": [
+          {
+            "ID del Caso de Uso": "CU-008",
+            "Nombre del Caso de Uso": "Comunicarse vía chat",
+            "Prioridad": "Baja",
+            "Actores": "Médico y familiar",
+            "Descripción": "Permite a los usuarios, incluyendo médicos y familiares, intercambiar mensajes en tiempo real.",
+            "Precondiciones": [
+              "Los usuarios deben estar registrados y tener credenciales válidas en el sistema 'HomeHeal'.",
+              "Los mensajes deben cumplir con las regulaciones de privacidad y protección de datos aplicables."
+            ],
+            "Flujo Básico": [
+              "El actor inicia sesión en el sistema 'HomeHeal' con sus credenciales.",
+              "El usuario busca y selecciona al destinatario con el que desea Puede buscar al destinatario por nombre o número de identificación.",
+              "Accede a la funcionalidad de chat, que permite intercambiar mensajes en tiempo real.",
+              "El usuario redacta un mensaje y lo envía al destinatario seleccionado.",
+              "El destinatario recibe el mensaje y puede responder en consecuencia."
+            ],
+            "Flujos Alternativos": [
+              "-"
+            ],
+            "Postcondiciones": [
+              "Las conversaciones se registran en la plataforma y están disponibles para su revisión en el futuro.",
+              "Los usuarios pueden acceder a la conversación para obtener información histórica y referencias.",
+              "La comunicación eficiente y oportuna entre médicos, pacientes, personal de atención de la salud y familiares se ha facilitado."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
